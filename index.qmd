@@ -1,0 +1,68 @@
+---
+title: An anthology of open access data science materials
+author:
+    - <a href="https://www.linkedin.com/in/dkapitan">Daniel Kapitan</a>
+description: |
+   Preface as to why I started this anthology, how I set it up and for what purpose. This is work in progress.
+date: 2023-11-01
+title-block-banner: false
+---
+
+
+## Why this anthology
+
+Machine learning is permeating many fields of work. As a new 'system technology'^[Sheikh et al. (2023), _Mission AI: the New System Technology_, [https://doi.org/10.1007/978-3-031-21448-6](https://doi.org/10.1007/978-3-031-21448-6)], its expected impact on organizations and society is expected to that of the steam engine or electricity.
+
+More and more professionals are seeking to acquire the necessary understanding and skills to apply machine learning in their day-to-day work. As such, more people _without_ a background in either computer science or statistics - let alone both - have a need for high-quality, open access content to explore and learn data science by themselves.
+
+Now there is a lot of machine learning learning materials out there, so why this anthology? Based on my experience in teaching professional education course on data & AI, I am continouly challenged to:
+
+- curate content for different professional learning paths, combining various existing open access materials. Key books, papers, libraries
+- balance between too technical vs too vague, handwaving or even downright wrong
+- problem-based approach: rather than, say, explaining the principles underlying regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularisation for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and intuitively reason where and how to use regularisation.
+
+## How is this anthology set up?
+
+### Introduction to Statistical Learning (ISL)
+
+"Introduction to Statistical Learning" (ISL) is a valuable resource not only for technical professionals but also for business managers and individuals with limited technical backgrounds who are interested in understanding machine learning.
+
+1. **Accessible Language and Concepts**: ISL is written in an accessible and non-technical language. It avoids complex jargon and assumes little prior technical knowledge. This makes it easier for business managers and non-technical individuals to grasp the core concepts of machine learning without feeling overwhelmed.
+
+2. **Practical Examples and Case Studies**: The book includes numerous practical examples and case studies that illustrate how machine learning can be applied to real-world business problems. Business managers can relate to these examples and see how machine learning can add value to their organizations.
+
+3. **Intuitive Explanations**: ISL provides intuitive explanations of statistical and machine learning concepts. It uses visual aids, graphs, and figures to simplify complex ideas. This approach helps non-technical readers understand the key principles behind various algorithms and techniques.
+
+4. **Step-by-Step Approach**: The book takes a step-by-step approach to explain the processes involved in machine learning, from data preprocessing to model evaluation. This helps non-technical readers follow the logical progression of building and evaluating machine learning models.
+
+5. **Practical Labs and Exercises**: ISL includes practical labs and exercises with accompanying datasets. These exercises enable readers to gain hands-on experience with implementing machine learning techniques, even if they have limited technical skills. This practical exposure can be valuable for understanding the actual process of model building.
+
+6. **Understanding Model Outputs**: The book helps non-technical individuals understand how to interpret the outputs of machine learning models. It covers topics like model accuracy, variable importance, and model selection, which are crucial for making informed business decisions based on machine learning results.
+
+7. **Decision-Making Support**: Business managers can benefit from ISL by learning how to leverage machine learning for data-driven decision-making. Understanding the basics of machine learning allows them to collaborate more effectively with technical teams, set realistic expectations, and make informed decisions about which machine learning techniques to apply in specific business scenarios.
+
+8. **Complementary to Data Literacy**: ISL can be a valuable complement to data literacy efforts within an organization. It helps individuals understand how data is transformed into actionable insights through machine learning, enhancing their data-driven decision-making capabilities.
+
+9. **Cross-Functional Collaboration**: By reading ISL, business managers and non-technical individuals can bridge the communication gap between technical and non-technical teams. This can facilitate more effective collaboration on machine learning projects within an organization.
+
+
+### Interpretable Machine Learning (IML)
+
+
+### Forecasting Principles & Practice (FPP)
+
+
+
+### Data workflow
+
+- The Turing Way
+- Tidy data, Wickham
+
+
+### Data visualization
+
+- Grammar of Graphics
+- Altair
+
+###  Getting into Python with realpython.com
+

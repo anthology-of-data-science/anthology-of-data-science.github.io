@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Anthology of Data Science"
+  site-url: https://anthology-of-data.science  
+  search:
+    location: sidebar
+    type: textbox
+  sidebar:
+    title: false
+    logo: /logo-anthology-of-data-science.png    
+    tools:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/dkapitan/
+        text: "LinkedIn profile"
+      - icon: github
+        href: https://github.com/dkapitan
+        text: "GitHub profile"
+    style: floating
+    collapse-level: 1
+    contents:
+      - section: "statistical learning"
+        href: basics/index.qmd
+        contents:
+          - text: "A visual introduction to ML"
+            href: basics/r2d3-decision-tree.qmd
+          - text: "Precision-recall"
+            href: basics/precision-recall.qmd
+          
+      - section: "data analysis & visualisation"
+        href: visualisation/index.qmd
+        contents:
+          - text: "Stop aggregating the signal"
+            href: visualisation/stop-aggregating-signal.qmd
+  page-footer:
+    left: |
+      <br>
+      © 2023 by Daniel Kapitan<br>
+      This website was created with [![](/quarto.png){fig-alt="Quarto" width=65px}](https://quarto.org)<br>
+      [![](/cc-by-nc-eu.png){fig-alt="CC BY-NC 4.0"}](http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1)<br>
+
+      
+format:
+  html:
+    theme:
+      - cosmo
+      - mozilla.scss
+    css: styles.css
+    toc: true
+
+
+
