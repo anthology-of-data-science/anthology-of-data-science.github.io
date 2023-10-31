@@ -1,0 +1,15 @@
+[
+  {
+    "listing": "/basics/index.html",
+    "items": [
+      "/basics/precision-recall.html",
+      "/basics/r2d3-decision-tree.html"
+    ]
+  },
+  {
+    "listing": "/visualisation/index.html",
+    "items": [
+      "/visualisation/stop-aggregating-signal.html"
+    ]
+  }
+]
