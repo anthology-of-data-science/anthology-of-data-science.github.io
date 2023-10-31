@@ -7,6 +7,13 @@
     ]
   },
   {
+    "listing": "/notebooks/index.html",
+    "items": [
+      "/notebooks/pima-indians/pima-indians-with-pycaret.html",
+      "/notebooks/ames-housing/ames-housing-with-pycaret.html"
+    ]
+  },
+  {
     "listing": "/visualisation/index.html",
     "items": [
       "/visualisation/stop-aggregating-signal.html"

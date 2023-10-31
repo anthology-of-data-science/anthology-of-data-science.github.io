@@ -2,30 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://anthology-of-data.science/index.html</loc>
-    <lastmod>2023-10-31T21:31:43.952Z</lastmod>
+    <lastmod>2023-10-31T21:32:24.244Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/basics/index.html</loc>
-    <lastmod>2023-10-31T21:31:42.952Z</lastmod>
+    <lastmod>2023-10-31T21:32:23.204Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/visualisation/stop-aggregating-signal.html</loc>
-    <lastmod>2023-10-31T21:31:41.756Z</lastmod>
+    <lastmod>2023-10-31T21:32:21.932Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthology-of-data.science/notebooks/pima-indians/pima-indians-with-pycaret.html</loc>
+    <lastmod>2023-10-31T21:32:20.060Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthology-of-data.science/notebooks/ames-housing/ames-housing-with-pycaret.html</loc>
+    <lastmod>2023-10-31T21:32:17.612Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/about.html</loc>
-    <lastmod>2023-10-31T21:31:39.596Z</lastmod>
+    <lastmod>2023-10-31T21:32:13.588Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthology-of-data.science/notebooks/index.html</loc>
+    <lastmod>2023-10-31T21:32:18.260Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/visualisation/index.html</loc>
-    <lastmod>2023-10-31T21:31:40.528Z</lastmod>
+    <lastmod>2023-10-31T21:32:20.612Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/basics/precision-recall.html</loc>
-    <lastmod>2023-10-31T21:31:42.356Z</lastmod>
+    <lastmod>2023-10-31T21:32:22.560Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/basics/r2d3-decision-tree.html</loc>
-    <lastmod>2023-10-31T21:31:43.360Z</lastmod>
+    <lastmod>2023-10-31T21:32:23.628Z</lastmod>
   </url>
 </urlset>
