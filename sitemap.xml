@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://anthology-of-data.science/basics/index.html</loc>
-    <lastmod>2023-10-31T20:29:07.379Z</lastmod>
-  </url>
-  <url>
-    <loc>https://anthology-of-data.science/basics/precision-recall.html</loc>
-    <lastmod>2023-10-31T20:29:07.803Z</lastmod>
-  </url>
-  <url>
-    <loc>https://anthology-of-data.science/basics/r2d3-decision-tree.html</loc>
-    <lastmod>2023-10-31T20:29:08.092Z</lastmod>
-  </url>
-  <url>
     <loc>https://anthology-of-data.science/index.html</loc>
-    <lastmod>2023-10-31T20:29:08.486Z</lastmod>
+    <lastmod>2023-10-31T20:33:49.625Z</lastmod>
   </url>
   <url>
-    <loc>https://anthology-of-data.science/about.html</loc>
-    <lastmod>2023-10-31T20:29:08.750Z</lastmod>
-  </url>
-  <url>
-    <loc>https://anthology-of-data.science/visualisation/index.html</loc>
-    <lastmod>2023-10-31T20:29:09.074Z</lastmod>
+    <loc>https://anthology-of-data.science/basics/index.html</loc>
+    <lastmod>2023-10-31T20:33:48.793Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/visualisation/stop-aggregating-signal.html</loc>
-    <lastmod>2023-10-31T20:29:09.908Z</lastmod>
+    <lastmod>2023-10-31T20:33:47.801Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthology-of-data.science/about.html</loc>
+    <lastmod>2023-10-31T20:33:45.941Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthology-of-data.science/visualisation/index.html</loc>
+    <lastmod>2023-10-31T20:33:46.765Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthology-of-data.science/basics/precision-recall.html</loc>
+    <lastmod>2023-10-31T20:33:48.285Z</lastmod>
+  </url>
+  <url>
+    <loc>https://anthology-of-data.science/basics/r2d3-decision-tree.html</loc>
+    <lastmod>2023-10-31T20:33:49.137Z</lastmod>
   </url>
 </urlset>
