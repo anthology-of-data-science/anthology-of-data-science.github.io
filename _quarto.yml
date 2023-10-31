@@ -28,6 +28,13 @@ website:
             href: basics/r2d3-decision-tree.qmd
           - text: "Precision-recall"
             href: basics/precision-recall.qmd
+          - section: "example notebooks"
+            href: notebooks/index.qmd
+            contents:
+            - text: "Regression: Ames Housing"
+              href: notebooks/ames-housing/ames-housing-with-pycaret.ipynb
+            - text: "Classification: Pima Indians"
+              href: notebooks/pima-indians/pima-indians-with-pycaret.ipynb
           
       - section: "data analysis & visualisation"
         href: visualisation/index.qmd
