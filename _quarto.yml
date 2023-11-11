@@ -21,26 +21,45 @@ website:
     style: floating
     collapse-level: 1
     contents:
-      - section: "statistical learning"
-        href: basics/index.qmd
+      - section: Textbooks
+        href: books.qmd
+        contents:
+          - text: "Introduction to Statistical Learning"
+            href: books/islp.qmd
+          - text: "Interpretable ML"
+            href: books/iml.qmd
+          - text: "Time-series forecasting"
+            href: books/fpp.qmd
+          - text: "Deep Learning"
+            href: books/udl.qmd
+      - section: Visualization with Altair
+        href: altair/index.qmd
+        contents:
+          - text: "Curriculum"
+            href: altair/curriculum.qmd
+          - text: "Introduction"
+            href: altair/video-altair-intro.qmd
+          - text: "Grammar"
+            href: altair/video-altair-grammar.qmd
+          - text: "Data types"
+            href: altair/video-altair-data-types.qmd
+      - section: "Selected papers & blogposts"
+        href: posts/index.qmd
         contents:
           - text: "A visual introduction to ML"
-            href: basics/r2d3-decision-tree.qmd
+            href: posts/r2d3-decision-tree.qmd
           - text: "Precision-recall"
-            href: basics/precision-recall.qmd
-          - section: "example notebooks"
-            href: notebooks/index.qmd
-            contents:
-            - text: "Regression: Ames Housing"
-              href: notebooks/ames-housing/ames-housing-with-pycaret.ipynb
-            - text: "Classification: Pima Indians"
-              href: notebooks/pima-indians/pima-indians-with-pycaret.ipynb
-          
-      - section: "data analysis & visualisation"
-        href: visualisation/index.qmd
-        contents:
+            href: posts/precision-recall.qmd
           - text: "Stop aggregating the signal"
-            href: visualisation/stop-aggregating-signal.qmd
+            href: posts/stop-aggregating-signal.qmd
+      - section: "Example notebooks"
+        href: notebooks/index.qmd
+        contents:
+          - text: "Regression: Ames Housing"
+            href: notebooks/ames-housing/ames-housing-with-pycaret.ipynb
+          - text: "Classification: Pima Indians"
+            href: notebooks/pima-indians/pima-indians-with-pycaret.ipynb          
+            
   page-footer:
     left: |
       <br>

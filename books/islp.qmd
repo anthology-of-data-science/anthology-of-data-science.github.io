@@ -1,0 +1,17 @@
+---
+title: Introduction to Statistical Learning
+description: |
+    Introduction to Statistical Learning (ISL) is a valuable resource not only for technical professionals but also for business managers and individuals with limited technical backgrounds who are interested in understanding machine learning.
+image: images/islp.png
+author:
+    - Gareth James
+    - Daniela Witten
+    - Trevor Hastie
+    - Robert Tibshirani
+    - Jonathan Taylor
+date: 2023-07-05
+page-layout: full
+toc: false
+---
+
+{{< pdf /resources/james2023islp.pdf width=100% height=800 >}}

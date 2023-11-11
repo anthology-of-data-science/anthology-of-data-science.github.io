@@ -1,0 +1,12 @@
+---
+title: Understanding Deep Learning
+description: |
+    This book explains the <i>ideas</i> that underlie deep learning, distinguishing it from volumes that cover coding and other practical aspects.
+author: Simon Prince
+date: 2023-10-23
+image: images/udl.jpg
+page-layout: full
+toc: false
+---
+
+{{< pdf /resources/prince2023udl.pdf width=100% height=800 >}}

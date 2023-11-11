@@ -1,0 +1,12 @@
+---
+title: Altair's data types
+description: |
+    Understanding your data is critical in creating visualizations. This video outlines Altair's data types and explains how they can influence the visualization process.
+image: images/altair-data-types.png
+author: Eitan Lees
+date: 2020-08-23
+page-layout: full
+toc: false
+---
+
+{{< video https://www.youtube.com/watch?v=LSEPyCqjoAg >}}

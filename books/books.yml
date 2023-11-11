@@ -1,0 +1,9 @@
+- name: Introduction to Statistical Learning
+  code: isl.qmd
+- name: IML
+  href: iml.qmd
+- name: Understanding Deep Learning
+  href: iml.qmd
+- name: Altair
+  href: altair.qmd
+

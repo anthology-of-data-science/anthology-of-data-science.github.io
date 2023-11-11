@@ -1,0 +1,14 @@
+---
+title: Interpretable Machine Learning
+description: |
+    This textbook is provides a comprehensive introduction to forecasting methods and presents enough information about each method for readers to be able to use them sensibly.
+image: images/iml.png
+author: Christoph Molnar
+date: 2022-03-04
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://masteringdata.ai/interpretable-ml-book" title="Interpretable Machine Learning"></iframe>
+```
