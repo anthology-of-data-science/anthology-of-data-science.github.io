@@ -4,7 +4,8 @@ project:
 
 website:
   title: "Anthology of Data Science"
-  site-url: https://anthology-of-data.science  
+  site-url: https://anthology-of-data.science
+  reader-mode: true
   search:
     location: sidebar
     type: textbox
