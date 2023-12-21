@@ -1,14 +1,9 @@
 [
   {
-    "listing": "/books.html",
+    "listing": "/python/index.html",
     "items": [
-      "/books/islp.html",
-      "/books/fpp.html",
-      "/books/iml.html",
-      "/books/pda.html",
-      "/books/r4ds.html",
-      "/books/turing-way.html",
-      "/books/udl.html"
+      "/python/realpython.html",
+      "/python/whirlwind.html"
     ]
   },
   {
@@ -22,11 +17,15 @@
     ]
   },
   {
-    "listing": "/python/index.html",
+    "listing": "/books.html",
     "items": [
-      "/python/vs-code.html",
-      "/python/realpython.html",
-      "/python/whirlwind.html"
+      "/books/islp.html",
+      "/books/fpp.html",
+      "/books/iml.html",
+      "/books/pda.html",
+      "/books/r4ds.html",
+      "/books/turing-way.html",
+      "/books/udl.html"
     ]
   },
   {
