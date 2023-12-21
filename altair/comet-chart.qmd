@@ -4,7 +4,7 @@ description: Visualizing statistical mix effects and Simpson’s paradox with Al
 author:
     - <a href="https://www.linkedin.com/in/dkapitan">Daniel Kapitan</a>
 date: 2021-01-29
-image: /posts/images/comet-chart.png
+image: /altair/images/comet-chart.png
 html:
     code-fold: true
 categories: [english, visualization, coding]
