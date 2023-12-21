@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="“Show, don’t tell” is arguably one of the best ways to learn.">
 
-<title>Anthology of Data Science - Example notebooks</title>
+<title>Anthology of Data Science - Example notebooks and explainers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -215,6 +216,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Tour of Python</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../python/effective-python-and-idiomatic-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pythonic and idiomatic Python</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,6 +309,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Classification: Pima Indians</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/deconfounding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deconfounding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notebooks/overfitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overfitting and underfitting</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -317,9 +336,14 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Example notebooks</h1>
+<h1 class="title">Example notebooks and explainers</h1>
 </div>
 
+<div>
+  <div class="description">
+    <p>“Show, don’t tell” is arguably one of the best ways to learn.</p>
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
@@ -338,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1698796800000" data-listing-file-modified-sort="1703193024294" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1698796800000" data-listing-file-modified-sort="1703198965777" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <a href="../notebooks/pima-indians/pima-indians-with-pycaret.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="https://github.com/EAISI/discover-projects/blob/main/pima-indians-diabetes/women-Pima-shinny-game-field-hockey.jpg?raw=true" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -361,7 +385,7 @@ Nov 1, 2023
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1697846400000" data-listing-file-modified-sort="1703193024274" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="1" data-listing-date-sort="1697846400000" data-listing-file-modified-sort="1703198965749" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <a href="../notebooks/ames-housing/ames-housing-with-pycaret.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="https://storage.googleapis.com/kaggle-media/competitions/House Prices/kaggle_5407_media_housesbanner.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -378,6 +402,52 @@ Daniel Kapitan
 </div>
 <div class="listing-date">
 Oct 21, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-date-sort="1682899200000" data-listing-file-modified-sort="1703198965761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
+<a href="../notebooks/overfitting.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Demonstration of overfitting and underfitting
+</h5>
+<div class="card-text listing-description">
+<p>This notebook illustrates why we require a train/test split (or cross-validation) to balance overfitting vs.&nbsp;underfitting.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+May 1, 2023
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-date-sort="1663459200000" data-listing-file-modified-sort="1703198965761" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
+<a href="../notebooks/deconfounding.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Deconfounding explained
+</h5>
+<div class="card-text listing-description">
+<p>A demonstration howcorrelations ‘magically’ disappear if confounders are added to your model.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Sep 18, 2022
 </div>
 </div>
 </div>
