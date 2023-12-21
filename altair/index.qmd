@@ -3,6 +3,7 @@ listing:
   contents:
     - curriculum.qmd
     - video-*.qmd
+    - comet-chart.qmd
   type: grid
   grid-columns: 2
   image-height: "200px"
