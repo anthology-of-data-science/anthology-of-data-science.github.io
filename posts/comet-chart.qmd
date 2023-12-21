@@ -2,7 +2,7 @@
 title: Comet charts in Python
 description: Visualizing statistical mix effects and Simpson’s paradox with Altair
 date: 2021-01-29
-image: /images/comet-chart.png
+image: /posts/images/comet-chart.png
 html:
     code-fold: true
 categories: [english, visualization, coding]
