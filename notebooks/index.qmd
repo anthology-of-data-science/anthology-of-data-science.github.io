@@ -1,7 +1,9 @@
 ---
 title: Example notebooks
 listing:
-    contents: "**/*.ipynb"
+    contents:
+        - "**/*.ipynb"
+        - "!**/*.out.ipynb"
     type: grid
     sort: "date desc"
     sort-ui: false

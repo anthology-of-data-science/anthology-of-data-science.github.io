@@ -1,4 +1,9 @@
 ---
+title: Getting into python
+description: |
+  How to get into Python, the most widely used programming language for data science.
+author: Daniel Kapitan
+date: 2023-12-21
 listing:
   id: python-listing
   contents: "*.qmd"
@@ -9,33 +14,29 @@ listing:
   sort-ui: false
 ---
 
-:::{.callout-note appearance="simple"}
-## Jake VanderPlas in the Python Data Science Handbook
+## Why Python for data science?
 
 Python has emerged over the last couple decades as a first-class tool for scientific computing tasks, including the analysis and visualization of large datasets. This may have come as a surprise to early proponents of the Python language: the language itself was not specifically designed with data analysis or scientific computing in mind. The usefulness of Python for data science stems primarily from the large and active ecosystem of third-party packages, particularly:
 
-- NumPy for manipulation of homogeneous array-based data
-- Pandas for manipulation of heterogeneous and labeled data
-- SciPy for common scientific computing tasks, Matplotlib for publication-quality visualizations
-- IPython for interactive execution and sharing of code
-- Scikit-Learn for machine learning
-:::
+- NumPy for manipulation of homogeneous array-based data;
+- Pandas for manipulation of heterogeneous and labeled data, and the more recent high-performace dataprocessing libraries such as polars and ibis;
+- SciPy for common scientific computing tasks, Matplotlib for publication-quality visualizations;
+- IPython for interactive execution and sharing of code;
+- Scikit-Learn for machine learning.
 
-::: {#python-listing}
-:::
 
-## How much Python should I know? {#sec-how-much-python}
+## How much Python should I know?
 
-As with any other (programming) language, it takes years to master it fluently which is beyond the scope this course. Instead, our objective is to have a working knowledge of Python to be able to learn and apply machine learning. To make this explicit we take the following book and online resources as our point of reference. Prior to starting the Data Science Foundation programme, participants are expected to have mastered the following topics:
+As with any other (programming) language, it takes years to master it fluently which is beyond the scope this anthology. Instead, our objective is to have a working knowledge of Python to be able to learn and apply machine learning. To make this explicit we take the following book and online resources as our point of reference.
 
-- A Whirlwind Tour of Python (pages number from the [pdf version](https://github.com/EAISI/WhirlwindTourOfPython/blob/master/vanderplas2016whirlwind.pdf)):
+- A Whirlwind Tour of Python (pages number from the [pdf version](/resources/vanderplas2016whirlwind.pdf)):
   - Know how to install and use Python on your own computer (pages 1 to 13)
   - Know basic semantics of variables, objects and operators (pages 13 to 24)
   - Know built-in simple values and data structures (pages 24 to 37)
   - Know how to use control flow and functions (pages 37 to 45)
   - Know how to iterate and use list comprehensions (pages 52 to 61)
-- Python Data Science handbook 
-  - Know how to manipulate data with pandas [(chapter 3)](https://jakevdp.github.io/PythonDataScienceHandbook/03.00-introduction-to-pandas.html)
+- Python for Data Analysis
+  - Know how to manipulate data with pandas, with [Python for Data Analysis, Third Edition](/books/pda.qmd) as your reference guide
 
 :::{.callout-note appearance="simple"}
 ## PCEP™ – Certified Entry-Level Python Programmer
@@ -45,36 +46,21 @@ The learning path proposed here is similar to the [PCEP™ – Certified Entry-L
 
 ## How should I learn Python?
 
-This foundational course aims to cater for participants both with and without programming experience. To ensure everyone is able to acquire the level described above, participants are given access to [Real Python](https://realpython.com) and are required to obtain a working knowledge of Python through self-study prior to starting the lectures. 
-
-:::{.panel-tabset}
-### First-time programmers
-
-If you have never done any scientific programming before, you can prepare as follows:
-
-- Complete the [Python Basics with Real Python](./python-basics-with-real-python.ipynb) notebook which includes basic exercises.
-- Browse the sections from [A Whirlwind Tour of Python](https://github.com/jads-nl/WhirlwindTourOfPython/blob/master/vanderplas2016whirlwind.pdf) and [Python Data Science Handbook](https://github.com/jads-nl/PythonDataScienceHandbook) as listed in @sec-how-much-python to verify you have understood te basics.
-
-### Experienced programmers
-
-If you have some experience in scientific programming, for example in R or Matlab, you jump into Python as follows:
-
-- read [A Whirlwind Tour of Python](https://github.com/jads-nl/WhirlwindTourOfPython) and [chapter 3 of the Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/03.00-introduction-to-pandas.html)
-- brush up skills on [Real Python](https://realpython.com) on specific topics.
-:::
+RealPython.com is the recommended online learning environment for Python. We have collated a [learning path for data science](realpython.qmd).
 
 
 ## Which Python environment should I use?
 
-Options how to start using Python are listed below. At the very least, make sure you know how to use [Deepnote](https://deepnote.com) (option 1 listed below). This is the default platform which will be used in class.
+Options how to start using Python are listed below.
 
+:::{.panel-tabset}
 ### Online environment
 For those new to Python, it is probably easiest to start with one of these online tools:
 
 - [Deepnote](https://deepnote.com/): there is a generous free-tier. If you decide to upgrade, you can collaborate and share notebooks privately.
 - [Google Colab](https://colab.research.google.com/notebooks/intro.ipynb):
-  - Activate a Google account if you haven't got one yet. [This how-to guide](../../assets/how-to-create-google-account.pdf) explains how you can link an existing (work) email address to a Google account.
-  - Work your way through the [Colab introduction notebook](https://colab.research.google.com/notebooks/intro.ipynb)
+  - Activate a Google account if you haven't got one yet.
+  - Work your way through the [Colab introduction notebook](https://colab.research.google.com/notebooks/intro.ipynb).
 
 Once you have gained some traction, you can move on to install Python on your local machine.
 
@@ -84,8 +70,7 @@ You can setup your local machine/laptop for data science and machine learning as
 
 - Install [Anaconda](https://www.anaconda.com/products/individual) (recommended package manager for data science).
 - Install [Visual Studio Code](https://code.visualstudio.com/download) including the [Python extension](https://code.visualstudio.com/docs/languages/python) (recommended integrated development environment (IDE)).
-
-
+:::
 
 ## Guidelines for using Python for data science
 
@@ -100,3 +85,8 @@ For those wanting to further develop their Python skills for data science, the f
 - [Data Science With Python Core Skills](https://realpython.com/learning-paths/data-science-python-core-skills/) on Real Python provides an extensive learning path.
 - [Hands-On Machine Learning with Scikit-Learn, Keras and Tensorflow (2nd edition)](https://github.com/jads-nl/handson-ml2) by Aurélien Géron. You will need to purchase the book, but the notebooks with example code are [freely available](https://github.com/jads-nl/handson-ml2).
 - [Effective Python: 90 Specific Ways to Write Better Python (second edition)](https://effectivepython.com/).
+
+## More on Python
+
+::: {#python-listing}
+:::

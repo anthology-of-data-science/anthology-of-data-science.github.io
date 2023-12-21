@@ -41,6 +41,13 @@ website:
             href: books/udl.qmd
           - text: "The Turing Way"
             href: books/turing-way.qmd
+      - section: Getting into Python
+        href: python/index.qmd
+        contents:
+          - text: "Real Python"
+            href: python/realpython.qmd
+          - text: "Tour of Python"
+            href: python/whirlwind.qmd
       - section: Visualization with Altair
         href: altair/index.qmd
         contents:
@@ -52,13 +59,16 @@ website:
             href: altair/video-altair-grammar.qmd
           - text: "Data types"
             href: altair/video-altair-data-types.qmd
-      - section: "Selected papers & blogposts"
+      - section: "Selected articles"
         href: posts/index.qmd
         contents:
-          - text: "Precision-recall"
-            href: posts/precision-recall.qmd
           - text: "Stop aggregating the signal"
             href: posts/stop-aggregating-signal.qmd
+          - text: "Predictive Power Score"
+            href: posts/predictive-power-score.qmd
+          - text: "Precision-recall is better than ROC"
+            href: posts/precision-recall.qmd
+
       - section: "Notebooks"
         href: notebooks/index.qmd
         contents:

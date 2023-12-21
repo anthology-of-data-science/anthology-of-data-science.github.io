@@ -31,11 +31,11 @@ A selection of what I think are [the best textbooks](books.qmd) is provided as a
 
 I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis. A selection of tutorials, blogpost is provided in the section [Visualization with Altair](altair/index.qmd).
 
-### Selected papers & blogposts
+### Selected articles
 
-Various topics and perspectives data science. Clearly this is an opinionated and very personal selection.
+Various topics and perspectives data science. Clearly this is an opinionated and very [personal selection](posts/index.qmd).
 
 ### Notebooks
 
-[Notebooks and explainers](notebooks/index.qmd) for those seeking hands-on examples.
+Notebooks for those seeking [hands-on examples and explainers](notebooks/index.qmd).
 

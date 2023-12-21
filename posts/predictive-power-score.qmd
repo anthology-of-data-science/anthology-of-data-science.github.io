@@ -1,7 +1,6 @@
 ---
 title: RIP correlation. Introducing the Predictive Power Score.
-author:
-    - <a href="https://www.linkedin.com/in/florianwetschoreck/">Florian Wetschoreck</a>
+author: <a href="https://www.linkedin.com/in/florianwetschoreck/">Florian Wetschoreck</a>
 description: |
    We define the Predictive Power Score (PPS), an alternative to the correlation that finds more patterns in your data. Originally published on <a href="https://towardsdatascience.com/rip-correlation-introducing-the-predictive-power-score-3d90808b9598">Towards Data Science</a>.
 date: 2020-04-23
@@ -67,6 +66,8 @@ Let’s use a typical quadratic relationship: the feature x is a uniform variabl
 Let’s compare the correlation matrix to the PPS matrix on the Titanic dataset. “The Titanic dataset? Again??” I know, you probably think you already have seen everything about the Titanic dataset but maybe the PPS will give you some new insights.
 
 ![](images/pps3.webp)
+
+![](images/pps4.webp)
 
 #### Two findings about the correlation matrix:
 
