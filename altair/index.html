@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Daniel Kapitan">
+<meta name="dcterms.date" content="2023-12-21">
+<meta name="description" content="I am a big fan of the Vega-Altair ecosystem for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis.">
 
-<title>Anthology of Data Science – index</title>
+<title>Anthology of Data Science - Data visualization with Vega-Altair</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +67,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-altair-listing .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -77,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-altair-listing'] = new List('listing-altair-listing', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -328,20 +331,56 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dkapitan/anthology-of-data-science/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data visualization with Vega-Altair</h1>
+</div>
+
+<div>
+  <div class="description">
+    <p>I am a big fan of the Vega-Altair ecosystem for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis.</p>
+  </div>
+</div>
 
 
+<div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Daniel Kapitan </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 21, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
+</header>
 
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<div id="listing-altair-listing" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-2">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1616630400000" data-listing-file-modified-sort="1703199603594" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1616630400000" data-listing-file-modified-sort="1703200309795" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <a href="../altair/curriculum.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -366,7 +405,7 @@ Mar 25, 2021
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="english,visualization,coding" data-listing-date-sort="1611878400000" data-listing-file-modified-sort="1703199603594" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
+<div class="g-col-1" data-index="1" data-categories="english,visualization,coding" data-listing-date-sort="1611878400000" data-listing-file-modified-sort="1703200309795" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
 <a href="../altair/comet-chart.html" class="quarto-grid-link">
 </a><div class="quarto-grid-item card h-100 card-left"><a href="../altair/comet-chart.html" class="quarto-grid-link">
 <p class="card-img-top">
@@ -391,7 +430,7 @@ Jan 29, 2021
 </div>
 
 </div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1598140800000" data-listing-file-modified-sort="1703199603614" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="2" data-listing-date-sort="1598140800000" data-listing-file-modified-sort="1703200309811" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <a href="../altair/video-altair-data-types.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -416,7 +455,7 @@ Aug 23, 2020
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-date-sort="1597276800000" data-listing-file-modified-sort="1703199603614" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="3" data-listing-date-sort="1597276800000" data-listing-file-modified-sort="1703200309811" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <a href="../altair/video-altair-grammar.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -441,7 +480,7 @@ Aug 13, 2020
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="4" data-listing-date-sort="1596499200000" data-listing-file-modified-sort="1703199603614" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
+<div class="g-col-1" data-index="4" data-listing-date-sort="1596499200000" data-listing-file-modified-sort="1703200309811" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
 <a href="../altair/video-altair-intro.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -470,7 +509,13 @@ Aug 4, 2020
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -710,7 +755,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left"><br> © 2023 by Daniel Kapitan<br> This website was created with <a href="https://quarto.org"><img src="../quarto.png" class="img-fluid" alt="Quarto" width="65"></a><br> <a href="http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1"><img src="../cc-by-nc-eu.png" class="img-fluid" alt="CC BY-NC 4.0"></a><br></div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dkapitan/anthology-of-data-science/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

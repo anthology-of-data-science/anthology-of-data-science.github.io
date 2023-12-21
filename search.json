@@ -394,9 +394,16 @@
   {
     "objectID": "altair/index.html",
     "href": "altair/index.html",
-    "title": "Anthology of Data Science",
+    "title": "Data visualization with Vega-Altair",
     "section": "",
-    "text": "Visualization curriculum with Altair\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nComet charts in Python\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAltair’s data types\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAltair’s visualization grammar\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhat is Altair?\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "A data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "altair/index.html#section",
+    "href": "altair/index.html#section",
+    "title": "Data visualization with Vega-Altair",
+    "section": "",
+    "text": "A data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "python/whirlwind.html",
