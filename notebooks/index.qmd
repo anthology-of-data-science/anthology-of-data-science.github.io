@@ -1,5 +1,7 @@
 ---
-title: Example notebooks
+title: Example notebooks and explainers
+description: |
+    "Show, don't tell" is arguably one of the best ways to learn.
 listing:
     contents:
         - "**/*.ipynb"

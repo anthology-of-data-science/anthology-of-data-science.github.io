@@ -6,7 +6,9 @@ author: Daniel Kapitan
 date: 2023-12-21
 listing:
   id: python-listing
-  contents: "*.qmd"
+  contents:
+    - "*.qmd"
+    - "*.ipynb"
   type: grid
   grid-columns: 2
   image-height: "200px"

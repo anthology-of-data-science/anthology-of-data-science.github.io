@@ -48,6 +48,8 @@ website:
             href: python/realpython.qmd
           - text: "Tour of Python"
             href: python/whirlwind.qmd
+          - text: "Pythonic and idiomatic Python"
+            href: python/effective-python-and-idiomatic-pandas.ipynb
       - section: Visualization with Altair
         href: altair/index.qmd
         contents:
@@ -68,15 +70,19 @@ website:
             href: posts/predictive-power-score.qmd
           - text: "Precision-recall is better than ROC"
             href: posts/precision-recall.qmd
-
       - section: "Notebooks"
         href: notebooks/index.qmd
         contents:
           - text: "Regression: Ames Housing"
             href: notebooks/ames-housing/ames-housing-with-pycaret.ipynb
+          - text: "Regression: Another Ames Housing"
+            href: notebooks/ames-housing/ames-housing.ipynb
           - text: "Classification: Pima Indians"
-            href: notebooks/pima-indians/pima-indians-with-pycaret.ipynb          
-            
+            href: notebooks/pima-indians/pima-indians-with-pycaret.ipynb
+          - text: "Deconfounding"
+            href: notebooks/deconfounding.ipynb
+          - text: "Overfitting and underfitting"
+            href: notebooks/overfitting.ipynb   
   page-footer:
     left: |
       <br>
@@ -84,7 +90,6 @@ website:
       This website was created with [![](/quarto.png){fig-alt="Quarto" width=65px}](https://quarto.org)<br>
       [![](/cc-by-nc-eu.png){fig-alt="CC BY-NC 4.0"}](http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1)<br>
 
-      
 format:
   html:
     theme:
@@ -93,5 +98,6 @@ format:
     css: styles.css
     toc: true
 
-
+execute:
+  freeze: auto  # re-render only when source changes
 
