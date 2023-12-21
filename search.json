@@ -452,7 +452,7 @@
     "href": "notebooks/index.html",
     "title": "Example notebooks and explainers",
     "section": "",
-    "text": "Predicting diabetes with Pima Indians\n\n\n\n\n\n\nDaniel Kapitan\n\n\nNov 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nPredicting house prices in Ames, Iowa\n\n\n\n\n\n\nDaniel Kapitan\n\n\nOct 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nDemonstration of overfitting and underfitting\n\n\nThis notebook illustrates why we require a train/test split (or cross-validation) to balance overfitting vs. underfitting.\n\n\n\n\n\n\nMay 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nDeconfounding explained\n\n\nA demonstration howcorrelations ‘magically’ disappear if confounders are added to your model.\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Predicting diabetes with Pima Indians\n\n\n\n\n\n\nDaniel Kapitan\n\n\nNov 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nPredicting house prices in Ames, Iowa\n\n\n\n\n\n\nDaniel Kapitan\n\n\nOct 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDemonstration of overfitting and underfitting\n\n\nThis notebook illustrates why we require a train/test split (or cross-validation) to balance overfitting vs. underfitting.\n\n\n\n\n\n\nMay 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeconfounding explained\n\n\nA demonstration howcorrelations ‘magically’ disappear if confounders are added to your model.\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "notebooks/pima-indians/pima-indians-with-pycaret.html#objectives",
