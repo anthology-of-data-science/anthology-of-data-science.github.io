@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./books.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Textbooks</span></a>
+ <span class="menu-text">Books</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -124,6 +124,18 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./books/islp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to Statistical Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./books/pda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python for Data Analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./books/r4ds.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R for Data Science</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -142,6 +154,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./books/udl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deep Learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./books/turing-way.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Turing Way</span></a>
   </div>
 </li>
       </ul>
@@ -213,7 +231,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="./notebooks/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Example notebooks</span></a>
+ <span class="menu-text">Notebooks</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -246,15 +264,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#why-this-anthology" id="toc-why-this-anthology" class="nav-link active" data-scroll-target="#why-this-anthology">Why this anthology</a></li>
   <li><a href="#how-is-this-anthology-set-up" id="toc-how-is-this-anthology-set-up" class="nav-link" data-scroll-target="#how-is-this-anthology-set-up">How is this anthology set up?</a>
   <ul class="collapse">
-  <li><a href="#introduction-to-statistical-learning-isl" id="toc-introduction-to-statistical-learning-isl" class="nav-link" data-scroll-target="#introduction-to-statistical-learning-isl">Introduction to Statistical Learning (ISL)</a></li>
-  <li><a href="#interpretable-machine-learning-iml" id="toc-interpretable-machine-learning-iml" class="nav-link" data-scroll-target="#interpretable-machine-learning-iml">Interpretable Machine Learning (IML)</a></li>
-  <li><a href="#forecasting-principles-practice-fpp" id="toc-forecasting-principles-practice-fpp" class="nav-link" data-scroll-target="#forecasting-principles-practice-fpp">Forecasting Principles &amp; Practice (FPP)</a></li>
-  <li><a href="#data-workflow" id="toc-data-workflow" class="nav-link" data-scroll-target="#data-workflow">Data workflow</a></li>
-  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
-  <li><a href="#getting-into-python-with-realpython.com" id="toc-getting-into-python-with-realpython.com" class="nav-link" data-scroll-target="#getting-into-python-with-realpython.com">Getting into Python with realpython.com</a></li>
+  <li><a href="#a-selection-of-the-best-books" id="toc-a-selection-of-the-best-books" class="nav-link" data-scroll-target="#a-selection-of-the-best-books">A selection of the best books</a></li>
+  <li><a href="#visualization-with-altair" id="toc-visualization-with-altair" class="nav-link" data-scroll-target="#visualization-with-altair">Visualization with Altair</a></li>
+  <li><a href="#selected-papers-blogposts" id="toc-selected-papers-blogposts" class="nav-link" data-scroll-target="#selected-papers-blogposts">Selected papers &amp; blogposts</a></li>
+  <li><a href="#notebooks" id="toc-notebooks" class="nav-link" data-scroll-target="#notebooks">Notebooks</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/dkapitan/anthology-of-data-science/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -295,54 +311,32 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="why-this-anthology" class="level2">
 <h2 class="anchored" data-anchor-id="why-this-anthology">Why this anthology</h2>
-<p>Machine learning is permeating many fields of work. As a new ‘system technology’<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, its expected impact on organizations and society is expected to that of the steam engine or electricity.</p>
-<p>More and more professionals are seeking to acquire the necessary understanding and skills to apply machine learning in their day-to-day work. As such, more people <em>without</em> a background in either computer science or statistics - let alone both - have a need for high-quality, open access content to explore and learn data science by themselves.</p>
+<p>Machine learning is permeating many fields of work. As a new ‘system technology’<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, its expected impact on organizations and society is expected to be of the same magnitude as the steam engine or electricity. As such, more and more professionals are seeking to acquire the necessary understanding and skills to apply machine learning in their day-to-day work. In fact, more people <em>without</em> a background in either computer science or statistics - let alone both - have a need for high-quality, open access content to explore and learn data science by themselves.</p>
 <p>Now there is a lot of machine learning learning materials out there, so why this anthology? Based on my experience in teaching professional education course on data &amp; AI, I am continouly challenged to:</p>
 <ul>
-<li>curate content for different professional learning paths, combining various existing open access materials. Key books, papers, libraries</li>
-<li>balance between too technical vs too vague, handwaving or even downright wrong</li>
+<li>curate content for different professional learning paths, combining various existing open access materials;</li>
+<li>balance between too technical vs too vague, handwaving or even downright wrong;</li>
 <li>problem-based approach: rather than, say, explaining the principles underlying regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularisation for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and intuitively reason where and how to use regularisation.</li>
 </ul>
+<p>This anthology was born out of a need to scratch my own itch, namely have a central repository where I can continously collate and update interesting resources. I hope it is also helpful those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue.</p>
 </section>
 <section id="how-is-this-anthology-set-up" class="level2">
 <h2 class="anchored" data-anchor-id="how-is-this-anthology-set-up">How is this anthology set up?</h2>
-<section id="introduction-to-statistical-learning-isl" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-to-statistical-learning-isl">Introduction to Statistical Learning (ISL)</h3>
-<p>“Introduction to Statistical Learning” (ISL) is a valuable resource not only for technical professionals but also for business managers and individuals with limited technical backgrounds who are interested in understanding machine learning.</p>
-<ol type="1">
-<li><p><strong>Accessible Language and Concepts</strong>: ISL is written in an accessible and non-technical language. It avoids complex jargon and assumes little prior technical knowledge. This makes it easier for business managers and non-technical individuals to grasp the core concepts of machine learning without feeling overwhelmed.</p></li>
-<li><p><strong>Practical Examples and Case Studies</strong>: The book includes numerous practical examples and case studies that illustrate how machine learning can be applied to real-world business problems. Business managers can relate to these examples and see how machine learning can add value to their organizations.</p></li>
-<li><p><strong>Intuitive Explanations</strong>: ISL provides intuitive explanations of statistical and machine learning concepts. It uses visual aids, graphs, and figures to simplify complex ideas. This approach helps non-technical readers understand the key principles behind various algorithms and techniques.</p></li>
-<li><p><strong>Step-by-Step Approach</strong>: The book takes a step-by-step approach to explain the processes involved in machine learning, from data preprocessing to model evaluation. This helps non-technical readers follow the logical progression of building and evaluating machine learning models.</p></li>
-<li><p><strong>Practical Labs and Exercises</strong>: ISL includes practical labs and exercises with accompanying datasets. These exercises enable readers to gain hands-on experience with implementing machine learning techniques, even if they have limited technical skills. This practical exposure can be valuable for understanding the actual process of model building.</p></li>
-<li><p><strong>Understanding Model Outputs</strong>: The book helps non-technical individuals understand how to interpret the outputs of machine learning models. It covers topics like model accuracy, variable importance, and model selection, which are crucial for making informed business decisions based on machine learning results.</p></li>
-<li><p><strong>Decision-Making Support</strong>: Business managers can benefit from ISL by learning how to leverage machine learning for data-driven decision-making. Understanding the basics of machine learning allows them to collaborate more effectively with technical teams, set realistic expectations, and make informed decisions about which machine learning techniques to apply in specific business scenarios.</p></li>
-<li><p><strong>Complementary to Data Literacy</strong>: ISL can be a valuable complement to data literacy efforts within an organization. It helps individuals understand how data is transformed into actionable insights through machine learning, enhancing their data-driven decision-making capabilities.</p></li>
-<li><p><strong>Cross-Functional Collaboration</strong>: By reading ISL, business managers and non-technical individuals can bridge the communication gap between technical and non-technical teams. This can facilitate more effective collaboration on machine learning projects within an organization.</p></li>
-</ol>
+<section id="a-selection-of-the-best-books" class="level3">
+<h3 class="anchored" data-anchor-id="a-selection-of-the-best-books">A selection of the best books</h3>
+<p>A selection of what I think are <a href="./books.html">the best textbooks</a> is provided as a digital bookshelf. All the books included are open access, thanks to their respective authors! They should keep you busy for a while.</p>
 </section>
-<section id="interpretable-machine-learning-iml" class="level3">
-<h3 class="anchored" data-anchor-id="interpretable-machine-learning-iml">Interpretable Machine Learning (IML)</h3>
+<section id="visualization-with-altair" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-with-altair">Visualization with Altair</h3>
+<p>I am a big fan of the <a href="https://altair-viz.github.io/">Vega-Altair ecosystem</a> for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis. A selection of tutorials, blogpost is provided in the section <a href="./altair/index.html">Visualization with Altair</a>.</p>
 </section>
-<section id="forecasting-principles-practice-fpp" class="level3">
-<h3 class="anchored" data-anchor-id="forecasting-principles-practice-fpp">Forecasting Principles &amp; Practice (FPP)</h3>
+<section id="selected-papers-blogposts" class="level3">
+<h3 class="anchored" data-anchor-id="selected-papers-blogposts">Selected papers &amp; blogposts</h3>
+<p>Various topics and perspectives data science. Clearly this is an opinionated and very personal selection.</p>
 </section>
-<section id="data-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="data-workflow">Data workflow</h3>
-<ul>
-<li>The Turing Way</li>
-<li>Tidy data, Wickham</li>
-</ul>
-</section>
-<section id="data-visualization" class="level3">
-<h3 class="anchored" data-anchor-id="data-visualization">Data visualization</h3>
-<ul>
-<li>Grammar of Graphics</li>
-<li>Altair</li>
-</ul>
-</section>
-<section id="getting-into-python-with-realpython.com" class="level3">
-<h3 class="anchored" data-anchor-id="getting-into-python-with-realpython.com">Getting into Python with realpython.com</h3>
+<section id="notebooks" class="level3">
+<h3 class="anchored" data-anchor-id="notebooks">Notebooks</h3>
+<p><a href="./notebooks/index.html">Notebooks and explainers</a> for those seeking hands-on examples.</p>
 
 
 </section>

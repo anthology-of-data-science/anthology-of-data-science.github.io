@@ -1,5 +1,25 @@
 [
   {
+    "listing": "/python/index.html",
+    "items": [
+      "/python/vs-code.html",
+      "/python/realpython.html",
+      "/python/whirlwind.html"
+    ]
+  },
+  {
+    "listing": "/books.html",
+    "items": [
+      "/books/islp.html",
+      "/books/fpp.html",
+      "/books/iml.html",
+      "/books/pda.html",
+      "/books/r4ds.html",
+      "/books/turing-way.html",
+      "/books/udl.html"
+    ]
+  },
+  {
     "listing": "/altair/index.html",
     "items": [
       "/altair/curriculum.html",
@@ -12,6 +32,7 @@
     "listing": "/posts/index.html",
     "items": [
       "/posts/stop-aggregating-signal.html",
+      "/posts/comet-chart.html",
       "/posts/precision-recall.html",
       "/posts/r2d3-decision-tree.html"
     ]
@@ -21,23 +42,6 @@
     "items": [
       "/notebooks/pima-indians/pima-indians-with-pycaret.html",
       "/notebooks/ames-housing/ames-housing-with-pycaret.html"
-    ]
-  },
-  {
-    "listing": "/books.html",
-    "items": [
-      "/books/udl.html",
-      "/books/islp.html",
-      "/books/iml.html",
-      "/books/fpp.html"
-    ]
-  },
-  {
-    "listing": "/python/index.html",
-    "items": [
-      "/python/vs-code.html",
-      "/python/realpython.html",
-      "/python/whirlwind.html"
     ]
   }
 ]
