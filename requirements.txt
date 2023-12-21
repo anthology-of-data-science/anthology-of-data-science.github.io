@@ -7,4 +7,5 @@ ppscore == 1.3.0
 requests == 2.31.0
 shap
 scikit-learn == 1.2.2
+vega-datasets
 ydata-profiling == 4.6.1

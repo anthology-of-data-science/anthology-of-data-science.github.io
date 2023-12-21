@@ -5,6 +5,8 @@ project:
 website:
   title: "Anthology of Data Science"
   site-url: https://anthology-of-data.science
+  repo-url: https://github.com/dkapitan/anthology-of-data-science
+  repo-actions: [issue]
   reader-mode: true
   search:
     location: sidebar
@@ -22,17 +24,23 @@ website:
     style: floating
     collapse-level: 1
     contents:
-      - section: Textbooks
+      - section: Books
         href: books.qmd
         contents:
           - text: "Introduction to Statistical Learning"
             href: books/islp.qmd
+          - text: "Python for Data Analysis"
+            href: books/pda.qmd
+          - text: "R for Data Science"
+            href: books/r4ds.qmd
           - text: "Interpretable ML"
             href: books/iml.qmd
           - text: "Time-series forecasting"
             href: books/fpp.qmd
           - text: "Deep Learning"
             href: books/udl.qmd
+          - text: "The Turing Way"
+            href: books/turing-way.qmd
       - section: Visualization with Altair
         href: altair/index.qmd
         contents:
@@ -53,7 +61,7 @@ website:
             href: posts/precision-recall.qmd
           - text: "Stop aggregating the signal"
             href: posts/stop-aggregating-signal.qmd
-      - section: "Example notebooks"
+      - section: "Notebooks"
         href: notebooks/index.qmd
         contents:
           - text: "Regression: Ames Housing"
