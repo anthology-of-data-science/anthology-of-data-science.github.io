@@ -55,8 +55,6 @@ website:
       - section: "Selected papers & blogposts"
         href: posts/index.qmd
         contents:
-          - text: "A visual introduction to ML"
-            href: posts/r2d3-decision-tree.qmd
           - text: "Precision-recall"
             href: posts/precision-recall.qmd
           - text: "Stop aggregating the signal"
