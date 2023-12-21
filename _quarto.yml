@@ -75,8 +75,8 @@ website:
         contents:
           - text: "Regression: Ames Housing"
             href: notebooks/ames-housing/ames-housing-with-pycaret.ipynb
-          - text: "Regression: Another Ames Housing"
-            href: notebooks/ames-housing/ames-housing.ipynb
+          # - text: "Regression: Another Ames Housing"
+          #   href: notebooks/ames-housing/ames-housing.ipynb
           - text: "Classification: Pima Indians"
             href: notebooks/pima-indians/pima-indians-with-pycaret.ipynb
           - text: "Deconfounding"
