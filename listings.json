@@ -1,13 +1,5 @@
 [
   {
-    "listing": "/python/index.html",
-    "items": [
-      "/python/vs-code.html",
-      "/python/realpython.html",
-      "/python/whirlwind.html"
-    ]
-  },
-  {
     "listing": "/books.html",
     "items": [
       "/books/islp.html",
@@ -23,18 +15,26 @@
     "listing": "/altair/index.html",
     "items": [
       "/altair/curriculum.html",
+      "/altair/comet-chart.html",
       "/altair/video-altair-data-types.html",
       "/altair/video-altair-grammar.html",
       "/altair/video-altair-intro.html"
     ]
   },
   {
+    "listing": "/python/index.html",
+    "items": [
+      "/python/vs-code.html",
+      "/python/realpython.html",
+      "/python/whirlwind.html"
+    ]
+  },
+  {
     "listing": "/posts/index.html",
     "items": [
       "/posts/stop-aggregating-signal.html",
-      "/posts/comet-chart.html",
-      "/posts/precision-recall.html",
-      "/posts/r2d3-decision-tree.html"
+      "/posts/predictive-power-score.html",
+      "/posts/precision-recall.html"
     ]
   },
   {
