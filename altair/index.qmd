@@ -1,5 +1,11 @@
 ---
+title: Data visualization with Vega-Altair
+description: |
+  I am a big fan of the Vega-Altair ecosystem for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis.
+author: Daniel Kapitan
+date: 2023-12-21
 listing:
+  id: altair-listing
   contents:
     - curriculum.qmd
     - video-*.qmd
@@ -10,3 +16,7 @@ listing:
   sort: "date desc"
   sort-ui: false
 ---
+##  
+
+::: {#altair-listing}
+:::
