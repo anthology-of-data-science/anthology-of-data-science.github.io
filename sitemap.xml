@@ -2,114 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://anthology-of-data.science/notebooks/deconfounding.html</loc>
-    <lastmod>2023-12-22T13:10:38.123Z</lastmod>
+    <lastmod>2023-12-22T13:15:25.043Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/notebooks/overfitting.html</loc>
-    <lastmod>2023-12-22T13:10:35.371Z</lastmod>
+    <lastmod>2023-12-22T13:15:22.275Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/notebooks/ames-housing/ames-housing-with-pycaret.html</loc>
-    <lastmod>2023-12-22T13:10:33.943Z</lastmod>
+    <lastmod>2023-12-22T13:15:20.859Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/posts/predictive-power-score.html</loc>
-    <lastmod>2023-12-22T13:10:29.443Z</lastmod>
+    <lastmod>2023-12-22T13:15:16.611Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/posts/precision-recall.html</loc>
-    <lastmod>2023-12-22T13:10:26.695Z</lastmod>
+    <lastmod>2023-12-22T13:15:13.843Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/python/index.html</loc>
-    <lastmod>2023-12-22T13:10:25.931Z</lastmod>
+    <lastmod>2023-12-22T13:15:12.395Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/python/effective-python-and-idiomatic-pandas.html</loc>
-    <lastmod>2023-12-22T13:10:24.991Z</lastmod>
+    <lastmod>2023-12-22T13:15:11.499Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/altair/video-altair-grammar.html</loc>
-    <lastmod>2023-12-22T13:10:20.995Z</lastmod>
+    <lastmod>2023-12-22T13:15:07.743Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/altair/comet-chart.html</loc>
-    <lastmod>2023-12-22T13:10:20.439Z</lastmod>
+    <lastmod>2023-12-22T13:15:07.179Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/altair/video-altair-intro.html</loc>
-    <lastmod>2023-12-22T13:10:16.883Z</lastmod>
+    <lastmod>2023-12-22T13:15:03.507Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/books/iml.html</loc>
-    <lastmod>2023-12-22T13:10:16.251Z</lastmod>
+    <lastmod>2023-12-22T13:15:02.863Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/books/turing-way.html</loc>
-    <lastmod>2023-12-22T13:10:15.703Z</lastmod>
+    <lastmod>2023-12-22T13:15:02.315Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/books/r4ds.html</loc>
-    <lastmod>2023-12-22T13:10:15.131Z</lastmod>
+    <lastmod>2023-12-22T13:15:01.647Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/books/fpp.html</loc>
-    <lastmod>2023-12-22T13:10:14.543Z</lastmod>
+    <lastmod>2023-12-22T13:15:01.059Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/books.html</loc>
-    <lastmod>2023-12-22T13:10:13.899Z</lastmod>
+    <lastmod>2023-12-22T13:15:00.495Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/books/udl.html</loc>
-    <lastmod>2023-12-22T13:10:14.827Z</lastmod>
+    <lastmod>2023-12-22T13:15:01.347Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/books/islp.html</loc>
-    <lastmod>2023-12-22T13:10:15.427Z</lastmod>
+    <lastmod>2023-12-22T13:15:02.007Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/books/pda.html</loc>
-    <lastmod>2023-12-22T13:10:15.975Z</lastmod>
+    <lastmod>2023-12-22T13:15:02.587Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/index.html</loc>
-    <lastmod>2023-12-22T13:10:16.607Z</lastmod>
+    <lastmod>2023-12-22T13:15:03.231Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/altair/index.html</loc>
-    <lastmod>2023-12-22T13:10:17.647Z</lastmod>
+    <lastmod>2023-12-22T13:15:04.287Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/altair/curriculum.html</loc>
-    <lastmod>2023-12-22T13:10:20.723Z</lastmod>
+    <lastmod>2023-12-22T13:15:07.463Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/altair/video-altair-data-types.html</loc>
-    <lastmod>2023-12-22T13:10:21.271Z</lastmod>
+    <lastmod>2023-12-22T13:15:08.015Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/python/whirlwind.html</loc>
-    <lastmod>2023-12-22T13:10:25.295Z</lastmod>
+    <lastmod>2023-12-22T13:15:11.775Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/python/realpython.html</loc>
-    <lastmod>2023-12-22T13:10:26.311Z</lastmod>
+    <lastmod>2023-12-22T13:15:12.887Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/posts/index.html</loc>
-    <lastmod>2023-12-22T13:10:27.191Z</lastmod>
+    <lastmod>2023-12-22T13:15:14.343Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/posts/stop-aggregating-signal.html</loc>
-    <lastmod>2023-12-22T13:10:30.235Z</lastmod>
+    <lastmod>2023-12-22T13:15:17.371Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/notebooks/index.html</loc>
-    <lastmod>2023-12-22T13:10:34.451Z</lastmod>
+    <lastmod>2023-12-22T13:15:21.347Z</lastmod>
   </url>
   <url>
     <loc>https://anthology-of-data.science/notebooks/pima-indians/pima-indians-with-pycaret.html</loc>
-    <lastmod>2023-12-22T13:10:37.279Z</lastmod>
+    <lastmod>2023-12-22T13:15:24.191Z</lastmod>
   </url>
 </urlset>
