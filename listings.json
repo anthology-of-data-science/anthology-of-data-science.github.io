@@ -8,28 +8,6 @@
     ]
   },
   {
-    "listing": "/books.html",
-    "items": [
-      "/books/islp.html",
-      "/books/fpp.html",
-      "/books/iml.html",
-      "/books/pda.html",
-      "/books/r4ds.html",
-      "/books/turing-way.html",
-      "/books/udl.html"
-    ]
-  },
-  {
-    "listing": "/altair/index.html",
-    "items": [
-      "/altair/curriculum.html",
-      "/altair/comet-chart.html",
-      "/altair/video-altair-data-types.html",
-      "/altair/video-altair-grammar.html",
-      "/altair/video-altair-intro.html"
-    ]
-  },
-  {
     "listing": "/posts/index.html",
     "items": [
       "/posts/stop-aggregating-signal.html",
@@ -44,6 +22,28 @@
       "/notebooks/ames-housing/ames-housing-with-pycaret.html",
       "/notebooks/overfitting.html",
       "/notebooks/deconfounding.html"
+    ]
+  },
+  {
+    "listing": "/altair/index.html",
+    "items": [
+      "/altair/curriculum.html",
+      "/altair/comet-chart.html",
+      "/altair/video-altair-data-types.html",
+      "/altair/video-altair-grammar.html",
+      "/altair/video-altair-intro.html"
+    ]
+  },
+  {
+    "listing": "/books.html",
+    "items": [
+      "/books/islp.html",
+      "/books/fpp.html",
+      "/books/iml.html",
+      "/books/pda.html",
+      "/books/r4ds.html",
+      "/books/turing-way.html",
+      "/books/udl.html"
     ]
   }
 ]
