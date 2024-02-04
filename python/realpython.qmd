@@ -13,7 +13,7 @@ The table below lists the topics that you should have covered _as a bare minimum
 |chapter|topic|course|tutorial|
 |:------|:----|:-----|:-------|
 |2. Setting up Python|Installing Python 3|[link](https://realpython.com/courses/setting-up-python/)|[link](https://realpython.com/installing-python/)|
-| |Python in VS Code|[link](https://realpython.com/python-development-visual-studio-code/)| |
+| |Python in VS Code|[link](https://realpython.com/courses/python-development-visual-studio-code-setup-guide/)|[link](https://realpython.com/python-development-visual-studio-code/)|
 |3. Your First Python Program| Code Your First Python Program |[link](https://realpython.com/courses/python-basics-first-program/)| |
 | |Basic Data Types in Python|[link](https://realpython.com/courses/python-data-types/)|[link](https://realpython.com/python-data-types/)|
 | |Variables in Python|[link](https://realpython.com/courses/variables-python/)|[link](https://realpython.com/python-variables/)|
