@@ -641,45 +641,24 @@
     ]
   },
   {
-    "objectID": "altair/index.html",
-    "href": "altair/index.html",
-    "title": "Data visualization with Vega-Altair",
+    "objectID": "altair/comet-chart.html",
+    "href": "altair/comet-chart.html",
+    "title": "Comet charts in Python",
     "section": "",
-    "text": "Implementing best practices for data visualization as an Altair theme.\n\n\n\nDaniel Kapitan\n\n\nJan 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Zan Armstrong’s comet chart has been on my list of hobby projects for a while now. I think it is an elegant solution to visualize statistical mix effects and address Simpson’s paradox, and particularly useful when working with longitudinal data involving different sub-populations. Recently I found a good excuse to spend some time to actually use it as part of a exploratory data analysis on a project.\nSince I mostly work in Python and have recently fallen in love with Altair — for the same reasons as Fernando explains here — I wondered how the comet chart could be implemented using the grammar of interactive graphics. It took me a while to figure out how to actually plot the comets. In a previous version, I had drawn glyphs using Bokeh. While Altair allows you to plot any SVG path in a graph, this felt a bit hacky and not quite in line with the philosophy of using a grammar of graphics.\nThankfully Mattijn was quick to suggest using trail-marks, after which it was almost as easy as pie. So here’s an example using a dataset of 20,000 flights for 59 destination airports.\n\nimport altair as alt\nimport pandas as pd\nimport vega_datasets\n\n\n# Use airline data to assess statistical mix effects of delays\nflights = vega_datasets.data.flights_20k()\naggregation = dict(\n    number_of_flights=(\"destination\", \"count\"),\n    mean_delay=(\"delay\", \"mean\"),\n    mean_distance=(\"distance\", \"mean\"),\n)\n\n# Compare delays by destination between month 1 and 3\ngrouped = flights.groupby(by=[flights.destination, flights.date.dt.month])\ndf = (\n    grouped.agg(**aggregation)\n    .loc[(slice(None), [1, 3]), :]\n    .assign(\n        change_mean_delay=lambda df:\n            df.groupby(\"destination\")[\"mean_delay\"].diff(),\n    )\n    .fillna(method=\"bfill\")\n    .reset_index()\n    .round(2)\n)\n\n# Calculate weigthed average of delays for month 1 and 3\ntotal = (\n    flights.groupby(flights.date.dt.month)\n    .agg(**aggregation)\n    .loc[[1, 3], :]\n    .assign(\n        change_mean_delay=lambda df: df.mean_delay.diff(),\n        destination='TOTAL'\n    )\n    .fillna(method=\"bfill\")\n    .round(2)\n    .reset_index()\n    .loc[:, df.columns]\n)\n\n\ndef comet_chart(df, stroke=\"white\"):\n    return (\n    alt.Chart(df, width=600, height=450)\n    .mark_trail(stroke=stroke)\n    .encode(\n        x=alt.X(\"number_of_flights\", scale=alt.Scale(type=\"log\")),\n        y=alt.Y(\"mean_delay\"),\n        detail=\"destination\",\n        size=alt.Size(\"date\", scale=alt.Scale(range=[0, 10]), legend=None),\n        tooltip=[\n            \"destination\",\n            \"number_of_flights\",\n            \"mean_delay\",\n            \"change_mean_delay\",\n            \"mean_distance\",\n        ],\n        # trails don't support continuous color\n        # see https://github.com/vega/vega/issues/1187\n        # hence use bins\n        color=alt.Color(\n            \"change_mean_delay:Q\",\n            bin=alt.Bin(step=2),\n            scale=alt.Scale(scheme=\"blueorange\"),\n            legend=alt.Legend(orient=\"top\"),\n        ),\n    )\n)\n\n\ncomet_chart(df) + comet_chart(total, stroke=\"black\")\n\nIn the example shown here, each comet represents one destination airport. The head of the comet corresponds to the most recent observation of the number of flight arrivals (x-axis, shown as logarithmic scale to accommodate the wide range of observations) against the mean delay of those flights (y-axis). The tail of the comet represents a similar (x,y) datum, but from an earlier point in time. Finally, the colour of the comet is encoded to show the change in the mean delay for each airport. A tooltip with a summary of the data is shown when hovering over the head of the comet.\nSo-called mix effects can often lead to misinterpretation of aggregate numbers. In the example of flight delays, the fact that only a small change is observed in the mean delay across all airports — visualized with the right-most comet outlined in black — hides the underlying variance between airports. Note that in this example the size of each sub-population (number of flights per airport) remains relatively constant, hence the comets here only go up and down. As explained in the original article, mix effects become harder to interpret when the relative size of the sub-populations change as well as their relative values. In the most extreme case this may lead to Simpson’s paradox.\nWith this base implementation of comet charts in Altair, you can really go to town and combine it with other interactive graphs. Using the overview-detail pattern, you could plot an accompanying density plot of all the flights for a given airport. That way you can quickly zoom in to the lowest level of detail and get a better understanding of the underlying mix effects.",
     "crumbs": [
-      "Visualization with Altair"
+      "Visualization with Altair",
+      "Comet charts in Python"
     ]
   },
   {
-    "objectID": "altair/index.html#section",
-    "href": "altair/index.html#section",
-    "title": "Data visualization with Vega-Altair",
+    "objectID": "books.html",
+    "href": "books.html",
+    "title": "Anthology of Data Science",
     "section": "",
-    "text": "Implementing best practices for data visualization as an Altair theme.\n\n\n\nDaniel Kapitan\n\n\nJan 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "An Introduction to Statistical Learning\n\n\nStatistical learning has become a critical toolkit for anyone who wishes to understand data. This book provides a broad and less technical treatment of key topics in…\n\n\n\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor\n\n\nJul 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasting Principles & Practice\n\n\nThis textbook is provides a comprehensive introduction to forecasting methods and presents enough information about each method for readers to be able to use them sensibly.\n\n\n\nRob J Hyndman, George Athanasopoulos\n\n\nMay 31, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInterpretable Machine Learning\n\n\nThis book is about making machine learning models and their decisions interpretable. It will enable you to select and correctly apply the interpretation method that is most…\n\n\n\nChristoph Molnar\n\n\nMar 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython of Data Analysis, Third Edition\n\n\nThis book is concerned with the nuts and bolts of manipulating, processing, cleaning, and crunching data in Python.\n\n\n\nWes McKinney\n\n\nApr 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR for Data Science, Second Edition\n\n\nThis book will teach you how to do data science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it and visualize.\n\n\n\nHadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemenund\n\n\nNov 30, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Turing Way\n\n\nAn open source, open collaboration, community-driven handbook to reproducible, ethical and collaborative data science.\n\n\n\nThe Turing Way Community\n\n\nJul 22, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding Deep Learning\n\n\nThis book explains the ideas that underlie deep learning, distinguishing it from volumes that cover coding and other practical aspects.\n\n\n\nSimon Prince\n\n\nOct 23, 2023\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Visualization with Altair"
-    ]
-  },
-  {
-    "objectID": "books/islp.html",
-    "href": "books/islp.html",
-    "title": "An Introduction to Statistical Learning",
-    "section": "",
-    "text": "Unable to display PDF file. Download instead.",
-    "crumbs": [
-      "Books",
-      "Introduction to Statistical Learning"
-    ]
-  },
-  {
-    "objectID": "books/udl.html",
-    "href": "books/udl.html",
-    "title": "Understanding Deep Learning",
-    "section": "",
-    "text": "Unable to display PDF file. Download instead.",
-    "crumbs": [
-      "Books",
-      "Deep Learning"
+      "Books"
     ]
   },
   {
@@ -711,24 +690,155 @@
     "text": "Footnotes\n\n\nSheikh et al. (2023), Mission AI: the New System Technology, https://doi.org/10.1007/978-3-031-21448-6↩︎"
   },
   {
-    "objectID": "books.html",
-    "href": "books.html",
-    "title": "Anthology of Data Science",
+    "objectID": "books/udl.html",
+    "href": "books/udl.html",
+    "title": "Understanding Deep Learning",
     "section": "",
-    "text": "An Introduction to Statistical Learning\n\n\nStatistical learning has become a critical toolkit for anyone who wishes to understand data. This book provides a broad and less technical treatment of key topics in…\n\n\n\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor\n\n\nJul 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasting Principles & Practice\n\n\nThis textbook is provides a comprehensive introduction to forecasting methods and presents enough information about each method for readers to be able to use them sensibly.\n\n\n\nRob J Hyndman, George Athanasopoulos\n\n\nMay 31, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInterpretable Machine Learning\n\n\nThis book is about making machine learning models and their decisions interpretable. It will enable you to select and correctly apply the interpretation method that is most…\n\n\n\nChristoph Molnar\n\n\nMar 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython of Data Analysis, Third Edition\n\n\nThis book is concerned with the nuts and bolts of manipulating, processing, cleaning, and crunching data in Python.\n\n\n\nWes McKinney\n\n\nApr 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR for Data Science, Second Edition\n\n\nThis book will teach you how to do data science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it and visualize.\n\n\n\nHadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemenund\n\n\nNov 30, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Turing Way\n\n\nAn open source, open collaboration, community-driven handbook to reproducible, ethical and collaborative data science.\n\n\n\nThe Turing Way Community\n\n\nJul 22, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding Deep Learning\n\n\nThis book explains the ideas that underlie deep learning, distinguishing it from volumes that cover coding and other practical aspects.\n\n\n\nSimon Prince\n\n\nOct 23, 2023\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Books"
+      "Books",
+      "Deep Learning"
     ]
   },
   {
-    "objectID": "altair/comet-chart.html",
-    "href": "altair/comet-chart.html",
-    "title": "Comet charts in Python",
+    "objectID": "books/islp.html",
+    "href": "books/islp.html",
+    "title": "An Introduction to Statistical Learning",
     "section": "",
-    "text": "Zan Armstrong’s comet chart has been on my list of hobby projects for a while now. I think it is an elegant solution to visualize statistical mix effects and address Simpson’s paradox, and particularly useful when working with longitudinal data involving different sub-populations. Recently I found a good excuse to spend some time to actually use it as part of a exploratory data analysis on a project.\nSince I mostly work in Python and have recently fallen in love with Altair — for the same reasons as Fernando explains here — I wondered how the comet chart could be implemented using the grammar of interactive graphics. It took me a while to figure out how to actually plot the comets. In a previous version, I had drawn glyphs using Bokeh. While Altair allows you to plot any SVG path in a graph, this felt a bit hacky and not quite in line with the philosophy of using a grammar of graphics.\nThankfully Mattijn was quick to suggest using trail-marks, after which it was almost as easy as pie. So here’s an example using a dataset of 20,000 flights for 59 destination airports.\n\nimport altair as alt\nimport pandas as pd\nimport vega_datasets\n\n\n# Use airline data to assess statistical mix effects of delays\nflights = vega_datasets.data.flights_20k()\naggregation = dict(\n    number_of_flights=(\"destination\", \"count\"),\n    mean_delay=(\"delay\", \"mean\"),\n    mean_distance=(\"distance\", \"mean\"),\n)\n\n# Compare delays by destination between month 1 and 3\ngrouped = flights.groupby(by=[flights.destination, flights.date.dt.month])\ndf = (\n    grouped.agg(**aggregation)\n    .loc[(slice(None), [1, 3]), :]\n    .assign(\n        change_mean_delay=lambda df:\n            df.groupby(\"destination\")[\"mean_delay\"].diff(),\n    )\n    .fillna(method=\"bfill\")\n    .reset_index()\n    .round(2)\n)\n\n# Calculate weigthed average of delays for month 1 and 3\ntotal = (\n    flights.groupby(flights.date.dt.month)\n    .agg(**aggregation)\n    .loc[[1, 3], :]\n    .assign(\n        change_mean_delay=lambda df: df.mean_delay.diff(),\n        destination='TOTAL'\n    )\n    .fillna(method=\"bfill\")\n    .round(2)\n    .reset_index()\n    .loc[:, df.columns]\n)\n\n\ndef comet_chart(df, stroke=\"white\"):\n    return (\n    alt.Chart(df, width=600, height=450)\n    .mark_trail(stroke=stroke)\n    .encode(\n        x=alt.X(\"number_of_flights\", scale=alt.Scale(type=\"log\")),\n        y=alt.Y(\"mean_delay\"),\n        detail=\"destination\",\n        size=alt.Size(\"date\", scale=alt.Scale(range=[0, 10]), legend=None),\n        tooltip=[\n            \"destination\",\n            \"number_of_flights\",\n            \"mean_delay\",\n            \"change_mean_delay\",\n            \"mean_distance\",\n        ],\n        # trails don't support continuous color\n        # see https://github.com/vega/vega/issues/1187\n        # hence use bins\n        color=alt.Color(\n            \"change_mean_delay:Q\",\n            bin=alt.Bin(step=2),\n            scale=alt.Scale(scheme=\"blueorange\"),\n            legend=alt.Legend(orient=\"top\"),\n        ),\n    )\n)\n\n\ncomet_chart(df) + comet_chart(total, stroke=\"black\")\n\nIn the example shown here, each comet represents one destination airport. The head of the comet corresponds to the most recent observation of the number of flight arrivals (x-axis, shown as logarithmic scale to accommodate the wide range of observations) against the mean delay of those flights (y-axis). The tail of the comet represents a similar (x,y) datum, but from an earlier point in time. Finally, the colour of the comet is encoded to show the change in the mean delay for each airport. A tooltip with a summary of the data is shown when hovering over the head of the comet.\nSo-called mix effects can often lead to misinterpretation of aggregate numbers. In the example of flight delays, the fact that only a small change is observed in the mean delay across all airports — visualized with the right-most comet outlined in black — hides the underlying variance between airports. Note that in this example the size of each sub-population (number of flights per airport) remains relatively constant, hence the comets here only go up and down. As explained in the original article, mix effects become harder to interpret when the relative size of the sub-populations change as well as their relative values. In the most extreme case this may lead to Simpson’s paradox.\nWith this base implementation of comet charts in Altair, you can really go to town and combine it with other interactive graphs. Using the overview-detail pattern, you could plot an accompanying density plot of all the flights for a given airport. That way you can quickly zoom in to the lowest level of detail and get a better understanding of the underlying mix effects.",
+    "text": "Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Books",
+      "Introduction to Statistical Learning"
+    ]
+  },
+  {
+    "objectID": "altair/index.html",
+    "href": "altair/index.html",
+    "title": "Data visualization with Vega-Altair",
+    "section": "",
+    "text": "Implementing best practices for data visualization as an Altair theme.\n\n\n\nDaniel Kapitan\n\n\nJan 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis notebook collects explorations of Altair’s most interesting features. Originally published on &lt;a…\n\n\n\nJacopo Repossi\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Visualization with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/index.html#section",
+    "href": "altair/index.html#section",
+    "title": "Data visualization with Vega-Altair",
+    "section": "",
+    "text": "Implementing best practices for data visualization as an Altair theme.\n\n\n\nDaniel Kapitan\n\n\nJan 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis notebook collects explorations of Altair’s most interesting features. Originally published on &lt;a…\n\n\n\nJacopo Repossi\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Visualization with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html",
+    "href": "altair/ames-housing-eda-with-altair.html",
+    "title": "Exploratory data analysis with Altair",
+    "section": "",
+    "text": "import altair as alt\nimport numpy as np \nimport pandas as pd\n\n\names_data = \"https://github.com/eaisi/discover-projects/blob/main/ames-housing/AmesHousing.csv?raw=true\"\ntrain = pd.read_csv(ames_data).rename(columns=lambda s: s.replace(\" \",\"\"))\n\ntrain\n\n\n\n\n\n\n\n\nOrder\nPID\nMSSubClass\nMSZoning\nLotFrontage\nLotArea\nStreet\nAlley\nLotShape\nLandContour\n...\nPoolArea\nPoolQC\nFence\nMiscFeature\nMiscVal\nMoSold\nYrSold\nSaleType\nSaleCondition\nSalePrice\n\n\n\n\n0\n1\n526301100\n20\nRL\n141.0\n31770\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n5\n2010\nWD\nNormal\n215000\n\n\n1\n2\n526350040\n20\nRH\n80.0\n11622\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nMnPrv\nNaN\n0\n6\n2010\nWD\nNormal\n105000\n\n\n2\n3\n526351010\n20\nRL\n81.0\n14267\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nNaN\nGar2\n12500\n6\n2010\nWD\nNormal\n172000\n\n\n3\n4\n526353030\n20\nRL\n93.0\n11160\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n4\n2010\nWD\nNormal\n244000\n\n\n4\n5\n527105010\n60\nRL\n74.0\n13830\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nMnPrv\nNaN\n0\n3\n2010\nWD\nNormal\n189900\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n2925\n2926\n923275080\n80\nRL\n37.0\n7937\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nGdPrv\nNaN\n0\n3\n2006\nWD\nNormal\n142500\n\n\n2926\n2927\n923276100\n20\nRL\nNaN\n8885\nPave\nNaN\nIR1\nLow\n...\n0\nNaN\nMnPrv\nNaN\n0\n6\n2006\nWD\nNormal\n131000\n\n\n2927\n2928\n923400125\n85\nRL\n62.0\n10441\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nMnPrv\nShed\n700\n7\n2006\nWD\nNormal\n132000\n\n\n2928\n2929\n924100070\n20\nRL\n77.0\n10010\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n4\n2006\nWD\nNormal\n170000\n\n\n2929\n2930\n924151050\n60\nRL\n74.0\n9627\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n11\n2006\nWD\nNormal\n188000\n\n\n\n\n2930 rows × 82 columns",
     "crumbs": [
       "Visualization with Altair",
-      "Comet charts in Python"
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#bar-chart-with-highlighted-bar",
+    "href": "altair/ames-housing-eda-with-altair.html#bar-chart-with-highlighted-bar",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Bar Chart with Highlighted Bar",
+    "text": "Bar Chart with Highlighted Bar\nBasic bar chart with a bars highlighted based on the percentage of missing values.\n\nmissing = train.isnull().sum()*100/train.isnull().sum().sum()\nmissing = missing[missing &gt; 0].reset_index()\nmissing.columns = ['Column', 'Count missing']\nmissing.head()\n\n\n\n\n\n\n\n\nColumn\nCount missing\n\n\n\n\n0\nLotFrontage\n3.111309\n\n\n1\nAlley\n17.347133\n\n\n2\nMasVnrType\n11.270557\n\n\n3\nMasVnrArea\n0.146041\n\n\n4\nBsmtQual\n0.507969\n\n\n\n\n\n\n\n\nalt.Chart(missing).mark_bar().encode(\n    x=alt.X('Column', sort='-y'),\n    y='Count missing',\n    color=alt.condition(\n        alt.datum['Count missing'] &gt;10,  # If count missing is &gt; 10%, returns True,\n        alt.value('orange'),             # which sets the bar orange.\n        alt.value('steelblue')           # And if it's not true it sets the bar steelblue.\n    ),\n    tooltip=['Count missing']\n).properties(\n    width=500,\n    height=300\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#boxplot",
+    "href": "altair/ames-housing-eda-with-altair.html#boxplot",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Boxplot",
+    "text": "Boxplot\nCreation of a basic boxplot using .mark_boxplot() method\n\nalt.Chart(train).mark_boxplot().encode(\n    x='OverallQual:O',\n    y='SalePrice:Q',\n    color='OverallQual:N'\n).properties(\n    width=500,\n    height=300\n)",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#heatmaps",
+    "href": "altair/ames-housing-eda-with-altair.html#heatmaps",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Heatmaps",
+    "text": "Heatmaps\nCreation of a basic heatmap using .mark_rect() method.\n\nalt.Chart(train).mark_rect().encode(\n    x='MSZoning',\n    y='ExterQual',\n    color='average(SalePrice)',\n    tooltip=['MSZoning', 'ExterQual', 'average(SalePrice)']\n).properties(\n    width=500,\n    height=300\n)",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#bindings-selections-conditions",
+    "href": "altair/ames-housing-eda-with-altair.html#bindings-selections-conditions",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Bindings, Selections & Conditions",
+    "text": "Bindings, Selections & Conditions\nHere you can select the KitchenQual feature from a dropdown menu and see how the graph changes color!\n\ninput_dropdown = alt.binding_select(options=list(train['KitchenQual'].unique()), name='Lot Shape')\nselection = alt.selection_point(fields=['KitchenQual'], bind=input_dropdown)\ncolor = alt.condition(selection,\n                      alt.Color('KitchenQual:N', legend=None),\n                      alt.value('lightgray'))\n\nalt.Chart(train).mark_point().encode(\n    x='GrLivArea',\n    y='SalePrice',\n    color=color,\n    tooltip=['GrLivArea', 'SalePrice']\n).properties(\n    width=500,\n    height=300\n).add_params(\n    selection\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#interactive-chart-with-cross-highlight",
+    "href": "altair/ames-housing-eda-with-altair.html#interactive-chart-with-cross-highlight",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Interactive Chart with Cross-Highlight",
+    "text": "Interactive Chart with Cross-Highlight\nIn this more advanced example, I use the ExterQual feature as a filter for a binned heatmap.\nClick on the bar chart bars to change the heatmap!\n\npts = alt.selection_point(encodings=['x'])\n\nrect = alt.Chart(train).mark_rect().encode(\n    x=alt.X('GrLivArea', bin=alt.Bin(maxbins=40)),\n    y=alt.Y('GarageArea', bin=alt.Bin(maxbins=40)),\n    color='average(SalePrice)'\n).properties(\n    width=500,\n    height=300\n).transform_filter(\n    pts\n)\n\nbar = alt.Chart(train).mark_bar().encode(\n    x='ExterQual:N',\n    y='count()',\n    color=alt.condition(pts, alt.ColorValue(\"steelblue\"), alt.ColorValue(\"grey\")),\n    tooltip=['ExterQual', 'count()']\n).properties(\n    width=550,\n    height=200\n).add_params(\n    pts\n)\n\n\nalt.vconcat(\n    rect,\n    bar\n).resolve_legend(\n    color=\"independent\",\n    size=\"independent\"\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#dot-dash-plot",
+    "href": "altair/ames-housing-eda-with-altair.html#dot-dash-plot",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Dot Dash Plot",
+    "text": "Dot Dash Plot\nA Dot Dash Plot is basically a scatter plot with both axis removed and replaced with barcode plots (aka strip plots), which allow you to see the distribution of values of each measure used in the scatter plot.\n\n# Configure the options common to all layers\nbrush = alt.selection_interval()\nbase = alt.Chart(train).add_params(brush)\n\n# Configure the points\npoints = base.mark_point().encode(\n    x=alt.X('GrLivArea', title=''),\n    y=alt.Y('SalePrice', title=''),\n    color=alt.condition(brush, 'KitchenQual', alt.value('grey'))\n)\n\n# Configure the ticks\ntick_axis = alt.Axis(labels=False, domain=False, ticks=False)\n\nx_ticks = base.mark_tick().encode(\n    alt.X('GrLivArea', axis=tick_axis),\n    alt.Y('KitchenQual', title='', axis=tick_axis),\n    color=alt.condition(brush, 'KitchenQual', alt.value('lightgrey'))\n)\n\ny_ticks = base.mark_tick().encode(\n    alt.X('KitchenQual', title='', axis=tick_axis),\n    alt.Y('SalePrice', axis=tick_axis),\n    color=alt.condition(brush, 'KitchenQual', alt.value('lightgrey'))\n)\n\n# Build the chart\n(\n    y_ticks | (points & x_ticks)\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#multifeature-scatter-plot",
+    "href": "altair/ames-housing-eda-with-altair.html#multifeature-scatter-plot",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Multifeature Scatter Plot",
+    "text": "Multifeature Scatter Plot\nLet’s create a scatter plot with multiple feature encodings.\nWith .interactive() you can zoom in. You can also click on legend to select specific KitchenQual values.\n\nselection = alt.selection_point(fields=['KitchenQual'], bind='legend')\n\nalt.Chart(train).mark_circle().encode(\n    alt.X('GrLivArea', scale=alt.Scale(zero=False)),\n    alt.Y('GarageArea', scale=alt.Scale(zero=False, padding=1)),\n    color='KitchenQual',\n    size=alt.Size('SalePrice', bin=alt.Bin(maxbins=10), title='SalePrice'),\n    opacity=alt.condition(selection, alt.value(1), alt.value(0.2)),\n    tooltip=['GrLivArea', 'SalePrice']\n).properties(\n    width=500,\n    height=500\n).add_params(\n    selection\n).configure_axis(\n    grid=False\n).interactive()",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#scatter-matrix",
+    "href": "altair/ames-housing-eda-with-altair.html#scatter-matrix",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Scatter Matrix",
+    "text": "Scatter Matrix\nScatter matrix are one of the most common graph you’ll see on Kaggle. It consists of several pair-wise scatter plots of variables presented in a matrix format, useful to visualize multiple relationships between a pair of variables.\nIn Altair this can be achieved using a RepeatChart, let’s see how!\n\nalt.Chart(train).mark_circle().encode(\n    alt.X(alt.repeat(\"column\"), type='quantitative'),\n    alt.Y(alt.repeat(\"row\"), type='quantitative'),\n    color='KitchenQual'\n).properties(\n    width=300,\n    height=300\n).repeat(\n    # Here we tell Altair we want to repeat out scatter plots for each row-column pair\n    row=['GrLivArea', 'GarageArea', 'TotalBsmtSF'],\n    column=['TotalBsmtSF', 'GarageArea', 'GrLivArea']\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "altair/ames-housing-eda-with-altair.html#layered-histogram",
+    "href": "altair/ames-housing-eda-with-altair.html#layered-histogram",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Layered Histogram",
+    "text": "Layered Histogram\nUsing Altair, we can make overlapping histograms or layers histograms from data:\n\nalt.Chart(train).mark_bar(\n    opacity=0.5,\n    binSpacing=0\n).encode(\n    alt.X('SalePrice:Q', bin=alt.Bin(maxbins=50)),\n    alt.Y('count()', stack=None),\n    alt.Color('MSZoning:N')\n)",
+    "crumbs": [
+      "Visualization with Altair",
+      "Exploratory data analysis with Altair"
     ]
   },
   {

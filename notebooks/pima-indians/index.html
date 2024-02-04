@@ -246,6 +246,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../altair/ames-housing-eda-with-altair.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploratory data analysis with Altair</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../altair/better-altair-theme.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Amazing Altair with an even better theme</span></a>
   </div>
@@ -440,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Predictive Power Score (PPS, <a href="https://github.com/8080labs/ppscore/">GitHub</a>, <a href="https://towardsdatascience.com/rip-correlation-introducing-the-predictive-power-score-3d90808b9598">blog</a>)</li>
 <li>PyCaret: open-source, low-code machine learning library in Python that automates machine learning workflows (<a href="https://pycaret.org/">link</a>)</li>
 </ul>
-<div id="cell-3" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-source_hash="null" data-tags="[]" data-execution_count="1">
+<div id="cell-4" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-source_hash="null" data-tags="[]" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ppscore <span class="im">as</span> pps</span>
@@ -482,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="read-and-explore-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-and-explore-the-data">Read and explore the data</h2>
-<div id="cell-5" class="cell" data-cell_id="ca8c413593fb482ab8f523d046b25ff5" data-deepnote_cell_type="code" data-deepnote_to_be_reexecuted="false" data-editable="true" data-execution_millis="603228" data-execution_start="1698129220472" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="null" data-tags="[]" data-execution_count="2">
+<div id="cell-6" class="cell" data-cell_id="ca8c413593fb482ab8f523d046b25ff5" data-deepnote_cell_type="code" data-deepnote_to_be_reexecuted="false" data-editable="true" data-execution_millis="603228" data-execution_start="1698129220472" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-source_hash="null" data-tags="[]" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"diabetes.csv"</span>).astype({<span class="st">"Outcome"</span>: <span class="bu">bool</span>})</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>train, test <span class="op">=</span> train_test_split(df, test_size<span class="op">=</span><span class="fl">0.3</span>)</span>
@@ -513,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Wall time: 1.7 s</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-cell_id="1c3a34b3fffa4d27ad7b314b6b23c66b" data-deepnote_cell_type="code" data-deepnote_to_be_reexecuted="false" data-editable="true" data-execution_millis="122578" data-execution_start="1698128792527" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-source_hash="null" data-tags="[]" data-execution_count="3">
+<div id="cell-7" class="cell" data-cell_id="1c3a34b3fffa4d27ad7b314b6b23c66b" data-deepnote_cell_type="code" data-deepnote_to_be_reexecuted="false" data-editable="true" data-execution_millis="122578" data-execution_start="1698128792527" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-source_hash="null" data-tags="[]" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>profile.to_notebook_iframe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <iframe width="100%" height="800px" srcdoc="<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content=&quot;width=device-width, initial-scale=1, shrink-to-fit=no&quot;><meta name=description content=&quot;Profile report generated by YData! Visit us at https://ydata.ai&quot;><meta name=author content=&quot;YData and the open source community.&quot;><meta name=generator content=&quot;Pandas Profiling vv4.6.1&quot;><meta name=url content=https://github.com/ydataai/ydata-profiling><meta name=date content=&quot;2023-10-31 21:02:38.849227&quot;><title>Pima Indians Profiling Report</title><style>
@@ -8708,7 +8714,7 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 <section id="investigate-features-with-largest-predictive-power" class="level2">
 <h2 class="anchored" data-anchor-id="investigate-features-with-largest-predictive-power">Investigate features with largest predictive power</h2>
 <p>We use the Predictive Power Score to evaluate which features have the highest predictive power with respect to <code>Outcome</code>.</p>
-<div id="cell-8" class="cell" data-editable="true" data-hide_input="true" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-tags="[]" data-execution_count="4">
+<div id="cell-9" class="cell" data-editable="true" data-hide_input="true" data-slideshow="{&quot;slide_type&quot;:&quot;fragment&quot;}" data-tags="[]" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> (</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    pps.predictors(train, <span class="st">"Outcome"</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    .<span class="bu">round</span>(<span class="dv">3</span>)</span>
@@ -8795,7 +8801,7 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 </section>
 <section id="investigate-colinearity" class="level2">
 <h2 class="anchored" data-anchor-id="investigate-colinearity">Investigate colinearity</h2>
-<div id="cell-10" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-tags="[]" data-execution_count="5">
+<div id="cell-11" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;skip&quot;}" data-tags="[]" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pps.matrix(train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
@@ -8956,7 +8962,7 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-editable="true" data-hide_input="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="6">
+<div id="cell-12" class="cell" data-editable="true" data-hide_input="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pps_matrix <span class="op">=</span> (</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    pps.matrix(</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        train.loc[:, predictors.query(<span class="st">"ppscore &gt; 0"</span>)[<span class="st">"x"</span>].tolist()],</span>
@@ -9045,7 +9051,7 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 </section>
 <section id="build-models" class="level2">
 <h2 class="anchored" data-anchor-id="build-models">Build models</h2>
-<div id="cell-13" class="cell" data-cell_id="329c82768f334b35a82bcbd54df7573c" data-deepnote_cell_type="code" data-editable="true" data-papermill="{&quot;duration&quot;:0.085248,&quot;end_time&quot;:&quot;2022-03-01T18:00:18.566565&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2022-03-01T18:00:18.481317&quot;,&quot;status&quot;:&quot;completed&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-tags="[]" data-execution_count="7">
+<div id="cell-14" class="cell" data-cell_id="329c82768f334b35a82bcbd54df7573c" data-deepnote_cell_type="code" data-editable="true" data-papermill="{&quot;duration&quot;:0.085248,&quot;end_time&quot;:&quot;2022-03-01T18:00:18.566565&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2022-03-01T18:00:18.481317&quot;,&quot;status&quot;:&quot;completed&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-tags="[]" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cls <span class="op">=</span> setup(data <span class="op">=</span> train, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>             target <span class="op">=</span> <span class="st">'Outcome'</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>             numeric_imputation <span class="op">=</span> <span class="st">'mean'</span>,</span>
@@ -9191,7 +9197,7 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 </table>
 </div>
 </div>
-<div id="cell-14" class="cell" data-cell_id="55826e5dd9d24c05b77a2e12db34dbf2" data-deepnote_cell_type="code" data-editable="true" data-papermill="{&quot;duration&quot;:604.547243,&quot;end_time&quot;:&quot;2022-03-01T18:10:32.405411&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2022-03-01T18:00:27.858168&quot;,&quot;status&quot;:&quot;completed&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="8">
+<div id="cell-15" class="cell" data-cell_id="55826e5dd9d24c05b77a2e12db34dbf2" data-deepnote_cell_type="code" data-editable="true" data-papermill="{&quot;duration&quot;:604.547243,&quot;end_time&quot;:&quot;2022-03-01T18:10:32.405411&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2022-03-01T18:00:27.858168&quot;,&quot;status&quot;:&quot;completed&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>best_model <span class="op">=</span> compare_models(include<span class="op">=</span>[<span class="st">"et"</span>, <span class="st">"lightgbm"</span>, <span class="st">"rf"</span>, <span class="st">"dt"</span>], sort<span class="op">=</span><span class="st">"APC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -9303,7 +9309,7 @@ Wall time: 3.96 s</code></pre>
 </section>
 <section id="evaluation" class="level2">
 <h2 class="anchored" data-anchor-id="evaluation">Evaluation</h2>
-<div id="cell-16" class="cell" data-cell_id="8d0bf681a96e44d580aea65390d08fb9" data-deepnote_cell_type="code" data-editable="true" data-papermill="{&quot;duration&quot;:0.574886,&quot;end_time&quot;:&quot;2022-03-01T18:10:38.635948&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2022-03-01T18:10:38.061062&quot;,&quot;status&quot;:&quot;completed&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="9">
+<div id="cell-17" class="cell" data-cell_id="8d0bf681a96e44d580aea65390d08fb9" data-deepnote_cell_type="code" data-editable="true" data-papermill="{&quot;duration&quot;:0.574886,&quot;end_time&quot;:&quot;2022-03-01T18:10:38.635948&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2022-03-01T18:10:38.061062&quot;,&quot;status&quot;:&quot;completed&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> (</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    predict_model(best_model, data<span class="op">=</span>test.iloc[:, :<span class="op">-</span><span class="dv">1</span>])</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -9403,7 +9409,7 @@ Wall time: 3.96 s</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-17" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="10">
+<div id="cell-18" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>evaluate_model(best_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
@@ -9414,7 +9420,7 @@ Wall time: 3.96 s</code></pre>
 </section>
 <section id="shap" class="level2">
 <h2 class="anchored" data-anchor-id="shap">SHAP</h2>
-<div id="cell-19" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-tags="[]" data-execution_count="11">
+<div id="cell-20" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;slide&quot;}" data-tags="[]" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>interpret_model(best_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -9424,7 +9430,7 @@ Wall time: 3.96 s</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-20" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="12">
+<div id="cell-21" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>interpret_model(best_model, plot<span class="op">=</span><span class="st">"reason"</span>, observation<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div align="center"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAWCAYAAAA1vze2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAdxJREFUeNq0Vt1Rg0AQJjcpgBJiBWIFkgoMFYhPPAIVECogPuYpdJBYgXQQrMCUkA50V7+d2ZwXuXPGm9khHLu3f9+3l1nkWNvtNqfHLgpfQ1EUS3tz5nAQ0+NIsiAZSc6eDlI8M3J00B/mDuUKDk6kfOebAgW3pkdD0pFcODGW4gKKvOrAUm04MA4QDt1OEIXU9hDigfS5rC1eS5T90gltck1Xrizo257kgySZcNRzgCSxCvgiE9nckPJo2b/B2AcEkk2OwL8bD8gmOKR1GPbaCUqxEgTq0tLvgb6zfo7+DgYGkkWL2tqLDV4RSITfbHPPfJKIrWz4nJQTMPAWA7IbD6imcNaDeDfgk+4No+wZr40BL3g9eQJJCFqRQ54KiSt72lsLpE3o3MCBSxDuq4yOckU2hKXRuwBH3OyMR4g1UpyTYw6mlmBqNdUXRM1NfyF5EPI6JkcpIDBIX8jX6DR/6ckAZJ0wEAdLR8DEk6OfC1Pp8BKo6TQIwPJbvJ6toK5lmuvJoRtfK6Ym1iRYIarRo2UyYHvRN5qpakR3yoizWrouoyuXXQqI185LCw07op5ZyCRGL99h24InP0e9xdQukEKVmhzrqZuRIfwISB//cP3Wk3f8f/yR+BRgAHu00HjLcEQBAAAAAElFTkSuQmCC"></div><script charset="utf-8">/*! For license information please see bundle.js.LICENSE.txt */
@@ -9449,7 +9455,7 @@ Wall time: 3.96 s</code></pre>
 </script>
 </div>
 </div>
-<div id="cell-21" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="13">
+<div id="cell-22" class="cell" data-editable="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>interpret_model(best_model, plot<span class="op">=</span><span class="st">"reason"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div align="center"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAWCAYAAAA1vze2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAdxJREFUeNq0Vt1Rg0AQJjcpgBJiBWIFkgoMFYhPPAIVECogPuYpdJBYgXQQrMCUkA50V7+d2ZwXuXPGm9khHLu3f9+3l1nkWNvtNqfHLgpfQ1EUS3tz5nAQ0+NIsiAZSc6eDlI8M3J00B/mDuUKDk6kfOebAgW3pkdD0pFcODGW4gKKvOrAUm04MA4QDt1OEIXU9hDigfS5rC1eS5T90gltck1Xrizo257kgySZcNRzgCSxCvgiE9nckPJo2b/B2AcEkk2OwL8bD8gmOKR1GPbaCUqxEgTq0tLvgb6zfo7+DgYGkkWL2tqLDV4RSITfbHPPfJKIrWz4nJQTMPAWA7IbD6imcNaDeDfgk+4No+wZr40BL3g9eQJJCFqRQ54KiSt72lsLpE3o3MCBSxDuq4yOckU2hKXRuwBH3OyMR4g1UpyTYw6mlmBqNdUXRM1NfyF5EPI6JkcpIDBIX8jX6DR/6ckAZJ0wEAdLR8DEk6OfC1Pp8BKo6TQIwPJbvJ6toK5lmuvJoRtfK6Ym1iRYIarRo2UyYHvRN5qpakR3yoizWrouoyuXXQqI185LCw07op5ZyCRGL99h24InP0e9xdQukEKVmhzrqZuRIfwISB//cP3Wk3f8f/yR+BRgAHu00HjLcEQBAAAAAElFTkSuQmCC"></div><script charset="utf-8">/*! For license information please see bundle.js.LICENSE.txt */
