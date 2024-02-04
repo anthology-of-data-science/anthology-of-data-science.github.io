@@ -10,23 +10,16 @@
   {
     "listing": "/posts/index.html",
     "items": [
-      "/posts/stop-aggregating-signal.html",
-      "/posts/predictive-power-score.html",
-      "/posts/precision-recall.html"
-    ]
-  },
-  {
-    "listing": "/notebooks/index.html",
-    "items": [
-      "/notebooks/pima-indians/pima-indians-with-pycaret.html",
-      "/notebooks/ames-housing/ames-housing-with-pycaret.html",
-      "/notebooks/overfitting.html",
-      "/notebooks/deconfounding.html"
+      "/posts/ibis-analytics/index.html",
+      "/posts/stop-aggregating-signal/index.html",
+      "/posts/predictive-power-score/index.html",
+      "/posts/precision-recall/index.html"
     ]
   },
   {
     "listing": "/altair/index.html",
     "items": [
+      "/altair/better-altair-theme.html",
       "/altair/curriculum.html",
       "/altair/comet-chart.html",
       "/altair/video-altair-data-types.html",
@@ -44,6 +37,15 @@
       "/books/r4ds.html",
       "/books/turing-way.html",
       "/books/udl.html"
+    ]
+  },
+  {
+    "listing": "/notebooks/index.html",
+    "items": [
+      "/notebooks/pima-indians/index.html",
+      "/notebooks/ames-housing/index.html",
+      "/notebooks/overfitting/index.html",
+      "/notebooks/deconfounding/index.html"
     ]
   }
 ]
