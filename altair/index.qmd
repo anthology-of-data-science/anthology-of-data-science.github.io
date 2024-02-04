@@ -11,6 +11,7 @@ listing:
     - video-*.qmd
     - comet-chart.qmd
     - "*.ipynb"
+    - "!*.out.ipynb"
   type: grid
   grid-columns: 2
   image-height: "200px"
