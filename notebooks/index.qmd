@@ -1,7 +1,5 @@
 ---
-title: Example notebooks and explainers
-description: |
-    "Show, don't tell" is arguably one of the best ways to learn.
+title: Notebooks and explainers with code
 listing:
     contents:
         - "**/*.ipynb"
@@ -12,4 +10,7 @@ listing:
     filter-ui: false
     categories: false
     feed: false
+    grid-columns: 2
+    image-height: "200px"
+  
 ---

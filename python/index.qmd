@@ -1,5 +1,5 @@
 ---
-title: Getting into python
+title: Getting into Python
 description: |
   How to get into Python, the most widely used programming language for data science.
 author: Daniel Kapitan

@@ -7,6 +7,6 @@ listing:
     sort: "date desc"
     sort-ui: false
     filter-ui: false
-    categories: false
+    categories: true
     feed: false
 ---

@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: _site
 
 website:
   title: "Anthology of Data Science"
@@ -52,37 +52,13 @@ website:
             href: python/effective-python-and-idiomatic-pandas.ipynb
       - section: Visualization with Altair
         href: altair/index.qmd
-        contents:
-          - text: "Curriculum"
-            href: altair/curriculum.qmd
-          - text: "Introduction"
-            href: altair/video-altair-intro.qmd
-          - text: "Grammar"
-            href: altair/video-altair-grammar.qmd
-          - text: "Data types"
-            href: altair/video-altair-data-types.qmd
+        contents: altair/*
       - section: "Selected articles"
         href: posts/index.qmd
-        contents:
-          - text: "Stop aggregating the signal"
-            href: posts/stop-aggregating-signal.qmd
-          - text: "Predictive Power Score"
-            href: posts/predictive-power-score.qmd
-          - text: "Precision-recall is better than ROC"
-            href: posts/precision-recall.qmd
+        contents: posts/*/*
       - section: "Notebooks"
         href: notebooks/index.qmd
-        contents:
-          - text: "Regression: Ames Housing"
-            href: notebooks/ames-housing/ames-housing-with-pycaret.ipynb
-          # - text: "Regression: Another Ames Housing"
-          #   href: notebooks/ames-housing/ames-housing.ipynb
-          - text: "Classification: Pima Indians"
-            href: notebooks/pima-indians/pima-indians-with-pycaret.ipynb
-          - text: "Deconfounding"
-            href: notebooks/deconfounding.ipynb
-          - text: "Overfitting and underfitting"
-            href: notebooks/overfitting.ipynb   
+        contents: notebooks/*/*
   page-footer:
     left: |
       <br>
