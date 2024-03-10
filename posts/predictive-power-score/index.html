@@ -296,13 +296,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/verkeersveiligheidmodel/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Verkeersveiligheidmodel</span></a>
+  <a href="../../posts/predictive-power-score/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">RIP correlation. Introducing the Predictive Power Score.</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/predictive-power-score/index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../posts/precision-recall/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Precision-Recall Plot Is More Informative than the ROC Plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/ibis-analytics/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modern, hybrid, open analytics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stop aggregating away the signal in your data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../cases/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Use cases</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/predictive-power-score/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RIP correlation. Introducing the Predictive Power Score.</span></a>
   </div>
 </li>
@@ -330,11 +359,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="../../notebooks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
@@ -525,16 +554,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Before using the Python library, please take a moment to read through the calculation details</p>
 </blockquote>
 <p>Installing the package is as simple as</p>
-<div id="c729db8f" class="cell" data-execution_count="1">
+<div id="e329e0a1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install ppscore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Calculating the PPS for a given pandas dataframe:</p>
-<div id="078a5344" class="cell" data-execution_count="2">
+<div id="a28b03eb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ppscore <span class="im">as</span> pps</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pps.score(df, <span class="st">"feature_column"</span>, <span class="st">"target_column"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You can also calculate the whole PPS matrix:</p>
-<div id="2d2c51c2" class="cell" data-execution_count="3">
+<div id="bdc4834d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pps.matrix(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="how-fast-is-the-pps-in-comparison-to-the-correlation" class="level3">
