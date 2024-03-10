@@ -1,7 +1,17 @@
 ---
-title: Selected papers & blogpost
+title: Perspectives on data science
 listing:
-    contents: .
+    contents: 
+        - .
+        - "python/index.qmd"
+        - "!python/realpython.qmd"
+        - "!python/*.ipynb"
+        - "!python/whirlwind.qmd"
+        - "altair/index.qmd"
+        - "!altair/video*.qmd"
+        - "!altair/*.ipynb"
+        - "!altair/curriculum.qmd"
+        - "!altair/comet-chart.qmd"
     type: grid
     grid-columns: 2
     sort: "date desc"

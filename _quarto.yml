@@ -41,24 +41,24 @@ website:
             href: books/udl.qmd
           - text: "The Turing Way"
             href: books/turing-way.qmd
-      - section: Getting into Python
-        href: python/index.qmd
-        contents:
-          - text: "Real Python"
-            href: python/realpython.qmd
-          - text: "Tour of Python"
-            href: python/whirlwind.qmd
-          - text: "Pythonic and idiomatic Python"
-            href: python/effective-python-and-idiomatic-pandas.ipynb
-      - section: Visualization with Altair
-        href: altair/index.qmd
-        contents: altair/*
-      - section: "Selected articles"
+      # - section: Getting into Python
+      #   href: python/index.qmd
+      #   contents:
+      #     - text: "Real Python"
+      #       href: python/realpython.qmd
+      #     - text: "Tour of Python"
+      #       href: python/whirlwind.qmd
+      #     - text: "Pythonic and idiomatic Python"
+      #       href: python/effective-python-and-idiomatic-pandas.ipynb
+      # - section: Visualization with Altair
+      #   href: altair/index.qmd
+      #   contents: altair/*
+      - section: "Perspectives on data science"
         href: posts/index.qmd
         contents: posts/*/*
-      - section: "Use cases"
+      - section: "Use cases & applications"
         href: cases/index.qmd
-        contents: posts/*/*
+        contents: cases/*/*
       - section: "Notebooks"
         href: notebooks/index.qmd
         contents: notebooks/*/*

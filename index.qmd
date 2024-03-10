@@ -46,21 +46,14 @@ For now, my recommendation is to start with one of the courses offered by [Eleme
 
 A selection of what I think are [the best textbooks](books.qmd) is provided as a digital bookshelf. All the books included are open access, thanks to their respective authors! They should keep you busy for a while.
 
-### Getting into Python
+### Perspectives
 
-Python is one of the most widely used programming languages for data science. For those new to Python, I have curated a selection of books and online tutorials form [Real Python](https://realpython.com) to get you going.
+Various topics and perspectives on how data science is done. Clearly this is an opinionated and very [personal selection](posts/index.qmd). It includes a section on [getting into Python](posts/python/index.qmd), where I have curated a selection of books and online tutorials to get you going. Also, a selection of tutorials and blogpost is provided on creating[visualizations with Altair](posts/altair/index.qmd). I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis. 
 
-### Visualization with Altair
-
-I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis. A selection of tutorials, blogpost is provided in the section [Visualization with Altair](altair/index.qmd).
-
-### Selected articles
-
-Various topics and perspectives data science. Clearly this is an opinionated and very [personal selection](posts/index.qmd).
 
 ### Use cases
 
-A selection of inspiring use cases across various industries, which I think are a demonstration of good practices.
+A selection of inspiring [use cases](cases/index.qmd) across various industries, which I think are a demonstration of good practices.
 
 ### Notebooks
 
