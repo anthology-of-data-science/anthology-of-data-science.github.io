@@ -203,7 +203,7 @@
     "href": "posts/index.html",
     "title": "Selected papers & blogpost",
     "section": "",
-    "text": "Modern, hybrid, open analytics\n\n\n\ndata engineering\n\n\n\n\n\n\n\nCody Peterson\n\n\nJan 25, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nStop aggregating away the signal in your data\n\n\n\nexploratory data analysis\n\n\nvisualization\n\n\n\nBy aggregating our data in an effort to simplify it, we lose the signal and the context we need to make sense of what we’re seeing. Originally published on &lt;a…\n\n\n\nZan Armstrong\n\n\nMar 3, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nRIP correlation. Introducing the Predictive Power Score.\n\n\n\nexploratory data analysis\n\n\n\nWe define the Predictive Power Score (PPS), an alternative to the correlation that finds more patterns in your data. Originally published on &lt;a…\n\n\n\nFlorian Wetschoreck\n\n\nApr 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\nThe Precision-Recall Plot Is More Informative than the ROC Plot\n\n\n\nperformance metrics\n\n\n\nAn introduction to performance metrics for binary classification. Originally published on &lt;a…\n\n\n\nPaul van der Laken, Daniel Kapitan\n\n\nAug 16, 2019\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Modern, hybrid, open analytics\n\n\n\ndata engineering\n\n\n\n\n\n\n\nCody Peterson\n\n\nJan 25, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nStop aggregating away the signal in your data\n\n\n\nexploratory data analysis\n\n\nvisualization\n\n\n\nBy aggregating our data in an effort to simplify it, we lose the signal and the context we need to make sense of what we’re seeing. Originally published on &lt;a…\n\n\n\nZan Armstrong\n\n\nMar 3, 2022\n\n\n\n\n\n\n\n\n\n\n\n\nRIP correlation. Introducing the Predictive Power Score.\n\n\n\nexploratory data analysis\n\n\n\nWe define the Predictive Power Score (PPS), an alternative to the correlation that finds more patterns in your data. Originally published on &lt;a…\n\n\n\nFlorian Wetschoreck\n\n\nApr 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\nThe Precision-Recall Plot Is More Informative than the ROC Plot\n\n\n\nperformance metrics\n\n\n\nAn introduction to performance metrics for binary classification. Originally published on &lt;a…\n\n\n\nPaul van der Laken, Daniel Kapitan\n\n\nAug 16, 2019\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVerkeersveiligheidmodel\n\n\n\ncase study\n\n\nNederlands\n\n\n\nIn het Verkeersveiligheidsmodel koppelen we data over historische ongevallen aan gegevens over de weg, over het verkeer en over de omgeving binnen de invloedsfeer van de…\n\n\n\nArjan Knol\n\n\nAug 1, 2019\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Selected articles"
     ]
@@ -440,24 +440,212 @@
     ]
   },
   {
-    "objectID": "books/udl.html",
-    "href": "books/udl.html",
-    "title": "Understanding Deep Learning",
+    "objectID": "books/islp.html",
+    "href": "books/islp.html",
+    "title": "An Introduction to Statistical Learning",
     "section": "",
     "text": "Unable to display PDF file. Download instead.",
     "crumbs": [
       "Books",
-      "Deep Learning"
+      "Introduction to Statistical Learning"
     ]
   },
   {
-    "objectID": "notebooks/index.html",
-    "href": "notebooks/index.html",
-    "title": "Notebooks and explainers with code",
-    "section": "",
-    "text": "Predicting diabetes with pycaret\n\n\n\n\n\n\nDaniel Kapitan\n\n\nNov 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nPredicting house prices with pycaret\n\n\n\n\n\n\nDaniel Kapitan\n\n\nOct 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDemonstration of overfitting and underfitting\n\n\nThis notebook illustrates why we require a train/test split (or cross-validation) to balance overfitting vs. underfitting.\n\n\n\n\n\n\nMay 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeconfounding explained\n\n\nA demonstration howcorrelations ‘magically’ disappear if confounders are added to your model.\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\nNo matching items",
+    "objectID": "notebooks/ames-housing/index.html#objectives",
+    "href": "notebooks/ames-housing/index.html#objectives",
+    "title": "Predicting house prices with pycaret",
+    "section": "Objectives",
+    "text": "Objectives\n\nExample end-to-end supervised learning workflow with Ames Housing dataset\nFocus on conceptual understanding of machine learning\nDemonstrate use of Predictive Power Score (PPS)\nDemonstrate capabilities of low-code tools",
     "crumbs": [
-      "Notebooks"
+      "Notebooks",
+      "Predicting house prices with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/ames-housing/index.html#attribution",
+    "href": "notebooks/ames-housing/index.html#attribution",
+    "title": "Predicting house prices with pycaret",
+    "section": "Attribution",
+    "text": "Attribution\n\nDataset\n\nAmes Housing dataset paper (original paper)\nKaggle competition advanced regression techniques (link)\n\n\n\nPython libraries\n\nAltair (docs)\nydata-profiling (docs)\nPredictive Power Score (PPS, GitHub, blog)\nPyCaret: open-source, low-code machine learning library in Python that automates machine learning workflows (link)\n\n\nimport altair as alt\nimport pandas as pd\nimport ppscore as pps\nfrom pycaret.regression import *\nfrom ydata_profiling import ProfileReport\n\n\n# customize Altair\ndef y_axis():\n    return {\n        \"config\": {\n            \"axisX\": {\"grid\": False},\n            \"axisY\": {\n                \"domain\": False,\n                \"gridDash\": [2, 4],\n                \"tickSize\": 0,\n                \"titleAlign\": \"right\",\n                \"titleAngle\": 0,\n                \"titleX\": -5,\n                \"titleY\": -10,\n            },\n            \"view\": {\n                \"stroke\": \"transparent\",\n                # To keep the same height and width as the default theme:\n                \"continuousHeight\": 300,\n                \"continuousWidth\": 400,\n            },\n        }\n    }\n\n\nalt.themes.register(\"y_axis\", y_axis)\nalt.themes.enable(\"y_axis\")\n\n\ndef get_descriptions():\n    \"Parse descriptions of columns of Ames Housing dataset\"\n    with open(\"data_description.txt\") as reader:\n        descriptions = {}\n        for line in reader.readlines():\n            if \":\" in line and \"2nd level\" not in line:\n                descriptions[line.split(\": \")[0].strip()] = line.split(\": \")[1].strip()\n    return pd.Series(descriptions).rename(\"descriptions\")\n\n\ndescriptions = get_descriptions()",
+    "crumbs": [
+      "Notebooks",
+      "Predicting house prices with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/ames-housing/index.html#read-and-explore-the-data",
+    "href": "notebooks/ames-housing/index.html#read-and-explore-the-data",
+    "title": "Predicting house prices with pycaret",
+    "section": "Read and explore the data",
+    "text": "Read and explore the data\n\n%%time\ntrain = pd.read_csv(\"train.csv\")\ntest = pd.read_csv(\"test.csv\")\nprofile = ProfileReport(train, minimal=True, title=\"Ames Housing Profiling Report\")\nprofile.to_file(\"ames-housing-profiling-report-minimal.html\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCPU times: user 45 s, sys: 1.78 s, total: 46.7 s\nWall time: 16.4 s\n\n\n\nprofile.to_notebook_iframe()",
+    "crumbs": [
+      "Notebooks",
+      "Predicting house prices with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/ames-housing/index.html#investigate-features-with-largest-predictive-power",
+    "href": "notebooks/ames-housing/index.html#investigate-features-with-largest-predictive-power",
+    "title": "Predicting house prices with pycaret",
+    "section": "Investigate features with largest predictive power",
+    "text": "Investigate features with largest predictive power\nWe use the Predictive Power Score to evaluate which features have the highest predictive power with respect to SalePrice.\n\npredictors = (\n    pps.predictors(train, \"SalePrice\")\n    .round(3)\n    .iloc[:, :-1]\n    .merge(descriptions, how=\"left\", left_on=\"x\", right_index=True)\n)\nbase = (\n    alt.Chart(predictors)\n    .encode(\n        x=alt.Y(\"x:N\").sort(\"-y\"),\n        y=\"ppscore\",\n        tooltip=[\"x\", \"ppscore\", \"descriptions\"],\n    )\n    .transform_filter(\"datum.ppscore &gt; 0\")\n)\nbase.mark_bar() + base.mark_text(align=\"center\", dy=-5)",
+    "crumbs": [
+      "Notebooks",
+      "Predicting house prices with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/ames-housing/index.html#investigate-colinearity",
+    "href": "notebooks/ames-housing/index.html#investigate-colinearity",
+    "title": "Predicting house prices with pycaret",
+    "section": "Investigate colinearity",
+    "text": "Investigate colinearity\n\npps_matrix = (\n    pps.matrix(\n        train.loc[:, predictors.query(\"ppscore &gt; 0\")[\"x\"].tolist()],\n    )\n    .loc[:, [\"x\", \"y\", \"ppscore\"]]\n    .round(3)\n)\n(\n    alt.Chart(pps_matrix)\n    .mark_rect()\n    .encode(\n        x=\"x:O\",\n        y=\"y:O\",\n        color=\"ppscore:Q\",\n        tooltip=[\"x\", \"y\", \"ppscore\"])\n)",
+    "crumbs": [
+      "Notebooks",
+      "Predicting house prices with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/ames-housing/index.html#build-models",
+    "href": "notebooks/ames-housing/index.html#build-models",
+    "title": "Predicting house prices with pycaret",
+    "section": "Build models",
+    "text": "Build models\nWe select the 30 features that have the highest predictive power score\n\nselected_predictors = (\n    predictors.sort_values(\"ppscore\", ascending=False).head(30)[\"x\"].to_list()\n)\nreg = setup(data = train.loc[:, selected_predictors + [\"SalePrice\"]], \n             target = 'SalePrice',\n             numeric_imputation = 'mean',\n             categorical_features =  list(train.loc[:, selected_predictors].select_dtypes(\"object\").columns), \n             feature_selection = False,\n             pca=False,\n             remove_multicollinearity=True,\n             remove_outliers = False,\n             normalize = True,\n             )\n\n\n\n\n\n\n\n \nDescription\nValue\n\n\n\n\n0\nSession id\n8378\n\n\n1\nTarget\nSalePrice\n\n\n2\nTarget type\nRegression\n\n\n3\nOriginal data shape\n(1460, 31)\n\n\n4\nTransformed data shape\n(1460, 116)\n\n\n5\nTransformed train set shape\n(1021, 116)\n\n\n6\nTransformed test set shape\n(439, 116)\n\n\n7\nOrdinal features\n1\n\n\n8\nNumeric features\n16\n\n\n9\nCategorical features\n14\n\n\n10\nRows with missing values\n94.7%\n\n\n11\nPreprocess\nTrue\n\n\n12\nImputation type\nsimple\n\n\n13\nNumeric imputation\nmean\n\n\n14\nCategorical imputation\nmode\n\n\n15\nMaximum one-hot encoding\n25\n\n\n16\nEncoding method\nNone\n\n\n17\nRemove multicollinearity\nTrue\n\n\n18\nMulticollinearity threshold\n0.900000\n\n\n19\nNormalize\nTrue\n\n\n20\nNormalize method\nzscore\n\n\n21\nFold Generator\nKFold\n\n\n22\nFold Number\n10\n\n\n23\nCPU Jobs\n-1\n\n\n24\nUse GPU\nFalse\n\n\n25\nLog Experiment\nFalse\n\n\n26\nExperiment Name\nreg-default-name\n\n\n27\nUSI\n81f6\n\n\n\n\n\n\n\n%%time\nselected_models = [model for model in models().index if model not in [\"lar\", \"lr\", \"ransac\"]]\nbest_model = compare_models(sort='RMSLE', include=selected_models)\n\n\n\n\n\n\n\n\n\n\n \nModel\nMAE\nMSE\nRMSE\nR2\nRMSLE\nMAPE\nTT (Sec)\n\n\n\n\nlightgbm\nLight Gradient Boosting Machine\n18267.8967\n969345616.0929\n30245.0381\n0.8400\n0.1474\n0.1051\n0.3780\n\n\ngbr\nGradient Boosting Regressor\n18349.4461\n1064907228.1139\n31464.4286\n0.8221\n0.1497\n0.1059\n0.0810\n\n\nrf\nRandom Forest Regressor\n18834.6022\n1052157810.7295\n31669.8884\n0.8263\n0.1530\n0.1091\n0.1370\n\n\npar\nPassive Aggressive Regressor\n18695.3332\n1145943934.1128\n32527.7429\n0.8093\n0.1535\n0.1061\n0.0560\n\n\nen\nElastic Net\n19941.1185\n1212771199.2709\n33679.9238\n0.8018\n0.1536\n0.1131\n0.0370\n\n\net\nExtra Trees Regressor\n19749.8604\n1158574471.9795\n33510.6172\n0.8073\n0.1591\n0.1138\n0.1370\n\n\nhuber\nHuber Regressor\n18580.7407\n1172797296.1965\n32571.8573\n0.8024\n0.1602\n0.1069\n0.0420\n\n\nbr\nBayesian Ridge\n20557.3468\n1251454965.3245\n34036.3809\n0.7934\n0.1715\n0.1191\n0.0380\n\n\nard\nAutomatic Relevance Determination\n20446.5401\n1229331466.4696\n33711.3986\n0.7969\n0.1747\n0.1193\n0.2740\n\n\nomp\nOrthogonal Matching Pursuit\n21882.7966\n1294135379.9217\n34955.8947\n0.7847\n0.1849\n0.1296\n0.0340\n\n\nada\nAdaBoost Regressor\n24866.3282\n1379609584.9159\n36498.7175\n0.7707\n0.2036\n0.1621\n0.0580\n\n\nknn\nK Neighbors Regressor\n26571.2016\n1730405638.7521\n40931.3774\n0.7200\n0.2050\n0.1518\n0.0360\n\n\ndt\nDecision Tree Regressor\n27747.5148\n2157234242.4490\n45330.0191\n0.6512\n0.2169\n0.1564\n0.0350\n\n\nllar\nLasso Least Angle Regression\n21458.2025\n1320695830.3446\n35006.4301\n0.7809\n0.2187\n0.1268\n0.0380\n\n\nlasso\nLasso Regression\n21455.6793\n1320742178.3808\n35006.1951\n0.7809\n0.2189\n0.1268\n0.2100\n\n\nridge\nRidge Regression\n21439.2241\n1318937040.3720\n34981.0548\n0.7812\n0.2196\n0.1266\n0.0360\n\n\nsvm\nSupport Vector Regression\n55543.3805\n6417749387.4994\n79739.3850\n-0.0524\n0.3979\n0.3195\n0.0450\n\n\ndummy\nDummy Regressor\n57352.4774\n6133919031.8184\n78021.7431\n-0.0086\n0.4061\n0.3635\n0.0340\n\n\ntr\nTheilSen Regressor\n29178.3219\n2564758742.0908\n49572.3895\n0.5667\n0.4258\n0.1978\n4.0290\n\n\nkr\nKernel Ridge\n182040.0692\n34133507087.4154\n184731.2672\n-4.7500\n1.7994\n1.1623\n0.0380\n\n\nmlp\nMLP Regressor\n166456.5847\n32851392125.7179\n181040.0031\n-4.4796\n2.7703\n0.9182\n0.2890\n\n\n\n\n\n\n\n\n\nCPU times: user 4.09 s, sys: 446 ms, total: 4.53 s\nWall time: 1min 3s",
+    "crumbs": [
+      "Notebooks",
+      "Predicting house prices with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/ames-housing/index.html#evaluation",
+    "href": "notebooks/ames-housing/index.html#evaluation",
+    "title": "Predicting house prices with pycaret",
+    "section": "Evaluation",
+    "text": "Evaluation\n\nWith a standard, AutoML-like workflow, we achive RMSLE of 0.13 - 0.14 (over different runs), which is already in the top 25% of the 4,200 submissions on the leaderboard\nWe can now make predictions on the test set\n\n\npredictions = (\n    predict_model(best_model, data=test)\n    .rename(columns={\"prediction_label\": \"SalePrice\"})\n    .loc[:, [\"Id\", \"SalePrice\"]]\n)\npredictions.head()\n\n\n\n\n\n\n\n\n\n\n\n\nId\nSalePrice\n\n\n\n\n0\n1461\n126951.931078\n\n\n1\n1462\n142402.002648\n\n\n2\n1463\n185086.014955\n\n\n3\n1464\n191718.590497\n\n\n4\n1465\n186412.972060\n\n\n\n\n\n\n\n\n\nPipeline\n\nplot_model(best_model, 'pipeline')\n\n\n\n\n\n\n\n\n\nplot_model(best_model, 'feature')\n\n\n\n\n\n\n\n\n\n\n\n\nplot_model(best_model, 'residuals')",
+    "crumbs": [
+      "Notebooks",
+      "Predicting house prices with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/pima-indians/index.html#objectives",
+    "href": "notebooks/pima-indians/index.html#objectives",
+    "title": "Predicting diabetes with pycaret",
+    "section": "Objectives",
+    "text": "Objectives\n\nExample end-to-end supervised learning workflow with Pima Indians\nFocus on conceptual understanding of machine learning\nDemonstrate use of Predictive Power Score (PPS)\nDemonstrate capabilities of low-code tools\nDemonstrate use of average_precision_score (link)\nDemonstrate SHAP values",
+    "crumbs": [
+      "Notebooks",
+      "Predicting diabetes with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/pima-indians/index.html#attribution",
+    "href": "notebooks/pima-indians/index.html#attribution",
+    "title": "Predicting diabetes with pycaret",
+    "section": "Attribution",
+    "text": "Attribution\n\nDataset\n\nPima Indians paper (original paper)\nKaggle datacard (link)\n\n\n\nPython libraries\n\nAltair (docs)\nydata-profiling (docs)\nPredictive Power Score (PPS, GitHub, blog)\nPyCaret: open-source, low-code machine learning library in Python that automates machine learning workflows (link)\n\n\nimport altair as alt\nimport pandas as pd\nimport ppscore as pps\nfrom pycaret.classification import *\nimport shap\nfrom sklearn.metrics import average_precision_score\nfrom sklearn.model_selection import train_test_split\nfrom ydata_profiling import ProfileReport\n\n\n# customize Altair\ndef y_axis():\n    return {\n        \"config\": {\n            \"axisX\": {\"grid\": False},\n            \"axisY\": {\n                \"domain\": False,\n                \"gridDash\": [2, 4],\n                \"tickSize\": 0,\n                \"titleAlign\": \"right\",\n                \"titleAngle\": 0,\n                \"titleX\": -5,\n                \"titleY\": -10,\n            },\n            \"view\": {\n                \"stroke\": \"transparent\",\n                # To keep the same height and width as the default theme:\n                \"continuousHeight\": 300,\n                \"continuousWidth\": 400,\n            },\n        }\n    }\n\n\nalt.themes.register(\"y_axis\", y_axis)\nalt.themes.enable(\"y_axis\");",
+    "crumbs": [
+      "Notebooks",
+      "Predicting diabetes with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/pima-indians/index.html#read-and-explore-the-data",
+    "href": "notebooks/pima-indians/index.html#read-and-explore-the-data",
+    "title": "Predicting diabetes with pycaret",
+    "section": "Read and explore the data",
+    "text": "Read and explore the data\n\n%%time\ndf = pd.read_csv(\"diabetes.csv\").astype({\"Outcome\": bool})\ntrain, test = train_test_split(df, test_size=0.3)\nprofile = ProfileReport(train, minimal=True, title=\"Pima Indians Profiling Report\")\nprofile.to_file(\"pima-indians-profiling-report-minimal.html\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCPU times: user 5.54 s, sys: 184 ms, total: 5.72 s\nWall time: 1.7 s\n\n\n\nprofile.to_notebook_iframe()",
+    "crumbs": [
+      "Notebooks",
+      "Predicting diabetes with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/pima-indians/index.html#investigate-features-with-largest-predictive-power",
+    "href": "notebooks/pima-indians/index.html#investigate-features-with-largest-predictive-power",
+    "title": "Predicting diabetes with pycaret",
+    "section": "Investigate features with largest predictive power",
+    "text": "Investigate features with largest predictive power\nWe use the Predictive Power Score to evaluate which features have the highest predictive power with respect to Outcome.\n\npredictors = (\n    pps.predictors(train, \"Outcome\")\n    .round(3)\n    .iloc[:, :-1]\n)\nbase = (\n    alt.Chart(predictors)\n    .encode(\n        y=alt.Y(\"x:N\").sort(\"-x\"),\n        x=\"ppscore\",\n        tooltip=[\"x\", \"ppscore\"],\n    )\n)\nbase.mark_bar() + base.mark_text(align=\"center\", dy=-5)",
+    "crumbs": [
+      "Notebooks",
+      "Predicting diabetes with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/pima-indians/index.html#investigate-colinearity",
+    "href": "notebooks/pima-indians/index.html#investigate-colinearity",
+    "title": "Predicting diabetes with pycaret",
+    "section": "Investigate colinearity",
+    "text": "Investigate colinearity\n\npps.matrix(train)\n\n\n\n\n\n\n\n\n\nx\ny\nppscore\ncase\nis_valid_score\nmetric\nbaseline_score\nmodel_score\nmodel\n\n\n\n\n0\nPregnancies\nPregnancies\n1.000000\npredict_itself\nTrue\nNone\n0.000000\n1.000000\nNone\n\n\n1\nPregnancies\nGlucose\n0.000000\nregression\nTrue\nmean absolute error\n23.651769\n24.024994\nDecisionTreeRegressor()\n\n\n2\nPregnancies\nBloodPressure\n0.000000\nregression\nTrue\nmean absolute error\n12.748603\n12.961633\nDecisionTreeRegressor()\n\n\n3\nPregnancies\nSkinThickness\n0.000000\nregression\nTrue\nmean absolute error\n13.467412\n13.630828\nDecisionTreeRegressor()\n\n\n4\nPregnancies\nInsulin\n0.000000\nregression\nTrue\nmean absolute error\n79.240223\n85.015086\nDecisionTreeRegressor()\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n76\nOutcome\nInsulin\n0.000000\nregression\nTrue\nmean absolute error\n79.240223\n84.802415\nDecisionTreeRegressor()\n\n\n77\nOutcome\nBMI\n0.035133\nregression\nTrue\nmean absolute error\n5.672812\n5.473511\nDecisionTreeRegressor()\n\n\n78\nOutcome\nDiabetesPedigreeFunction\n0.000000\nregression\nTrue\nmean absolute error\n0.226384\n0.234531\nDecisionTreeRegressor()\n\n\n79\nOutcome\nAge\n0.000000\nregression\nTrue\nmean absolute error\n8.888268\n8.997094\nDecisionTreeRegressor()\n\n\n80\nOutcome\nOutcome\n1.000000\npredict_itself\nTrue\nNone\n0.000000\n1.000000\nNone\n\n\n\n\n81 rows × 9 columns\n\n\n\n\n\npps_matrix = (\n    pps.matrix(\n        train.loc[:, predictors.query(\"ppscore &gt; 0\")[\"x\"].tolist()],\n    )\n    .loc[:, [\"x\", \"y\", \"ppscore\"]]\n    .round(3)\n)\n(\n    alt.Chart(pps_matrix)\n    .mark_rect()\n    .encode(\n        x=\"x:O\",\n        y=\"y:O\",\n        color=\"ppscore:Q\",\n        tooltip=[\"x\", \"y\", \"ppscore\"])\n).properties(width=500, height=500)",
+    "crumbs": [
+      "Notebooks",
+      "Predicting diabetes with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/pima-indians/index.html#build-models",
+    "href": "notebooks/pima-indians/index.html#build-models",
+    "title": "Predicting diabetes with pycaret",
+    "section": "Build models",
+    "text": "Build models\n\ncls = setup(data = train, \n             target = 'Outcome',\n             numeric_imputation = 'mean',\n             feature_selection = False,\n             pca=False,\n             remove_multicollinearity=True,\n             remove_outliers = False,\n             normalize = True,\n             )\nadd_metric('apc', 'APC', average_precision_score, target = 'pred_proba');\n\n\n\n\n\n\n\n \nDescription\nValue\n\n\n\n\n0\nSession id\n5752\n\n\n1\nTarget\nOutcome\n\n\n2\nTarget type\nBinary\n\n\n3\nOriginal data shape\n(537, 9)\n\n\n4\nTransformed data shape\n(537, 9)\n\n\n5\nTransformed train set shape\n(375, 9)\n\n\n6\nTransformed test set shape\n(162, 9)\n\n\n7\nNumeric features\n8\n\n\n8\nPreprocess\nTrue\n\n\n9\nImputation type\nsimple\n\n\n10\nNumeric imputation\nmean\n\n\n11\nCategorical imputation\nmode\n\n\n12\nRemove multicollinearity\nTrue\n\n\n13\nMulticollinearity threshold\n0.900000\n\n\n14\nNormalize\nTrue\n\n\n15\nNormalize method\nzscore\n\n\n16\nFold Generator\nStratifiedKFold\n\n\n17\nFold Number\n10\n\n\n18\nCPU Jobs\n-1\n\n\n19\nUse GPU\nFalse\n\n\n20\nLog Experiment\nFalse\n\n\n21\nExperiment Name\nclf-default-name\n\n\n22\nUSI\n10e4\n\n\n\n\n\n\n\n%%time\nbest_model = compare_models(include=[\"et\", \"lightgbm\", \"rf\", \"dt\"], sort=\"APC\")\n\n\n\n\n\n\n\n\n\n\n \nModel\nAccuracy\nAUC\nRecall\nPrec.\nF1\nKappa\nMCC\nAPC\nTT (Sec)\n\n\n\n\net\nExtra Trees Classifier\n0.7569\n0.8039\n0.5090\n0.6832\n0.5719\n0.4106\n0.4261\n0.6795\n0.1740\n\n\nrf\nRandom Forest Classifier\n0.7412\n0.7893\n0.5013\n0.6420\n0.5538\n0.3784\n0.3896\n0.6661\n0.0330\n\n\nlightgbm\nLight Gradient Boosting Machine\n0.7252\n0.7776\n0.5090\n0.5987\n0.5452\n0.3519\n0.3574\n0.6378\n0.1310\n\n\ndt\nDecision Tree Classifier\n0.6691\n0.6275\n0.5019\n0.5002\n0.4904\n0.2503\n0.2559\n0.4269\n0.0050\n\n\n\n\n\n\n\n\n\nCPU times: user 537 ms, sys: 135 ms, total: 672 ms\nWall time: 3.96 s",
+    "crumbs": [
+      "Notebooks",
+      "Predicting diabetes with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/pima-indians/index.html#evaluation",
+    "href": "notebooks/pima-indians/index.html#evaluation",
+    "title": "Predicting diabetes with pycaret",
+    "section": "Evaluation",
+    "text": "Evaluation\n\npredictions = (\n    predict_model(best_model, data=test.iloc[:, :-1])\n)\npredictions.head()\n\n\n\n\n\n\n\n\n\n\n\n\nPregnancies\nGlucose\nBloodPressure\nSkinThickness\nInsulin\nBMI\nDiabetesPedigreeFunction\nAge\nprediction_label\nprediction_score\n\n\n\n\n752\n3\n108\n62\n24\n0\n26.000000\n0.223\n25\n0\n0.76\n\n\n295\n6\n151\n62\n31\n120\n35.500000\n0.692\n28\n0\n0.57\n\n\n532\n1\n86\n66\n52\n65\n41.299999\n0.917\n29\n0\n0.88\n\n\n426\n0\n94\n0\n0\n0\n0.000000\n0.256\n25\n0\n0.89\n\n\n68\n1\n95\n66\n13\n38\n19.600000\n0.334\n25\n0\n0.97\n\n\n\n\n\n\n\n\n\nevaluate_model(best_model)",
+    "crumbs": [
+      "Notebooks",
+      "Predicting diabetes with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/pima-indians/index.html#shap",
+    "href": "notebooks/pima-indians/index.html#shap",
+    "title": "Predicting diabetes with pycaret",
+    "section": "SHAP",
+    "text": "SHAP\n\ninterpret_model(best_model)\n\n\n\n\n\n\n\n\n\ninterpret_model(best_model, plot=\"reason\", observation=1)\n\n\n\n\n\n\n\n  Visualization omitted, Javascript library not loaded!\n  Have you run `initjs()` in this notebook? If this notebook was from another\n  user you must also trust this notebook (File -&gt; Trust notebook). If you are viewing\n  this notebook on github the Javascript has been stripped for security. If you are using\n  JupyterLab this error is because a JupyterLab extension has not yet been written.\n\n \n\n\n\ninterpret_model(best_model, plot=\"reason\")\n\n\n\n\n\n\n\n  Visualization omitted, Javascript library not loaded!\n  Have you run `initjs()` in this notebook? If this notebook was from another\n  user you must also trust this notebook (File -&gt; Trust notebook). If you are viewing\n  this notebook on github the Javascript has been stripped for security. If you are using\n  JupyterLab this error is because a JupyterLab extension has not yet been written.",
+    "crumbs": [
+      "Notebooks",
+      "Predicting diabetes with pycaret"
+    ]
+  },
+  {
+    "objectID": "notebooks/deconfounding/index.html",
+    "href": "notebooks/deconfounding/index.html",
+    "title": "Deconfounding explained",
+    "section": "",
+    "text": "The original material for this demonstration was written in R by Jeroen de Mast. His original code was ported to Python by Daniel Kapitan.",
+    "crumbs": [
+      "Notebooks",
+      "Deconfounding explained"
+    ]
+  },
+  {
+    "objectID": "notebooks/deconfounding/index.html#credits",
+    "href": "notebooks/deconfounding/index.html#credits",
+    "title": "Deconfounding explained",
+    "section": "",
+    "text": "The original material for this demonstration was written in R by Jeroen de Mast. His original code was ported to Python by Daniel Kapitan.",
+    "crumbs": [
+      "Notebooks",
+      "Deconfounding explained"
+    ]
+  },
+  {
+    "objectID": "notebooks/deconfounding/index.html#setting-the-scene",
+    "href": "notebooks/deconfounding/index.html#setting-the-scene",
+    "title": "Deconfounding explained",
+    "section": "Setting the scene",
+    "text": "Setting the scene\nSuppose that we want to test whether \\(X\\) has a causal effect on \\(Y\\):\n\\[X \\longrightarrow Y\\]\nAnd also we have 1000 \\((X, Y)\\) tuples as our data and that we want to build a regressions model.\n\nimport altair as alt\nimport numpy as np\nimport pandas as pd\nimport statsmodels.formula.api as smf\n\n\n# setting up our experiment\nnp.random.sample(1973)\nN = 1000\nC = np.random.normal(loc=0.0, scale=1.0, size=N)\nerror_x = np.random.normal(loc=0.0, scale=1.0, size=N)\nerror_y = np.random.normal(loc=0.0, scale=0.01, size=N)\nX = 10 + 5*C + error_x\nY = 1 + 0.5*C + error_y\ndf = pd.DataFrame({'X': X, 'Y': Y, 'C': C})\n\n\nconfounded = smf.ols(\"Y ~ X\", data=df).fit()\nconfounded.summary()\n\n\n\nOLS Regression Results\n\n\nDep. Variable:\nY\nR-squared:\n0.960\n\n\nModel:\nOLS\nAdj. R-squared:\n0.960\n\n\nMethod:\nLeast Squares\nF-statistic:\n2.385e+04\n\n\nDate:\nThu, 21 Dec 2023\nProb (F-statistic):\n0.00\n\n\nTime:\n23:47:40\nLog-Likelihood:\n854.10\n\n\nNo. Observations:\n1000\nAIC:\n-1704.\n\n\nDf Residuals:\n998\nBIC:\n-1694.\n\n\nDf Model:\n1\n\n\n\n\nCovariance Type:\nnonrobust\n\n\n\n\n\n\n\n\n\ncoef\nstd err\nt\nP&gt;|t|\n[0.025\n0.975]\n\n\nIntercept\n0.0446\n0.007\n6.389\n0.000\n0.031\n0.058\n\n\nX\n0.0958\n0.001\n154.420\n0.000\n0.095\n0.097\n\n\n\n\n\n\nOmnibus:\n1.331\nDurbin-Watson:\n1.855\n\n\nProb(Omnibus):\n0.514\nJarque-Bera (JB):\n1.406\n\n\nSkew:\n0.080\nProb(JB):\n0.495\n\n\nKurtosis:\n2.911\nCond. No.\n24.2\n\n\n\nNotes:[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\nSo our first (confounded) model yields a result that \\(Y = 0.03 + 0.1X\\). Note there can be small differences each time you re-run this notebook. But most importantly the fitted model has a high \\(R^2 = 0.95\\) and high significance \\(p = 0.0\\)!\nHowever, if you look closely at the Python code, you see that the real model has a confounder \\(C\\):\n\\[C \\longrightarrow X\\] \\[C \\longrightarrow Y\\]\nIn other words, X and Y are both causally affected by C. As a consequence, X and Y are correlated, but they do not causally affect each other. So, the regression analysis above is actually wrong, and the correlation between X and Y is called spurious. C is called a confounder.\nNow here is the great deconfounding trick: suppose that we include both X and C in the regression analysis and fit the following modelL\n\\[ Y = \\beta_0 + \\beta_1 X + \\beta_2 C + ϵ\\]\n\ndeconfounded = smf.ols(\"Y ~ X + C\", data=df).fit()\ndeconfounded.summary()\n\n\n\nOLS Regression Results\n\n\nDep. Variable:\nY\nR-squared:\n1.000\n\n\nModel:\nOLS\nAdj. R-squared:\n1.000\n\n\nMethod:\nLeast Squares\nF-statistic:\n1.261e+06\n\n\nDate:\nThu, 21 Dec 2023\nProb (F-statistic):\n0.00\n\n\nTime:\n23:47:40\nLog-Likelihood:\n3164.9\n\n\nNo. Observations:\n1000\nAIC:\n-6324.\n\n\nDf Residuals:\n997\nBIC:\n-6309.\n\n\nDf Model:\n2\n\n\n\n\nCovariance Type:\nnonrobust\n\n\n\n\n\n\n\n\n\ncoef\nstd err\nt\nP&gt;|t|\n[0.025\n0.975]\n\n\nIntercept\n1.0055\n0.003\n323.164\n0.000\n0.999\n1.012\n\n\nX\n-0.0005\n0.000\n-1.671\n0.095\n-0.001\n9.05e-05\n\n\nC\n0.5023\n0.002\n316.780\n0.000\n0.499\n0.505\n\n\n\n\n\n\nOmnibus:\n2.983\nDurbin-Watson:\n2.042\n\n\nProb(Omnibus):\n0.225\nJarque-Bera (JB):\n3.073\n\n\nSkew:\n-0.063\nProb(JB):\n0.215\n\n\nKurtosis:\n3.240\nCond. No.\n122.\n\n\n\nNotes:[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\nNote that, by including \\(C\\) as an independent variable in the regression analysis, suddenly X has stopped being significant (p=0.36)!\nThis holds in general: if the true causal relationships are as given in the second diagram, then including the confounder C in the regression analysis gives the direct effect of X onto Y (if any such direct effect exists), and the part of the correlation that is induced by the confounder C is now entirely attributed to C and not to X. This approach is called “deconfounding”.",
+    "crumbs": [
+      "Notebooks",
+      "Deconfounding explained"
     ]
   },
   {
@@ -560,212 +748,35 @@
     ]
   },
   {
-    "objectID": "notebooks/deconfounding/index.html",
-    "href": "notebooks/deconfounding/index.html",
-    "title": "Deconfounding explained",
+    "objectID": "notebooks/index.html",
+    "href": "notebooks/index.html",
+    "title": "Notebooks and explainers with code",
     "section": "",
-    "text": "The original material for this demonstration was written in R by Jeroen de Mast. His original code was ported to Python by Daniel Kapitan.",
+    "text": "Predicting diabetes with pycaret\n\n\n\n\n\n\nDaniel Kapitan\n\n\nNov 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nPredicting house prices with pycaret\n\n\n\n\n\n\nDaniel Kapitan\n\n\nOct 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDemonstration of overfitting and underfitting\n\n\nThis notebook illustrates why we require a train/test split (or cross-validation) to balance overfitting vs. underfitting.\n\n\n\n\n\n\nMay 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeconfounding explained\n\n\nA demonstration howcorrelations ‘magically’ disappear if confounders are added to your model.\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Notebooks",
-      "Deconfounding explained"
+      "Notebooks"
     ]
   },
   {
-    "objectID": "notebooks/deconfounding/index.html#credits",
-    "href": "notebooks/deconfounding/index.html#credits",
-    "title": "Deconfounding explained",
-    "section": "",
-    "text": "The original material for this demonstration was written in R by Jeroen de Mast. His original code was ported to Python by Daniel Kapitan.",
-    "crumbs": [
-      "Notebooks",
-      "Deconfounding explained"
-    ]
-  },
-  {
-    "objectID": "notebooks/deconfounding/index.html#setting-the-scene",
-    "href": "notebooks/deconfounding/index.html#setting-the-scene",
-    "title": "Deconfounding explained",
-    "section": "Setting the scene",
-    "text": "Setting the scene\nSuppose that we want to test whether \\(X\\) has a causal effect on \\(Y\\):\n\\[X \\longrightarrow Y\\]\nAnd also we have 1000 \\((X, Y)\\) tuples as our data and that we want to build a regressions model.\n\nimport altair as alt\nimport numpy as np\nimport pandas as pd\nimport statsmodels.formula.api as smf\n\n\n# setting up our experiment\nnp.random.sample(1973)\nN = 1000\nC = np.random.normal(loc=0.0, scale=1.0, size=N)\nerror_x = np.random.normal(loc=0.0, scale=1.0, size=N)\nerror_y = np.random.normal(loc=0.0, scale=0.01, size=N)\nX = 10 + 5*C + error_x\nY = 1 + 0.5*C + error_y\ndf = pd.DataFrame({'X': X, 'Y': Y, 'C': C})\n\n\nconfounded = smf.ols(\"Y ~ X\", data=df).fit()\nconfounded.summary()\n\n\n\nOLS Regression Results\n\n\nDep. Variable:\nY\nR-squared:\n0.960\n\n\nModel:\nOLS\nAdj. R-squared:\n0.960\n\n\nMethod:\nLeast Squares\nF-statistic:\n2.385e+04\n\n\nDate:\nThu, 21 Dec 2023\nProb (F-statistic):\n0.00\n\n\nTime:\n23:47:40\nLog-Likelihood:\n854.10\n\n\nNo. Observations:\n1000\nAIC:\n-1704.\n\n\nDf Residuals:\n998\nBIC:\n-1694.\n\n\nDf Model:\n1\n\n\n\n\nCovariance Type:\nnonrobust\n\n\n\n\n\n\n\n\n\ncoef\nstd err\nt\nP&gt;|t|\n[0.025\n0.975]\n\n\nIntercept\n0.0446\n0.007\n6.389\n0.000\n0.031\n0.058\n\n\nX\n0.0958\n0.001\n154.420\n0.000\n0.095\n0.097\n\n\n\n\n\n\nOmnibus:\n1.331\nDurbin-Watson:\n1.855\n\n\nProb(Omnibus):\n0.514\nJarque-Bera (JB):\n1.406\n\n\nSkew:\n0.080\nProb(JB):\n0.495\n\n\nKurtosis:\n2.911\nCond. No.\n24.2\n\n\n\nNotes:[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\nSo our first (confounded) model yields a result that \\(Y = 0.03 + 0.1X\\). Note there can be small differences each time you re-run this notebook. But most importantly the fitted model has a high \\(R^2 = 0.95\\) and high significance \\(p = 0.0\\)!\nHowever, if you look closely at the Python code, you see that the real model has a confounder \\(C\\):\n\\[C \\longrightarrow X\\] \\[C \\longrightarrow Y\\]\nIn other words, X and Y are both causally affected by C. As a consequence, X and Y are correlated, but they do not causally affect each other. So, the regression analysis above is actually wrong, and the correlation between X and Y is called spurious. C is called a confounder.\nNow here is the great deconfounding trick: suppose that we include both X and C in the regression analysis and fit the following modelL\n\\[ Y = \\beta_0 + \\beta_1 X + \\beta_2 C + ϵ\\]\n\ndeconfounded = smf.ols(\"Y ~ X + C\", data=df).fit()\ndeconfounded.summary()\n\n\n\nOLS Regression Results\n\n\nDep. Variable:\nY\nR-squared:\n1.000\n\n\nModel:\nOLS\nAdj. R-squared:\n1.000\n\n\nMethod:\nLeast Squares\nF-statistic:\n1.261e+06\n\n\nDate:\nThu, 21 Dec 2023\nProb (F-statistic):\n0.00\n\n\nTime:\n23:47:40\nLog-Likelihood:\n3164.9\n\n\nNo. Observations:\n1000\nAIC:\n-6324.\n\n\nDf Residuals:\n997\nBIC:\n-6309.\n\n\nDf Model:\n2\n\n\n\n\nCovariance Type:\nnonrobust\n\n\n\n\n\n\n\n\n\ncoef\nstd err\nt\nP&gt;|t|\n[0.025\n0.975]\n\n\nIntercept\n1.0055\n0.003\n323.164\n0.000\n0.999\n1.012\n\n\nX\n-0.0005\n0.000\n-1.671\n0.095\n-0.001\n9.05e-05\n\n\nC\n0.5023\n0.002\n316.780\n0.000\n0.499\n0.505\n\n\n\n\n\n\nOmnibus:\n2.983\nDurbin-Watson:\n2.042\n\n\nProb(Omnibus):\n0.225\nJarque-Bera (JB):\n3.073\n\n\nSkew:\n-0.063\nProb(JB):\n0.215\n\n\nKurtosis:\n3.240\nCond. No.\n122.\n\n\n\nNotes:[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.\n\n\n\nNote that, by including \\(C\\) as an independent variable in the regression analysis, suddenly X has stopped being significant (p=0.36)!\nThis holds in general: if the true causal relationships are as given in the second diagram, then including the confounder C in the regression analysis gives the direct effect of X onto Y (if any such direct effect exists), and the part of the correlation that is induced by the confounder C is now entirely attributed to C and not to X. This approach is called “deconfounding”.",
-    "crumbs": [
-      "Notebooks",
-      "Deconfounding explained"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#objectives",
-    "href": "notebooks/pima-indians/index.html#objectives",
-    "title": "Predicting diabetes with pycaret",
-    "section": "Objectives",
-    "text": "Objectives\n\nExample end-to-end supervised learning workflow with Pima Indians\nFocus on conceptual understanding of machine learning\nDemonstrate use of Predictive Power Score (PPS)\nDemonstrate capabilities of low-code tools\nDemonstrate use of average_precision_score (link)\nDemonstrate SHAP values",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#attribution",
-    "href": "notebooks/pima-indians/index.html#attribution",
-    "title": "Predicting diabetes with pycaret",
-    "section": "Attribution",
-    "text": "Attribution\n\nDataset\n\nPima Indians paper (original paper)\nKaggle datacard (link)\n\n\n\nPython libraries\n\nAltair (docs)\nydata-profiling (docs)\nPredictive Power Score (PPS, GitHub, blog)\nPyCaret: open-source, low-code machine learning library in Python that automates machine learning workflows (link)\n\n\nimport altair as alt\nimport pandas as pd\nimport ppscore as pps\nfrom pycaret.classification import *\nimport shap\nfrom sklearn.metrics import average_precision_score\nfrom sklearn.model_selection import train_test_split\nfrom ydata_profiling import ProfileReport\n\n\n# customize Altair\ndef y_axis():\n    return {\n        \"config\": {\n            \"axisX\": {\"grid\": False},\n            \"axisY\": {\n                \"domain\": False,\n                \"gridDash\": [2, 4],\n                \"tickSize\": 0,\n                \"titleAlign\": \"right\",\n                \"titleAngle\": 0,\n                \"titleX\": -5,\n                \"titleY\": -10,\n            },\n            \"view\": {\n                \"stroke\": \"transparent\",\n                # To keep the same height and width as the default theme:\n                \"continuousHeight\": 300,\n                \"continuousWidth\": 400,\n            },\n        }\n    }\n\n\nalt.themes.register(\"y_axis\", y_axis)\nalt.themes.enable(\"y_axis\");",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#read-and-explore-the-data",
-    "href": "notebooks/pima-indians/index.html#read-and-explore-the-data",
-    "title": "Predicting diabetes with pycaret",
-    "section": "Read and explore the data",
-    "text": "Read and explore the data\n\n%%time\ndf = pd.read_csv(\"diabetes.csv\").astype({\"Outcome\": bool})\ntrain, test = train_test_split(df, test_size=0.3)\nprofile = ProfileReport(train, minimal=True, title=\"Pima Indians Profiling Report\")\nprofile.to_file(\"pima-indians-profiling-report-minimal.html\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCPU times: user 5.54 s, sys: 184 ms, total: 5.72 s\nWall time: 1.7 s\n\n\n\nprofile.to_notebook_iframe()",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#investigate-features-with-largest-predictive-power",
-    "href": "notebooks/pima-indians/index.html#investigate-features-with-largest-predictive-power",
-    "title": "Predicting diabetes with pycaret",
-    "section": "Investigate features with largest predictive power",
-    "text": "Investigate features with largest predictive power\nWe use the Predictive Power Score to evaluate which features have the highest predictive power with respect to Outcome.\n\npredictors = (\n    pps.predictors(train, \"Outcome\")\n    .round(3)\n    .iloc[:, :-1]\n)\nbase = (\n    alt.Chart(predictors)\n    .encode(\n        y=alt.Y(\"x:N\").sort(\"-x\"),\n        x=\"ppscore\",\n        tooltip=[\"x\", \"ppscore\"],\n    )\n)\nbase.mark_bar() + base.mark_text(align=\"center\", dy=-5)",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#investigate-colinearity",
-    "href": "notebooks/pima-indians/index.html#investigate-colinearity",
-    "title": "Predicting diabetes with pycaret",
-    "section": "Investigate colinearity",
-    "text": "Investigate colinearity\n\npps.matrix(train)\n\n\n\n\n\n\n\n\n\nx\ny\nppscore\ncase\nis_valid_score\nmetric\nbaseline_score\nmodel_score\nmodel\n\n\n\n\n0\nPregnancies\nPregnancies\n1.000000\npredict_itself\nTrue\nNone\n0.000000\n1.000000\nNone\n\n\n1\nPregnancies\nGlucose\n0.000000\nregression\nTrue\nmean absolute error\n23.651769\n24.024994\nDecisionTreeRegressor()\n\n\n2\nPregnancies\nBloodPressure\n0.000000\nregression\nTrue\nmean absolute error\n12.748603\n12.961633\nDecisionTreeRegressor()\n\n\n3\nPregnancies\nSkinThickness\n0.000000\nregression\nTrue\nmean absolute error\n13.467412\n13.630828\nDecisionTreeRegressor()\n\n\n4\nPregnancies\nInsulin\n0.000000\nregression\nTrue\nmean absolute error\n79.240223\n85.015086\nDecisionTreeRegressor()\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n76\nOutcome\nInsulin\n0.000000\nregression\nTrue\nmean absolute error\n79.240223\n84.802415\nDecisionTreeRegressor()\n\n\n77\nOutcome\nBMI\n0.035133\nregression\nTrue\nmean absolute error\n5.672812\n5.473511\nDecisionTreeRegressor()\n\n\n78\nOutcome\nDiabetesPedigreeFunction\n0.000000\nregression\nTrue\nmean absolute error\n0.226384\n0.234531\nDecisionTreeRegressor()\n\n\n79\nOutcome\nAge\n0.000000\nregression\nTrue\nmean absolute error\n8.888268\n8.997094\nDecisionTreeRegressor()\n\n\n80\nOutcome\nOutcome\n1.000000\npredict_itself\nTrue\nNone\n0.000000\n1.000000\nNone\n\n\n\n\n81 rows × 9 columns\n\n\n\n\n\npps_matrix = (\n    pps.matrix(\n        train.loc[:, predictors.query(\"ppscore &gt; 0\")[\"x\"].tolist()],\n    )\n    .loc[:, [\"x\", \"y\", \"ppscore\"]]\n    .round(3)\n)\n(\n    alt.Chart(pps_matrix)\n    .mark_rect()\n    .encode(\n        x=\"x:O\",\n        y=\"y:O\",\n        color=\"ppscore:Q\",\n        tooltip=[\"x\", \"y\", \"ppscore\"])\n).properties(width=500, height=500)",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#build-models",
-    "href": "notebooks/pima-indians/index.html#build-models",
-    "title": "Predicting diabetes with pycaret",
-    "section": "Build models",
-    "text": "Build models\n\ncls = setup(data = train, \n             target = 'Outcome',\n             numeric_imputation = 'mean',\n             feature_selection = False,\n             pca=False,\n             remove_multicollinearity=True,\n             remove_outliers = False,\n             normalize = True,\n             )\nadd_metric('apc', 'APC', average_precision_score, target = 'pred_proba');\n\n\n\n\n\n\n\n \nDescription\nValue\n\n\n\n\n0\nSession id\n5752\n\n\n1\nTarget\nOutcome\n\n\n2\nTarget type\nBinary\n\n\n3\nOriginal data shape\n(537, 9)\n\n\n4\nTransformed data shape\n(537, 9)\n\n\n5\nTransformed train set shape\n(375, 9)\n\n\n6\nTransformed test set shape\n(162, 9)\n\n\n7\nNumeric features\n8\n\n\n8\nPreprocess\nTrue\n\n\n9\nImputation type\nsimple\n\n\n10\nNumeric imputation\nmean\n\n\n11\nCategorical imputation\nmode\n\n\n12\nRemove multicollinearity\nTrue\n\n\n13\nMulticollinearity threshold\n0.900000\n\n\n14\nNormalize\nTrue\n\n\n15\nNormalize method\nzscore\n\n\n16\nFold Generator\nStratifiedKFold\n\n\n17\nFold Number\n10\n\n\n18\nCPU Jobs\n-1\n\n\n19\nUse GPU\nFalse\n\n\n20\nLog Experiment\nFalse\n\n\n21\nExperiment Name\nclf-default-name\n\n\n22\nUSI\n10e4\n\n\n\n\n\n\n\n%%time\nbest_model = compare_models(include=[\"et\", \"lightgbm\", \"rf\", \"dt\"], sort=\"APC\")\n\n\n\n\n\n\n\n\n\n\n \nModel\nAccuracy\nAUC\nRecall\nPrec.\nF1\nKappa\nMCC\nAPC\nTT (Sec)\n\n\n\n\net\nExtra Trees Classifier\n0.7569\n0.8039\n0.5090\n0.6832\n0.5719\n0.4106\n0.4261\n0.6795\n0.1740\n\n\nrf\nRandom Forest Classifier\n0.7412\n0.7893\n0.5013\n0.6420\n0.5538\n0.3784\n0.3896\n0.6661\n0.0330\n\n\nlightgbm\nLight Gradient Boosting Machine\n0.7252\n0.7776\n0.5090\n0.5987\n0.5452\n0.3519\n0.3574\n0.6378\n0.1310\n\n\ndt\nDecision Tree Classifier\n0.6691\n0.6275\n0.5019\n0.5002\n0.4904\n0.2503\n0.2559\n0.4269\n0.0050\n\n\n\n\n\n\n\n\n\nCPU times: user 537 ms, sys: 135 ms, total: 672 ms\nWall time: 3.96 s",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#evaluation",
-    "href": "notebooks/pima-indians/index.html#evaluation",
-    "title": "Predicting diabetes with pycaret",
-    "section": "Evaluation",
-    "text": "Evaluation\n\npredictions = (\n    predict_model(best_model, data=test.iloc[:, :-1])\n)\npredictions.head()\n\n\n\n\n\n\n\n\n\n\n\n\nPregnancies\nGlucose\nBloodPressure\nSkinThickness\nInsulin\nBMI\nDiabetesPedigreeFunction\nAge\nprediction_label\nprediction_score\n\n\n\n\n752\n3\n108\n62\n24\n0\n26.000000\n0.223\n25\n0\n0.76\n\n\n295\n6\n151\n62\n31\n120\n35.500000\n0.692\n28\n0\n0.57\n\n\n532\n1\n86\n66\n52\n65\n41.299999\n0.917\n29\n0\n0.88\n\n\n426\n0\n94\n0\n0\n0\n0.000000\n0.256\n25\n0\n0.89\n\n\n68\n1\n95\n66\n13\n38\n19.600000\n0.334\n25\n0\n0.97\n\n\n\n\n\n\n\n\n\nevaluate_model(best_model)",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#shap",
-    "href": "notebooks/pima-indians/index.html#shap",
-    "title": "Predicting diabetes with pycaret",
-    "section": "SHAP",
-    "text": "SHAP\n\ninterpret_model(best_model)\n\n\n\n\n\n\n\n\n\ninterpret_model(best_model, plot=\"reason\", observation=1)\n\n\n\n\n\n\n\n  Visualization omitted, Javascript library not loaded!\n  Have you run `initjs()` in this notebook? If this notebook was from another\n  user you must also trust this notebook (File -&gt; Trust notebook). If you are viewing\n  this notebook on github the Javascript has been stripped for security. If you are using\n  JupyterLab this error is because a JupyterLab extension has not yet been written.\n\n \n\n\n\ninterpret_model(best_model, plot=\"reason\")\n\n\n\n\n\n\n\n  Visualization omitted, Javascript library not loaded!\n  Have you run `initjs()` in this notebook? If this notebook was from another\n  user you must also trust this notebook (File -&gt; Trust notebook). If you are viewing\n  this notebook on github the Javascript has been stripped for security. If you are using\n  JupyterLab this error is because a JupyterLab extension has not yet been written.",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/ames-housing/index.html#objectives",
-    "href": "notebooks/ames-housing/index.html#objectives",
-    "title": "Predicting house prices with pycaret",
-    "section": "Objectives",
-    "text": "Objectives\n\nExample end-to-end supervised learning workflow with Ames Housing dataset\nFocus on conceptual understanding of machine learning\nDemonstrate use of Predictive Power Score (PPS)\nDemonstrate capabilities of low-code tools",
-    "crumbs": [
-      "Notebooks",
-      "Predicting house prices with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/ames-housing/index.html#attribution",
-    "href": "notebooks/ames-housing/index.html#attribution",
-    "title": "Predicting house prices with pycaret",
-    "section": "Attribution",
-    "text": "Attribution\n\nDataset\n\nAmes Housing dataset paper (original paper)\nKaggle competition advanced regression techniques (link)\n\n\n\nPython libraries\n\nAltair (docs)\nydata-profiling (docs)\nPredictive Power Score (PPS, GitHub, blog)\nPyCaret: open-source, low-code machine learning library in Python that automates machine learning workflows (link)\n\n\nimport altair as alt\nimport pandas as pd\nimport ppscore as pps\nfrom pycaret.regression import *\nfrom ydata_profiling import ProfileReport\n\n\n# customize Altair\ndef y_axis():\n    return {\n        \"config\": {\n            \"axisX\": {\"grid\": False},\n            \"axisY\": {\n                \"domain\": False,\n                \"gridDash\": [2, 4],\n                \"tickSize\": 0,\n                \"titleAlign\": \"right\",\n                \"titleAngle\": 0,\n                \"titleX\": -5,\n                \"titleY\": -10,\n            },\n            \"view\": {\n                \"stroke\": \"transparent\",\n                # To keep the same height and width as the default theme:\n                \"continuousHeight\": 300,\n                \"continuousWidth\": 400,\n            },\n        }\n    }\n\n\nalt.themes.register(\"y_axis\", y_axis)\nalt.themes.enable(\"y_axis\")\n\n\ndef get_descriptions():\n    \"Parse descriptions of columns of Ames Housing dataset\"\n    with open(\"data_description.txt\") as reader:\n        descriptions = {}\n        for line in reader.readlines():\n            if \":\" in line and \"2nd level\" not in line:\n                descriptions[line.split(\": \")[0].strip()] = line.split(\": \")[1].strip()\n    return pd.Series(descriptions).rename(\"descriptions\")\n\n\ndescriptions = get_descriptions()",
-    "crumbs": [
-      "Notebooks",
-      "Predicting house prices with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/ames-housing/index.html#read-and-explore-the-data",
-    "href": "notebooks/ames-housing/index.html#read-and-explore-the-data",
-    "title": "Predicting house prices with pycaret",
-    "section": "Read and explore the data",
-    "text": "Read and explore the data\n\n%%time\ntrain = pd.read_csv(\"train.csv\")\ntest = pd.read_csv(\"test.csv\")\nprofile = ProfileReport(train, minimal=True, title=\"Ames Housing Profiling Report\")\nprofile.to_file(\"ames-housing-profiling-report-minimal.html\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCPU times: user 45 s, sys: 1.78 s, total: 46.7 s\nWall time: 16.4 s\n\n\n\nprofile.to_notebook_iframe()",
-    "crumbs": [
-      "Notebooks",
-      "Predicting house prices with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/ames-housing/index.html#investigate-features-with-largest-predictive-power",
-    "href": "notebooks/ames-housing/index.html#investigate-features-with-largest-predictive-power",
-    "title": "Predicting house prices with pycaret",
-    "section": "Investigate features with largest predictive power",
-    "text": "Investigate features with largest predictive power\nWe use the Predictive Power Score to evaluate which features have the highest predictive power with respect to SalePrice.\n\npredictors = (\n    pps.predictors(train, \"SalePrice\")\n    .round(3)\n    .iloc[:, :-1]\n    .merge(descriptions, how=\"left\", left_on=\"x\", right_index=True)\n)\nbase = (\n    alt.Chart(predictors)\n    .encode(\n        x=alt.Y(\"x:N\").sort(\"-y\"),\n        y=\"ppscore\",\n        tooltip=[\"x\", \"ppscore\", \"descriptions\"],\n    )\n    .transform_filter(\"datum.ppscore &gt; 0\")\n)\nbase.mark_bar() + base.mark_text(align=\"center\", dy=-5)",
-    "crumbs": [
-      "Notebooks",
-      "Predicting house prices with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/ames-housing/index.html#investigate-colinearity",
-    "href": "notebooks/ames-housing/index.html#investigate-colinearity",
-    "title": "Predicting house prices with pycaret",
-    "section": "Investigate colinearity",
-    "text": "Investigate colinearity\n\npps_matrix = (\n    pps.matrix(\n        train.loc[:, predictors.query(\"ppscore &gt; 0\")[\"x\"].tolist()],\n    )\n    .loc[:, [\"x\", \"y\", \"ppscore\"]]\n    .round(3)\n)\n(\n    alt.Chart(pps_matrix)\n    .mark_rect()\n    .encode(\n        x=\"x:O\",\n        y=\"y:O\",\n        color=\"ppscore:Q\",\n        tooltip=[\"x\", \"y\", \"ppscore\"])\n)",
-    "crumbs": [
-      "Notebooks",
-      "Predicting house prices with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/ames-housing/index.html#build-models",
-    "href": "notebooks/ames-housing/index.html#build-models",
-    "title": "Predicting house prices with pycaret",
-    "section": "Build models",
-    "text": "Build models\nWe select the 30 features that have the highest predictive power score\n\nselected_predictors = (\n    predictors.sort_values(\"ppscore\", ascending=False).head(30)[\"x\"].to_list()\n)\nreg = setup(data = train.loc[:, selected_predictors + [\"SalePrice\"]], \n             target = 'SalePrice',\n             numeric_imputation = 'mean',\n             categorical_features =  list(train.loc[:, selected_predictors].select_dtypes(\"object\").columns), \n             feature_selection = False,\n             pca=False,\n             remove_multicollinearity=True,\n             remove_outliers = False,\n             normalize = True,\n             )\n\n\n\n\n\n\n\n \nDescription\nValue\n\n\n\n\n0\nSession id\n8378\n\n\n1\nTarget\nSalePrice\n\n\n2\nTarget type\nRegression\n\n\n3\nOriginal data shape\n(1460, 31)\n\n\n4\nTransformed data shape\n(1460, 116)\n\n\n5\nTransformed train set shape\n(1021, 116)\n\n\n6\nTransformed test set shape\n(439, 116)\n\n\n7\nOrdinal features\n1\n\n\n8\nNumeric features\n16\n\n\n9\nCategorical features\n14\n\n\n10\nRows with missing values\n94.7%\n\n\n11\nPreprocess\nTrue\n\n\n12\nImputation type\nsimple\n\n\n13\nNumeric imputation\nmean\n\n\n14\nCategorical imputation\nmode\n\n\n15\nMaximum one-hot encoding\n25\n\n\n16\nEncoding method\nNone\n\n\n17\nRemove multicollinearity\nTrue\n\n\n18\nMulticollinearity threshold\n0.900000\n\n\n19\nNormalize\nTrue\n\n\n20\nNormalize method\nzscore\n\n\n21\nFold Generator\nKFold\n\n\n22\nFold Number\n10\n\n\n23\nCPU Jobs\n-1\n\n\n24\nUse GPU\nFalse\n\n\n25\nLog Experiment\nFalse\n\n\n26\nExperiment Name\nreg-default-name\n\n\n27\nUSI\n81f6\n\n\n\n\n\n\n\n%%time\nselected_models = [model for model in models().index if model not in [\"lar\", \"lr\", \"ransac\"]]\nbest_model = compare_models(sort='RMSLE', include=selected_models)\n\n\n\n\n\n\n\n\n\n\n \nModel\nMAE\nMSE\nRMSE\nR2\nRMSLE\nMAPE\nTT (Sec)\n\n\n\n\nlightgbm\nLight Gradient Boosting Machine\n18267.8967\n969345616.0929\n30245.0381\n0.8400\n0.1474\n0.1051\n0.3780\n\n\ngbr\nGradient Boosting Regressor\n18349.4461\n1064907228.1139\n31464.4286\n0.8221\n0.1497\n0.1059\n0.0810\n\n\nrf\nRandom Forest Regressor\n18834.6022\n1052157810.7295\n31669.8884\n0.8263\n0.1530\n0.1091\n0.1370\n\n\npar\nPassive Aggressive Regressor\n18695.3332\n1145943934.1128\n32527.7429\n0.8093\n0.1535\n0.1061\n0.0560\n\n\nen\nElastic Net\n19941.1185\n1212771199.2709\n33679.9238\n0.8018\n0.1536\n0.1131\n0.0370\n\n\net\nExtra Trees Regressor\n19749.8604\n1158574471.9795\n33510.6172\n0.8073\n0.1591\n0.1138\n0.1370\n\n\nhuber\nHuber Regressor\n18580.7407\n1172797296.1965\n32571.8573\n0.8024\n0.1602\n0.1069\n0.0420\n\n\nbr\nBayesian Ridge\n20557.3468\n1251454965.3245\n34036.3809\n0.7934\n0.1715\n0.1191\n0.0380\n\n\nard\nAutomatic Relevance Determination\n20446.5401\n1229331466.4696\n33711.3986\n0.7969\n0.1747\n0.1193\n0.2740\n\n\nomp\nOrthogonal Matching Pursuit\n21882.7966\n1294135379.9217\n34955.8947\n0.7847\n0.1849\n0.1296\n0.0340\n\n\nada\nAdaBoost Regressor\n24866.3282\n1379609584.9159\n36498.7175\n0.7707\n0.2036\n0.1621\n0.0580\n\n\nknn\nK Neighbors Regressor\n26571.2016\n1730405638.7521\n40931.3774\n0.7200\n0.2050\n0.1518\n0.0360\n\n\ndt\nDecision Tree Regressor\n27747.5148\n2157234242.4490\n45330.0191\n0.6512\n0.2169\n0.1564\n0.0350\n\n\nllar\nLasso Least Angle Regression\n21458.2025\n1320695830.3446\n35006.4301\n0.7809\n0.2187\n0.1268\n0.0380\n\n\nlasso\nLasso Regression\n21455.6793\n1320742178.3808\n35006.1951\n0.7809\n0.2189\n0.1268\n0.2100\n\n\nridge\nRidge Regression\n21439.2241\n1318937040.3720\n34981.0548\n0.7812\n0.2196\n0.1266\n0.0360\n\n\nsvm\nSupport Vector Regression\n55543.3805\n6417749387.4994\n79739.3850\n-0.0524\n0.3979\n0.3195\n0.0450\n\n\ndummy\nDummy Regressor\n57352.4774\n6133919031.8184\n78021.7431\n-0.0086\n0.4061\n0.3635\n0.0340\n\n\ntr\nTheilSen Regressor\n29178.3219\n2564758742.0908\n49572.3895\n0.5667\n0.4258\n0.1978\n4.0290\n\n\nkr\nKernel Ridge\n182040.0692\n34133507087.4154\n184731.2672\n-4.7500\n1.7994\n1.1623\n0.0380\n\n\nmlp\nMLP Regressor\n166456.5847\n32851392125.7179\n181040.0031\n-4.4796\n2.7703\n0.9182\n0.2890\n\n\n\n\n\n\n\n\n\nCPU times: user 4.09 s, sys: 446 ms, total: 4.53 s\nWall time: 1min 3s",
-    "crumbs": [
-      "Notebooks",
-      "Predicting house prices with pycaret"
-    ]
-  },
-  {
-    "objectID": "notebooks/ames-housing/index.html#evaluation",
-    "href": "notebooks/ames-housing/index.html#evaluation",
-    "title": "Predicting house prices with pycaret",
-    "section": "Evaluation",
-    "text": "Evaluation\n\nWith a standard, AutoML-like workflow, we achive RMSLE of 0.13 - 0.14 (over different runs), which is already in the top 25% of the 4,200 submissions on the leaderboard\nWe can now make predictions on the test set\n\n\npredictions = (\n    predict_model(best_model, data=test)\n    .rename(columns={\"prediction_label\": \"SalePrice\"})\n    .loc[:, [\"Id\", \"SalePrice\"]]\n)\npredictions.head()\n\n\n\n\n\n\n\n\n\n\n\n\nId\nSalePrice\n\n\n\n\n0\n1461\n126951.931078\n\n\n1\n1462\n142402.002648\n\n\n2\n1463\n185086.014955\n\n\n3\n1464\n191718.590497\n\n\n4\n1465\n186412.972060\n\n\n\n\n\n\n\n\n\nPipeline\n\nplot_model(best_model, 'pipeline')\n\n\n\n\n\n\n\n\n\nplot_model(best_model, 'feature')\n\n\n\n\n\n\n\n\n\n\n\n\nplot_model(best_model, 'residuals')",
-    "crumbs": [
-      "Notebooks",
-      "Predicting house prices with pycaret"
-    ]
-  },
-  {
-    "objectID": "books/islp.html",
-    "href": "books/islp.html",
-    "title": "An Introduction to Statistical Learning",
+    "objectID": "books/udl.html",
+    "href": "books/udl.html",
+    "title": "Understanding Deep Learning",
     "section": "",
     "text": "Unable to display PDF file. Download instead.",
     "crumbs": [
       "Books",
-      "Introduction to Statistical Learning"
+      "Deep Learning"
+    ]
+  },
+  {
+    "objectID": "posts/verkeersveiligheidmodel/index.html",
+    "href": "posts/verkeersveiligheidmodel/index.html",
+    "title": "Verkeersveiligheidmodel",
+    "section": "",
+    "text": "Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Selected articles",
+      "Verkeersveiligheidmodel"
     ]
   },
   {
