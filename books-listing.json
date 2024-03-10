@@ -1,0 +1,13 @@
+{
+  "listing": "/books.html",
+  "items": [
+    "/books/islp.html",
+    "/books/fpp.html",
+    "/books/fdv.html",
+    "/books/iml.html",
+    "/books/pda.html",
+    "/books/r4ds.html",
+    "/books/turing-way.html",
+    "/books/udl.html"
+  ]
+}

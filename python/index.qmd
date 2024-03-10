@@ -57,8 +57,8 @@ RealPython.com is the recommended online learning environment for Python. We hav
 Options how to start using Python are listed below.
 
 :::{.panel-tabset}
-### Online environment
-For those new to Python, it is probably easiest to start with one of these online tools:
+### Online notebook (easy)
+For those new to Python, it is probably easiest to start with one of these online notebook environments:
 
 - [Deepnote](https://deepnote.com/): there is a generous free-tier. If you decide to upgrade, you can collaborate and share notebooks privately.
 - [Google Colab](https://colab.research.google.com/notebooks/intro.ipynb):
@@ -67,12 +67,17 @@ For those new to Python, it is probably easiest to start with one of these onlin
 
 Once you have gained some traction, you can move on to install Python on your local machine.
 
-### Local environment
+### Visual Studio Code (intermediate)
+Visual Studio Code is the recommended data science workbench. To setup your local machine/laptop for data science and machine learning, do the following:
 
-You can setup your local machine/laptop for data science and machine learning as a follows
+- Follow these two tutorials on RealPython.com:
+  - [Installing Python](https://realpython.com/installing-python/)
+  - [Python in VS Code](https://realpython.com/python-development-visual-studio-code/)
+- For more advanced use, including using VS Code in the cloud:
+  - Read the documentation on [GitHub Codespaces](https://docs.github.com/en/codespaces)
+  - Read the documentation on [Azure Dev Containers](https://microsoft.github.io/code-with-engineering-playbook/developer-experience/devcontainers/)
+  - Use these excellent [Data Science Dev Containers](https://github.com/b-data/data-science-devcontainers) by [Olivier Benz](https://github.com/benz0li)
 
-- Install [Anaconda](https://www.anaconda.com/products/individual) (recommended package manager for data science).
-- Install [Visual Studio Code](https://code.visualstudio.com/download) including the [Python extension](https://code.visualstudio.com/docs/languages/python) (recommended integrated development environment (IDE)).
 :::
 
 ## Guidelines for using Python for data science

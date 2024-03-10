@@ -19,13 +19,36 @@ Now there is a lot of machine learning learning materials out there, so why this
 - finding a balance between too technical vs. too vague, handwaving or even downright wrong;
 - take a hands-on, problem-based approach. Rather than, say, explaining the principles that underlie regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularisation for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and reason where and how to use regularisation.
 
-This anthology was born out of a need to scratch my own itch, namely have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue.
+## What is the best online course to get into data science & AI?
+
+For now, my recommendation is to start with one of the courses offered by [Elements of AI](https://www.elementsofai.com/).
+
+:::{.panel-tabset}
+### Introduction to AI
+
+![](elements-of-ai-1.png)
+
+[An Introduction to AI](https://course.elementsofai.com/) is a free online course for everyone interested in learning what AI is, what is possible (and not possible) with AI, and how it affects our lives – with no complicated math or programming required.
+
+
+### Building AI
+
+![](elements-of-ai-2.png)
+
+[Building AI](https://buildingai.elementsofai.com/) is a free online course where you’ll learn about the actual algorithms that make creating AI methods possible. Some basic Python programming skills are recommended to get the most out of the course.
+
+:::
+
 
 ## How is this anthology set up?
 
 ### A selection of the best books
 
 A selection of what I think are [the best textbooks](books.qmd) is provided as a digital bookshelf. All the books included are open access, thanks to their respective authors! They should keep you busy for a while.
+
+### Getting into Python
+
+Python is one of the most widely used programming languages for data science. For those new to Python, I have curated a selection of books and online tutorials form [Real Python](https://realpython.com) to get you going.
 
 ### Visualization with Altair
 
@@ -39,3 +62,6 @@ Various topics and perspectives data science. Clearly this is an opinionated and
 
 Notebooks for those seeking [hands-on examples and explainers](notebooks/index.qmd).
 
+## Report an issue
+
+This anthology was born out of a need to scratch my own itch, namely have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue.
