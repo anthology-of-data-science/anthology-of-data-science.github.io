@@ -56,6 +56,9 @@ website:
       - section: "Selected articles"
         href: posts/index.qmd
         contents: posts/*/*
+      - section: "Use cases"
+        href: cases/index.qmd
+        contents: posts/*/*
       - section: "Notebooks"
         href: notebooks/index.qmd
         contents: notebooks/*/*

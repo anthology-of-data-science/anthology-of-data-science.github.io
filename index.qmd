@@ -58,6 +58,10 @@ I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for
 
 Various topics and perspectives data science. Clearly this is an opinionated and very [personal selection](posts/index.qmd).
 
+### Use cases
+
+A selection of inspiring use cases across various industries, which I think are a demonstration of good practices.
+
 ### Notebooks
 
 Notebooks for those seeking [hands-on examples and explainers](notebooks/index.qmd).

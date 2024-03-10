@@ -1,0 +1,12 @@
+---
+title: Selected use cases & applications
+listing:
+    contents: .
+    type: grid
+    grid-columns: 2
+    sort: "date desc"
+    sort-ui: false
+    filter-ui: false
+    categories: true
+    feed: false
+---
