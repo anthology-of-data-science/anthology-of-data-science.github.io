@@ -1,0 +1,14 @@
+---
+title: Inzicht in energiearmoede
+author:
+    - <a href="https://www.linkedin.com/in/anouk-fredriksz-1117b47a/">Anouk Fredriksz</a>
+description: |
+   In januari 2022 zijn energieprijzen met 86% gestegen ten opzichte van het jaar daarvoor. Met de oorlog in Oekraïne en de inflatie zijn de prijzen alleen nog maar hoger geworden. Waar voorheen vooral de inwoners uit de lage inkomensgroepen in de problemen kwamen door deze hoge energierekening, zijn de stijgingen in het afgelopen jaar zo extreem dat ook andere groepen inwoners nu nauwelijks of niet meer rondkomen. Om zo veel mogelijk inwoners op de beste manier te helpen wilde de gemeente Gemert-Bakel meer inzicht in het fenomeen energiearmoede onder haar inwoners. Meer informatie is te vinden op <a href="https://www.gemert-bakel.nl/inzicht-in-energiearmoede">www.gemert-bakel.nl</a>.
+date: 2023-02-01
+image: banner.webp
+categories: ["Nederlands"]
+title-block-banner: false
+toc: false
+---
+
+{{< pdf /resources/publicatie-onderzoek-energiearmoede.pdf width=100% height=800 >}}
