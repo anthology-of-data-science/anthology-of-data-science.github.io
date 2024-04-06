@@ -13,20 +13,19 @@
     ]
   },
   {
-    "listing": "/notebooks/index.html",
-    "items": [
-      "/notebooks/pima-indians/index.html",
-      "/notebooks/ames-housing/index.html",
-      "/notebooks/overfitting/index.html",
-      "/notebooks/deconfounding/index.html"
-    ]
-  },
-  {
     "listing": "/posts/python/index.html",
     "items": [
       "/posts/python/realpython.html",
       "/posts/python/effective-python-and-idiomatic-pandas.html",
       "/posts/python/whirlwind.html"
+    ]
+  },
+  {
+    "listing": "/cases/index.html",
+    "items": [
+      "/cases/wolves-in-germany/index.html",
+      "/cases/energiearmoede/index.html",
+      "/cases/verkeersveiligheidmodel/index.html"
     ]
   },
   {
@@ -53,10 +52,12 @@
     ]
   },
   {
-    "listing": "/cases/index.html",
+    "listing": "/notebooks/index.html",
     "items": [
-      "/cases/energiearmoede/index.html",
-      "/cases/verkeersveiligheidmodel/index.html"
+      "/notebooks/pima-indians/index.html",
+      "/notebooks/ames-housing/index.html",
+      "/notebooks/overfitting/index.html",
+      "/notebooks/deconfounding/index.html"
     ]
   }
 ]
