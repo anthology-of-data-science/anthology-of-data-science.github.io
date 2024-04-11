@@ -5,7 +5,7 @@ project:
 website:
   title: "Anthology of Data Science"
   site-url: https://anthology-of-data.science
-  repo-url: https://github.com/dkapitan/anthology-of-data-science
+  repo-url: https://github.com/anthology-of-data-science
   favicon: favicon.png
   repo-actions: [issue]
   reader-mode: true
