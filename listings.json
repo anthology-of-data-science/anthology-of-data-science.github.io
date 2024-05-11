@@ -12,23 +12,19 @@
     ]
   },
   {
-    "listing": "/posts/index.html",
+    "listing": "/posts/python/index.html",
     "items": [
-      "/posts/ibis-analytics/index.html",
-      "/posts/python/index.html",
-      "/posts/altair/index.html",
-      "/posts/stop-aggregating-signal/index.html",
-      "/posts/predictive-power-score/index.html",
-      "/posts/precision-recall/index.html"
+      "/posts/python/realpython.html",
+      "/posts/python/effective-python-and-idiomatic-pandas.html",
+      "/posts/python/whirlwind.html"
     ]
   },
   {
-    "listing": "/notebooks/index.html",
+    "listing": "/cases/index.html",
     "items": [
-      "/notebooks/pima-indians/index.html",
-      "/notebooks/ames-housing/index.html",
-      "/notebooks/overfitting/index.html",
-      "/notebooks/deconfounding/index.html"
+      "/cases/wolves-in-germany/index.html",
+      "/cases/energiearmoede/index.html",
+      "/cases/verkeersveiligheidmodel/index.html"
     ]
   },
   {
@@ -45,19 +41,24 @@
     ]
   },
   {
-    "listing": "/cases/index.html",
+    "listing": "/notebooks/index.html",
     "items": [
-      "/cases/wolves-in-germany/index.html",
-      "/cases/energiearmoede/index.html",
-      "/cases/verkeersveiligheidmodel/index.html"
+      "/notebooks/pima-indians/index.html",
+      "/notebooks/ames-housing/index.html",
+      "/notebooks/overfitting/index.html",
+      "/notebooks/deconfounding/index.html"
     ]
   },
   {
-    "listing": "/posts/python/index.html",
+    "listing": "/posts/index.html",
     "items": [
-      "/posts/python/realpython.html",
-      "/posts/python/effective-python-and-idiomatic-pandas.html",
-      "/posts/python/whirlwind.html"
+      "/posts/design-philosophy/index.html",
+      "/posts/ibis-analytics/index.html",
+      "/posts/python/index.html",
+      "/posts/altair/index.html",
+      "/posts/stop-aggregating-signal/index.html",
+      "/posts/predictive-power-score/index.html",
+      "/posts/precision-recall/index.html"
     ]
   }
 ]
