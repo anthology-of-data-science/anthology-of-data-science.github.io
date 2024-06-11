@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -232,6 +232,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../posts/design-philosophy/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">The Design Philosophy of Great Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/analytical-problem-solving/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analytical problem solving</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -8847,10 +8853,9 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pps.matrix(train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -9005,7 +9010,6 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 </div>
 </div>
 </div>
-</div>
 <div id="cell-12" class="cell" data-editable="true" data-hide_input="true" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pps_matrix <span class="op">=</span> (</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    pps.matrix(</span>
@@ -9107,14 +9111,13 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>             )</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>add_metric(<span class="st">'apc'</span>, <span class="st">'APC'</span>, average_precision_score, target <span class="op">=</span> <span class="st">'pred_proba'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
 <style type="text/css">
 #T_696f1_row8_col1, #T_696f1_row12_col1, #T_696f1_row14_col1 {
   background-color: lightgreen;
 }
 </style>
 
-<table id="T_696f1" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_696f1" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
@@ -9242,7 +9245,6 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 </table>
 </div>
 </div>
-</div>
 <div id="cell-15" class="cell" data-cell_id="55826e5dd9d24c05b77a2e12db34dbf2" data-deepnote_cell_type="code" data-editable="true" data-papermill="{&quot;duration&quot;:604.547243,&quot;end_time&quot;:&quot;2022-03-01T18:10:32.405411&quot;,&quot;exception&quot;:false,&quot;start_time&quot;:&quot;2022-03-01T18:00:27.858168&quot;,&quot;status&quot;:&quot;completed&quot;}" data-slideshow="{&quot;slide_type&quot;:&quot;subslide&quot;}" data-tags="[]" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>time</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>best_model <span class="op">=</span> compare_models(include<span class="op">=</span>[<span class="st">"et"</span>, <span class="st">"lightgbm"</span>, <span class="st">"rf"</span>, <span class="st">"dt"</span>], sort<span class="op">=</span><span class="st">"APC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -9250,7 +9252,6 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 
 </div>
 <div class="cell-output cell-output-display">
-<div>
 <style type="text/css">
 #T_6e995 th {
   text-align: left;
@@ -9273,7 +9274,7 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 }
 </style>
 
-<table id="T_6e995" data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table id="T_6e995" class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
@@ -9345,7 +9346,6 @@ $(&quot;select#variables-dropdown&quot;).on(&quot;change&quot;, function (e) {
 </tbody>
 </table>
 </div>
-</div>
 <div class="cell-output cell-output-display">
 
 </div>
@@ -9367,10 +9367,9 @@ Wall time: 3.96 s</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
-<div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -9455,7 +9454,6 @@ Wall time: 3.96 s</code></pre>
 </tbody>
 </table>
 
-</div>
 </div>
 </div>
 </div>

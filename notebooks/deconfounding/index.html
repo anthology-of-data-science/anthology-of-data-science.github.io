@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -264,6 +264,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../posts/analytical-problem-solving/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analytical problem solving</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../posts/predictive-power-score/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">RIP correlation. Introducing the Predictive Power Score.</span></a>
   </div>
@@ -506,8 +512,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>confounded <span class="op">=</span> smf.ols(<span class="st">"Y ~ X"</span>, data<span class="op">=</span>df).fit()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>confounded.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<div>
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>OLS Regression Results</caption>
 <tbody>
 <tr class="odd">
@@ -566,7 +571,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td></td>
@@ -597,7 +602,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Omnibus:</td>
@@ -628,7 +633,6 @@ window.Quarto = {
 <br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </div>
 </div>
-</div>
 <p>So our first (confounded) model yields a result that <span class="math inline">\(Y = 0.03 + 0.1X\)</span>. Note there can be small differences each time you re-run this notebook. But most importantly the fitted model has a high <span class="math inline">\(R^2 = 0.95\)</span> and high significance <span class="math inline">\(p = 0.0\)</span>!</p>
 <p>However, if you look closely at the Python code, you see that the real model has a confounder <span class="math inline">\(C\)</span>:</p>
 <p><span class="math display">\[C \longrightarrow X\]</span> <span class="math display">\[C \longrightarrow Y\]</span></p>
@@ -639,8 +643,7 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>deconfounded <span class="op">=</span> smf.ols(<span class="st">"Y ~ X + C"</span>, data<span class="op">=</span>df).fit()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>deconfounded.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<div>
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>OLS Regression Results</caption>
 <tbody>
 <tr class="odd">
@@ -699,7 +702,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td></td>
@@ -739,7 +742,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<table class="simpletable table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Omnibus:</td>
@@ -768,7 +771,6 @@ window.Quarto = {
 </tbody>
 </table>
 <br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-</div>
 </div>
 </div>
 <p>Note that, by including <span class="math inline">\(C\)</span> as an independent variable in the regression analysis, suddenly X has stopped being significant (p=0.36)!</p>
