@@ -1,6 +1,8 @@
 altair == 5.1.2
 black ==23.10.1
+graphviz
 great_tables
+ibis-framework[duckdb,polars]
 ipykernel == 6.25.2
 ipywidgets == 8.1.1
 jupyter
@@ -11,6 +13,7 @@ requests == 2.31.0
 shap
 seaborn
 scikit-learn >= 1.2.2
+sf-hamilton[visualization]
 vega-datasets
 vegafusion
 vegafusion-python-embed
