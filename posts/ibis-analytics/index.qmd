@@ -4,6 +4,7 @@ author: <a href="https://www.linkedin.com/in/codydkdc/">Cody Peterson</a>
 date: "2024-01-25"
 image: "thumbnail.png"
 categories:
+    - composable data stack
     - data engineering
 ---
 
