@@ -12,7 +12,7 @@ date: 2022-03-10
 date-format: "MMM YYYY"
 image: logo-american-statistician.png
 toc: false
-categories: [english, modeling]
+categories: [modeling]
 ---
 
 #
