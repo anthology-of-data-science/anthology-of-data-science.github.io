@@ -1,10 +1,33 @@
 [
   {
-    "listing": "/posts/python/index.html",
+    "listing": "/books.html",
     "items": [
-      "/posts/python/realpython.html",
-      "/posts/python/effective-python-and-idiomatic-pandas.html",
-      "/posts/python/whirlwind.html"
+      "/books/islp.html",
+      "/books/fpp.html",
+      "/books/fdv.html",
+      "/books/iml.html",
+      "/books/pda.html",
+      "/books/r4ds.html",
+      "/books/turing-way.html",
+      "/books/udl.html"
+    ]
+  },
+  {
+    "listing": "/notebooks/index.html",
+    "items": [
+      "/notebooks/pima-indians/index.html",
+      "/notebooks/ames-housing/index.html",
+      "/notebooks/overfitting/index.html",
+      "/notebooks/deconfounding/index.html"
+    ]
+  },
+  {
+    "listing": "/cases/index.html",
+    "items": [
+      "/cases/wolves-in-germany/index.html",
+      "/cases/rice-grain-classification/index.html",
+      "/cases/energiearmoede/index.html",
+      "/cases/verkeersveiligheidmodel/index.html"
     ]
   },
   {
@@ -20,37 +43,6 @@
     ]
   },
   {
-    "listing": "/books.html",
-    "items": [
-      "/books/islp.html",
-      "/books/fpp.html",
-      "/books/fdv.html",
-      "/books/iml.html",
-      "/books/pda.html",
-      "/books/r4ds.html",
-      "/books/turing-way.html",
-      "/books/udl.html"
-    ]
-  },
-  {
-    "listing": "/cases/index.html",
-    "items": [
-      "/cases/wolves-in-germany/index.html",
-      "/cases/rice-grain-classification/index.html",
-      "/cases/energiearmoede/index.html",
-      "/cases/verkeersveiligheidmodel/index.html"
-    ]
-  },
-  {
-    "listing": "/notebooks/index.html",
-    "items": [
-      "/notebooks/pima-indians/index.html",
-      "/notebooks/ames-housing/index.html",
-      "/notebooks/overfitting/index.html",
-      "/notebooks/deconfounding/index.html"
-    ]
-  },
-  {
     "listing": "/posts/index.html",
     "items": [
       "/posts/design-philosophy/index.html",
@@ -62,6 +54,14 @@
       "/posts/stop-aggregating-signal/index.html",
       "/posts/predictive-power-score/index.html",
       "/posts/precision-recall/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/python/index.html",
+    "items": [
+      "/posts/python/realpython.html",
+      "/posts/python/effective-python-and-idiomatic-pandas.html",
+      "/posts/python/whirlwind.html"
     ]
   }
 ]
