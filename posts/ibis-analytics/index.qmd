@@ -175,6 +175,16 @@ Various environment variables set to access the data sources and cloud
 services are stored in a `.env` file and set in the respective cloud services
 (GitHub Actions secrets and Streamlit Community Cloud secrets).
 
+<details>
+<summary>.env file</summary>
+```txt
+BQ_PROJECT_ID="XXXXXXXX"
+GITHUB_TOKEN="ghp_XXXXXXXX"
+MOTHERDUCK_TOKEN="XXXXXXX"
+ZULIP_KEY="XXXXXXX"
+```
+</details>
+
 ### Configuration
 
 We use a `config.toml` file to configure the project. This allows easily
@@ -374,6 +384,10 @@ jobs:
 This will run the entire pipeline on a schedule, on a pull request, or manually. Everything is automated!
 
 ## Data ingestion
+
+::: {.callout-warning}
+Note that ingesting the PyPI download data from BigQuery will incur costs of 8 euros if you are above your free tier. So save cost, you can download a snapshot of the data from 23 June 2024 [here](https://drive.google.com/drive/folders/1yLcvCpoGBLfRxkLFQiqCUWzDwFrhedei?usp=drive_link).  
+:::
 
 After you `just ingest` data you end up with:
 
