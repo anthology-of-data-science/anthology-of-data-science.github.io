@@ -48,7 +48,7 @@ A selection of what I think are [the best open access textbooks](books.qmd) is p
 
 ### Lectures
 
-I am gradually rewriting my lectures as [Revealjs presentations](https://quarto.org/docs/presentations/revealjs/). More will be added over time.
+I am gradually rewriting my lectures as [Revealjs presentations](lectures.qmd). More will be added over time.
 
 ### Perspectives
 

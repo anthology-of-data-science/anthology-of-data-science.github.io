@@ -11,6 +11,6 @@ toc: false
 ---
 
 ```{=html}
-<iframe width="100%" height="800" src="https://anthology-of-data.science/presentation-composable-data-stack/#/title-slide" title="Lecture"></iframe>
+<iframe width="100%" height="800" src="https://anthology-of-data.science/lecture-composable-data-stack/#/title-slide" title="Lecture"></iframe>
 ```
-(view [full screen](https://anthology-of-data.science/presentation-composable-data-stack/#/title-slide))
+(view [full screen](https://anthology-of-data.science/lecture-composable-data-stack/#/title-slide))
