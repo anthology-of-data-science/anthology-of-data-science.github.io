@@ -17,7 +17,7 @@ Now there is a lot of machine learning learning materials out there, so why this
 
 - curate content for different professional learning paths, combining various existing open access materials that can be readily shared and thus contribute to the democratization of know-how in this field of work;
 - finding a balance between too technical vs. too vague, handwaving or even downright wrong;
-- take a hands-on, problem-based approach. Rather than, say, explaining the principles that underlie regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularisation for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and reason where and how to use regularisation.
+- take a hands-on, problem-based approach. Rather than, say, explaining the principles that underlie regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularization for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and reason where and how to use regularization.
 
 ## What is the best online course to get into data science & AI?
 
@@ -42,13 +42,17 @@ For now, my recommendation is to start with one of the courses offered by [Eleme
 
 ## How is this anthology set up?
 
-### A selection of the best books
+### Books
 
-A selection of what I think are [the best textbooks](books.qmd) is provided as a digital bookshelf. All the books included are open access, thanks to their respective authors! They should keep you busy for a while.
+A selection of what I think are [the best open access textbooks](books.qmd) is provided as a digital bookshelf. All the books included are open access, thanks to their respective authors! They should keep you busy for a while.
+
+### Lectures
+
+I am gradually rewriting my lectures as [Revealjs presentations](https://quarto.org/docs/presentations/revealjs/). More will be added over time.
 
 ### Perspectives
 
-Various topics and perspectives on how data science is done. Clearly this is an opinionated and very [personal selection](posts/index.qmd). It includes a section on [getting into Python](posts/python/index.qmd), where I have curated a selection of books and online tutorials to get you going. Also, a selection of tutorials and blogpost is provided on creating[visualizations with Altair](posts/altair/index.qmd). I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis. 
+Various topics and perspectives on how data science is done. Clearly this is an opinionated and very [personal selection](posts/index.qmd). It includes a section on [getting into Python](posts/python/index.qmd), where I have curated a selection of books and online tutorials to get you going. Also, a selection of tutorials and blogpost is provided on creating [visualizations with Altair](posts/altair/index.qmd). I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis. 
 
 
 ### Use cases

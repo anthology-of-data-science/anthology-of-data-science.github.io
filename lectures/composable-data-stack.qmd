@@ -1,0 +1,16 @@
+---
+title: Modern, composable and downward-scaleable data platforms
+description: |
+    Slides from a 3-hour guest lecture given at Strathmore University.
+image: images/mice-complete-implementation.png
+author:
+    - Daniel Kapitan
+date: 2024-07-02
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://anthology-of-data.science/presentation-composable-data-stack/#/title-slide" title="Lecture"></iframe>
+```
+(view [full screen](https://anthology-of-data.science/presentation-composable-data-stack/#/title-slide))

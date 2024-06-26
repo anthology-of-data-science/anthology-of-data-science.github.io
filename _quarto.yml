@@ -5,7 +5,7 @@ project:
 website:
   title: "Anthology of Data Science"
   site-url: https://anthology-of-data.science
-  repo-url: https://github.com/anthology-of-data-science
+  repo-url: https://github.com/anthology-of-data-science/anthology-of-data-science.github.io
   favicon: favicon.png
   repo-actions: [issue]
   reader-mode: true
@@ -40,6 +40,8 @@ website:
             href: books/fpp.qmd
           - text: "Deep Learning"
             href: books/udl.qmd
+          - text: "Fundamentals of Data Visualization"
+            href: books/fdv.qmd
           - text: "The Turing Way"
             href: books/turing-way.qmd
       # - section: Getting into Python
@@ -54,6 +56,9 @@ website:
       # - section: Visualization with Altair
       #   href: altair/index.qmd
       #   contents: altair/*
+      - section: "Lectures"
+        href: lectures.qmd
+        contents: lectures/*
       - section: "Perspectives on data science"
         href: posts/index.qmd
         contents: posts/*/*
