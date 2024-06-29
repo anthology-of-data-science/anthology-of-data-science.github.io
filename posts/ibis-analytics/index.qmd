@@ -386,7 +386,7 @@ This will run the entire pipeline on a schedule, on a pull request, or manually.
 ## Data ingestion
 
 ::: {.callout-warning}
-Note that ingesting the PyPI download data from BigQuery will incur costs of 8 euros if you are above your free tier. So save cost, you can download a snapshot of the data from 23 June 2024 [here](https://drive.google.com/drive/folders/1yLcvCpoGBLfRxkLFQiqCUWzDwFrhedei?usp=drive_link).  
+Note that ingesting the PyPI download data from BigQuery will incur costs of 8 euros if you are above your free tier. To save cost, you can download a snapshot of the data from 23 June 2024 [here](https://drive.google.com/drive/folders/1yLcvCpoGBLfRxkLFQiqCUWzDwFrhedei?usp=drive_link).  
 :::
 
 After you `just ingest` data you end up with:
