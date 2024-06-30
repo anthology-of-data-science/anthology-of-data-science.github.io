@@ -3,7 +3,7 @@ title: An anthology of open access data science materials
 author:
     - <a href="https://www.linkedin.com/in/dkapitan">Daniel Kapitan</a>
 description: |
-   Preface as to why I started this anthology, how I set it up and for what purpose. This is work in progress.
+   Preface as to why I started this anthology, how I set it up and for what purpose.
 date: 2023-11-01
 title-block-banner: false
 ---
@@ -65,4 +65,4 @@ Notebooks for those seeking [hands-on examples and explainers](notebooks/index.q
 
 ## Report an issue
 
-This anthology was born out of a need to scratch my own itch, namely have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue.
+This anthology was born out of a need to scratch my own itch, namely to have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful for those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue.
