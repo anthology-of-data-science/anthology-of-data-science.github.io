@@ -8,6 +8,7 @@
   {
     "listing": "/cases/index.html",
     "items": [
+      "/cases/landscape-biomedical-research/index.html",
       "/cases/wolves-in-germany/index.html",
       "/cases/rice-grain-classification/index.html",
       "/cases/energiearmoede/index.html",
