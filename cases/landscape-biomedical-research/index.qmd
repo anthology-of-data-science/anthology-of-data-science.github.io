@@ -1,5 +1,5 @@
 ---
-title: Predict precence of wolf pairs in Germany with XGBoost and SHAP
+title: The landscape of biomedical research
 author:
     - <a href="https://www.linkedin.com/in/rita-gonz%C3%A1lez-m%C3%A1rquez-222b7a1a5/">Rita González-Márquez et al.</a>
 description: |
