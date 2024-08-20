@@ -1,0 +1,14 @@
+---
+title: Multimodal prediction of climatic parameters using street-level and satellite imagery
+author:
+    - Kunihiko Fujiwara et al.
+description: |
+   High-resolution microclimate data is essential for capturing spatio-temporal heterogeneity of urban climate and heat health management. However, previous studies have relied on dense measurements that require significant costs for equipment, or on physical simulations demanding intensive computational loads. As a potential alternative to these methods, we propose a multimodal deep learning model to predict microclimate at a high spatial and temporal resolution based on street-level and satellite imagery. This model consists of LSTM and ResNet-18 architectures, and predicts air temperature, relative humidity, wind speed, and global horizontal irradiance. The original article can be read online <a href="https://doi.org/10.1016/j.scs.2024.105733">here</a>.
+date: 2024-08-20
+image: banner.jpg
+categories: ["Deep Learning"]
+title-block-banner: false
+toc: false
+---
+
+{{< pdf /resources/fujiwara2024microclimate.pdf width=100% height=800 >}}
