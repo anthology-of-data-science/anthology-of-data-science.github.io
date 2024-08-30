@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -527,7 +527,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The variable <code>ibis._</code> is a special character referring to the current expression e.g., <code>ibis._.pet</code> accesses the column “pet” of the current table.</li>
 <li>The table method <code>.mutate(col1=, col2=, ...)</code> assigns new columns or overwrites existing ones.</li>
 </ul>
-<div id="8559268f" class="cell" data-execution_count="1">
+<div id="fddefc55" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://storage.googleapis.com/ibis-blog-data-public/hamilton-ibis/absenteeism.parquet"</span></span>
@@ -579,7 +579,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Table-level operations might feel most familiar to SQL and Spark users. Also, Ibis + Hamilton is reminiscent of <a href="https://www.getdbt.com/">dbt</a> for the Python ecosystem.</p>
 <p>Working with tables is very efficient when your number of columns/features is limited, and you don’t need full column level lineage. As you want to reuse components, you can progressively breakdown “table-level code” in to “column-level code”.</p>
 <p>The initial Ibis code is now 3 functions with type annotations and docstrings. We have a clear sense of the expected external outputs and we could implement schema checks between functions.</p>
-<div id="a625d8e8" class="cell" data-execution_count="2">
+<div id="c36f900f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Optional</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis.expr.types <span class="im">as</span> ir</span>
@@ -623,7 +623,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Hamilton was initially built to expose and manage column-level operations, which is most common in dataframe libraries (pandas, Dask, polars).</p>
 <p>Column-level code leads to fully-reusable feature definitions and a highly granular level of lineage. Notably, this allows one to <a href="https://hamilton.dagworks.io/en/latest/how-tos/use-hamilton-for-lineage/">trace sensitive data and evaluate downstream impacts of code changes</a>. However, it is more verbose to get started with, but remember that code is read more often than written.</p>
 <p>Now, the raw_table is loaded and the columns <code>son</code>, <code>pet</code>, and <code>month_of_absence</code> are extracted to engineer new features. After transformations, features are joined with <code>raw_table</code> to create <code>feature_table</code>.</p>
-<div id="b2b38fa8" class="cell" data-execution_count="3">
+<div id="e82583a9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis.expr.types <span class="im">as</span> ir</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> hamilton.function_modifiers <span class="im">import</span> extract_columns</span>
@@ -692,7 +692,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="solution-2-orchestrate-ibis-anywhere">Solution 2 – Orchestrate Ibis anywhere</h3>
 <p>Hamilton is an ideal way to orchestrate Ibis code because it has a very small dependency footprint and will run anywhere Python does (script, notebook, <a href="https://hamilton.dagworks.io/en/latest/integrations/fastapi/">FastAPI</a>, <a href="https://hamilton.dagworks.io/en/latest/integrations/streamlit/">Streamlit</a>, pyodide, etc.) In fact, the Hamilton library only has four dependencies. You don’t need “framework code” to get started, just plain Python functions. When moving to production, Hamilton has all the necessary features to complement Ibis such as swapping components, configurations, and lifecycle hooks for logging, alerting, and telemetry.</p>
 <p>A simple usage pattern of Hamilton + Ibis is to use the <code>@config.when</code> <a href="https://hamilton.dagworks.io/en/latest/concepts/function-modifiers/#select-functions-to-include">function modifier</a>. In the following example, we have alternative implementations for the backend connection, which will be used for computing and storing results. When running your code, specify in your config <code>backend="duckdb"</code> or <code>backend="bigquery"</code> to swap between the two.</p>
-<div id="14798afb" class="cell" data-execution_count="4">
+<div id="84c15077" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ibis_dataflow.py</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis.expr.types <span class="im">as</span> ir</span>
@@ -761,7 +761,7 @@ Note
 </div>
 </div>
 <p>For instance, you could <a href="https://ibis-project.org/posts/duckdb-for-rag/">embed rows of a text column using an LLM API</a> using your existing data warehouse infrastructure.</p>
-<div id="453a3647" class="cell" data-execution_count="5">
+<div id="794feafa" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ibis.expr.types <span class="im">as</span> ir</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>

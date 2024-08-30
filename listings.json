@@ -32,16 +32,14 @@
     ]
   },
   {
-    "listing": "/books.html",
+    "listing": "/cases/index.html",
     "items": [
-      "/books/islp.html",
-      "/books/fpp.html",
-      "/books/fdv.html",
-      "/books/iml.html",
-      "/books/pda.html",
-      "/books/r4ds.html",
-      "/books/turing-way.html",
-      "/books/udl.html"
+      "/cases/microclimate-vision/index.html",
+      "/cases/landscape-biomedical-research/index.html",
+      "/cases/wolves-in-germany/index.html",
+      "/cases/rice-grain-classification/index.html",
+      "/cases/energiearmoede/index.html",
+      "/cases/verkeersveiligheidmodel/index.html"
     ]
   },
   {
@@ -54,14 +52,17 @@
     ]
   },
   {
-    "listing": "/cases/index.html",
+    "listing": "/books.html",
     "items": [
-      "/cases/microclimate-vision/index.html",
-      "/cases/landscape-biomedical-research/index.html",
-      "/cases/wolves-in-germany/index.html",
-      "/cases/rice-grain-classification/index.html",
-      "/cases/energiearmoede/index.html",
-      "/cases/verkeersveiligheidmodel/index.html"
+      "/books/islp.html",
+      "/books/fairml.html",
+      "/books/fpp.html",
+      "/books/fdv.html",
+      "/books/iml.html",
+      "/books/pda.html",
+      "/books/r4ds.html",
+      "/books/turing-way.html",
+      "/books/udl.html"
     ]
   },
   {
