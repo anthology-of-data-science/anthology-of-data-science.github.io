@@ -1,0 +1,17 @@
+---
+title: Fairness and Machin Learning
+description: |
+    Many take the leap of faith behind statistical decision making for granted to an extent that it’s become difficult to question. In this book, we take machine learning as a reason to revisit this leap of faith and to interrogate how institutions make decisions about individuals. If machine learning is our way into studying institutional decision making, fairness is the moral lens through which we examine those decisions.
+image: images/fairml.avif
+author:
+    - Solon Barocas
+    - Moritz Hardt, 
+    - Arvind Narayanan
+date: 2023-01-01
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://fairmlbook.org/" title="Fairness and Machine Learning"></iframe>
+```
