@@ -1,7 +1,54 @@
 [
   {
+    "listing": "/posts/altair/index.html",
+    "items": [
+      "/posts/altair/better-altair-theme.html",
+      "/posts/altair/ames-housing-eda-with-altair.html",
+      "/posts/altair/curriculum.html",
+      "/posts/altair/comet-chart.html",
+      "/posts/altair/video-altair-data-types.html",
+      "/posts/altair/video-altair-grammar.html",
+      "/posts/altair/video-altair-intro.html"
+    ]
+  },
+  {
+    "listing": "/books.html",
+    "items": [
+      "/books/islp.html",
+      "/books/fairml.html",
+      "/books/fpp.html",
+      "/books/fdv.html",
+      "/books/iml.html",
+      "/books/pda.html",
+      "/books/r4ds.html",
+      "/books/turing-way.html",
+      "/books/udl.html"
+    ]
+  },
+  {
+    "listing": "/notebooks/index.html",
+    "items": [
+      "/notebooks/pima-indians/index.html",
+      "/notebooks/ames-housing/index.html",
+      "/notebooks/overfitting/index.html",
+      "/notebooks/deconfounding/index.html"
+    ]
+  },
+  {
+    "listing": "/cases/index.html",
+    "items": [
+      "/cases/microclimate-vision/index.html",
+      "/cases/landscape-biomedical-research/index.html",
+      "/cases/wolves-in-germany/index.html",
+      "/cases/rice-grain-classification/index.html",
+      "/cases/energiearmoede/index.html",
+      "/cases/verkeersveiligheidmodel/index.html"
+    ]
+  },
+  {
     "listing": "/lectures.html",
     "items": [
+      "/lectures/gam-ebm.html",
       "/lectures/composable-data-stack.html"
     ]
   },
@@ -17,52 +64,6 @@
       "/posts/stop-aggregating-signal/index.html",
       "/posts/predictive-power-score/index.html",
       "/posts/precision-recall/index.html"
-    ]
-  },
-  {
-    "listing": "/posts/altair/index.html",
-    "items": [
-      "/posts/altair/better-altair-theme.html",
-      "/posts/altair/ames-housing-eda-with-altair.html",
-      "/posts/altair/curriculum.html",
-      "/posts/altair/comet-chart.html",
-      "/posts/altair/video-altair-data-types.html",
-      "/posts/altair/video-altair-grammar.html",
-      "/posts/altair/video-altair-intro.html"
-    ]
-  },
-  {
-    "listing": "/cases/index.html",
-    "items": [
-      "/cases/microclimate-vision/index.html",
-      "/cases/landscape-biomedical-research/index.html",
-      "/cases/wolves-in-germany/index.html",
-      "/cases/rice-grain-classification/index.html",
-      "/cases/energiearmoede/index.html",
-      "/cases/verkeersveiligheidmodel/index.html"
-    ]
-  },
-  {
-    "listing": "/notebooks/index.html",
-    "items": [
-      "/notebooks/pima-indians/index.html",
-      "/notebooks/ames-housing/index.html",
-      "/notebooks/overfitting/index.html",
-      "/notebooks/deconfounding/index.html"
-    ]
-  },
-  {
-    "listing": "/books.html",
-    "items": [
-      "/books/islp.html",
-      "/books/fairml.html",
-      "/books/fpp.html",
-      "/books/fdv.html",
-      "/books/iml.html",
-      "/books/pda.html",
-      "/books/r4ds.html",
-      "/books/turing-way.html",
-      "/books/udl.html"
     ]
   },
   {
