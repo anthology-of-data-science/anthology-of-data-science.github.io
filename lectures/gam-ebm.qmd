@@ -1,0 +1,16 @@
+---
+title: Generalized Additive Models and Explainable Boosting Machines
+description: |
+    Slides from a 1-hour workshop, after which you will be convinced that EBMs are your standard go-to algorithm for tabular data.
+image: images/xkcd-interpretability-flexibility.png
+author:
+    - Daniel Kapitan
+date: 2024-09-09
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://anthology-of-data.science/lecture-gam-ebm/#/title-slide" title="Lecture"></iframe>
+```
+(view [full screen](https://anthology-of-data.science/lecture-gam-ebm/#/title-slide))
