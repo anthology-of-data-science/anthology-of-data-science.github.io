@@ -1,5 +1,5 @@
 ---
-title: EnteroBase: hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations
+title: EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations
 author:
     - Mark Achtman et al.
 description: |
