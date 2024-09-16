@@ -12,26 +12,10 @@
     ]
   },
   {
-    "listing": "/books.html",
+    "listing": "/lectures.html",
     "items": [
-      "/books/islp.html",
-      "/books/fairml.html",
-      "/books/fpp.html",
-      "/books/fdv.html",
-      "/books/iml.html",
-      "/books/pda.html",
-      "/books/r4ds.html",
-      "/books/turing-way.html",
-      "/books/udl.html"
-    ]
-  },
-  {
-    "listing": "/notebooks/index.html",
-    "items": [
-      "/notebooks/pima-indians/index.html",
-      "/notebooks/ames-housing/index.html",
-      "/notebooks/overfitting/index.html",
-      "/notebooks/deconfounding/index.html"
+      "/lectures/gam-ebm.html",
+      "/lectures/composable-data-stack.html"
     ]
   },
   {
@@ -47,15 +31,32 @@
     ]
   },
   {
-    "listing": "/lectures.html",
+    "listing": "/notebooks/index.html",
     "items": [
-      "/lectures/gam-ebm.html",
-      "/lectures/composable-data-stack.html"
+      "/notebooks/pima-indians/index.html",
+      "/notebooks/ames-housing/index.html",
+      "/notebooks/overfitting/index.html",
+      "/notebooks/deconfounding/index.html"
+    ]
+  },
+  {
+    "listing": "/books.html",
+    "items": [
+      "/books/islp.html",
+      "/books/fairml.html",
+      "/books/fpp.html",
+      "/books/fdv.html",
+      "/books/iml.html",
+      "/books/pda.html",
+      "/books/r4ds.html",
+      "/books/turing-way.html",
+      "/books/udl.html"
     ]
   },
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/daps/index.html",
       "/posts/design-philosophy/index.html",
       "/posts/hamilton-ibis/index.html",
       "/posts/ibis-analytics/index.html",
