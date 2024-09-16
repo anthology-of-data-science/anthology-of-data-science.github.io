@@ -1,8 +1,8 @@
 ---
 title: The Precision-Recall Plot Is More Informative than the ROC Plot
 author:
-    - <a href="http://www.linkedin.com/in/paulvanderlaken">Paul van der Laken</a>
-    - <a href="https://www.linkedin.com/in/dkapitan">Daniel Kapitan</a>
+    - Paul van der Laken
+    - Daniel Kapitan
 description: |
    An introduction to performance metrics for binary classification. Originally published on <a href="https://paulvanderlaken.com/2019/08/16/roc-auc-precision-and-recall-visually-explained/">paulvanderlaken.com</a>.
 date: 2019-08-16

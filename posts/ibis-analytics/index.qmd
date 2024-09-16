@@ -1,6 +1,6 @@
 ---
 title: Modern, hybrid, open analytics
-author: <a href="https://www.linkedin.com/in/codydkdc/">Cody Peterson</a>
+author: Cody Peterson
 date: "2024-01-25"
 image: "thumbnail.png"
 categories:

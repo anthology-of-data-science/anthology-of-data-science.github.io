@@ -1,7 +1,7 @@
 ---
 title: The landscape of biomedical research
 author:
-    - <a href="https://www.linkedin.com/in/rita-gonz%C3%A1lez-m%C3%A1rquez-222b7a1a5/">Rita González-Márquez et al.</a>
+    - Rita González-Márquez et al.
 description: |
    Over 1.5 million scientific articles on biomedicine and life sciences are now published and collected in the PubMed database every year. This vast scale makes it challenging to see how biomedicine evolves in time. Large language models can produce embeddings of huge text corpora and can thereby be leveraged to provide innovative visualizations of the scientific literature, as shown in this work. The original article can be read online <a href="https://www.cell.com/patterns/fulltext/S2666-3899(24)00076-X">here</a>.
 date: 2024-06-14

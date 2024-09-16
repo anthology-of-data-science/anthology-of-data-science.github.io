@@ -1,7 +1,7 @@
 ---
 title: Stop aggregating away the signal in your data
 author:
-    - <a href="https://www.linkedin.com/in/zanstrong/">Zan Armstrong</a>
+    - Zan Armstrong
 description: |
   By aggregating our data in an effort to simplify it, we lose the signal and the context we need to make sense of what we’re seeing. Originally published on <a href="https://stackoverflow.blog/2022/03/03/stop-aggregating-away-the-signal-in-your-data/">stackoverflow.blog</a>.
 date: 2022-03-03
