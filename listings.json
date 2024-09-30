@@ -12,10 +12,41 @@
     ]
   },
   {
-    "listing": "/lectures.html",
+    "listing": "/posts/index.html",
     "items": [
-      "/lectures/gam-ebm.html",
-      "/lectures/composable-data-stack.html"
+      "/posts/daps/index.html",
+      "/posts/design-philosophy/index.html",
+      "/posts/hamilton-ibis/index.html",
+      "/posts/ibis-analytics/index.html",
+      "/posts/python/index.html",
+      "/posts/altair/index.html",
+      "/posts/analytical-problem-solving/index.html",
+      "/posts/stop-aggregating-signal/index.html",
+      "/posts/predictive-power-score/index.html",
+      "/posts/precision-recall/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/python/index.html",
+    "items": [
+      "/posts/python/realpython.html",
+      "/posts/python/effective-python-and-idiomatic-pandas.html",
+      "/posts/python/whirlwind.html"
+    ]
+  },
+  {
+    "listing": "/books.html",
+    "items": [
+      "/books/islp.html",
+      "/books/fairml.html",
+      "/books/fpp.html",
+      "/books/fdv.html",
+      "/books/iml.html",
+      "/books/mml.html",
+      "/books/pda.html",
+      "/books/r4ds.html",
+      "/books/turing-way.html",
+      "/books/udl.html"
     ]
   },
   {
@@ -31,49 +62,19 @@
     ]
   },
   {
+    "listing": "/lectures.html",
+    "items": [
+      "/lectures/gam-ebm.html",
+      "/lectures/composable-data-stack.html"
+    ]
+  },
+  {
     "listing": "/notebooks/index.html",
     "items": [
       "/notebooks/pima-indians/index.html",
       "/notebooks/ames-housing/index.html",
       "/notebooks/overfitting/index.html",
       "/notebooks/deconfounding/index.html"
-    ]
-  },
-  {
-    "listing": "/books.html",
-    "items": [
-      "/books/islp.html",
-      "/books/fairml.html",
-      "/books/fpp.html",
-      "/books/fdv.html",
-      "/books/iml.html",
-      "/books/pda.html",
-      "/books/r4ds.html",
-      "/books/turing-way.html",
-      "/books/udl.html"
-    ]
-  },
-  {
-    "listing": "/posts/index.html",
-    "items": [
-      "/posts/daps/index.html",
-      "/posts/design-philosophy/index.html",
-      "/posts/hamilton-ibis/index.html",
-      "/posts/ibis-analytics/index.html",
-      "/posts/altair/index.html",
-      "/posts/python/index.html",
-      "/posts/analytical-problem-solving/index.html",
-      "/posts/stop-aggregating-signal/index.html",
-      "/posts/predictive-power-score/index.html",
-      "/posts/precision-recall/index.html"
-    ]
-  },
-  {
-    "listing": "/posts/python/index.html",
-    "items": [
-      "/posts/python/realpython.html",
-      "/posts/python/effective-python-and-idiomatic-pandas.html",
-      "/posts/python/whirlwind.html"
     ]
   }
 ]
