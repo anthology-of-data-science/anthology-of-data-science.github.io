@@ -1,0 +1,15 @@
+---
+title: Mathematics For Machine Learning
+description: |
+    This book aims to motivate people to learn mathematical concepts. The book is not intended to cover advanced machine learning techniques because there are already plenty of books doing this. Instead, it aims to provide the necessary mathematical skills to read those other books. More resources can be found on <a href="https://mml-book.github.io/">https://mml-book.github.io/</a>.
+author:
+    - Marc Peter Deisenroth
+    - A. Aldo Faisal
+    - Cheng Soon Ong
+date: 2024-01-15
+image: images/mml.jpg
+page-layout: full
+toc: false
+---
+
+{{< pdf /resources/deisenroth2024mml-book.pdf width=100% height=800 >}}
