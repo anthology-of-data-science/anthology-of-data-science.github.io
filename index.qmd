@@ -44,7 +44,7 @@ For now, my recommendation is to start with one of the courses offered by [Eleme
 
 ### Books
 
-A selection of what I think are [the best open access textbooks](books.qmd) is provided as a digital bookshelf. All the books included are open access, thanks to their respective authors! They should keep you busy for a while.
+A selection of what I think are the [best textbooks](books.qmd) is provided as a digital bookshelf. Many of the books included are open access, thanks to their respective authors! They should keep you busy for a while.
 
 ### Lectures
 

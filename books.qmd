@@ -1,10 +1,45 @@
 ---
 listing:
-  contents: books/*.qmd
-  type: grid
-  grid-columns: 2
-  image-height: "440px"
-  sort: "title asc"
-  sort-ui: false
+  - id: open-access-books
+    contents: books/*.qmd
+    type: grid
+    grid-columns: 2
+    image-height: "440px"
+    sort: "title asc"
+    sort-ui: false
+  - id: non-open-access-books
+    type: grid
+    grid-columns: 2
+    image-height: "440px"
+    sort: "title asc"
+    sort-ui: false
+    contents:
+      - path: https://www.oreilly.com/library/view/hands-on-large-language/9781098150952/
+        image: /books/images/handson-llm.jpg
+        title: "Hands-On Large Language Models"
+        description: |
+          AI has acquired startling new language capabilities in just the past few years. Driven by rapid advances in deep learning, language AI systems are able to write and understand text better than ever before. This trend is enabling new features, products, and entire industries. Through this book's visually educational nature, readers will learn practical tools and concepts they need to use these capabilities today. You'll understand how to use pretrained large language models for use cases like copywriting and summarization; create semantic search systems that go beyond keyword matching; and use existing libraries and pretrained models for text classification, search, and clusterings.
+        date: "2024-09-01"
+        author:
+          - Jay Alammar
+          - Maarten Grootendorst
+      - path: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/
+        image: /books/images/designing-data-intensive-applications.jpg
+        title: "Designing Data-Intensive Applications"
+        description: |
+          Data is at the center of many challenges in system design today. Difficult issues need to be figured out, such as scalability, consistency, reliability, efficiency, and maintainability. In addition, we have an overwhelming variety of tools, including relational databases, NoSQL datastores, stream or batch processors, and message brokers. What are the right choices for your application? How do you make sense of all these buzzwords? In this practical and comprehensive guide, author Martin Kleppmann helps you navigate this diverse landscape by examining the pros and cons of various technologies for processing and storing data. Software keeps changing, but the fundamental principles remain the same. With this book, software engineers and architects will learn how to apply those ideas in practice, and how to make full use of data in modern applications.
+        date: "2017-03-01"
+        author: Martin Kleppmann
 ---
 
+:::{.panel-tabset}
+
+## Open access books
+::: {#open-access-books}
+:::
+
+## Non-open access books
+
+::: {#non-open-access-books}
+:::
+:::
