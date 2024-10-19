@@ -20,7 +20,7 @@ website:
         href: https://www.linkedin.com/in/dkapitan/
         text: "LinkedIn profile"
       - icon: github
-        href: https://github.com/dkapitan
+        href: https://github.com/anthology-of-data-science
         text: "GitHub profile"
     style: floating
     collapse-level: 1
