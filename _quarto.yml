@@ -8,6 +8,8 @@ website:
   repo-url: https://github.com/anthology-of-data-science/anthology-of-data-science.github.io
   favicon: favicon.png
   repo-actions: [issue]
+  google-analytics: "G-9JMR365RPQ"
+  open-graph: true
   reader-mode: true
   search:
     location: sidebar
