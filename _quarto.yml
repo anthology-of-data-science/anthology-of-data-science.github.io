@@ -77,6 +77,7 @@ website:
       This website was created with [![](/quarto.png){fig-alt="Quarto" width=65px}](https://quarto.org)<br>
       [![](/cc-by-nc-eu.png){fig-alt="CC BY-NC 4.0"}](http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1)<br>
 
+lightbox: true
 format:
   html:
     theme:
