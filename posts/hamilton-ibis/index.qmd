@@ -38,7 +38,7 @@ import ibis
 
 url = "https://storage.googleapis.com/ibis-blog-data-public/hamilton-ibis/absenteeism.parquet"
 feature_set = (
-  ibis.read_parquet(sources=url, table_name="absenteeism")
+  ibis.read_parquet(url, table_name="absenteeism")
   .rename("snake_case")
   .mutate(  # allows us to define new columns
     has_children=ibis.ifelse(ibis._.son > 0, True, False),
@@ -126,7 +126,7 @@ def raw_table(raw_data_path: str) -> ir.Table:
     and format column names to snakecase
     """
     return (
-        ibis.read_parquet(sources=raw_data_path, table_name="absenteism")
+        ibis.read_parquet(raw_data_path, table_name="absenteism")
         .rename("snake_case")
     )
 
@@ -324,7 +324,7 @@ import ibis.expr.types as ir
 
 def documents(path: str) -> ir.Table:
     """load text documents from file"""
-    return ibis.read_parquet(sources=path, table_name="documents")
+    return ibis.read_parquet(paths=path, table_name="documents")
 
 # function name starts with `_` to prevent being added as a node
 @ibis.udf.scalar.python
