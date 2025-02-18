@@ -25,10 +25,10 @@ jobs:
       - name: Install Python and Dependencies
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
           cache: 'pip'
-      - run: pip install jupyter
-      - run: pip install -r requirements.txt
+      - run: uv pip install jupyter
+      - run: uv pip install -r requirements.txt
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
