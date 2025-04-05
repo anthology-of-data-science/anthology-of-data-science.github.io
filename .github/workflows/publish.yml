@@ -27,8 +27,8 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
-      - run: uv pip install jupyter
-      - run: uv pip install -r requirements.txt
+      - run: uv pip install jupyter --system
+      - run: uv pip install -r requirements.txt --system
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
