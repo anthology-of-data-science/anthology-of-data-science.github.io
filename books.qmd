@@ -37,6 +37,15 @@ listing:
           Through a recent series of breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this technology can use simple, efficient tools to implement programs capable of learning from data. This bestselling book uses concrete examples, minimal theory, and production-ready Python frameworks (Scikit-Learn, Keras, and TensorFlow) to help you gain an intuitive understanding of the concepts and tools for building intelligent systems. With this updated third edition, author Aurélien Géron explores a range of techniques, starting with simple linear regression and progressing to deep neural networks. Numerous code examples and exercises throughout the book help you apply what you've learned. Programming experience is all you need to get started.
         date: "2022-10-01"
         author: Aurélien Géron
+      - path: https://polarsguide.com/
+        image: /books/images/polarsguide.jpg
+        title: "Python Polars: The Definitive Guide"
+        description: |
+          This book is designed for anyone looking to leverage the power of Polars in Python to transform, analyze, and visualize data more efficiently and effectively. I completely switched to polars from pandas in 2024 and must say it performance gain is amazing, which is particularly relevant for data engineering.
+        date: "2025-02-01"
+        author:
+          - Jeroen Janssens
+          - Thijs Nieuwdorp
 ---
 
 :::{.panel-tabset}
