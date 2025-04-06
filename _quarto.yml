@@ -29,35 +29,7 @@ website:
     contents:
       - section: Books
         href: books.qmd
-        contents:
-          - text: "Introduction to Statistical Learning"
-            href: books/islp.qmd
-          - text: "Python for Data Analysis"
-            href: books/pda.qmd
-          - text: "R for Data Science"
-            href: books/r4ds.qmd
-          - text: "Interpretable ML"
-            href: books/iml.qmd
-          - text: "Time-series forecasting"
-            href: books/fpp.qmd
-          - text: "Deep Learning"
-            href: books/udl.qmd
-          - text: "Fundamentals of Data Visualization"
-            href: books/fdv.qmd
-          - text: "The Turing Way"
-            href: books/turing-way.qmd
-      # - section: Getting into Python
-      #   href: python/index.qmd
-      #   contents:
-      #     - text: "Real Python"
-      #       href: python/realpython.qmd
-      #     - text: "Tour of Python"
-      #       href: python/whirlwind.qmd
-      #     - text: "Pythonic and idiomatic Python"
-      #       href: python/effective-python-and-idiomatic-pandas.ipynb
-      # - section: Visualization with Altair
-      #   href: altair/index.qmd
-      #   contents: altair/*
+        contents: books/*
       - section: "Lectures"
         href: lectures.qmd
         contents: lectures/*
