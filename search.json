@@ -71,7 +71,7 @@
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
       "Books",
-      "Deep Learning"
+      "Understanding Deep Learning"
     ]
   },
   {
@@ -79,7 +79,11 @@
     "href": "books/mml.html",
     "title": "Mathematics For Machine Learning",
     "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead."
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Books",
+      "Mathematics For Machine Learning"
+    ]
   },
   {
     "objectID": "lectures.html",
@@ -1342,7 +1346,7 @@
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
       "Books",
-      "Introduction to Statistical Learning"
+      "An Introduction to Statistical Learning"
     ]
   },
   {
@@ -1350,21 +1354,33 @@
     "href": "books/cds.html",
     "title": "Critical Data Studies",
     "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead."
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Books",
+      "Critical Data Studies"
+    ]
   },
   {
     "objectID": "books/shalizi.html",
     "href": "books/shalizi.html",
     "title": "Advanced Data Analysis from an Elementary Point of View",
     "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead."
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Books",
+      "Advanced Data Analysis from an Elementary Point of View"
+    ]
   },
   {
     "objectID": "books/ethics.html",
     "href": "books/ethics.html",
     "title": "Ethics of Artificial Intelligence",
     "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead."
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Books",
+      "Ethics of Artificial Intelligence"
+    ]
   },
   {
     "objectID": "cases/verkeersveiligheidmodel/index.html",
