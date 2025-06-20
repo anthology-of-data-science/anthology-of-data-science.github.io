@@ -1,0 +1,16 @@
+---
+title: Generative AI
+description: |
+    Introduction to generative AI systems in a 1.5-hour lecture
+image: images/genai-system.png
+author:
+    - Daniel Kapitan
+date: 2024-12-05
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://anthology-of-data.science/lecture-genertaive-ai/#/title-slide" title="Lecture"></iframe>
+```
+(view [full screen](https://anthology-of-data.science/lecture-genertaive-ai/#/title-slide))

@@ -2,8 +2,8 @@
 listing:
   contents: lectures/*.qmd
   type: grid
-  grid-columns: 1
-  image-height: "440px"
+  grid-columns: 2
+  image-height: "340px"
   sort: "title asc"
   sort-ui: false
 ---
