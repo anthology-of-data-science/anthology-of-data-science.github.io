@@ -27,12 +27,24 @@
     ]
   },
   {
-    "listing": "/notebooks/index.html",
+    "listing": "/lectures.html",
     "items": [
-      "/notebooks/pima-indians/index.html",
-      "/notebooks/ames-housing/index.html",
-      "/notebooks/overfitting/index.html",
-      "/notebooks/deconfounding/index.html"
+      "/lectures/gam-ebm.html",
+      "/lectures/generative-ai.html",
+      "/lectures/composable-data-stack.html",
+      "/lectures/piml.html"
+    ]
+  },
+  {
+    "listing": "/cases/index.html",
+    "items": [
+      "/cases/microclimate-vision/index.html",
+      "/cases/landscape-biomedical-research/index.html",
+      "/cases/wolves-in-germany/index.html",
+      "/cases/rice-grain-classification/index.html",
+      "/cases/energiearmoede/index.html",
+      "/cases/enterobase/index.html",
+      "/cases/verkeersveiligheidmodel/index.html"
     ]
   },
   {
@@ -54,23 +66,12 @@
     ]
   },
   {
-    "listing": "/cases/index.html",
+    "listing": "/notebooks/index.html",
     "items": [
-      "/cases/microclimate-vision/index.html",
-      "/cases/landscape-biomedical-research/index.html",
-      "/cases/wolves-in-germany/index.html",
-      "/cases/rice-grain-classification/index.html",
-      "/cases/energiearmoede/index.html",
-      "/cases/enterobase/index.html",
-      "/cases/verkeersveiligheidmodel/index.html"
-    ]
-  },
-  {
-    "listing": "/lectures.html",
-    "items": [
-      "/lectures/gam-ebm.html",
-      "/lectures/generative-ai.html",
-      "/lectures/composable-data-stack.html"
+      "/notebooks/pima-indians/index.html",
+      "/notebooks/ames-housing/index.html",
+      "/notebooks/overfitting/index.html",
+      "/notebooks/deconfounding/index.html"
     ]
   },
   {
