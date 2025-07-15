@@ -15,7 +15,7 @@ toc: false
 categories: [modeling]
 ---
 
-To explore different modeling approaches, have a look at [OR tools](OR-Tools) for deductive models and [DoWhy](https://www.pywhy.org/dowhy/v0.9.1/) for causal models.
+To explore different modeling approaches, have a look at [OR tools](https://developers.google.com/optimization/) for deductive models and [DoWhy](https://www.pywhy.org/dowhy/v0.9.1/) for causal models.
 
 #
 
