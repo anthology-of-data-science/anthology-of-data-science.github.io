@@ -15,6 +15,8 @@ toc: false
 categories: [modeling]
 ---
 
+To explore different modeling approaches, have a look at [OR tools](OR-Tools) for deductive models and [DoWhy](https://www.pywhy.org/dowhy/v0.9.1/) for causal models.
+
 #
 
 {{< pdf /resources/demast2023analytical.pdf width=100% height=800 >}}
