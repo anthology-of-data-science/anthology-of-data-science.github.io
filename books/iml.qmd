@@ -10,5 +10,5 @@ toc: false
 ---
 
 ```{=html}
-<iframe width="100%" height="800" src="https://masteringdata.ai/interpretable-ml-book" title="Interpretable Machine Learning"></iframe>
+<iframe width="100%" height="800" src="https://christophm.github.io/interpretable-ml-book/" title="Interpretable Machine Learning"></iframe>
 ```
