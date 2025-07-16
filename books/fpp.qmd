@@ -1,12 +1,16 @@
 ---
-title: Forecasting Principles & Practice
+title: Forecasting Principles & Practice the Pythonic Way
 description: |
-    This textbook is provides a comprehensive introduction to forecasting methods and presents enough information about each method for readers to be able to use them sensibly.
+    This textbook is provides a comprehensive introduction to forecasting methods and presents enough information about each method for readers to be able to use them sensibly. While originally written using R, as of 2025 we have a Pythonic Way, too, which is the version shown here.
 image: images/fpp.jpg
 author:
     - Rob J Hyndman
     - George Athanasopoulos
-date: 2021-05-31
+    - Azul Garza
+    - Cristian Challu
+    - Max Mergenthaler
+    - Kin G. Olivares
+date: 2025-06-18
 page-layout: full
 toc: false
 ---
