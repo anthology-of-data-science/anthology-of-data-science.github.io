@@ -6,7 +6,8 @@ image: "thumbnail.png"
 categories:
     - composable data stack
     - data engineering
-
+execute:
+    eval: false
 ---
 
 ## Introduction
