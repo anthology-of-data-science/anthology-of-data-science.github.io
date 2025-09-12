@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,14 +38,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8cb0128ebd684da8dd6d8ff79664b76c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ebea9defff24748bd5702241fa33d270.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0275ace686b95a2f1dd10086cc5cd665.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -125,7 +126,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -172,7 +173,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://www.linkedin.com/in/dkapitan/" title="LinkedIn profile" class="quarto-navigation-tool px-1" aria-label="LinkedIn profile"><i class="bi bi-linkedin"></i></a>
@@ -326,8 +328,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/precision-recall/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Precision-Recall Plot Is More Informative than the ROC Plot</span></a>
+  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stop aggregating away the signal in your data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -344,14 +346,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ibis-analytics/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modern, hybrid, open analytics</span></a>
+  <a href="../../posts/daps/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stop aggregating away the signal in your data</span></a>
+  <a href="../../posts/precision-recall/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Precision-Recall Plot Is More Informative than the ROC Plot</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -368,19 +370,48 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/daps/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
+  <a href="../../posts/ibis-analytics/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modern, hybrid, open analytics</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/altair/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data visualization with Vega-Altair</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a href="../../posts/python/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Getting into Python</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/effective-python-and-idiomatic-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Python and idiomatic pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/realpython.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting into Python with RealPython.com</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/whirlwind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A Whirlwind Tour of Python</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/altair/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data visualization with Vega-Altair</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/altair/ames-housing-eda-with-altair.html" class="sidebar-item-text sidebar-link">
@@ -425,35 +456,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../posts/python/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Getting into Python</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/effective-python-and-idiomatic-pandas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Effective Python and idiomatic pandas</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/realpython.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Getting into Python with RealPython.com</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/whirlwind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A Whirlwind Tour of Python</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -467,32 +469,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../cases/energiearmoede/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inzicht in energiearmoede</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../cases/landscape-biomedical-research/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The landscape of biomedical research</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../cases/wolves-in-germany/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predict precence of wolf pairs in Germany with XGBoost and SHAP</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../cases/enterobase/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations</span></a>
+  <a href="../../cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -503,8 +487,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../cases/wolves-in-germany/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Predict precence of wolf pairs in Germany with XGBoost and SHAP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../cases/rice-grain-classification/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classifying rice grains using deep learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cases/enterobase/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cases/landscape-biomedical-research/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The landscape of biomedical research</span></a>
   </div>
 </li>
       </ul>
@@ -520,14 +522,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deconfounding explained</span></a>
+  <a href="../../notebooks/overfitting/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Demonstration of overfitting and underfitting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/overfitting/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Demonstration of overfitting and underfitting</span></a>
+  <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deconfounding explained</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -636,7 +638,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-PCEP™ – Certified Entry-Level Python Programmer
+<span class="screen-reader-only">Note</span>PCEP™ – Certified Entry-Level Python Programmer
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -652,7 +654,7 @@ PCEP™ – Certified Entry-Level Python Programmer
 <h2 class="anchored" data-anchor-id="which-python-environment-should-i-use">Which Python environment should I use?</h2>
 <p>Options how to start using Python are listed below.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Online notebook (easy)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Visual Studio Code (intermediate)</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="" aria-current="page">Online notebook (easy)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Visual Studio Code (intermediate)</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>For those new to Python, it is probably easiest to start with one of these online notebook environments:</p>
@@ -704,7 +706,7 @@ PCEP™ – Certified Entry-Level Python Programmer
 <h2 class="anchored" data-anchor-id="more-on-python">More on Python</h2>
 <div id="listing-python-listing" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-2">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1699660800000" data-listing-file-modified-sort="1752681244674" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="165">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1699660800000" data-listing-file-modified-sort="1757706576261" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="165">
 <a href="../../posts/python/realpython.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -728,7 +730,7 @@ Nov 11, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1663459200000" data-listing-file-modified-sort="1752681244669" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6719">
+<div class="g-col-1" data-index="1" data-listing-date-sort="1663459200000" data-listing-file-modified-sort="1757706576257" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="34" data-listing-word-count-sort="6719">
 <a href="../../posts/python/effective-python-and-idiomatic-pandas.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -752,7 +754,7 @@ Sep 18, 2022
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1470787200000" data-listing-file-modified-sort="1752681244674" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="g-col-1" data-index="2" data-listing-date-sort="1470787200000" data-listing-file-modified-sort="1757706576261" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <a href="../../posts/python/whirlwind.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -836,13 +838,14 @@ Aug 10, 2016
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

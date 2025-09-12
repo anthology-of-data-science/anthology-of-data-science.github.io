@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8cb0128ebd684da8dd6d8ff79664b76c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ebea9defff24748bd5702241fa33d270.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0275ace686b95a2f1dd10086cc5cd665.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -113,7 +114,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -131,7 +132,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -180,7 +181,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://www.linkedin.com/in/dkapitan/" title="LinkedIn profile" class="quarto-navigation-tool px-1" aria-label="LinkedIn profile"><i class="bi bi-linkedin"></i></a>
@@ -334,8 +336,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/precision-recall/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Precision-Recall Plot Is More Informative than the ROC Plot</span></a>
+  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stop aggregating away the signal in your data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -352,14 +354,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ibis-analytics/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modern, hybrid, open analytics</span></a>
+  <a href="../../posts/daps/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stop aggregating away the signal in your data</span></a>
+  <a href="../../posts/precision-recall/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Precision-Recall Plot Is More Informative than the ROC Plot</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -376,19 +378,48 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/daps/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
+  <a href="../../posts/ibis-analytics/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modern, hybrid, open analytics</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/altair/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data visualization with Vega-Altair</span></a>
+            <a href="../../posts/python/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting into Python</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/effective-python-and-idiomatic-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Python and idiomatic pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/realpython.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting into Python with RealPython.com</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/whirlwind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A Whirlwind Tour of Python</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/altair/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data visualization with Vega-Altair</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/altair/ames-housing-eda-with-altair.html" class="sidebar-item-text sidebar-link">
@@ -433,35 +464,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../posts/python/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Getting into Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/effective-python-and-idiomatic-pandas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Effective Python and idiomatic pandas</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/realpython.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Getting into Python with RealPython.com</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/whirlwind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A Whirlwind Tour of Python</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -475,32 +477,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../cases/energiearmoede/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inzicht in energiearmoede</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../cases/landscape-biomedical-research/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The landscape of biomedical research</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../cases/wolves-in-germany/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predict precence of wolf pairs in Germany with XGBoost and SHAP</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../cases/enterobase/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations</span></a>
+  <a href="../../cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -511,8 +495,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../cases/wolves-in-germany/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Predict precence of wolf pairs in Germany with XGBoost and SHAP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../cases/rice-grain-classification/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classifying rice grains using deep learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cases/enterobase/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cases/landscape-biomedical-research/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The landscape of biomedical research</span></a>
   </div>
 </li>
       </ul>
@@ -528,14 +530,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deconfounding explained</span></a>
+  <a href="../../notebooks/overfitting/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Demonstration of overfitting and underfitting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/overfitting/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Demonstration of overfitting and underfitting</span></a>
+  <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deconfounding explained</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -619,13 +621,13 @@ window.Quarto = {
 
 
 <div id="8c90f6a1-de95-43dc-9925-b44dc0320f4c" class="cell" data-cell_id="00000-9167c12b-6ec3-4ce3-a8f1-888bfd66fdfd" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:null}}" data-deepnote_cell_type="code" data-execution_millis="2243" data-execution_start="1637915149221" data-source_hash="8865fee6" data-tags="[]" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="python-explainer---how-does-the-polynomialfeatures-function-work" class="level2">
 <h2 class="anchored" data-anchor-id="python-explainer---how-does-the-polynomialfeatures-function-work">Python explainer - How does the ‘PolynomialFeatures()’ function work?</h2>
@@ -633,7 +635,7 @@ window.Quarto = {
 <p><span class="math display">\[1 + X_1 + X_2 + X_3 + X_1^2 + X_2^2 + X_3^2 + X_1X_2 + X_1X_3 + X_2X3.\]</span></p>
 <p>Note, the default value for <code>degree</code> is 2. Below, we demonstrate the workings of <code>PolynomialFeatures()</code> for a simple dummy matrix.</p>
 <div id="43562fd6-a04a-4714-9124-327e68346f49" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dummy X matrix (3x3).</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dummy X matrix (3x3).</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.arange(<span class="dv">9</span>).reshape(<span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X matrix:"</span>)</span>
@@ -649,7 +651,7 @@ window.Quarto = {
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Expanded matrix containing the first and second order main features and the interaction features.</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>poly <span class="op">=</span> PolynomialFeatures(degree <span class="op">=</span> <span class="dv">2</span>, interaction_only<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Expanded X matrix with first and second order and interaction features:"</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(poly.fit_transform(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(poly.fit_transform(X))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>X matrix:
 [[0 1 2]
@@ -672,8 +674,8 @@ Expanded X matrix with first and second order and interaction features:
 <section id="initialize-objects" class="level2">
 <h2 class="anchored" data-anchor-id="initialize-objects">Initialize objects</h2>
 <div id="d2547789-ab0a-40ba-8fe9-1ed232da4c50" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum number of degrees in polynomial.</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>MAX_DEGREE <span class="op">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum number of degrees in polynomial.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>MAX_DEGREE <span class="op">=</span> <span class="dv">20</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="define-functions" class="level2">
@@ -683,7 +685,7 @@ Expanded X matrix with first and second order and interaction features:
 <section id="create-and-evaluate-models-for-different-levels-of-flexibility" class="level3">
 <h3 class="anchored" data-anchor-id="create-and-evaluate-models-for-different-levels-of-flexibility">1 - Create and evaluate models for different levels of flexibility</h3>
 <div id="c4734b21-0190-44bc-b5e4-63556bf6196a" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_create_and_evaluate_model(df_data, b_split):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_create_and_evaluate_model(df_data, b_split):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Creates and_evaluates models for different degrees of flexibility.</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -785,13 +787,13 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert list to data frame.</span></span>
 <span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>    df_results <span class="op">=</span> pd.DataFrame.from_records(results)</span>
 <span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df_results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="plot-fitted-data" class="level3">
 <h3 class="anchored" data-anchor-id="plot-fitted-data">2 - Plot fitted data</h3>
 <div id="5b591b16-269c-4889-989e-d51d05676939" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_plot_data_and_two_models(df_data, df_results, n_i, n_ii, b_split):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_plot_data_and_two_models(df_data, df_results, n_i, n_ii, b_split):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Make a plot of data and of two selected fitted models.</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -847,7 +849,7 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    plot_n_ii <span class="op">=</span> alt.Chart(df_plot_results).mark_line(color <span class="op">=</span> <span class="st">"green"</span>).encode(x <span class="op">=</span> <span class="st">"X_hat"</span>, y <span class="op">=</span> <span class="st">"Y_hat_ii"</span>)</span>
 <span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simply layer the three plots into one.</span></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> plot_data <span class="op">+</span> plot_n_i <span class="op">+</span> plot_n_ii</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> plot_data <span class="op">+</span> plot_n_i <span class="op">+</span> plot_n_ii</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="plot-rmse" class="level3">
@@ -856,7 +858,7 @@ Expanded X matrix with first and second order and interaction features:
 <section id="a---plot-rmse---evaluate-model-based-full-data-set" class="level4">
 <h4 class="anchored" data-anchor-id="a---plot-rmse---evaluate-model-based-full-data-set">3a - Plot RMSE - Evaluate model based full data set</h4>
 <div id="9acfd814-678b-4e3c-88ff-a3d2afb68198" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_plot_rmse_full_dataset(df_results):</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_plot_rmse_full_dataset(df_results):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Make a plot of RMSE against the flexibility of the model (degrees of freedom)</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">    in case of evaluating the model based on the full data set.</span></span>
@@ -872,13 +874,13 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">        a plot of the RMSE.</span></span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> alt.Chart(df_results).mark_line(point <span class="op">=</span> alt.OverlayMarkDef()).encode(x <span class="op">=</span> <span class="st">"degree"</span>, y <span class="op">=</span> <span class="st">"rmse"</span>, tooltip <span class="op">=</span> [<span class="st">"degree"</span>, <span class="st">"rmse"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> alt.Chart(df_results).mark_line(point <span class="op">=</span> alt.OverlayMarkDef()).encode(x <span class="op">=</span> <span class="st">"degree"</span>, y <span class="op">=</span> <span class="st">"rmse"</span>, tooltip <span class="op">=</span> [<span class="st">"degree"</span>, <span class="st">"rmse"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="b---plot-rmse---evaluate-model-based-on-train-and-test-set" class="level4">
 <h4 class="anchored" data-anchor-id="b---plot-rmse---evaluate-model-based-on-train-and-test-set">3b - Plot RMSE - Evaluate model based on train and test set</h4>
 <div id="b1f9e0d1-64ae-4dd4-89fd-bf4d7fb4a6e6" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function to plot performance metric (RMSE)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function to plot performance metric (RMSE)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_plot_rmse_train_test_set(df_results):</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Make a plot of RMSE against the flexibility of the model (degrees of freedom)</span></span>
@@ -951,7 +953,7 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>        ).encode(text<span class="op">=</span><span class="st">'rmse:Q'</span>).transform_filter(label),</span>
 <span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>        data <span class="op">=</span> df_results</span>
-<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -960,7 +962,7 @@ Expanded X matrix with first and second order and interaction features:
 <h2 class="anchored" data-anchor-id="section-1---overfitting">Section 1 - Overfitting</h2>
 <p>We simulate a true function <span class="math inline">\(Y\)</span> as a third-order polynomial of <span class="math inline">\(X1\)</span>. We show that the error of the fitted function decreases as you increase the complexity of the fitted functions, i.e.&nbsp;fitting polynomials with degree &gt; 3.</p>
 <div id="4bfc19af-b8db-46a7-a487-e102585bd4a0" class="cell" data-cell_id="00001-10e7dc30-b96d-4ec9-b8fb-29ca01e64e68" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:12}}" data-deepnote_cell_type="code" data-execution_millis="4" data-execution_start="1637915151479" data-source_hash="d2c46b1d" data-tags="[]" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of data</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>n_data <span class="op">=</span> <span class="dv">50</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We set a fixed random seed to reproduce our results below. In which cases would we not want to set a fixed seed?</span></span>
@@ -975,11 +977,11 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>df_data1 <span class="op">=</span> pd.DataFrame({<span class="st">"Y"</span>: y, <span class="st">"X1"</span>: x})</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and evaluate models of various flexibility.</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>df_results1 <span class="op">=</span> f_create_and_evaluate_model(df_data <span class="op">=</span> df_data1, b_split <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>df_results1 <span class="op">=</span> f_create_and_evaluate_model(df_data <span class="op">=</span> df_data1, b_split <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="d47fdd34-be27-4078-bf73-f484b56fb56e" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data and two fitted models. Select fitted models by updating 'n_i' and 'n_ii'.</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>f_plot_data_and_two_models(df_data <span class="op">=</span> df_data1, df_results <span class="op">=</span> df_results1, n_i <span class="op">=</span> <span class="dv">1</span>, n_ii <span class="op">=</span> <span class="dv">4</span>, b_split <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data and two fitted models. Select fitted models by updating 'n_i' and 'n_ii'.</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>f_plot_data_and_two_models(df_data <span class="op">=</span> df_data1, df_results <span class="op">=</span> df_results1, n_i <span class="op">=</span> <span class="dv">1</span>, n_ii <span class="op">=</span> <span class="dv">4</span>, b_split <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1050,8 +1052,8 @@ Expanded X matrix with first and second order and interaction features:
 </div>
 </div>
 <div id="d8c3e606-9d22-4bb4-895d-0a151e02c235" class="cell" data-cell_id="00007-6b02cedc-1015-4803-8941-a61b113b5526" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:18}}" data-deepnote_cell_type="code" data-deepnote_output_heights="[360.984375]" data-execution_millis="573" data-execution_start="1637915151508" data-source_hash="4fa019fa" data-tags="[]" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot RMSE against model flexibility.</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>f_plot_rmse_full_dataset(df_results <span class="op">=</span> df_results1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot RMSE against model flexibility.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>f_plot_rmse_full_dataset(df_results <span class="op">=</span> df_results1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1128,7 +1130,7 @@ Expanded X matrix with first and second order and interaction features:
 <h2 class="anchored" data-anchor-id="section-2---overfitting-with-random-variables">Section 2 - Overfitting with random variables</h2>
 <p>We now add features <span class="math inline">\(X2, X3\)</span> but keep the true function <span class="math inline">\(Y\)</span> unchanged, i.e.&nbsp;only dependent on <span class="math inline">\(X1\)</span>. We show that these random variables may lead to even more severe overfitting.</p>
 <div id="d7c59c06-852c-475b-b4a7-c00ff1c803ba" class="cell" data-cell_id="00008-9e63ccdd-4eeb-489d-8ac5-8a0bd6c1bc4e" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:30}}" data-deepnote_cell_type="code" data-execution_millis="33" data-execution_start="1637915152182" data-source_hash="35c0034e" data-tags="[]" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a copy of df_data1.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a copy of df_data1.</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_data2 <span class="op">=</span> df_data1.copy()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add two more features, X2 and X3. Response variable Y is independent of X2 and X3.</span></span>
@@ -1137,11 +1139,11 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    df_data2[<span class="ss">f"X</span><span class="sc">{</span><span class="bu">str</span>(i)<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> np.random.normal(loc <span class="op">=</span> <span class="dv">10</span>, scale <span class="op">=</span> <span class="dv">5</span>, size <span class="op">=</span> n_data)</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and evaluate models of various flexibility.</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>df_results2 <span class="op">=</span> f_create_and_evaluate_model(df_data <span class="op">=</span> df_data2, b_split <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>df_results2 <span class="op">=</span> f_create_and_evaluate_model(df_data <span class="op">=</span> df_data2, b_split <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="386b55d4-9d93-44b2-8fb6-25f25394d49f" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data and two fitted models. Select fitted models by updating 'n_i' and 'n_ii'.</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f_plot_data_and_two_models(df_data <span class="op">=</span> df_data2, df_results <span class="op">=</span> df_results2, n_i <span class="op">=</span> <span class="dv">1</span>, n_ii <span class="op">=</span> <span class="dv">2</span>, b_split <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data and two fitted models. Select fitted models by updating 'n_i' and 'n_ii'.</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>f_plot_data_and_two_models(df_data <span class="op">=</span> df_data2, df_results <span class="op">=</span> df_results2, n_i <span class="op">=</span> <span class="dv">1</span>, n_ii <span class="op">=</span> <span class="dv">2</span>, b_split <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1212,8 +1214,8 @@ Expanded X matrix with first and second order and interaction features:
 </div>
 </div>
 <div id="dd1bf630-db79-476a-a765-e12230807cd8" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot RMSE against model flexibility.</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>f_plot_rmse_full_dataset(df_results2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot RMSE against model flexibility.</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>f_plot_rmse_full_dataset(df_results2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1289,7 +1291,7 @@ Expanded X matrix with first and second order and interaction features:
 <h2 class="anchored" data-anchor-id="section-3---testing-to-prevent-overfitting">Section 3 - Testing to prevent overfitting</h2>
 <p>We follow <a href="https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html#sphx-glr-auto-examples-model-selection-plot-underfitting-overfitting-py">example from sklearn library</a>, with cosine as true function.</p>
 <div id="8eb8341b-76a5-46ca-965d-19637257bf73" class="cell" data-cell_id="00011-fe694c10-44dc-4167-af22-8ae02d9d7f83" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:48}}" data-deepnote_cell_type="code" data-execution_millis="7" data-execution_start="1637915153863" data-source_hash="4f061c7b" data-tags="[]" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function with the true model.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function with the true model.</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> true_fun(x, e):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.cos(<span class="fl">1.5</span> <span class="op">*</span> np.pi <span class="op">*</span> x) <span class="op">+</span> e</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1308,13 +1310,13 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>df_data3 <span class="op">=</span> pd.DataFrame({<span class="st">"Y"</span>: y, <span class="st">"X1"</span>: x})</span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and evaluate models of various flexibility.</span></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>df_results3 <span class="op">=</span> f_create_and_evaluate_model(df_data <span class="op">=</span> df_data3, b_split <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>df_results3 <span class="op">=</span> f_create_and_evaluate_model(df_data <span class="op">=</span> df_data3, b_split <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="9dd6be23-c009-4395-b9fe-3bd4fed8e50f" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data and two fitted models. Select fitted models by updating 'n_i' and 'n_ii'.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data and two fitted models. Select fitted models by updating 'n_i' and 'n_ii'.</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The plot shows all data (train + test), while the models are fitted on the training data.</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Try out different n_ii: start at 16 and increase with steps of 1. What do we see?</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>f_plot_data_and_two_models(df_data <span class="op">=</span> df_data3, df_results <span class="op">=</span> df_results3, n_i <span class="op">=</span> <span class="dv">1</span>, n_ii <span class="op">=</span> <span class="dv">5</span>, b_split <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>f_plot_data_and_two_models(df_data <span class="op">=</span> df_data3, df_results <span class="op">=</span> df_results3, n_i <span class="op">=</span> <span class="dv">1</span>, n_ii <span class="op">=</span> <span class="dv">5</span>, b_split <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1385,8 +1387,8 @@ Expanded X matrix with first and second order and interaction features:
 </div>
 </div>
 <div id="1230a5ea-525b-40fb-99bf-8d31b63e35ce" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot RMSE against model flexibility.</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>f_plot_rmse_train_test_set(df_results3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot RMSE against model flexibility.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>f_plot_rmse_train_test_set(df_results3)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/macstudio/opt/anaconda3/envs/py310/lib/python3.10/site-packages/altair/vegalite/v5/api.py:355: AltairDeprecationWarning: The value of 'empty' should be True or False.
   warnings.warn(</code></pre>
@@ -1465,7 +1467,7 @@ Expanded X matrix with first and second order and interaction features:
 <h2 class="anchored" data-anchor-id="section-4---traintest-split-can-still-lead-to-overfitting">Section 4 - Train/test split can still lead to overfitting</h2>
 <p>Train/test split isn’t a 100% safe-guard against overfitting. Given a quadratic (second order) true function, testing still results in a fourth order fitted function.</p>
 <div id="b123f856-5842-468b-84c5-5300c669a0c7" class="cell" data-cell_id="00014-ab4291b4-ea7b-42df-871b-b2dc3819bdde" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:66}}" data-deepnote_cell_type="code" data-execution_millis="1" data-execution_start="1637915154557" data-source_hash="49ef1a72" data-tags="[]" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed, to reproduce results.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed, to reproduce results.</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">456</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of data.</span></span>
@@ -1480,12 +1482,12 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>df_data4 <span class="op">=</span> pd.DataFrame({<span class="st">"Y"</span>: y, <span class="st">"X1"</span>: x})</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create and evaluate models of various flexibility.</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>df_results4 <span class="op">=</span> f_create_and_evaluate_model(df_data <span class="op">=</span> df_data4, b_split <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>df_results4 <span class="op">=</span> f_create_and_evaluate_model(df_data <span class="op">=</span> df_data4, b_split <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="1624cb72-e55b-4562-844c-92ec25c1f7da" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data and two fitted models. Select fitted models by updating 'n_i' and 'n_ii'.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data and two fitted models. Select fitted models by updating 'n_i' and 'n_ii'.</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The plot shows all data (train + test), while the models are fitted on the training data.</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>f_plot_data_and_two_models(df_data <span class="op">=</span> df_data4, df_results <span class="op">=</span> df_results4, n_i <span class="op">=</span> <span class="dv">1</span>, n_ii <span class="op">=</span> <span class="dv">2</span>, b_split <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>f_plot_data_and_two_models(df_data <span class="op">=</span> df_data4, df_results <span class="op">=</span> df_results4, n_i <span class="op">=</span> <span class="dv">1</span>, n_ii <span class="op">=</span> <span class="dv">2</span>, b_split <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 
 <style>
@@ -1556,8 +1558,8 @@ Expanded X matrix with first and second order and interaction features:
 </div>
 </div>
 <div id="f3b98eac-e009-48a4-bd3b-aacd20f8f434" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot RMSE against model flexibility.</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>f_plot_rmse_train_test_set(df_results4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot RMSE against model flexibility.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>f_plot_rmse_train_test_set(df_results4)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/Users/macstudio/opt/anaconda3/envs/py310/lib/python3.10/site-packages/altair/vegalite/v5/api.py:355: AltairDeprecationWarning: The value of 'empty' should be True or False.
   warnings.warn(</code></pre>
@@ -1637,7 +1639,7 @@ Expanded X matrix with first and second order and interaction features:
 <p>By using k-fold cross-validation, we have a better safeguard against overfitting. We reproduce the <a href="https://github.com/WillKoehrsen/Data-Analysis/blob/master/over_vs_under/Over%20vs%20Under%20Fitting%20Example.ipynb">example from Will Koehrsen</a>.</p>
 <p>NB: WORK IN PROGRESS. Example is not the best in terms of train-validation curves.</p>
 <div id="7a02ce21-7219-4a53-b9bd-d4a2a7a9a7f0" class="cell" data-cell_id="00013-ee9f0e8b-d189-4a12-80ae-be5eb1acf968" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:84}}" data-deepnote_cell_type="code" data-execution_millis="18" data-execution_start="1637915155166" data-source_hash="9dd40628" data-tags="[]" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># def fit_poly(train, y_train, test, y_test, degrees, plot='train', return_scores=False):</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># def fit_poly(train, y_train, test, y_test, degrees, plot='train', return_scores=False):</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     # Create a polynomial transformation of features</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     features = PolynomialFeatures(degree=degrees, include_bias=False)</span></span>
@@ -1678,10 +1680,10 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co">#      # Return the metrics</span></span>
 <span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="co">#     if return_scores:</span></span>
-<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a><span class="co">#         return training_error, testing_error, -np.mean(cross_valid)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a><span class="co">#         return training_error, testing_error, -np.mean(cross_valid)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="ffa9ba1b-30a5-40e2-bb44-f0b846d3dfd2" class="cell" data-cell_id="00015-73e34c5d-1ac4-4d2b-a353-89928d5a0b06" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:90}}" data-deepnote_cell_type="code" data-execution_millis="894" data-execution_start="1637915155191" data-source_hash="4498d250" data-tags="[]" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x = np.sort(np.random.rand(120))</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x = np.sort(np.random.rand(120))</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># y = true_fun(x) + 0.1 * np.random.randn(len(x))</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # Random indices for creating training and testing sets</span></span>
@@ -1715,10 +1717,10 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="co"># # print('10 Lowest Cross Validation Errors\n')</span></span>
 <span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a><span class="co"># # train_eval = results5.sort_values('cross_valid').reset_index(level=0).rename(columns={'index': 'degrees'})</span></span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="co"># # train_eval.loc[:,['degrees', 'cross_valid']].head(10)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="co"># # train_eval.loc[:,['degrees', 'cross_valid']].head(10)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="01c32495-39c2-4e9f-958e-0b19354b4768" class="cell" data-cell_id="00016-b866e88a-5c1d-4fb1-b7a2-d2be030d8705" data-quarto-private-1="{&quot;key&quot;:&quot;deepnote_app_coordinates&quot;,&quot;value&quot;:{&quot;h&quot;:5,&quot;w&quot;:12,&quot;x&quot;:0,&quot;y&quot;:96}}" data-deepnote_cell_type="code" data-deepnote_output_heights="[279.984375]" data-execution_millis="1329" data-execution_start="1637915156092" data-source_hash="92fa472" data-tags="[]" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib.pyplot as plt</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import matplotlib.pyplot as plt</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.plot(results5.index, results5['train_error'], 'b-o', ms=6, label = 'Training Error')</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.plot(results5.index, results5['test_error'], 'r-*', ms=6, label = 'Testing Error')</span></span>
@@ -1726,7 +1728,7 @@ Expanded X matrix with first and second order and interaction features:
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.ylim(0, 0.05); plt.show()</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print('\nMinimum Training Error occurs at {} degrees.'.format(int(np.argmin(results5['train_error']))))</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print('Minimum Testing Error occurs at {} degrees.\n'.format(int(np.argmin(results5['test_error']))))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print('Minimum Testing Error occurs at {} degrees.\n'.format(int(np.argmin(results5['test_error']))))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
@@ -1784,13 +1786,14 @@ Expanded X matrix with first and second order and interaction features:
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

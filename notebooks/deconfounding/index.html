@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -60,7 +60,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -70,14 +70,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7bd51a60a51e5c23b6c3f6a95c3214be.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-8cb0128ebd684da8dd6d8ff79664b76c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ebea9defff24748bd5702241fa33d270.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-0275ace686b95a2f1dd10086cc5cd665.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -113,7 +114,7 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -131,7 +132,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -180,7 +181,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../logo-anthology-of-data-science.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://www.linkedin.com/in/dkapitan/" title="LinkedIn profile" class="quarto-navigation-tool px-1" aria-label="LinkedIn profile"><i class="bi bi-linkedin"></i></a>
@@ -334,8 +336,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/precision-recall/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Precision-Recall Plot Is More Informative than the ROC Plot</span></a>
+  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stop aggregating away the signal in your data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -352,14 +354,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/ibis-analytics/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modern, hybrid, open analytics</span></a>
+  <a href="../../posts/daps/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stop aggregating away the signal in your data</span></a>
+  <a href="../../posts/precision-recall/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Precision-Recall Plot Is More Informative than the ROC Plot</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -376,19 +378,48 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/daps/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
+  <a href="../../posts/ibis-analytics/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modern, hybrid, open analytics</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../posts/altair/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data visualization with Vega-Altair</span></a>
+            <a href="../../posts/python/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting into Python</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/effective-python-and-idiomatic-pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Effective Python and idiomatic pandas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/realpython.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting into Python with RealPython.com</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/python/whirlwind.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A Whirlwind Tour of Python</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../posts/altair/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data visualization with Vega-Altair</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../posts/altair/ames-housing-eda-with-altair.html" class="sidebar-item-text sidebar-link">
@@ -433,35 +464,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../posts/python/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Getting into Python</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/effective-python-and-idiomatic-pandas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Effective Python and idiomatic pandas</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/realpython.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Getting into Python with RealPython.com</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/python/whirlwind.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A Whirlwind Tour of Python</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -475,32 +477,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../cases/energiearmoede/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inzicht in energiearmoede</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../cases/landscape-biomedical-research/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The landscape of biomedical research</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../cases/wolves-in-germany/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predict precence of wolf pairs in Germany with XGBoost and SHAP</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../cases/enterobase/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations</span></a>
+  <a href="../../cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -511,8 +495,26 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../cases/wolves-in-germany/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Predict precence of wolf pairs in Germany with XGBoost and SHAP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../cases/rice-grain-classification/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classifying rice grains using deep learning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cases/enterobase/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cases/landscape-biomedical-research/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The landscape of biomedical research</span></a>
   </div>
 </li>
       </ul>
@@ -528,14 +530,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Deconfounding explained</span></a>
+  <a href="../../notebooks/overfitting/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Demonstration of overfitting and underfitting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../notebooks/overfitting/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Demonstration of overfitting and underfitting</span></a>
+  <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Deconfounding explained</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -610,7 +612,7 @@ window.Quarto = {
 <p><span class="math display">\[X \longrightarrow Y\]</span></p>
 <p>And also we have 1000 <span class="math inline">\((X, Y)\)</span> tuples as our data and that we want to build a regressions model.</p>
 <div id="8b58d4a9-20b5-4bc1-bc8d-034f96c7ee36" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:484,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1613145678641,&quot;user&quot;:{&quot;displayName&quot;:&quot;Daniel Kapitan&quot;,&quot;photoUrl&quot;:&quot;https://lh3.googleusercontent.com/a-/AOh14GioH8_mX43j-mo7VD-XYrEuAJgexFj7ePvP_lgYYQ0=s64&quot;,&quot;userId&quot;:&quot;01543045592411283681&quot;},&quot;user_tz&quot;:-60}}" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
@@ -624,86 +626,86 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>error_y <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="fl">0.0</span>, scale<span class="op">=</span><span class="fl">0.01</span>, size<span class="op">=</span>N)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="dv">5</span><span class="op">*</span>C <span class="op">+</span> error_x</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>C <span class="op">+</span> error_y</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'X'</span>: X, <span class="st">'Y'</span>: Y, <span class="st">'C'</span>: C})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'X'</span>: X, <span class="st">'Y'</span>: Y, <span class="st">'C'</span>: C})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="e06e779a-86ab-402f-a2ae-752306343ec0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:483,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1613145679819,&quot;user&quot;:{&quot;displayName&quot;:&quot;Daniel Kapitan&quot;,&quot;photoUrl&quot;:&quot;https://lh3.googleusercontent.com/a-/AOh14GioH8_mX43j-mo7VD-XYrEuAJgexFj7ePvP_lgYYQ0=s64&quot;,&quot;userId&quot;:&quot;01543045592411283681&quot;},&quot;user_tz&quot;:-60}}" data-outputid="e2bf795f-8de3-4ba5-946e-7443c1bc6e9b" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>confounded <span class="op">=</span> smf.ols(<span class="st">"Y ~ X"</span>, data<span class="op">=</span>df).fit()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>confounded.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>confounded <span class="op">=</span> smf.ols(<span class="st">"Y ~ X"</span>, data<span class="op">=</span>df).fit()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>confounded.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <caption>OLS Regression Results</caption>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<th data-quarto-table-cell-role="th">Dep. Variable:</th>
 <td>Y</td>
-<td data-quarto-table-cell-role="th">R-squared:</td>
+<th data-quarto-table-cell-role="th">R-squared:</th>
 <td>0.960</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Model:</td>
+<th data-quarto-table-cell-role="th">Model:</th>
 <td>OLS</td>
-<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<th data-quarto-table-cell-role="th">Adj. R-squared:</th>
 <td>0.960</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Method:</td>
+<th data-quarto-table-cell-role="th">Method:</th>
 <td>Least Squares</td>
-<td data-quarto-table-cell-role="th">F-statistic:</td>
+<th data-quarto-table-cell-role="th">F-statistic:</th>
 <td>2.385e+04</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Date:</td>
+<th data-quarto-table-cell-role="th">Date:</th>
 <td>Thu, 21 Dec 2023</td>
-<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<th data-quarto-table-cell-role="th">Prob (F-statistic):</th>
 <td>0.00</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Time:</td>
+<th data-quarto-table-cell-role="th">Time:</th>
 <td>23:47:40</td>
-<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<th data-quarto-table-cell-role="th">Log-Likelihood:</th>
 <td>854.10</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">No. Observations:</td>
+<th data-quarto-table-cell-role="th">No. Observations:</th>
 <td>1000</td>
-<td data-quarto-table-cell-role="th">AIC:</td>
+<th data-quarto-table-cell-role="th">AIC:</th>
 <td>-1704.</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<th data-quarto-table-cell-role="th">Df Residuals:</th>
 <td>998</td>
-<td data-quarto-table-cell-role="th">BIC:</td>
+<th data-quarto-table-cell-role="th">BIC:</th>
 <td>-1694.</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Df Model:</td>
+<th data-quarto-table-cell-role="th">Df Model:</th>
 <td>1</td>
-<td data-quarto-table-cell-role="th"></td>
+<th data-quarto-table-cell-role="th"></th>
 <td></td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<th data-quarto-table-cell-role="th">Covariance Type:</th>
 <td>nonrobust</td>
-<td data-quarto-table-cell-role="th"></td>
+<th data-quarto-table-cell-role="th"></th>
 <td></td>
 </tr>
 </tbody>
 </table>
 
 
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <tbody>
 <tr class="odd">
 <td></td>
-<td data-quarto-table-cell-role="th">coef</td>
-<td data-quarto-table-cell-role="th">std err</td>
-<td data-quarto-table-cell-role="th">t</td>
-<td data-quarto-table-cell-role="th">P&gt;|t|</td>
-<td data-quarto-table-cell-role="th">[0.025</td>
-<td data-quarto-table-cell-role="th">0.975]</td>
+<th data-quarto-table-cell-role="th">coef</th>
+<th data-quarto-table-cell-role="th">std err</th>
+<th data-quarto-table-cell-role="th">t</th>
+<th data-quarto-table-cell-role="th">P&gt;|t|</th>
+<th data-quarto-table-cell-role="th">[0.025</th>
+<th data-quarto-table-cell-role="th">0.975]</th>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Intercept</td>
+<th data-quarto-table-cell-role="th">Intercept</th>
 <td>0.0446</td>
 <td>0.007</td>
 <td>6.389</td>
@@ -712,7 +714,7 @@ window.Quarto = {
 <td>0.058</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">X</td>
+<th data-quarto-table-cell-role="th">X</th>
 <td>0.0958</td>
 <td>0.001</td>
 <td>154.420</td>
@@ -724,30 +726,30 @@ window.Quarto = {
 </table>
 
 
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Omnibus:</td>
+<th data-quarto-table-cell-role="th">Omnibus:</th>
 <td>1.331</td>
-<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<th data-quarto-table-cell-role="th">Durbin-Watson:</th>
 <td>1.855</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<th data-quarto-table-cell-role="th">Prob(Omnibus):</th>
 <td>0.514</td>
-<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<th data-quarto-table-cell-role="th">Jarque-Bera (JB):</th>
 <td>1.406</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Skew:</td>
+<th data-quarto-table-cell-role="th">Skew:</th>
 <td>0.080</td>
-<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<th data-quarto-table-cell-role="th">Prob(JB):</th>
 <td>0.495</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<th data-quarto-table-cell-role="th">Kurtosis:</th>
 <td>2.911</td>
-<td data-quarto-table-cell-role="th">Cond. No.</td>
+<th data-quarto-table-cell-role="th">Cond. No.</th>
 <td>24.2</td>
 </tr>
 </tbody>
@@ -762,83 +764,83 @@ window.Quarto = {
 <p>Now here is the great deconfounding trick: suppose that we include both X and C in the regression analysis and fit the following modelL</p>
 <p><span class="math display">\[ Y = \beta_0 + \beta_1 X + \beta_2 C + ϵ\]</span></p>
 <div id="e6dc8e10-bc9d-408f-857e-54ca6065866b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;executionInfo&quot;,&quot;value&quot;:{&quot;elapsed&quot;:609,&quot;status&quot;:&quot;ok&quot;,&quot;timestamp&quot;:1613145682072,&quot;user&quot;:{&quot;displayName&quot;:&quot;Daniel Kapitan&quot;,&quot;photoUrl&quot;:&quot;https://lh3.googleusercontent.com/a-/AOh14GioH8_mX43j-mo7VD-XYrEuAJgexFj7ePvP_lgYYQ0=s64&quot;,&quot;userId&quot;:&quot;01543045592411283681&quot;},&quot;user_tz&quot;:-60}}" data-outputid="0fb67f88-60a2-4aeb-ce77-5d8c3be7d2f4" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>deconfounded <span class="op">=</span> smf.ols(<span class="st">"Y ~ X + C"</span>, data<span class="op">=</span>df).fit()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>deconfounded.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>deconfounded <span class="op">=</span> smf.ols(<span class="st">"Y ~ X + C"</span>, data<span class="op">=</span>df).fit()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>deconfounded.summary()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <caption>OLS Regression Results</caption>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Dep. Variable:</td>
+<th data-quarto-table-cell-role="th">Dep. Variable:</th>
 <td>Y</td>
-<td data-quarto-table-cell-role="th">R-squared:</td>
+<th data-quarto-table-cell-role="th">R-squared:</th>
 <td>1.000</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Model:</td>
+<th data-quarto-table-cell-role="th">Model:</th>
 <td>OLS</td>
-<td data-quarto-table-cell-role="th">Adj. R-squared:</td>
+<th data-quarto-table-cell-role="th">Adj. R-squared:</th>
 <td>1.000</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Method:</td>
+<th data-quarto-table-cell-role="th">Method:</th>
 <td>Least Squares</td>
-<td data-quarto-table-cell-role="th">F-statistic:</td>
+<th data-quarto-table-cell-role="th">F-statistic:</th>
 <td>1.261e+06</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Date:</td>
+<th data-quarto-table-cell-role="th">Date:</th>
 <td>Thu, 21 Dec 2023</td>
-<td data-quarto-table-cell-role="th">Prob (F-statistic):</td>
+<th data-quarto-table-cell-role="th">Prob (F-statistic):</th>
 <td>0.00</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Time:</td>
+<th data-quarto-table-cell-role="th">Time:</th>
 <td>23:47:40</td>
-<td data-quarto-table-cell-role="th">Log-Likelihood:</td>
+<th data-quarto-table-cell-role="th">Log-Likelihood:</th>
 <td>3164.9</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">No. Observations:</td>
+<th data-quarto-table-cell-role="th">No. Observations:</th>
 <td>1000</td>
-<td data-quarto-table-cell-role="th">AIC:</td>
+<th data-quarto-table-cell-role="th">AIC:</th>
 <td>-6324.</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Df Residuals:</td>
+<th data-quarto-table-cell-role="th">Df Residuals:</th>
 <td>997</td>
-<td data-quarto-table-cell-role="th">BIC:</td>
+<th data-quarto-table-cell-role="th">BIC:</th>
 <td>-6309.</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Df Model:</td>
+<th data-quarto-table-cell-role="th">Df Model:</th>
 <td>2</td>
-<td data-quarto-table-cell-role="th"></td>
+<th data-quarto-table-cell-role="th"></th>
 <td></td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Covariance Type:</td>
+<th data-quarto-table-cell-role="th">Covariance Type:</th>
 <td>nonrobust</td>
-<td data-quarto-table-cell-role="th"></td>
+<th data-quarto-table-cell-role="th"></th>
 <td></td>
 </tr>
 </tbody>
 </table>
 
 
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <tbody>
 <tr class="odd">
 <td></td>
-<td data-quarto-table-cell-role="th">coef</td>
-<td data-quarto-table-cell-role="th">std err</td>
-<td data-quarto-table-cell-role="th">t</td>
-<td data-quarto-table-cell-role="th">P&gt;|t|</td>
-<td data-quarto-table-cell-role="th">[0.025</td>
-<td data-quarto-table-cell-role="th">0.975]</td>
+<th data-quarto-table-cell-role="th">coef</th>
+<th data-quarto-table-cell-role="th">std err</th>
+<th data-quarto-table-cell-role="th">t</th>
+<th data-quarto-table-cell-role="th">P&gt;|t|</th>
+<th data-quarto-table-cell-role="th">[0.025</th>
+<th data-quarto-table-cell-role="th">0.975]</th>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Intercept</td>
+<th data-quarto-table-cell-role="th">Intercept</th>
 <td>1.0055</td>
 <td>0.003</td>
 <td>323.164</td>
@@ -847,7 +849,7 @@ window.Quarto = {
 <td>1.012</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">X</td>
+<th data-quarto-table-cell-role="th">X</th>
 <td>-0.0005</td>
 <td>0.000</td>
 <td>-1.671</td>
@@ -856,7 +858,7 @@ window.Quarto = {
 <td>9.05e-05</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">C</td>
+<th data-quarto-table-cell-role="th">C</th>
 <td>0.5023</td>
 <td>0.002</td>
 <td>316.780</td>
@@ -868,30 +870,30 @@ window.Quarto = {
 </table>
 
 
-<table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="simpletable caption-top table table-sm table-striped small">
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Omnibus:</td>
+<th data-quarto-table-cell-role="th">Omnibus:</th>
 <td>2.983</td>
-<td data-quarto-table-cell-role="th">Durbin-Watson:</td>
+<th data-quarto-table-cell-role="th">Durbin-Watson:</th>
 <td>2.042</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Prob(Omnibus):</td>
+<th data-quarto-table-cell-role="th">Prob(Omnibus):</th>
 <td>0.225</td>
-<td data-quarto-table-cell-role="th">Jarque-Bera (JB):</td>
+<th data-quarto-table-cell-role="th">Jarque-Bera (JB):</th>
 <td>3.073</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">Skew:</td>
+<th data-quarto-table-cell-role="th">Skew:</th>
 <td>-0.063</td>
-<td data-quarto-table-cell-role="th">Prob(JB):</td>
+<th data-quarto-table-cell-role="th">Prob(JB):</th>
 <td>0.215</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">Kurtosis:</td>
+<th data-quarto-table-cell-role="th">Kurtosis:</th>
 <td>3.240</td>
-<td data-quarto-table-cell-role="th">Cond. No.</td>
+<th data-quarto-table-cell-role="th">Cond. No.</th>
 <td>122.</td>
 </tr>
 </tbody>
@@ -957,13 +959,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
