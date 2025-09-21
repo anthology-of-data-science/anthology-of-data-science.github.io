@@ -23,7 +23,7 @@ website:
         text: "LinkedIn profile"
       - icon: github
         href: https://github.com/anthology-of-data-science
-        text: "GitHub repositories"
+        text: "GitHub repository"
     style: floating
     collapse-level: 1
     contents:

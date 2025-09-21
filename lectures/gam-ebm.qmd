@@ -1,5 +1,5 @@
 ---
-title: Generalized Additive Models and Explainable Boosting Machines
+title: Explainable Boosting Machines
 description: |
     Slides from a 1-hour workshop, after which you will be convinced that EBMs are your standard go-to algorithm for tabular data.
 image: images/xkcd-interpretability-flexibility.png

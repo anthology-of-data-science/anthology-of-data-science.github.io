@@ -1,5 +1,5 @@
 ---
-title: Modern, composable and downward-scaleable data platforms
+title: Composable data platforms 
 description: |
     Slides from a 3-hour guest lecture given at Strathmore University.
 image: images/mice-complete-implementation.png
