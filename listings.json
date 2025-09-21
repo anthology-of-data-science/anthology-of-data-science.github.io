@@ -23,9 +23,9 @@
   {
     "listing": "/lectures.html",
     "items": [
+      "/lectures/composable-data-stack.html",
       "/lectures/gam-ebm.html",
       "/lectures/generative-ai.html",
-      "/lectures/composable-data-stack.html",
       "/lectures/piml.html",
       "/lectures/real-world-data-science.html"
     ]
