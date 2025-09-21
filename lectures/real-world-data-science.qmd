@@ -1,0 +1,15 @@
+---
+title: Real World Data Science
+description: |
+    Slidedeck for a 2-day masterclass. While it is probably difficult to follow without the vocie over, the many references included in the slides are useful for a bird's eye view on data science.
+image: images/real-world-data-science.png
+author:
+    - Daniel Kapitan
+date: 2025-09-26
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSxU7OQvmMItU0FBhTIo-vzC9D5Xrb73NicRZC67NudRuCLRgdCn0g9aYSdtVlIhVf9_gCIV44BZ-yg/pubembed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+```
