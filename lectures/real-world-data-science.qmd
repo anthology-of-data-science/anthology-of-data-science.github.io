@@ -1,7 +1,7 @@
 ---
 title: Real World Data Science
 description: |
-    Slidedeck for a 2-day masterclass. While it is probably difficult to follow without the vocie over, the many references included in the slides are useful for a bird's eye view on data science.
+    Slidedeck for a 2-day masterclass. While it is probably difficult to follow without the voice-over, the many references included in the slides are useful for a bird's eye view on data science.
 image: images/real-world-data-science.png
 author:
     - Daniel Kapitan
