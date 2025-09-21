@@ -66,3 +66,8 @@ Notebooks for those seeking [hands-on examples and explainers](notebooks/index.q
 ## Report an issue
 
 This anthology was born out of a need to scratch my own itch, namely to have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful for those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue.
+
+#
+```{=html}
+<a href="https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=dkapitan" class="btn btn-primary btn-lg" type="button">Follow me on LinkedIn</a>
+```
