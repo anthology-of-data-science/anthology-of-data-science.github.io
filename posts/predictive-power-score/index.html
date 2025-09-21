@@ -293,6 +293,12 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
  <span class="menu-text">Physics-informed machine learning</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../lectures/real-world-data-science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Real World Data Science</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -688,16 +694,16 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 <p>Before using the Python library, please take a moment to read through the calculation details</p>
 </blockquote>
 <p>Installing the package is as simple as</p>
-<div id="d8c8c341" class="cell" data-execution_count="1">
+<div id="d7211ab8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pip install ppscore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Calculating the PPS for a given pandas dataframe:</p>
-<div id="b4f4c20c" class="cell" data-execution_count="2">
+<div id="374e0486" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ppscore <span class="im">as</span> pps</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pps.score(df, <span class="st">"feature_column"</span>, <span class="st">"target_column"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can also calculate the whole PPS matrix:</p>
-<div id="ed4c3c67" class="cell" data-execution_count="3">
+<div id="854517be" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pps.matrix(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="how-fast-is-the-pps-in-comparison-to-the-correlation" class="level3">
