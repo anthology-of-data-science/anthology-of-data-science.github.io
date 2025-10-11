@@ -1,26 +1,5 @@
 [
   {
-    "listing": "/cases/index.html",
-    "items": [
-      "/cases/microclimate-vision/index.html",
-      "/cases/landscape-biomedical-research/index.html",
-      "/cases/wolves-in-germany/index.html",
-      "/cases/rice-grain-classification/index.html",
-      "/cases/energiearmoede/index.html",
-      "/cases/enterobase/index.html",
-      "/cases/verkeersveiligheidmodel/index.html"
-    ]
-  },
-  {
-    "listing": "/notebooks/index.html",
-    "items": [
-      "/notebooks/pima-indians/index.html",
-      "/notebooks/ames-housing/index.html",
-      "/notebooks/overfitting/index.html",
-      "/notebooks/deconfounding/index.html"
-    ]
-  },
-  {
     "listing": "/lectures.html",
     "items": [
       "/lectures/composable-data-stack.html",
@@ -28,26 +7,6 @@
       "/lectures/generative-ai.html",
       "/lectures/piml.html",
       "/lectures/real-world-data-science.html"
-    ]
-  },
-  {
-    "listing": "/posts/python/index.html",
-    "items": [
-      "/posts/python/realpython.html",
-      "/posts/python/effective-python-and-idiomatic-pandas.html",
-      "/posts/python/whirlwind.html"
-    ]
-  },
-  {
-    "listing": "/posts/altair/index.html",
-    "items": [
-      "/posts/altair/better-altair-theme.html",
-      "/posts/altair/ames-housing-eda-with-altair.html",
-      "/posts/altair/curriculum.html",
-      "/posts/altair/comet-chart.html",
-      "/posts/altair/video-altair-data-types.html",
-      "/posts/altair/video-altair-grammar.html",
-      "/posts/altair/video-altair-intro.html"
     ]
   },
   {
@@ -81,6 +40,47 @@
       "/books/r4ds.html",
       "/books/turing-way.html",
       "/books/udl.html"
+    ]
+  },
+  {
+    "listing": "/cases/index.html",
+    "items": [
+      "/cases/microclimate-vision/index.html",
+      "/cases/landscape-biomedical-research/index.html",
+      "/cases/wolves-in-germany/index.html",
+      "/cases/rice-grain-classification/index.html",
+      "/cases/energiearmoede/index.html",
+      "/cases/enterobase/index.html",
+      "/cases/verkeersveiligheidmodel/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/python/index.html",
+    "items": [
+      "/posts/python/realpython.html",
+      "/posts/python/effective-python-and-idiomatic-pandas.html",
+      "/posts/python/whirlwind.html"
+    ]
+  },
+  {
+    "listing": "/posts/altair/index.html",
+    "items": [
+      "/posts/altair/better-altair-theme.html",
+      "/posts/altair/ames-housing-eda-with-altair.html",
+      "/posts/altair/curriculum.html",
+      "/posts/altair/comet-chart.html",
+      "/posts/altair/video-altair-data-types.html",
+      "/posts/altair/video-altair-grammar.html",
+      "/posts/altair/video-altair-intro.html"
+    ]
+  },
+  {
+    "listing": "/notebooks/index.html",
+    "items": [
+      "/notebooks/pima-indians/index.html",
+      "/notebooks/ames-housing/index.html",
+      "/notebooks/overfitting/index.html",
+      "/notebooks/deconfounding/index.html"
     ]
   }
 ]
