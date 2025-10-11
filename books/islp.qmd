@@ -1,0 +1,17 @@
+---
+title: An Introduction to Statistical Learning
+description: |
+    Statistical learning has become a critical toolkit for anyone who wishes to understand data. This book provides a broad and less technical treatment of key topics in statistical learning, and is appropriate for anyone who wishes to use contemporary tools for data analysis.
+image: images/islp.png
+author:
+    - Gareth James
+    - Daniela Witten
+    - Trevor Hastie
+    - Robert Tibshirani
+    - Jonathan Taylor
+date: 2023-07-05
+page-layout: full
+toc: false
+---
+
+{{< pdf /resources/james2023islp.pdf width=100% height=800 >}}

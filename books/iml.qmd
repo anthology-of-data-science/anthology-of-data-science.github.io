@@ -1,0 +1,14 @@
+---
+title: Interpretable Machine Learning
+description: |
+    This book is about making machine learning models and their decisions interpretable. It will enable you to select and correctly apply the interpretation method that is most suitable for your machine learning project.
+image: images/iml.png
+author: Christoph Molnar
+date: 2022-03-04
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://christophm.github.io/interpretable-ml-book/" title="Interpretable Machine Learning"></iframe>
+```

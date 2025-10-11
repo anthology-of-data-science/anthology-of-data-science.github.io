@@ -1,0 +1,17 @@
+---
+title: Physics-informed machine learning
+description: |
+    Introduction to physics-informed machine learning in a 1-hour lecture.
+image: images/piml.png
+author:
+    - Daniel Kapitan
+date: 2023-08-23
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS-PESEDPh4WPUgRo72Sng11FQ3EntmfJ6DftEX2PevGc6NuzxzQt004nInyJf9-hyw3mj2VBuCPNGd/pubembed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+```
+
+

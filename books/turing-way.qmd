@@ -1,0 +1,15 @@
+---
+title: The Turing Way
+description: |
+    An open source, open collaboration, community-driven handbook to reproducible, ethical and collaborative data science.
+image: images/turing-way.png
+author:
+    - The Turing Way Community
+date: 2022-07-22
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://the-turing-way.netlify.app/index.html#" title="The Turing Way"></iframe>
+```

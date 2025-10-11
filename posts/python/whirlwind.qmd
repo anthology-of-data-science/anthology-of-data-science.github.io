@@ -1,0 +1,11 @@
+---
+title: A Whirlwind Tour of Python
+description: |
+    A brief but comprehensive tour of the Python language for those who have (sometimes extensive) backgrounds in computing in some language.
+image: images/whirlwind.png
+author: Jake VanderPlas
+date: 2016-08-10
+
+---
+
+{{< pdf /resources/vanderplas2016whirlwind.pdf width=100% height=800 >}}

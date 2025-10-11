@@ -1,0 +1,15 @@
+---
+title: Python of Data Analysis, Third Edition
+description: |
+    This book is concerned with the nuts and bolts of manipulating, processing, cleaning, and crunching data in Python.
+image: images/pda.png
+author:
+    - Wes McKinney
+date: 2023-04-12
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://wesmckinney.com/book/" title="Python for Data Analysis. Third Edition"></iframe>
+```

@@ -1,0 +1,63 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Anthology of Data Science"
+  site-url: https://anthology-of-data.science
+  repo-url: https://github.com/anthology-of-data-science/anthology-of-data-science.github.io
+  favicon: favicon.png
+  repo-actions: [issue]
+  google-analytics: "G-9JMR365RPQ"
+  open-graph: true
+  reader-mode: true
+  search:
+    location: sidebar
+    type: textbox
+  sidebar:
+    title: false
+    logo: /logo-anthology-of-data-science.png    
+    tools:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/dkapitan/
+        text: "LinkedIn profile"
+      - icon: github
+        href: https://github.com/anthology-of-data-science
+        text: "GitHub repository"
+    style: floating
+    collapse-level: 1
+    contents:
+      - section: Books
+        href: books.qmd
+        contents: books/*
+      - section: "Lectures"
+        href: lectures.qmd
+        contents: lectures/*
+      - section: "Perspectives on data science"
+        href: posts/index.qmd
+        contents: posts/*/*
+      - section: "Use cases & applications"
+        href: cases/index.qmd
+        contents: cases/*/*
+      - section: "Notebooks"
+        href: notebooks/index.qmd
+        contents: notebooks/*/*
+  page-footer:
+    left: |
+      <br>
+      © 2023 by Daniel Kapitan<br>
+      This website was created with [![](/quarto.png){fig-alt="Quarto" width=65px}](https://quarto.org)<br>
+      [![](/cc-by-nc-eu.png){fig-alt="CC BY-NC 4.0"}](http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1)<br>
+
+lightbox: true
+format:
+  html:
+    theme:
+      - cosmo
+      - mozilla.scss
+    css: styles.css
+    toc: true
+
+execute:
+  freeze: auto  # re-render only when source changes
+

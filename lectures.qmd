@@ -1,0 +1,10 @@
+---
+listing:
+  contents: lectures/*.qmd
+  type: grid
+  grid-columns: 2
+  image-height: "340px"
+  sort: "title asc"
+  sort-ui: false
+---
+

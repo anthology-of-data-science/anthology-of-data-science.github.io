@@ -1,0 +1,18 @@
+---
+title: Visualization curriculum with Altair
+description: |
+    A data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.
+image: images/altair-banner.png
+author:
+    - Jeffrey Heer
+    - Dominik Moritz
+    - Jake VanderPlas
+    - Brock Craft
+date: 2021-03-25
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://masteringdata.ai/visualization-curriculum" title="Visualization curriculum"></iframe>
+```

@@ -1,0 +1,15 @@
+---
+title: Fundamentals of Data Visualization
+description: |
+    The book is meant as a guide to making visualizations that accurately reflect the data, tell a story, and look professional.
+image: images/fdv.png
+author:
+    - Claus O. Wilke
+date: 2020-08-20
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://clauswilke.com/dataviz/" title="Fundamentals of Data Visualization"></iframe>
+```

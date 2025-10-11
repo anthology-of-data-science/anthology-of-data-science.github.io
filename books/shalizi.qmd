@@ -1,0 +1,12 @@
+---
+title: Advanced Data Analysis from an Elementary Point of View
+description: |
+    This is a draft textbook on data analysis methods, intended for a one-semester course for advance undergraduate students who have already taken classes in probability, mathematical statistics, and linear regression. Every subject covered here can be profitably studied using vastly more sophisticated techniques; that's why this is advanced data analysis from an elementary point of view. Taken from <a href="https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/">https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/</a>.
+image: images/melencolia-i.jpg
+author: Cosma Rohilla Shalizi
+date: 2025-02-08
+page-layout: full
+toc: false
+---
+
+{{< pdf /resources/shalizi.pdf width=100% height=800 >}}

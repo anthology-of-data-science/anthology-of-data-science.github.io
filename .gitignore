@@ -1,0 +1,9 @@
+.venv
+
+.DS_Store
+/_freeze/
+/.quarto/
+/_site/
+
+poetry.lock
+/docs

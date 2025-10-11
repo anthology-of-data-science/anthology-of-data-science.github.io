@@ -1,0 +1,12 @@
+---
+title: Altair's visualization grammar
+description: |
+    This video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using Altair.
+image: images/altair-grammar.png
+author: Eitan Lees
+date: 2020-08-13
+page-layout: full
+toc: false
+---
+
+{{< video https://www.youtube.com/watch?v=U7w1XumKK60 >}}

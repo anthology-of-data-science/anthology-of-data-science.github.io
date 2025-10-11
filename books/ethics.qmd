@@ -1,0 +1,15 @@
+---
+title: Ethics of Artificial Intelligence
+description: |
+    This open access collection of AI ethics case studies is the first book to present real-life case studies combined with commentaries and strategies for overcoming ethical challenges. Case studies are one of the best ways to learn about ethical dilemmas and to achieve insights into various complexities and stakeholder perspectives. Given the omnipresence of AI ethics in academic, policy and media debates, the book will be suitable for a wide range of audiences, from scholars of different disciplines (e.g. AI science, ethics, politics, philosophy, economics) to policy-makers, lobbying NGOs, teachers and the educated public. Taken from <a href="https://library.oapen.org/handle/20.500.12657/59315">https://library.oapen.org/handle/20.500.12657/59315</a>.
+image: images/ethics-of-ai.png
+author:
+    - Bernd Carsten Stahl 
+    - Doris Schroeder
+    - Rowena Rodrigues
+date: 2023-01-01
+page-layout: full
+toc: false
+---
+
+{{< pdf /resources/ethics-of-ai.pdf width=100% height=800 >}}
