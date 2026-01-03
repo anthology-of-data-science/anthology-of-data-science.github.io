@@ -8,7 +8,7 @@ website:
   repo-url: https://github.com/anthology-of-data-science/anthology-of-data-science.github.io
   favicon: favicon.png
   repo-actions: [issue]
-  # google-analytics: "G-9JMR365RPQ"
+  google-analytics: "G-9JMR365RPQ"
   open-graph: true
   reader-mode: true
   search:
@@ -59,7 +59,7 @@ format:
     toc: true
     include-in-header:
       - text: |
-          <script data-goatcounter="https://dkapitan.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+          <script data-goatcounter="https://anthology.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 execute:
   freeze: auto  # re-render only when source changes
 
