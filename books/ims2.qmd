@@ -1,0 +1,16 @@
+---
+title: Introduction to Modern Statistics (2nd edition)
+description: |
+    This books aims to offer three ideas, namely i) statistics is an applied field with a wide range of practical applications; ii) you don’t have to be a math guru to learn from interesting, real data; and iii) data are messy, and statistical tools are imperfect. However, when you understand the strengths and weaknesses of these tools, you can use them to learn interesting things about the world.
+image: images/ims2.png
+author:
+    - Mine Çetinkaya-Rundel
+    - Johanna Hardin
+date: 2024
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://openintro-ims.netlify.app/" title="Introduction to Modern Statistics (2e)"></iframe>
+```

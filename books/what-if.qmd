@@ -1,0 +1,14 @@
+---
+title: "Causal Inference: What If"
+description: |
+    A book that helps scientists—especially health and social scientists—generate and analyze data to make causal inferences that are explicit about both the causal question and the assumptions underlying the data analysis. The book stresses the need to take the causal question seriously enough to articulate it, and to delineate the separate roles of data and assumptions for causal inference. This is not a philosophy book. Instead, it focuses on the identification and estimation of causal effects in populations, i.e., numerical quantities that measure changes in the distribution of an outcome under different interventions. 
+image: images/what-if.png
+author:
+    - Miguel A. Hernán
+    - James M. Robins
+date: 2024-01-02
+page-layout: full
+toc: false
+---
+
+{{< pdf /resources/hernan-robins2024what-if.pdf width=100% height=800 >}}
