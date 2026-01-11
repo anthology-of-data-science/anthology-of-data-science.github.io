@@ -6,7 +6,7 @@ image: images/ims2.png
 author:
     - Mine Çetinkaya-Rundel
     - Johanna Hardin
-date: 2024
+date: 2024-01-01
 page-layout: full
 toc: false
 ---
