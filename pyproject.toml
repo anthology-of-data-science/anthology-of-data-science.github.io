@@ -29,5 +29,5 @@ dependencies = [
     "ydata-profiling>=4.16.1",
 ]
 
-[tool.uv.extra-build-dependencies]
-ppscore = ["setuptools"]
+[tool.uv]
+no-build-isolation-package = ["ppscore"]
