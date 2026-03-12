@@ -25,8 +25,11 @@ jobs:
         run: echo "$(pwd)/.venv/bin" >> $GITHUB_PATH
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.9.32
       - run: curl -fsSL https://d2lang.com/install.sh | sh -s --
       - run: quarto add --no-prompt data-intuitive/quarto-d2
+      - run: quarto add --no-prompt marimo-team/quarto-marimo
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:

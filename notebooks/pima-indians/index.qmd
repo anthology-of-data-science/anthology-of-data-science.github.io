@@ -1,0 +1,232 @@
+---
+title: Predicting diabetes
+author: Daniel Kapitan
+date: 2023-11-01
+image: women-Pima-shinny-game-field-hockey.jpg
+engine: marimo-team/marimo
+external-env: true
+format:
+  html: default
+---
+
+![](women-Pima-shinny-game-field-hockey.jpg)
+
+## Objectives
+
+- Example end-to-end supervised learning workflow with Pima Indians dataset
+- Focus on conceptual understanding of machine learning
+- Demonstrate use of Predictive Power Score (PPS)
+- Demonstrate capabilities of AutoML model comparison with lazypredict
+- Demonstrate SHAP values for the best model
+
+## Attribution
+
+### Dataset
+- Pima Indians paper ([original paper](/resources/schulz2006effects.pdf))
+- Kaggle datacard ([link](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database/data))
+
+### Python libraries
+- Altair ([docs](https://altair-viz.github.io/))
+- ydata-profiling ([docs](https://docs.profiling.ydata.ai/))
+- Predictive Power Score (PPS, [GitHub](https://github.com/8080labs/ppscore/), [blog](https://towardsdatascience.com/rip-correlation-introducing-the-predictive-power-score-3d90808b9598))
+- lazypredict: runs all sklearn estimators and ranks them ([GitHub](https://github.com/shankarpandala/lazypredict))
+- SHAP: explain individual model predictions ([docs](https://shap.readthedocs.io/))
+
+```python {.marimo}
+#| echo: true
+import marimo as mo
+```
+
+```python {.marimo}
+#| echo: true
+import altair as alt
+import pandas as pd
+import ppscore as pps
+import shap
+import warnings
+from lazypredict.Supervised import LazyClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from ydata_profiling import ProfileReport
+
+warnings.filterwarnings("ignore")
+
+# Altair theme: clean axes
+def y_axis():
+    return {
+        "config": {
+            "axisX": {"grid": False},
+            "axisY": {
+                "domain": False,
+                "gridDash": [2, 4],
+                "tickSize": 0,
+                "titleAlign": "right",
+                "titleAngle": 0,
+                "titleX": -5,
+                "titleY": -10,
+            },
+            "view": {
+                "stroke": "transparent",
+                "continuousHeight": 300,
+                "continuousWidth": 400,
+            },
+        }
+    }
+
+alt.themes.register("y_axis", y_axis)
+alt.themes.enable("y_axis")
+```
+
+## Read and explore the data
+
+```python {.marimo}
+#| echo: true
+df = pd.read_csv("diabetes.csv").astype({"Outcome": bool})
+train, test = train_test_split(df, test_size=0.3, random_state=42)
+profile = ProfileReport(train, minimal=True, title="Pima Indians Profiling Report")
+profile.to_file("pima-indians-profiling-report-minimal.html")
+```
+
+```python {.marimo}
+#| echo: true
+mo.Html(
+    '<iframe width="100%" height="800px" src="pima-indians-profiling-report-minimal.html"></iframe>'
+)
+```
+
+## Predictive Power Score
+
+The [Predictive Power Score](https://github.com/8080labs/ppscore) is an asymmetric, data-type-agnostic score that can detect linear or non-linear relationships between two variables. It is a useful alternative to the correlation matrix for exploratory data analysis.
+
+```python {.marimo}
+#| echo: true
+# PPS of each feature predicting Outcome
+pps_predictors = (
+    pps.predictors(train, "Outcome")
+    .sort_values("ppscore", ascending=False)
+)
+
+pps_bar = (
+    alt.Chart(pps_predictors)
+    .mark_bar()
+    .encode(
+        x=alt.X("ppscore:Q", title="PPS", scale=alt.Scale(domain=[0, 1])),
+        y=alt.Y("x:N", sort="-x", title="Feature"),
+        tooltip=["x", alt.Tooltip("ppscore:Q", format=".3f")],
+    )
+    .properties(title="Predictive Power Score — predicting Outcome")
+)
+pps_bar
+```
+
+```python {.marimo}
+#| echo: true
+# Full PPS matrix heatmap
+pps_matrix = pps.matrix(train)
+
+pps_heatmap = (
+    alt.Chart(pps_matrix)
+    .mark_rect()
+    .encode(
+        x=alt.X("x:N", title="Feature (predictor)"),
+        y=alt.Y("y:N", title="Feature (target)"),
+        color=alt.Color(
+            "ppscore:Q",
+            scale=alt.Scale(scheme="blues", domain=[0, 1]),
+            title="PPS",
+        ),
+        tooltip=["x", "y", alt.Tooltip("ppscore:Q", format=".3f")],
+    )
+    .properties(title="PPS Matrix", width=400, height=400)
+)
+pps_heatmap
+```
+
+## AutoML model comparison with lazypredict
+
+`LazyClassifier` runs all scikit-learn classifiers and ranks them. This gives a rapid overview of which algorithm families work best without manual tuning.
+
+```python {.marimo}
+#| echo: true
+feature_cols = [c for c in df.columns if c != "Outcome"]
+X = df[feature_cols]
+y = df["Outcome"].astype(int)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+clf = LazyClassifier(verbose=0, ignore_warnings=True, custom_metric=None)
+models, predictions = clf.fit(X_train, X_test, y_train, y_test)
+models_df = models.reset_index().rename(columns={"index": "Model"})
+models_df
+```
+
+```python {.marimo}
+#| echo: true
+# Bar chart ranked by ROC AUC
+roc_chart = (
+    alt.Chart(models_df)
+    .mark_bar()
+    .encode(
+        x=alt.X("ROC AUC:Q", scale=alt.Scale(domain=[0, 1]), title="ROC AUC"),
+        y=alt.Y("Model:N", sort="-x", title=None),
+        color=alt.Color(
+            "ROC AUC:Q",
+            scale=alt.Scale(scheme="blues", domain=[0.5, 1]),
+            legend=None,
+        ),
+        tooltip=["Model", alt.Tooltip("ROC AUC:Q", format=".3f"),
+                 alt.Tooltip("Accuracy:Q", format=".3f"),
+                 alt.Tooltip("F1 Score:Q", format=".3f")],
+    )
+    .properties(title="Model comparison — ROC AUC (test set)", height=500)
+)
+roc_chart
+```
+
+## SHAP values for the best model
+
+We retrain the best-performing model (by ROC AUC) using scikit-learn directly, then use SHAP to explain its predictions.
+
+```python {.marimo}
+#| echo: true
+from sklearn.utils import all_estimators
+import numpy as np
+
+# Identify the top model name from lazypredict results
+best_model_name = models_df.sort_values("ROC AUC", ascending=False).iloc[0]["Model"]
+mo.md(f"**Best model by ROC AUC:** {best_model_name}")
+```
+
+```python {.marimo}
+#| echo: true
+# Map lazypredict display name back to an sklearn estimator class
+estimator_map = {
+    name: cls
+    for name, cls in all_estimators(type_filter="classifier")
+}
+
+# lazypredict uses the class name as the index; look it up
+BestEstimator = estimator_map.get(best_model_name)
+
+if BestEstimator is None:
+    # Fallback to LogisticRegression if name not found
+    BestEstimator = LogisticRegression
+
+best_clf = BestEstimator()
+best_clf.fit(X_train, y_train)
+```
+
+```python {.marimo}
+#| echo: true
+# SHAP explanation
+explainer = shap.Explainer(best_clf, X_train)
+shap_values = explainer(X_test)
+
+# Summary plot (beeswarm)
+shap.summary_plot(shap_values, X_test, show=False)
+import matplotlib.pyplot as plt
+plt.tight_layout()
+mo.mpl.interactive(plt.gcf())
+```

@@ -1,0 +1,179 @@
+---
+title: Predicting house prices
+author: Daniel Kapitan
+date: 2023-10-21
+image: kaggle_5407_media_housesbanner.png
+engine: marimo-team/marimo
+external-env: true
+format:
+  html: default
+---
+
+![](kaggle_5407_media_housesbanner.png)
+
+## Objectives
+
+- Example end-to-end supervised learning workflow with Ames Housing dataset
+- Focus on conceptual understanding of machine learning
+- Demonstrate use of Predictive Power Score (PPS) for feature selection
+- Demonstrate capabilities of AutoML model comparison with lazypredict
+
+## Attribution
+
+### Dataset
+- Ames Housing dataset paper ([original paper](/resources/decock2011ames.pdf))
+- Kaggle competition advanced regression techniques ([link](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques))
+
+### Python libraries
+- Altair ([docs](https://altair-viz.github.io/))
+- ydata-profiling ([docs](https://docs.profiling.ydata.ai/))
+- Predictive Power Score (PPS, [GitHub](https://github.com/8080labs/ppscore/), [blog](https://towardsdatascience.com/rip-correlation-introducing-the-predictive-power-score-3d90808b9598))
+- lazypredict: runs all sklearn estimators and ranks them ([GitHub](https://github.com/shankarpandala/lazypredict))
+
+```python {.marimo}
+#| echo: true
+import marimo as mo
+```
+
+```python {.marimo}
+#| echo: true
+import altair as alt
+import pandas as pd
+import ppscore as pps
+import warnings
+from lazypredict.Supervised import LazyRegressor
+from sklearn.model_selection import train_test_split
+from ydata_profiling import ProfileReport
+
+warnings.filterwarnings("ignore")
+
+# Altair theme: clean axes
+def y_axis():
+    return {
+        "config": {
+            "axisX": {"grid": False},
+            "axisY": {
+                "domain": False,
+                "gridDash": [2, 4],
+                "tickSize": 0,
+                "titleAlign": "right",
+                "titleAngle": 0,
+                "titleX": -5,
+                "titleY": -10,
+            },
+            "view": {
+                "stroke": "transparent",
+                "continuousHeight": 300,
+                "continuousWidth": 400,
+            },
+        }
+    }
+
+alt.themes.register("y_axis", y_axis)
+alt.themes.enable("y_axis")
+
+
+def get_descriptions():
+    """Parse column descriptions from the Ames Housing data_description.txt."""
+    with open("data_description.txt") as f:
+        descriptions = {}
+        for line in f.readlines():
+            if ":" in line and "2nd level" not in line:
+                parts = line.split(": ")
+                descriptions[parts[0].strip()] = parts[1].strip()
+    return pd.Series(descriptions).rename("description")
+
+descriptions = get_descriptions()
+```
+
+## Read and explore the data
+
+```python {.marimo}
+#| echo: true
+train = pd.read_csv("train.csv")
+test = pd.read_csv("test.csv")
+profile = ProfileReport(train, minimal=True, title="Ames Housing Profiling Report")
+profile.to_file("ames-housing-profiling-report-minimal.html")
+```
+
+```python {.marimo}
+#| echo: true
+mo.Html(
+    '<iframe width="100%" height="800px" src="ames-housing-profiling-report-minimal.html"></iframe>'
+)
+```
+
+## Feature selection with Predictive Power Score
+
+We use the Predictive Power Score to identify the top 30 features most predictive of `SalePrice`. This is especially useful for the Ames Housing dataset which has 79 features, many of which are categorical.
+
+```python {.marimo}
+#| echo: true
+# Compute PPS for all numeric features predicting SalePrice
+numeric_train = train.select_dtypes(include="number")
+pps_scores = pps.predictors(numeric_train, "SalePrice").sort_values(
+    "ppscore", ascending=False
+)
+top30 = pps_scores.head(30)
+
+pps_bar = (
+    alt.Chart(top30)
+    .mark_bar()
+    .encode(
+        x=alt.X("ppscore:Q", title="PPS", scale=alt.Scale(domain=[0, 1])),
+        y=alt.Y("x:N", sort="-x", title="Feature"),
+        tooltip=["x", alt.Tooltip("ppscore:Q", format=".3f")],
+    )
+    .properties(title="Top 30 features by Predictive Power Score (predicting SalePrice)", height=500)
+)
+pps_bar
+```
+
+## AutoML model comparison with lazypredict
+
+`LazyRegressor` runs all scikit-learn regressors and ranks them. We train on the top 30 PPS-selected numeric features to keep the comparison fast and interpretable.
+
+```python {.marimo}
+#| echo: true
+top30_features = top30["x"].tolist()
+# Remove target from features if present
+top30_features = [f for f in top30_features if f != "SalePrice"]
+
+X = train[top30_features].fillna(train[top30_features].median())
+y = train["SalePrice"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+reg = LazyRegressor(verbose=0, ignore_warnings=True, custom_metric=None)
+models_reg, predictions_reg = reg.fit(X_train, X_test, y_train, y_test)
+models_reg_df = models_reg.reset_index().rename(columns={"index": "Model"})
+models_reg_df
+```
+
+```python {.marimo}
+#| echo: true
+# Bar chart ranked by R-Squared
+r2_chart = (
+    alt.Chart(models_reg_df)
+    .mark_bar()
+    .encode(
+        x=alt.X("R-Squared:Q", title="R²", scale=alt.Scale(domain=[0, 1])),
+        y=alt.Y("Model:N", sort="-x", title=None),
+        color=alt.Color(
+            "R-Squared:Q",
+            scale=alt.Scale(scheme="blues", domain=[0, 1]),
+            legend=None,
+        ),
+        tooltip=[
+            "Model",
+            alt.Tooltip("R-Squared:Q", format=".3f"),
+            alt.Tooltip("RMSE:Q", format=".0f"),
+            alt.Tooltip("Time Taken:Q", format=".2f"),
+        ],
+    )
+    .properties(title="Model comparison — R² (test set)", height=600)
+)
+r2_chart
+```
