@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>books – Anthology of Data Science</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -35,15 +38,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-b524e5e10053bf5bea4dd5b3071a8bf3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-cc9195ca4c5b2e18d90d368b2311ff79.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-765550ab7b6508e24bcb1a53afe6a014.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-1bb436be909766af8614d612fdaa69cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -139,7 +141,7 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 <script data-goatcounter="https://anthology.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -377,8 +379,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/hamilton-ibis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Portable dataflows with Ibis and Hamilton</span></a>
+  <a href="./posts/daps/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -389,20 +391,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/daps/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/predictive-power-score/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">RIP correlation. Introducing the Predictive Power Score.</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./posts/design-philosophy/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Design Philosophy of Great Tables</span></a>
+  <a href="./posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stop aggregating away the signal in your data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -413,8 +403,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stop aggregating away the signal in your data</span></a>
+  <a href="./posts/hamilton-ibis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Portable dataflows with Ibis and Hamilton</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/design-philosophy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Design Philosophy of Great Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./posts/predictive-power-score/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RIP correlation. Introducing the Predictive Power Score.</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -518,8 +520,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cases/energiearmoede/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Inzicht in energiearmoede</span></a>
+  <a href="./cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cases/verkeersveiligheidmodel/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Verkeersveiligheidmodel</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -536,14 +544,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./cases/verkeersveiligheidmodel/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Verkeersveiligheidmodel</span></a>
+  <a href="./cases/energiearmoede/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inzicht in energiearmoede</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -565,6 +567,18 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deconfounding explained</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./notebooks/ames-housing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Predicting house prices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./notebooks/overfitting/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Demonstration of overfitting and underfitting</span></a>
   </div>
@@ -572,19 +586,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./notebooks/pima-indians/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predicting diabetes with pycaret</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebooks/ames-housing/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predicting house prices with pycaret</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deconfounding explained</span></a>
+ <span class="menu-text">Predicting diabetes</span></a>
   </div>
 </li>
       </ul>
@@ -609,7 +611,7 @@ window.Quarto = {
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div id="listing-open-access-books" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-2">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1738972800000" data-listing-file-modified-sort="1768124301793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1738972800000" data-listing-file-modified-sort="1773313161145" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <a href="./books/shalizi.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -633,7 +635,7 @@ Feb 8, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1688515200000" data-listing-file-modified-sort="1768124301792" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="g-col-1" data-index="1" data-listing-date-sort="1688515200000" data-listing-file-modified-sort="1773313161145" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <a href="./books/islp.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -657,7 +659,7 @@ Jul 5, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1704153600000" data-listing-file-modified-sort="1768124301793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="g-col-1" data-index="2" data-listing-date-sort="1704153600000" data-listing-file-modified-sort="1773313161146" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <a href="./books/what-if.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -681,7 +683,7 @@ Jan 2, 2024
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-date-sort="1736121600000" data-listing-file-modified-sort="1768124301758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="g-col-1" data-index="3" data-listing-date-sort="1736121600000" data-listing-file-modified-sort="1773313161110" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <a href="./books/cds.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -705,7 +707,7 @@ Jan 6, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="4" data-listing-date-sort="1672531200000" data-listing-file-modified-sort="1768124301758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="g-col-1" data-index="4" data-listing-date-sort="1672531200000" data-listing-file-modified-sort="1773313161111" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <a href="./books/ethics.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -729,7 +731,7 @@ Jan 1, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="5" data-listing-date-sort="1672531200000" data-listing-file-modified-sort="1768124301758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="8">
+<div class="g-col-1" data-index="5" data-listing-date-sort="1672531200000" data-listing-file-modified-sort="1773313161111" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="8">
 <a href="./books/fairml.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -753,7 +755,7 @@ Jan 1, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="6" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1768124301758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="8">
+<div class="g-col-1" data-index="6" data-listing-date-sort="1750204800000" data-listing-file-modified-sort="1773313161111" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="8">
 <a href="./books/fpp.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -777,7 +779,7 @@ Jun 18, 2025
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="7" data-listing-date-sort="1597881600000" data-listing-file-modified-sort="1768124301758" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="8">
+<div class="g-col-1" data-index="7" data-listing-date-sort="1597881600000" data-listing-file-modified-sort="1773313161111" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="8">
 <a href="./books/fdv.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -801,7 +803,7 @@ Aug 20, 2020
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="8" data-listing-date-sort="1646352000000" data-listing-file-modified-sort="1768124301792" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
+<div class="g-col-1" data-index="8" data-listing-date-sort="1646352000000" data-listing-file-modified-sort="1773313161145" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
 <a href="./books/iml.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -825,7 +827,7 @@ Mar 4, 2022
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="9" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1768124301792" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
+<div class="g-col-1" data-index="9" data-listing-date-sort="1704067200000" data-listing-file-modified-sort="1773313161145" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
 <a href="./books/ims2.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -849,7 +851,7 @@ Jan 1, 2024
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="10" data-listing-date-sort="1705276800000" data-listing-file-modified-sort="1768124301793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="g-col-1" data-index="10" data-listing-date-sort="1705276800000" data-listing-file-modified-sort="1773313161145" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <a href="./books/mml.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -873,7 +875,7 @@ Jan 15, 2024
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="11" data-listing-date-sort="1681257600000" data-listing-file-modified-sort="1768124301793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<div class="g-col-1" data-index="11" data-listing-date-sort="1681257600000" data-listing-file-modified-sort="1773313161145" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
 <a href="./books/pda.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -897,7 +899,7 @@ Apr 12, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="12" data-listing-date-sort="1701302400000" data-listing-file-modified-sort="1768124301793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
+<div class="g-col-1" data-index="12" data-listing-date-sort="1701302400000" data-listing-file-modified-sort="1773313161145" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="10">
 <a href="./books/r4ds.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -921,7 +923,7 @@ Nov 30, 2023
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="13" data-listing-date-sort="1658448000000" data-listing-file-modified-sort="1768124301793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
+<div class="g-col-1" data-index="13" data-listing-date-sort="1658448000000" data-listing-file-modified-sort="1773313161146" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
 <a href="./books/turing-way.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -945,7 +947,7 @@ Jul 22, 2022
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="14" data-listing-date-sort="1698019200000" data-listing-file-modified-sort="1768124301793" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
+<div class="g-col-1" data-index="14" data-listing-date-sort="1698019200000" data-listing-file-modified-sort="1773313161146" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="6">
 <a href="./books/udl.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">

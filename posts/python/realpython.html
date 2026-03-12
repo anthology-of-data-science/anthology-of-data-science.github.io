@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,6 +12,9 @@
 
 <title>Getting into Python with RealPython.com – Anthology of Data Science</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -36,15 +39,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b524e5e10053bf5bea4dd5b3071a8bf3.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cc9195ca4c5b2e18d90d368b2311ff79.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-765550ab7b6508e24bcb1a53afe6a014.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-1bb436be909766af8614d612fdaa69cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -293,8 +295,8 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/hamilton-ibis/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Portable dataflows with Ibis and Hamilton</span></a>
+  <a href="../../posts/daps/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -305,20 +307,8 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/daps/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">DAPS - Data-Analytic Problem Structure</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/predictive-power-score/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">RIP correlation. Introducing the Predictive Power Score.</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../posts/design-philosophy/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">The Design Philosophy of Great Tables</span></a>
+  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stop aggregating away the signal in your data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,8 +319,20 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../posts/stop-aggregating-signal/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stop aggregating away the signal in your data</span></a>
+  <a href="../../posts/hamilton-ibis/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Portable dataflows with Ibis and Hamilton</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/design-philosophy/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The Design Philosophy of Great Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../posts/predictive-power-score/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RIP correlation. Introducing the Predictive Power Score.</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -434,8 +436,14 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../cases/energiearmoede/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Inzicht in energiearmoede</span></a>
+  <a href="../../cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../cases/verkeersveiligheidmodel/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Verkeersveiligheidmodel</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -452,14 +460,8 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../cases/microclimate-vision/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multimodal prediction of climatic parameters using street-level and satellite imagery</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../cases/verkeersveiligheidmodel/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Verkeersveiligheidmodel</span></a>
+  <a href="../../cases/energiearmoede/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inzicht in energiearmoede</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -481,6 +483,18 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deconfounding explained</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../notebooks/ames-housing/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Predicting house prices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../notebooks/overfitting/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Demonstration of overfitting and underfitting</span></a>
   </div>
@@ -488,19 +502,7 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../notebooks/pima-indians/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predicting diabetes with pycaret</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../notebooks/ames-housing/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Predicting house prices with pycaret</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../notebooks/deconfounding/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Deconfounding explained</span></a>
+ <span class="menu-text">Predicting diabetes</span></a>
   </div>
 </li>
       </ul>
