@@ -28,3 +28,6 @@ dependencies = [
     "xgboost>=3.0.5",
     "ydata-profiling>=4.16.1",
 ]
+
+[tool.uv.extra-build-dependencies]
+ppscore = ["setuptools"]
