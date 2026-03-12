@@ -3,7 +3,7 @@ title: Predicting house prices
 author: Daniel Kapitan
 date: 2023-10-21
 image: kaggle_5407_media_housesbanner.png
-engine: marimo-team/marimo
+engine: marimo
 external-env: true
 format:
   html: default

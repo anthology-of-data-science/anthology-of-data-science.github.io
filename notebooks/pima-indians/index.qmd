@@ -3,7 +3,7 @@ title: Predicting diabetes
 author: Daniel Kapitan
 date: 2023-11-01
 image: women-Pima-shinny-game-field-hockey.jpg
-engine: marimo-team/marimo
+engine: marimo
 external-env: true
 format:
   html: default
@@ -216,6 +216,17 @@ if BestEstimator is None:
 
 best_clf = BestEstimator()
 best_clf.fit(X_train, y_train)
+
+# Verify SHAP compatibility: some models (e.g. QuadraticDiscriminantAnalysis)
+# are not callable in the way shap.Explainer requires. Fall back to
+# LogisticRegression when the best model is not SHAP-compatible.
+try:
+    _test_explainer = shap.Explainer(best_clf, X_train[:5])
+    del _test_explainer
+except Exception:
+    mo.md("_Note: best model is not SHAP-compatible; falling back to LogisticRegression for SHAP explanations._")
+    best_clf = LogisticRegression(max_iter=1000)
+    best_clf.fit(X_train, y_train)
 ```
 
 ```python {.marimo}

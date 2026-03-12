@@ -265,6 +265,9 @@ if __name__ == "__main__":
     _, reference_file, mime_sensitive = sys.argv[:3]
     global_eval = sys.argv[3].lower() == "yes" if len(sys.argv) == 4 else True
 
+    # Execute in the notebook's own directory so relative paths (data files, etc.) resolve correctly.
+    os.chdir(os.path.dirname(os.path.abspath(reference_file)))
+
     file = sys.stdin.read()
     if not file:
         with open(reference_file) as f:
