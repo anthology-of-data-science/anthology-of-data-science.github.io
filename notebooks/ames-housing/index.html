@@ -119,19 +119,26 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </script>
-<script data-goatcounter="https://anthology.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
-
-
-<link rel="stylesheet" href="../../styles.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@marimo-team/islands@0.20.4/dist/main.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@marimo-team/islands@0.20.4/dist/style.css" rel="stylesheet" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&amp;family=Lora&amp;family=PT+Sans:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
 <meta property="og:title" content="Predicting house prices – Anthology of Data Science">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://anthology-of-data.science/notebooks/ames-housing/kaggle_5407_media_housesbanner.png">
 <meta property="og:site_name" content="Anthology of Data Science">
 <meta property="og:image:height" content="177">
 <meta property="og:image:width" content="1000">
-</head>
+</head><body class="nav-sidebar floating quarto-light"><marimo-filename hidden=""></marimo-filename>
+<script data-goatcounter="https://anthology.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-<body class="nav-sidebar floating quarto-light">
+
+<link rel="stylesheet" href="../../styles.css">
+
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -629,135 +636,170 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 <li>Predictive Power Score (PPS, <a href="https://github.com/8080labs/ppscore/">GitHub</a>, <a href="https://towardsdatascience.com/rip-correlation-introducing-the-predictive-power-score-3d90808b9598">blog</a>)</li>
 <li>lazypredict: runs all sklearn estimators and ranks them (<a href="https://github.com/shankarpandala/lazypredict">GitHub</a>)</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo <span class="im">as</span> mo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ppscore <span class="im">as</span> pps</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lazypredict.Supervised <span class="im">import</span> LazyRegressor</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ydata_profiling <span class="im">import</span> ProfileReport</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Altair theme: clean axes</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y_axis():</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">"config"</span>: {</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"axisX"</span>: {<span class="st">"grid"</span>: <span class="va">False</span>},</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"axisY"</span>: {</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"domain"</span>: <span class="va">False</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"gridDash"</span>: [<span class="dv">2</span>, <span class="dv">4</span>],</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"tickSize"</span>: <span class="dv">0</span>,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleAlign"</span>: <span class="st">"right"</span>,</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleAngle"</span>: <span class="dv">0</span>,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleX"</span>: <span class="op">-</span><span class="dv">5</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleY"</span>: <span class="op">-</span><span class="dv">10</span>,</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            },</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            <span class="st">"view"</span>: {</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                <span class="st">"stroke"</span>: <span class="st">"transparent"</span>,</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                <span class="st">"continuousHeight"</span>: <span class="dv">300</span>,</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                <span class="st">"continuousWidth"</span>: <span class="dv">400</span>,</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>            },</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>alt.themes.register(<span class="st">"y_axis"</span>, y_axis)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>alt.themes.enable(<span class="st">"y_axis"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo <span class="im">as</span> mo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="Hbol" data-reactive="true">
+    <marimo-cell-output>
+    <span></span>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="113e93a3-cbba-0efe-0ec9-407926e091d6" random-id="113e93a3-cbba-0efe-0ec9-407926e091d6"><marimo-code-editor data-initial-value="&quot;import marimo as mo&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ppscore <span class="im">as</span> pps</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lazypredict.Supervised <span class="im">import</span> LazyRegressor</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ydata_profiling <span class="im">import</span> ProfileReport</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Altair theme: clean axes</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y_axis():</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">"config"</span>: {</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"axisX"</span>: {<span class="st">"grid"</span>: <span class="va">False</span>},</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">"axisY"</span>: {</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">"domain"</span>: <span class="va">False</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"gridDash"</span>: [<span class="dv">2</span>, <span class="dv">4</span>],</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"tickSize"</span>: <span class="dv">0</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleAlign"</span>: <span class="st">"right"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleAngle"</span>: <span class="dv">0</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleX"</span>: <span class="op">-</span><span class="dv">5</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleY"</span>: <span class="op">-</span><span class="dv">10</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            },</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            <span class="st">"view"</span>: {</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                <span class="st">"stroke"</span>: <span class="st">"transparent"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                <span class="st">"continuousHeight"</span>: <span class="dv">300</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                <span class="st">"continuousWidth"</span>: <span class="dv">400</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            },</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>alt.themes.register(<span class="st">"y_axis"</span>, y_axis)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>alt.themes.enable(<span class="st">"y_axis"</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_descriptions():</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Parse column descriptions from the Ames Housing data_description.txt."""</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data_description.txt"</span>) <span class="im">as</span> f:</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        descriptions <span class="op">=</span> {}</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> line <span class="kw">in</span> f.readlines():</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="st">":"</span> <span class="kw">in</span> line <span class="kw">and</span> <span class="st">"2nd level"</span> <span class="kw">not</span> <span class="kw">in</span> line:</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                parts <span class="op">=</span> line.split(<span class="st">": "</span>)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>                descriptions[parts[<span class="dv">0</span>].strip()] <span class="op">=</span> parts[<span class="dv">1</span>].strip()</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series(descriptions).rename(<span class="st">"description"</span>)</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>descriptions <span class="op">=</span> get_descriptions()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_descriptions():</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Parse column descriptions from the Ames Housing data_description.txt."""</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"data_description.txt"</span>) <span class="im">as</span> f:</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        descriptions <span class="op">=</span> {}</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> line <span class="kw">in</span> f.readlines():</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="st">":"</span> <span class="kw">in</span> line <span class="kw">and</span> <span class="st">"2nd level"</span> <span class="kw">not</span> <span class="kw">in</span> line:</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                parts <span class="op">=</span> line.split(<span class="st">": "</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                descriptions[parts[<span class="dv">0</span>].strip()] <span class="op">=</span> parts[<span class="dv">1</span>].strip()</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series(descriptions).rename(<span class="st">"description"</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>descriptions <span class="op">=</span> get_descriptions()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="MJUe" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;[Errno 2] No such file or directory: 'data_description.txt'&quot;,&quot;exception_type&quot;:&quot;FileNotFoundError&quot;,&quot;raising_cell&quot;:null}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="4bcbbbb2-8222-0a91-234f-f85f3c14a960" random-id="4bcbbbb2-8222-0a91-234f-f85f3c14a960"><marimo-code-editor data-initial-value="&quot;import altair as alt\nimport pandas as pd\nimport ppscore as pps\nimport warnings\nfrom lazypredict.Supervised import LazyRegressor\nfrom sklearn.model_selection import train_test_split\nfrom ydata_profiling import ProfileReport\n\nwarnings.filterwarnings(\&quot;ignore\&quot;)\n\n# Altair theme: clean axes\ndef y_axis():\n    return {\n        \&quot;config\&quot;: {\n            \&quot;axisX\&quot;: {\&quot;grid\&quot;: False},\n            \&quot;axisY\&quot;: {\n                \&quot;domain\&quot;: False,\n                \&quot;gridDash\&quot;: [2, 4],\n                \&quot;tickSize\&quot;: 0,\n                \&quot;titleAlign\&quot;: \&quot;right\&quot;,\n                \&quot;titleAngle\&quot;: 0,\n                \&quot;titleX\&quot;: -5,\n                \&quot;titleY\&quot;: -10,\n            },\n            \&quot;view\&quot;: {\n                \&quot;stroke\&quot;: \&quot;transparent\&quot;,\n                \&quot;continuousHeight\&quot;: 300,\n                \&quot;continuousWidth\&quot;: 400,\n            },\n        }\n    }\n\nalt.themes.register(\&quot;y_axis\&quot;, y_axis)\nalt.themes.enable(\&quot;y_axis\&quot;)\n\n\ndef get_descriptions():\n    \&quot;\&quot;\&quot;Parse column descriptions from the Ames Housing data_description.txt.\&quot;\&quot;\&quot;\n    with open(\&quot;data_description.txt\&quot;) as f:\n        descriptions = {}\n        for line in f.readlines():\n            if \&quot;:\&quot; in line and \&quot;2nd level\&quot; not in line:\n                parts = line.split(\&quot;: \&quot;)\n                descriptions[parts[0].strip()] = parts[1].strip()\n    return pd.Series(descriptions).rename(\&quot;description\&quot;)\n\ndescriptions = get_descriptions()&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 </section>
 </section>
 <section id="read-and-explore-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-and-explore-the-data">Read and explore the data</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_csv(<span class="st">"train.csv"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> pd.read_csv(<span class="st">"test.csv"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> ProfileReport(train, minimal<span class="op">=</span><span class="va">True</span>, title<span class="op">=</span><span class="st">"Ames Housing Profiling Report"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>profile.to_file(<span class="st">"ames-housing-profiling-report-minimal.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mo.Html(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;iframe width="100%" height="800px" src="ames-housing-profiling-report-minimal.html"&gt;&lt;/iframe&gt;'</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_csv(<span class="st">"train.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> pd.read_csv(<span class="st">"test.csv"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> ProfileReport(train, minimal<span class="op">=</span><span class="va">True</span>, title<span class="op">=</span><span class="st">"Ames Housing Profiling Report"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>profile.to_file(<span class="st">"ames-housing-profiling-report-minimal.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="vblA" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;MJUe&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="2ee72089-109f-6db9-62b8-ee4cb9bb2dfe" random-id="2ee72089-109f-6db9-62b8-ee4cb9bb2dfe"><marimo-code-editor data-initial-value="&quot;train = pd.read_csv(\&quot;train.csv\&quot;)\ntest = pd.read_csv(\&quot;test.csv\&quot;)\nprofile = ProfileReport(train, minimal=True, title=\&quot;Ames Housing Profiling Report\&quot;)\nprofile.to_file(\&quot;ames-housing-profiling-report-minimal.html\&quot;)&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mo.Html(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;iframe width="100%" height="800px" src="ames-housing-profiling-report-minimal.html"&gt;&lt;/iframe&gt;'</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="bkHC" data-reactive="true">
+    <marimo-cell-output>
+    <iframe width="100%" height="800px" src="ames-housing-profiling-report-minimal.html"></iframe>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="7b60ada6-2458-aed6-4da1-7529e7d7f11a" random-id="7b60ada6-2458-aed6-4da1-7529e7d7f11a"><marimo-code-editor data-initial-value="&quot;mo.Html(\n    '<iframe width=\&quot;100%\&quot; height=\&quot;800px\&quot; src=\&quot;ames-housing-profiling-report-minimal.html\&quot;></iframe>'\n)&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 </section>
 <section id="feature-selection-with-predictive-power-score" class="level2">
 <h2 class="anchored" data-anchor-id="feature-selection-with-predictive-power-score">Feature selection with Predictive Power Score</h2>
 <p>We use the Predictive Power Score to identify the top 30 features most predictive of <code>SalePrice</code>. This is especially useful for the Ames Housing dataset which has 79 features, many of which are categorical.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute PPS for all numeric features predicting SalePrice</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>numeric_train <span class="op">=</span> train.select_dtypes(include<span class="op">=</span><span class="st">"number"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>pps_scores <span class="op">=</span> pps.predictors(numeric_train, <span class="st">"SalePrice"</span>).sort_values(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ppscore"</span>, ascending<span class="op">=</span><span class="va">False</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>top30 <span class="op">=</span> pps_scores.head(<span class="dv">30</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>pps_bar <span class="op">=</span> (</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    alt.Chart(top30)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"ppscore:Q"</span>, title<span class="op">=</span><span class="st">"PPS"</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])),</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"x:N"</span>, sort<span class="op">=</span><span class="st">"-x"</span>, title<span class="op">=</span><span class="st">"Feature"</span>),</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[<span class="st">"x"</span>, alt.Tooltip(<span class="st">"ppscore:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>)],</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"Top 30 features by Predictive Power Score (predicting SalePrice)"</span>, height<span class="op">=</span><span class="dv">500</span>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>pps_bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute PPS for all numeric features predicting SalePrice</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>numeric_train <span class="op">=</span> train.select_dtypes(include<span class="op">=</span><span class="st">"number"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pps_scores <span class="op">=</span> pps.predictors(numeric_train, <span class="st">"SalePrice"</span>).sort_values(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ppscore"</span>, ascending<span class="op">=</span><span class="va">False</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>top30 <span class="op">=</span> pps_scores.head(<span class="dv">30</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>pps_bar <span class="op">=</span> (</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    alt.Chart(top30)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"ppscore:Q"</span>, title<span class="op">=</span><span class="st">"PPS"</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"x:N"</span>, sort<span class="op">=</span><span class="st">"-x"</span>, title<span class="op">=</span><span class="st">"Feature"</span>),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[<span class="st">"x"</span>, alt.Tooltip(<span class="st">"ppscore:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>)],</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"Top 30 features by Predictive Power Score (predicting SalePrice)"</span>, height<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>pps_bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="lEQa" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;MJUe&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="c5cafe13-2b92-de51-040e-34bfb8fa0f3d" random-id="c5cafe13-2b92-de51-040e-34bfb8fa0f3d"><marimo-code-editor data-initial-value="&quot;# Compute PPS for all numeric features predicting SalePrice\nnumeric_train = train.select_dtypes(include=\&quot;number\&quot;)\npps_scores = pps.predictors(numeric_train, \&quot;SalePrice\&quot;).sort_values(\n    \&quot;ppscore\&quot;, ascending=False\n)\ntop30 = pps_scores.head(30)\n\npps_bar = (\n    alt.Chart(top30)\n    .mark_bar()\n    .encode(\n        x=alt.X(\&quot;ppscore:Q\&quot;, title=\&quot;PPS\&quot;, scale=alt.Scale(domain=[0, 1])),\n        y=alt.Y(\&quot;x:N\&quot;, sort=\&quot;-x\&quot;, title=\&quot;Feature\&quot;),\n        tooltip=[\&quot;x\&quot;, alt.Tooltip(\&quot;ppscore:Q\&quot;, format=\&quot;.3f\&quot;)],\n    )\n    .properties(title=\&quot;Top 30 features by Predictive Power Score (predicting SalePrice)\&quot;, height=500)\n)\npps_bar&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 </section>
 <section id="automl-model-comparison-with-lazypredict" class="level2">
 <h2 class="anchored" data-anchor-id="automl-model-comparison-with-lazypredict">AutoML model comparison with lazypredict</h2>
 <p><code>LazyRegressor</code> runs all scikit-learn regressors and ranks them. We train on the top 30 PPS-selected numeric features to keep the comparison fast and interpretable.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>top30_features <span class="op">=</span> top30[<span class="st">"x"</span>].tolist()</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove target from features if present</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>top30_features <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> top30_features <span class="cf">if</span> f <span class="op">!=</span> <span class="st">"SalePrice"</span>]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> train[top30_features].fillna(train[top30_features].median())</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> train[<span class="st">"SalePrice"</span>]</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> LazyRegressor(verbose<span class="op">=</span><span class="dv">0</span>, ignore_warnings<span class="op">=</span><span class="va">True</span>, custom_metric<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>models_reg, predictions_reg <span class="op">=</span> reg.fit(X_train, X_test, y_train, y_test)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>models_reg_df <span class="op">=</span> models_reg.reset_index().rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Model"</span>})</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>models_reg_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart ranked by R-Squared</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>r2_chart <span class="op">=</span> (</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    alt.Chart(models_reg_df)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"R-Squared:Q"</span>, title<span class="op">=</span><span class="st">"R²"</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])),</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"Model:N"</span>, sort<span class="op">=</span><span class="st">"-x"</span>, title<span class="op">=</span><span class="va">None</span>),</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>alt.Color(</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"R-Squared:Q"</span>,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">"blues"</span>, domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>]),</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            legend<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Model"</span>,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            alt.Tooltip(<span class="st">"R-Squared:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>),</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            alt.Tooltip(<span class="st">"RMSE:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".0f"</span>),</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>            alt.Tooltip(<span class="st">"Time Taken:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2f"</span>),</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        ],</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"Model comparison — R² (test set)"</span>, height<span class="op">=</span><span class="dv">600</span>)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>r2_chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>top30_features <span class="op">=</span> top30[<span class="st">"x"</span>].tolist()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove target from features if present</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>top30_features <span class="op">=</span> [f <span class="cf">for</span> f <span class="kw">in</span> top30_features <span class="cf">if</span> f <span class="op">!=</span> <span class="st">"SalePrice"</span>]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> train[top30_features].fillna(train[top30_features].median())</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> train[<span class="st">"SalePrice"</span>]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> LazyRegressor(verbose<span class="op">=</span><span class="dv">0</span>, ignore_warnings<span class="op">=</span><span class="va">True</span>, custom_metric<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>models_reg, predictions_reg <span class="op">=</span> reg.fit(X_train, X_test, y_train, y_test)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>models_reg_df <span class="op">=</span> models_reg.reset_index().rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Model"</span>})</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>models_reg_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="PKri" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;MJUe&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="674461a6-d4f8-254e-86d7-25fddc43afc6" random-id="674461a6-d4f8-254e-86d7-25fddc43afc6"><marimo-code-editor data-initial-value="&quot;top30_features = top30[\&quot;x\&quot;].tolist()\n# Remove target from features if present\ntop30_features = [f for f in top30_features if f != \&quot;SalePrice\&quot;]\n\nX = train[top30_features].fillna(train[top30_features].median())\ny = train[\&quot;SalePrice\&quot;]\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.3, random_state=42\n)\n\nreg = LazyRegressor(verbose=0, ignore_warnings=True, custom_metric=None)\nmodels_reg, predictions_reg = reg.fit(X_train, X_test, y_train, y_test)\nmodels_reg_df = models_reg.reset_index().rename(columns={\&quot;index\&quot;: \&quot;Model\&quot;})\nmodels_reg_df&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart ranked by R-Squared</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>r2_chart <span class="op">=</span> (</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    alt.Chart(models_reg_df)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"R-Squared:Q"</span>, title<span class="op">=</span><span class="st">"R²"</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"Model:N"</span>, sort<span class="op">=</span><span class="st">"-x"</span>, title<span class="op">=</span><span class="va">None</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>alt.Color(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"R-Squared:Q"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">"blues"</span>, domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>]),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            legend<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Model"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>            alt.Tooltip(<span class="st">"R-Squared:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>),</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            alt.Tooltip(<span class="st">"RMSE:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".0f"</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>            alt.Tooltip(<span class="st">"Time Taken:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2f"</span>),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"Model comparison — R² (test set)"</span>, height<span class="op">=</span><span class="dv">600</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>r2_chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="Xref" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;MJUe&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="0738d01f-c283-3628-76ba-b87587e26839" random-id="0738d01f-c283-3628-76ba-b87587e26839"><marimo-code-editor data-initial-value="&quot;# Bar chart ranked by R-Squared\nr2_chart = (\n    alt.Chart(models_reg_df)\n    .mark_bar()\n    .encode(\n        x=alt.X(\&quot;R-Squared:Q\&quot;, title=\&quot;R²\&quot;, scale=alt.Scale(domain=[0, 1])),\n        y=alt.Y(\&quot;Model:N\&quot;, sort=\&quot;-x\&quot;, title=None),\n        color=alt.Color(\n            \&quot;R-Squared:Q\&quot;,\n            scale=alt.Scale(scheme=\&quot;blues\&quot;, domain=[0, 1]),\n            legend=None,\n        ),\n        tooltip=[\n            \&quot;Model\&quot;,\n            alt.Tooltip(\&quot;R-Squared:Q\&quot;, format=\&quot;.3f\&quot;),\n            alt.Tooltip(\&quot;RMSE:Q\&quot;, format=\&quot;.0f\&quot;),\n            alt.Tooltip(\&quot;Time Taken:Q\&quot;, format=\&quot;.2f\&quot;),\n        ],\n    )\n    .properties(title=\&quot;Model comparison — R² (test set)\&quot;, height=600)\n)\nr2_chart&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 
 
 </section>

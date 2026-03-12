@@ -119,17 +119,24 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 </script>
-<script data-goatcounter="https://anthology.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
-
-
-<link rel="stylesheet" href="../../styles.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@marimo-team/islands@0.20.4/dist/main.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@marimo-team/islands@0.20.4/dist/style.css" rel="stylesheet" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&amp;family=Lora&amp;family=PT+Sans:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
 <meta property="og:title" content="Predicting diabetes – Anthology of Data Science">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://anthology-of-data.science/notebooks/pima-indians/women-Pima-shinny-game-field-hockey.jpg">
 <meta property="og:site_name" content="Anthology of Data Science">
-</head>
+</head><body class="nav-sidebar floating quarto-light"><marimo-filename hidden=""></marimo-filename>
+<script data-goatcounter="https://anthology.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-<body class="nav-sidebar floating quarto-light">
+
+<link rel="stylesheet" href="../../styles.css">
+
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -630,174 +637,240 @@ gtag('config', 'G-9JMR365RPQ', { 'anonymize_ip': true});
 <li>lazypredict: runs all sklearn estimators and ranks them (<a href="https://github.com/shankarpandala/lazypredict">GitHub</a>)</li>
 <li>SHAP: explain individual model predictions (<a href="https://shap.readthedocs.io/">docs</a>)</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo <span class="im">as</span> mo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ppscore <span class="im">as</span> pps</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lazypredict.Supervised <span class="im">import</span> LazyClassifier</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ydata_profiling <span class="im">import</span> ProfileReport</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Altair theme: clean axes</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y_axis():</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"config"</span>: {</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"axisX"</span>: {<span class="st">"grid"</span>: <span class="va">False</span>},</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">"axisY"</span>: {</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"domain"</span>: <span class="va">False</span>,</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"gridDash"</span>: [<span class="dv">2</span>, <span class="dv">4</span>],</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                <span class="st">"tickSize"</span>: <span class="dv">0</span>,</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleAlign"</span>: <span class="st">"right"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleAngle"</span>: <span class="dv">0</span>,</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleX"</span>: <span class="op">-</span><span class="dv">5</span>,</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleY"</span>: <span class="op">-</span><span class="dv">10</span>,</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            },</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>            <span class="st">"view"</span>: {</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                <span class="st">"stroke"</span>: <span class="st">"transparent"</span>,</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                <span class="st">"continuousHeight"</span>: <span class="dv">300</span>,</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                <span class="st">"continuousWidth"</span>: <span class="dv">400</span>,</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>            },</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>alt.themes.register(<span class="st">"y_axis"</span>, y_axis)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>alt.themes.enable(<span class="st">"y_axis"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> marimo <span class="im">as</span> mo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="Hbol" data-reactive="true">
+    <marimo-cell-output>
+    <span></span>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="66f7ffef-e966-9535-2658-40340373965b" random-id="66f7ffef-e966-9535-2658-40340373965b"><marimo-code-editor data-initial-value="&quot;import marimo as mo&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ppscore <span class="im">as</span> pps</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> shap</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lazypredict.Supervised <span class="im">import</span> LazyClassifier</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ydata_profiling <span class="im">import</span> ProfileReport</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Altair theme: clean axes</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y_axis():</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">"config"</span>: {</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">"axisX"</span>: {<span class="st">"grid"</span>: <span class="va">False</span>},</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">"axisY"</span>: {</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"domain"</span>: <span class="va">False</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"gridDash"</span>: [<span class="dv">2</span>, <span class="dv">4</span>],</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"tickSize"</span>: <span class="dv">0</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleAlign"</span>: <span class="st">"right"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleAngle"</span>: <span class="dv">0</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleX"</span>: <span class="op">-</span><span class="dv">5</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                <span class="st">"titleY"</span>: <span class="op">-</span><span class="dv">10</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            },</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            <span class="st">"view"</span>: {</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                <span class="st">"stroke"</span>: <span class="st">"transparent"</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>                <span class="st">"continuousHeight"</span>: <span class="dv">300</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                <span class="st">"continuousWidth"</span>: <span class="dv">400</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            },</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>alt.themes.register(<span class="st">"y_axis"</span>, y_axis)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>alt.themes.enable(<span class="st">"y_axis"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="MJUe" data-reactive="true">
+    <marimo-cell-output>
+    <pre class="text-xs">ThemeRegistry.enable('y_axis')</pre>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="6cb471b5-b356-7a21-8a87-afd4170eff25" random-id="6cb471b5-b356-7a21-8a87-afd4170eff25"><marimo-code-editor data-initial-value="&quot;import altair as alt\nimport pandas as pd\nimport ppscore as pps\nimport shap\nimport warnings\nfrom lazypredict.Supervised import LazyClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom ydata_profiling import ProfileReport\n\nwarnings.filterwarnings(\&quot;ignore\&quot;)\n\n# Altair theme: clean axes\ndef y_axis():\n    return {\n        \&quot;config\&quot;: {\n            \&quot;axisX\&quot;: {\&quot;grid\&quot;: False},\n            \&quot;axisY\&quot;: {\n                \&quot;domain\&quot;: False,\n                \&quot;gridDash\&quot;: [2, 4],\n                \&quot;tickSize\&quot;: 0,\n                \&quot;titleAlign\&quot;: \&quot;right\&quot;,\n                \&quot;titleAngle\&quot;: 0,\n                \&quot;titleX\&quot;: -5,\n                \&quot;titleY\&quot;: -10,\n            },\n            \&quot;view\&quot;: {\n                \&quot;stroke\&quot;: \&quot;transparent\&quot;,\n                \&quot;continuousHeight\&quot;: 300,\n                \&quot;continuousWidth\&quot;: 400,\n            },\n        }\n    }\n\nalt.themes.register(\&quot;y_axis\&quot;, y_axis)\nalt.themes.enable(\&quot;y_axis\&quot;)&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 </section>
 </section>
 <section id="read-and-explore-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-and-explore-the-data">Read and explore the data</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"diabetes.csv"</span>).astype({<span class="st">"Outcome"</span>: <span class="bu">bool</span>})</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train, test <span class="op">=</span> train_test_split(df, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> ProfileReport(train, minimal<span class="op">=</span><span class="va">True</span>, title<span class="op">=</span><span class="st">"Pima Indians Profiling Report"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>profile.to_file(<span class="st">"pima-indians-profiling-report-minimal.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mo.Html(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;iframe width="100%" height="800px" src="pima-indians-profiling-report-minimal.html"&gt;&lt;/iframe&gt;'</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"diabetes.csv"</span>).astype({<span class="st">"Outcome"</span>: <span class="bu">bool</span>})</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>train, test <span class="op">=</span> train_test_split(df, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>profile <span class="op">=</span> ProfileReport(train, minimal<span class="op">=</span><span class="va">True</span>, title<span class="op">=</span><span class="st">"Pima Indians Profiling Report"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>profile.to_file(<span class="st">"pima-indians-profiling-report-minimal.html"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="vblA" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;[Errno 2] No such file or directory: 'diabetes.csv'&quot;,&quot;exception_type&quot;:&quot;FileNotFoundError&quot;,&quot;raising_cell&quot;:null}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="803ebece-1490-52e7-4989-e2a39c7e124b" random-id="803ebece-1490-52e7-4989-e2a39c7e124b"><marimo-code-editor data-initial-value="&quot;df = pd.read_csv(\&quot;diabetes.csv\&quot;).astype({\&quot;Outcome\&quot;: bool})\ntrain, test = train_test_split(df, test_size=0.3, random_state=42)\nprofile = ProfileReport(train, minimal=True, title=\&quot;Pima Indians Profiling Report\&quot;)\nprofile.to_file(\&quot;pima-indians-profiling-report-minimal.html\&quot;)&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mo.Html(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;iframe width="100%" height="800px" src="pima-indians-profiling-report-minimal.html"&gt;&lt;/iframe&gt;'</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="bkHC" data-reactive="true">
+    <marimo-cell-output>
+    <iframe width="100%" height="800px" src="pima-indians-profiling-report-minimal.html"></iframe>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="e97c0a32-f79a-cfbd-8115-4b9937b020cb" random-id="e97c0a32-f79a-cfbd-8115-4b9937b020cb"><marimo-code-editor data-initial-value="&quot;mo.Html(\n    '<iframe width=\&quot;100%\&quot; height=\&quot;800px\&quot; src=\&quot;pima-indians-profiling-report-minimal.html\&quot;></iframe>'\n)&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 </section>
 <section id="predictive-power-score" class="level2">
 <h2 class="anchored" data-anchor-id="predictive-power-score">Predictive Power Score</h2>
 <p>The <a href="https://github.com/8080labs/ppscore">Predictive Power Score</a> is an asymmetric, data-type-agnostic score that can detect linear or non-linear relationships between two variables. It is a useful alternative to the correlation matrix for exploratory data analysis.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PPS of each feature predicting Outcome</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>pps_predictors <span class="op">=</span> (</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    pps.predictors(train, <span class="st">"Outcome"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="st">"ppscore"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>pps_bar <span class="op">=</span> (</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    alt.Chart(pps_predictors)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"ppscore:Q"</span>, title<span class="op">=</span><span class="st">"PPS"</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])),</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"x:N"</span>, sort<span class="op">=</span><span class="st">"-x"</span>, title<span class="op">=</span><span class="st">"Feature"</span>),</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[<span class="st">"x"</span>, alt.Tooltip(<span class="st">"ppscore:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>)],</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"Predictive Power Score — predicting Outcome"</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>pps_bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Full PPS matrix heatmap</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pps_matrix <span class="op">=</span> pps.matrix(train)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pps_heatmap <span class="op">=</span> (</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    alt.Chart(pps_matrix)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    .mark_rect()</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"x:N"</span>, title<span class="op">=</span><span class="st">"Feature (predictor)"</span>),</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"y:N"</span>, title<span class="op">=</span><span class="st">"Feature (target)"</span>),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>alt.Color(</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">"ppscore:Q"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">"blues"</span>, domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>]),</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">"PPS"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[<span class="st">"x"</span>, <span class="st">"y"</span>, alt.Tooltip(<span class="st">"ppscore:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>)],</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"PPS Matrix"</span>, width<span class="op">=</span><span class="dv">400</span>, height<span class="op">=</span><span class="dv">400</span>)</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>pps_heatmap</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PPS of each feature predicting Outcome</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pps_predictors <span class="op">=</span> (</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    pps.predictors(train, <span class="st">"Outcome"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    .sort_values(<span class="st">"ppscore"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>pps_bar <span class="op">=</span> (</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    alt.Chart(pps_predictors)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"ppscore:Q"</span>, title<span class="op">=</span><span class="st">"PPS"</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>])),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"x:N"</span>, sort<span class="op">=</span><span class="st">"-x"</span>, title<span class="op">=</span><span class="st">"Feature"</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[<span class="st">"x"</span>, alt.Tooltip(<span class="st">"ppscore:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>)],</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"Predictive Power Score — predicting Outcome"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>pps_bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="lEQa" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;vblA&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="2b1c59ce-c40e-f67f-edb0-2be0488707b6" random-id="2b1c59ce-c40e-f67f-edb0-2be0488707b6"><marimo-code-editor data-initial-value="&quot;# PPS of each feature predicting Outcome\npps_predictors = (\n    pps.predictors(train, \&quot;Outcome\&quot;)\n    .sort_values(\&quot;ppscore\&quot;, ascending=False)\n)\n\npps_bar = (\n    alt.Chart(pps_predictors)\n    .mark_bar()\n    .encode(\n        x=alt.X(\&quot;ppscore:Q\&quot;, title=\&quot;PPS\&quot;, scale=alt.Scale(domain=[0, 1])),\n        y=alt.Y(\&quot;x:N\&quot;, sort=\&quot;-x\&quot;, title=\&quot;Feature\&quot;),\n        tooltip=[\&quot;x\&quot;, alt.Tooltip(\&quot;ppscore:Q\&quot;, format=\&quot;.3f\&quot;)],\n    )\n    .properties(title=\&quot;Predictive Power Score — predicting Outcome\&quot;)\n)\npps_bar&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full PPS matrix heatmap</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pps_matrix <span class="op">=</span> pps.matrix(train)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>pps_heatmap <span class="op">=</span> (</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    alt.Chart(pps_matrix)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    .mark_rect()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"x:N"</span>, title<span class="op">=</span><span class="st">"Feature (predictor)"</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"y:N"</span>, title<span class="op">=</span><span class="st">"Feature (target)"</span>),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>alt.Color(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">"ppscore:Q"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>            scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">"blues"</span>, domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>]),</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            title<span class="op">=</span><span class="st">"PPS"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[<span class="st">"x"</span>, <span class="st">"y"</span>, alt.Tooltip(<span class="st">"ppscore:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>)],</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"PPS Matrix"</span>, width<span class="op">=</span><span class="dv">400</span>, height<span class="op">=</span><span class="dv">400</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>pps_heatmap</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="PKri" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;vblA&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="950baa77-cb54-688a-41f0-3be55e4ba08a" random-id="950baa77-cb54-688a-41f0-3be55e4ba08a"><marimo-code-editor data-initial-value="&quot;# Full PPS matrix heatmap\npps_matrix = pps.matrix(train)\n\npps_heatmap = (\n    alt.Chart(pps_matrix)\n    .mark_rect()\n    .encode(\n        x=alt.X(\&quot;x:N\&quot;, title=\&quot;Feature (predictor)\&quot;),\n        y=alt.Y(\&quot;y:N\&quot;, title=\&quot;Feature (target)\&quot;),\n        color=alt.Color(\n            \&quot;ppscore:Q\&quot;,\n            scale=alt.Scale(scheme=\&quot;blues\&quot;, domain=[0, 1]),\n            title=\&quot;PPS\&quot;,\n        ),\n        tooltip=[\&quot;x\&quot;, \&quot;y\&quot;, alt.Tooltip(\&quot;ppscore:Q\&quot;, format=\&quot;.3f\&quot;)],\n    )\n    .properties(title=\&quot;PPS Matrix\&quot;, width=400, height=400)\n)\npps_heatmap&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 </section>
 <section id="automl-model-comparison-with-lazypredict" class="level2">
 <h2 class="anchored" data-anchor-id="automl-model-comparison-with-lazypredict">AutoML model comparison with lazypredict</h2>
 <p><code>LazyClassifier</code> runs all scikit-learn classifiers and ranks them. This gives a rapid overview of which algorithm families work best without manual tuning.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>feature_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df.columns <span class="cf">if</span> c <span class="op">!=</span> <span class="st">"Outcome"</span>]</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[feature_cols]</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"Outcome"</span>].astype(<span class="bu">int</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LazyClassifier(verbose<span class="op">=</span><span class="dv">0</span>, ignore_warnings<span class="op">=</span><span class="va">True</span>, custom_metric<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>models, predictions <span class="op">=</span> clf.fit(X_train, X_test, y_train, y_test)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>models_df <span class="op">=</span> models.reset_index().rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Model"</span>})</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>models_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart ranked by ROC AUC</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>roc_chart <span class="op">=</span> (</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    alt.Chart(models_df)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"ROC AUC:Q"</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>]), title<span class="op">=</span><span class="st">"ROC AUC"</span>),</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"Model:N"</span>, sort<span class="op">=</span><span class="st">"-x"</span>, title<span class="op">=</span><span class="va">None</span>),</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>alt.Color(</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">"ROC AUC:Q"</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">"blues"</span>, domain<span class="op">=</span>[<span class="fl">0.5</span>, <span class="dv">1</span>]),</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            legend<span class="op">=</span><span class="va">None</span>,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[<span class="st">"Model"</span>, alt.Tooltip(<span class="st">"ROC AUC:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>),</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                 alt.Tooltip(<span class="st">"Accuracy:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>),</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                 alt.Tooltip(<span class="st">"F1 Score:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>)],</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"Model comparison — ROC AUC (test set)"</span>, height<span class="op">=</span><span class="dv">500</span>)</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>roc_chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>feature_cols <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df.columns <span class="cf">if</span> c <span class="op">!=</span> <span class="st">"Outcome"</span>]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[feature_cols]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"Outcome"</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LazyClassifier(verbose<span class="op">=</span><span class="dv">0</span>, ignore_warnings<span class="op">=</span><span class="va">True</span>, custom_metric<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>models, predictions <span class="op">=</span> clf.fit(X_train, X_test, y_train, y_test)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>models_df <span class="op">=</span> models.reset_index().rename(columns<span class="op">=</span>{<span class="st">"index"</span>: <span class="st">"Model"</span>})</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>models_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="Xref" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;vblA&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="3d95f3a6-b22f-9052-db4e-50459b622f15" random-id="3d95f3a6-b22f-9052-db4e-50459b622f15"><marimo-code-editor data-initial-value="&quot;feature_cols = [c for c in df.columns if c != \&quot;Outcome\&quot;]\nX = df[feature_cols]\ny = df[\&quot;Outcome\&quot;].astype(int)\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.3, random_state=42\n)\n\nclf = LazyClassifier(verbose=0, ignore_warnings=True, custom_metric=None)\nmodels, predictions = clf.fit(X_train, X_test, y_train, y_test)\nmodels_df = models.reset_index().rename(columns={\&quot;index\&quot;: \&quot;Model\&quot;})\nmodels_df&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar chart ranked by ROC AUC</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>roc_chart <span class="op">=</span> (</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    alt.Chart(models_df)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    .mark_bar()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    .encode(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>alt.X(<span class="st">"ROC AUC:Q"</span>, scale<span class="op">=</span>alt.Scale(domain<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">1</span>]), title<span class="op">=</span><span class="st">"ROC AUC"</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>alt.Y(<span class="st">"Model:N"</span>, sort<span class="op">=</span><span class="st">"-x"</span>, title<span class="op">=</span><span class="va">None</span>),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>alt.Color(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"ROC AUC:Q"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">"blues"</span>, domain<span class="op">=</span>[<span class="fl">0.5</span>, <span class="dv">1</span>]),</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            legend<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        tooltip<span class="op">=</span>[<span class="st">"Model"</span>, alt.Tooltip(<span class="st">"ROC AUC:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>),</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>                 alt.Tooltip(<span class="st">"Accuracy:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                 alt.Tooltip(<span class="st">"F1 Score:Q"</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".3f"</span>)],</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    .properties(title<span class="op">=</span><span class="st">"Model comparison — ROC AUC (test set)"</span>, height<span class="op">=</span><span class="dv">500</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>roc_chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="SFPL" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;vblA&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="b8a69377-c8a3-2ea8-f24b-a715c4fc0673" random-id="b8a69377-c8a3-2ea8-f24b-a715c4fc0673"><marimo-code-editor data-initial-value="&quot;# Bar chart ranked by ROC AUC\nroc_chart = (\n    alt.Chart(models_df)\n    .mark_bar()\n    .encode(\n        x=alt.X(\&quot;ROC AUC:Q\&quot;, scale=alt.Scale(domain=[0, 1]), title=\&quot;ROC AUC\&quot;),\n        y=alt.Y(\&quot;Model:N\&quot;, sort=\&quot;-x\&quot;, title=None),\n        color=alt.Color(\n            \&quot;ROC AUC:Q\&quot;,\n            scale=alt.Scale(scheme=\&quot;blues\&quot;, domain=[0.5, 1]),\n            legend=None,\n        ),\n        tooltip=[\&quot;Model\&quot;, alt.Tooltip(\&quot;ROC AUC:Q\&quot;, format=\&quot;.3f\&quot;),\n                 alt.Tooltip(\&quot;Accuracy:Q\&quot;, format=\&quot;.3f\&quot;),\n                 alt.Tooltip(\&quot;F1 Score:Q\&quot;, format=\&quot;.3f\&quot;)],\n    )\n    .properties(title=\&quot;Model comparison — ROC AUC (test set)\&quot;, height=500)\n)\nroc_chart&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 </section>
 <section id="shap-values-for-the-best-model" class="level2">
 <h2 class="anchored" data-anchor-id="shap-values-for-the-best-model">SHAP values for the best model</h2>
 <p>We retrain the best-performing model (by ROC AUC) using scikit-learn directly, then use SHAP to explain its predictions.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils <span class="im">import</span> all_estimators</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the top model name from lazypredict results</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>best_model_name <span class="op">=</span> models_df.sort_values(<span class="st">"ROC AUC"</span>, ascending<span class="op">=</span><span class="va">False</span>).iloc[<span class="dv">0</span>][<span class="st">"Model"</span>]</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>mo.md(<span class="ss">f"**Best model by ROC AUC:** </span><span class="sc">{</span>best_model_name<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Map lazypredict display name back to an sklearn estimator class</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>estimator_map <span class="op">=</span> {</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    name: cls</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, cls <span class="kw">in</span> all_estimators(type_filter<span class="op">=</span><span class="st">"classifier"</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># lazypredict uses the class name as the index; look it up</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>BestEstimator <span class="op">=</span> estimator_map.get(best_model_name)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> BestEstimator <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fallback to LogisticRegression if name not found</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    BestEstimator <span class="op">=</span> LogisticRegression</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>best_clf <span class="op">=</span> BestEstimator()</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>best_clf.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python marimo code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># SHAP explanation</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.Explainer(best_clf, X_train)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>shap_values <span class="op">=</span> explainer(X_test)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary plot (beeswarm)</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>shap.summary_plot(shap_values, X_test, show<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>mo.mpl.interactive(plt.gcf())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils <span class="im">import</span> all_estimators</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the top model name from lazypredict results</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>best_model_name <span class="op">=</span> models_df.sort_values(<span class="st">"ROC AUC"</span>, ascending<span class="op">=</span><span class="va">False</span>).iloc[<span class="dv">0</span>][<span class="st">"Model"</span>]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>mo.md(<span class="ss">f"**Best model by ROC AUC:** </span><span class="sc">{</span>best_model_name<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="BYtC" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;vblA&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="a1bad08b-071a-fea6-7a48-eb91e1c98421" random-id="a1bad08b-071a-fea6-7a48-eb91e1c98421"><marimo-code-editor data-initial-value="&quot;from sklearn.utils import all_estimators\nimport numpy as np\n\n# Identify the top model name from lazypredict results\nbest_model_name = models_df.sort_values(\&quot;ROC AUC\&quot;, ascending=False).iloc[0][\&quot;Model\&quot;]\nmo.md(f\&quot;**Best model by ROC AUC:** {best_model_name}\&quot;)&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Map lazypredict display name back to an sklearn estimator class</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>estimator_map <span class="op">=</span> {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    name: cls</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name, cls <span class="kw">in</span> all_estimators(type_filter<span class="op">=</span><span class="st">"classifier"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># lazypredict uses the class name as the index; look it up</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>BestEstimator <span class="op">=</span> estimator_map.get(best_model_name)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> BestEstimator <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fallback to LogisticRegression if name not found</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    BestEstimator <span class="op">=</span> LogisticRegression</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>best_clf <span class="op">=</span> BestEstimator()</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>best_clf.fit(X_train, y_train)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify SHAP compatibility: some models (e.g. QuadraticDiscriminantAnalysis)</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># are not callable in the way shap.Explainer requires. Fall back to</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># LogisticRegression when the best model is not SHAP-compatible.</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    _test_explainer <span class="op">=</span> shap.Explainer(best_clf, X_train[:<span class="dv">5</span>])</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    <span class="kw">del</span> _test_explainer</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    mo.md(<span class="st">"_Note: best model is not SHAP-compatible; falling back to LogisticRegression for SHAP explanations._"</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    best_clf <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    best_clf.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="RGSE" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;vblA&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="1056c51f-dcd5-0a1b-a043-9389e5811cef" random-id="1056c51f-dcd5-0a1b-a043-9389e5811cef"><marimo-code-editor data-initial-value="&quot;# Map lazypredict display name back to an sklearn estimator class\nestimator_map = {\n    name: cls\n    for name, cls in all_estimators(type_filter=\&quot;classifier\&quot;)\n}\n\n# lazypredict uses the class name as the index; look it up\nBestEstimator = estimator_map.get(best_model_name)\n\nif BestEstimator is None:\n    # Fallback to LogisticRegression if name not found\n    BestEstimator = LogisticRegression\n\nbest_clf = BestEstimator()\nbest_clf.fit(X_train, y_train)\n\n# Verify SHAP compatibility: some models (e.g. QuadraticDiscriminantAnalysis)\n# are not callable in the way shap.Explainer requires. Fall back to\n# LogisticRegression when the best model is not SHAP-compatible.\ntry:\n    _test_explainer = shap.Explainer(best_clf, X_train[:5])\n    del _test_explainer\nexcept Exception:\n    mo.md(\&quot;_Note: best model is not SHAP-compatible; falling back to LogisticRegression for SHAP explanations._\&quot;)\n    best_clf = LogisticRegression(max_iter=1000)\n    best_clf.fit(X_train, y_train)&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SHAP explanation</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>explainer <span class="op">=</span> shap.Explainer(best_clf, X_train)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>shap_values <span class="op">=</span> explainer(X_test)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary plot (beeswarm)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>shap.summary_plot(shap_values, X_test, show<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>mo.mpl.interactive(plt.gcf())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<marimo-island data-app-id="main" data-cell-id="Kclp" data-reactive="true">
+    <marimo-cell-output>
+    <marimo-mime-renderer data-mime="&quot;application/vnd.marimo+error&quot;" data-data="[{&quot;type&quot;:&quot;exception&quot;,&quot;msg&quot;:&quot;An ancestor raised an exception (FileNotFoundError): &quot;,&quot;exception_type&quot;:&quot;Ancestor raised&quot;,&quot;raising_cell&quot;:&quot;vblA&quot;}]"></marimo-mime-renderer>
+    </marimo-cell-output>
+    <marimo-ui-element object-id="7051331d-8d17-c94b-5d82-8348cf66b761" random-id="7051331d-8d17-c94b-5d82-8348cf66b761"><marimo-code-editor data-initial-value="&quot;# SHAP explanation\nexplainer = shap.Explainer(best_clf, X_train)\nshap_values = explainer(X_test)\n\n# Summary plot (beeswarm)\nshap.summary_plot(shap_values, X_test, show=False)\nimport matplotlib.pyplot as plt\nplt.tight_layout()\nmo.mpl.interactive(plt.gcf())&quot;" data-label="null" data-language="&quot;python&quot;" data-placeholder="&quot;&quot;" data-disabled="false" data-show-copy-button="true" data-debounce="false"></marimo-code-editor></marimo-ui-element>
+</marimo-island>
 
 
 </section>
