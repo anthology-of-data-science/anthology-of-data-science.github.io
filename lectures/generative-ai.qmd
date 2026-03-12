@@ -1,7 +1,7 @@
 ---
 title: Generative AI
 description: |
-    Introduction to generative AI systems in a 1.5-hour lecture
+    Introduction to generative AI and agentic systems in a 4-hour lecture
 image: images/genai-system.png
 author:
     - Daniel Kapitan
