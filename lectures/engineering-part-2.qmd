@@ -1,0 +1,17 @@
+---
+title: Engineering data science & AI platforms
+subtitle: Part II\: Designing, building & operating data & AI platforms
+description: |
+    Slides for a full-day lecture
+image: images/engineering-part-2.png
+author:
+    - Daniel Kapitan
+date: 2026-04-17
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://anthology-of-data.science/lecture-engineering-data-ai-platforms/#/title-slide" title="Lecture"></iframe>
+```
+(view [full screen](https://anthology-of-data.science/lecture-engineering-data-ai-platforms/#/title-slide))
