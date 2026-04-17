@@ -1,6 +1,6 @@
 ---
 title: Engineering data science & AI platforms
-subtitle: Part II\: Designing, building & operating data & AI platforms
+subtitle: "Part II: Designing, building & operating data & AI platforms"
 description: |
     Slides for a full-day lecture
 image: images/engineering-part-2.png
