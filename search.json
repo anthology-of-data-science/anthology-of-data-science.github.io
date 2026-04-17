@@ -1,68 +1,68 @@
 [
   {
-    "objectID": "cases/landscape-biomedical-research/index.html",
-    "href": "cases/landscape-biomedical-research/index.html",
-    "title": "The landscape of biomedical research",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "objectID": "notebooks/pima-indians/index.html#objectives",
+    "href": "notebooks/pima-indians/index.html#objectives",
+    "title": "Predicting diabetes",
+    "section": "Objectives",
+    "text": "Objectives\n\nExample end-to-end supervised learning workflow with Pima Indians dataset\nFocus on conceptual understanding of machine learning\nDemonstrate use of Predictive Power Score (PPS)\nDemonstrate capabilities of AutoML model comparison with lazypredict\nDemonstrate SHAP values for the best model",
     "crumbs": [
-      "Use cases & applications",
-      "The landscape of biomedical research"
+      "Notebooks",
+      "Predicting diabetes"
     ]
   },
   {
-    "objectID": "cases/wolves-in-germany/index.html",
-    "href": "cases/wolves-in-germany/index.html",
-    "title": "Predict precence of wolf pairs in Germany with XGBoost and SHAP",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "objectID": "notebooks/pima-indians/index.html#attribution",
+    "href": "notebooks/pima-indians/index.html#attribution",
+    "title": "Predicting diabetes",
+    "section": "Attribution",
+    "text": "Attribution\n\nDataset\n\nPima Indians paper (original paper)\nKaggle datacard (link)\n\n\n\nPython libraries\n\nAltair (docs)\nydata-profiling (docs)\nPredictive Power Score (PPS, GitHub, blog)\nlazypredict: runs all sklearn estimators and ranks them (GitHub)\nSHAP: explain individual model predictions (docs)\n\nimport marimo as mo\n\n    \n    \n    \n    \n\nimport altair as alt\nimport pandas as pd\nimport ppscore as pps\nimport shap\nimport warnings\nfrom lazypredict.Supervised import LazyClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom ydata_profiling import ProfileReport\n\nwarnings.filterwarnings(\"ignore\")\n\n# Altair theme: clean axes\ndef y_axis():\n    return {\n        \"config\": {\n            \"axisX\": {\"grid\": False},\n            \"axisY\": {\n                \"domain\": False,\n                \"gridDash\": [2, 4],\n                \"tickSize\": 0,\n                \"titleAlign\": \"right\",\n                \"titleAngle\": 0,\n                \"titleX\": -5,\n                \"titleY\": -10,\n            },\n            \"view\": {\n                \"stroke\": \"transparent\",\n                \"continuousHeight\": 300,\n                \"continuousWidth\": 400,\n            },\n        }\n    }\n\nalt.themes.register(\"y_axis\", y_axis)\nalt.themes.enable(\"y_axis\")\n\n    \n    ThemeRegistry.enable('y_axis')",
     "crumbs": [
-      "Use cases & applications",
-      "Predict precence of wolf pairs in Germany with XGBoost and SHAP"
+      "Notebooks",
+      "Predicting diabetes"
     ]
   },
   {
-    "objectID": "cases/verkeersveiligheidmodel/index.html",
-    "href": "cases/verkeersveiligheidmodel/index.html",
-    "title": "Verkeersveiligheidmodel",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "objectID": "notebooks/pima-indians/index.html#read-and-explore-the-data",
+    "href": "notebooks/pima-indians/index.html#read-and-explore-the-data",
+    "title": "Predicting diabetes",
+    "section": "Read and explore the data",
+    "text": "Read and explore the data\ndf = pd.read_csv(\"diabetes.csv\").astype({\"Outcome\": bool})\ntrain, test = train_test_split(df, test_size=0.3, random_state=42)\nprofile = ProfileReport(train, minimal=True, title=\"Pima Indians Profiling Report\")\nprofile.to_file(\"pima-indians-profiling-report-minimal.html\")\n\n    \n    \n    \n    \n\nmo.Html(\n    '&lt;iframe width=\"100%\" height=\"800px\" src=\"pima-indians-profiling-report-minimal.html\"&gt;&lt;/iframe&gt;'\n)",
     "crumbs": [
-      "Use cases & applications",
-      "Verkeersveiligheidmodel"
+      "Notebooks",
+      "Predicting diabetes"
     ]
   },
   {
-    "objectID": "cases/rice-grain-classification/index.html",
-    "href": "cases/rice-grain-classification/index.html",
-    "title": "Classifying rice grains using deep learning",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "objectID": "notebooks/pima-indians/index.html#predictive-power-score",
+    "href": "notebooks/pima-indians/index.html#predictive-power-score",
+    "title": "Predicting diabetes",
+    "section": "Predictive Power Score",
+    "text": "Predictive Power Score\nThe Predictive Power Score is an asymmetric, data-type-agnostic score that can detect linear or non-linear relationships between two variables. It is a useful alternative to the correlation matrix for exploratory data analysis.\n# PPS of each feature predicting Outcome\npps_predictors = (\n    pps.predictors(train, \"Outcome\")\n    .sort_values(\"ppscore\", ascending=False)\n)\n\npps_bar = (\n    alt.Chart(pps_predictors)\n    .mark_bar()\n    .encode(\n        x=alt.X(\"ppscore:Q\", title=\"PPS\", scale=alt.Scale(domain=[0, 1])),\n        y=alt.Y(\"x:N\", sort=\"-x\", title=\"Feature\"),\n        tooltip=[\"x\", alt.Tooltip(\"ppscore:Q\", format=\".3f\")],\n    )\n    .properties(title=\"Predictive Power Score — predicting Outcome\")\n)\npps_bar\n\n    \n    \n    \n    \n\n# Full PPS matrix heatmap\npps_matrix = pps.matrix(train)\n\npps_heatmap = (\n    alt.Chart(pps_matrix)\n    .mark_rect()\n    .encode(\n        x=alt.X(\"x:N\", title=\"Feature (predictor)\"),\n        y=alt.Y(\"y:N\", title=\"Feature (target)\"),\n        color=alt.Color(\n            \"ppscore:Q\",\n            scale=alt.Scale(scheme=\"blues\", domain=[0, 1]),\n            title=\"PPS\",\n        ),\n        tooltip=[\"x\", \"y\", alt.Tooltip(\"ppscore:Q\", format=\".3f\")],\n    )\n    .properties(title=\"PPS Matrix\", width=400, height=400)\n)\npps_heatmap",
     "crumbs": [
-      "Use cases & applications",
-      "Classifying rice grains using deep learning"
+      "Notebooks",
+      "Predicting diabetes"
     ]
   },
   {
-    "objectID": "lectures/composable-data-stack.html",
-    "href": "lectures/composable-data-stack.html",
-    "title": "Composable data platforms",
-    "section": "",
-    "text": "(view full screen)",
+    "objectID": "notebooks/pima-indians/index.html#automl-model-comparison-with-lazypredict",
+    "href": "notebooks/pima-indians/index.html#automl-model-comparison-with-lazypredict",
+    "title": "Predicting diabetes",
+    "section": "AutoML model comparison with lazypredict",
+    "text": "AutoML model comparison with lazypredict\nLazyClassifier runs all scikit-learn classifiers and ranks them. This gives a rapid overview of which algorithm families work best without manual tuning.\nfeature_cols = [c for c in df.columns if c != \"Outcome\"]\nX = df[feature_cols]\ny = df[\"Outcome\"].astype(int)\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.3, random_state=42\n)\n\nclf = LazyClassifier(verbose=0, ignore_warnings=True, custom_metric=None)\nmodels, predictions = clf.fit(X_train, X_test, y_train, y_test)\nmodels_df = models.reset_index().rename(columns={\"index\": \"Model\"})\nmodels_df\n\n    \n    \n    \n    \n\n# Bar chart ranked by ROC AUC\nroc_chart = (\n    alt.Chart(models_df)\n    .mark_bar()\n    .encode(\n        x=alt.X(\"ROC AUC:Q\", scale=alt.Scale(domain=[0, 1]), title=\"ROC AUC\"),\n        y=alt.Y(\"Model:N\", sort=\"-x\", title=None),\n        color=alt.Color(\n            \"ROC AUC:Q\",\n            scale=alt.Scale(scheme=\"blues\", domain=[0.5, 1]),\n            legend=None,\n        ),\n        tooltip=[\"Model\", alt.Tooltip(\"ROC AUC:Q\", format=\".3f\"),\n                 alt.Tooltip(\"Accuracy:Q\", format=\".3f\"),\n                 alt.Tooltip(\"F1 Score:Q\", format=\".3f\")],\n    )\n    .properties(title=\"Model comparison — ROC AUC (test set)\", height=500)\n)\nroc_chart",
     "crumbs": [
-      "Lectures",
-      "Composable data platforms"
+      "Notebooks",
+      "Predicting diabetes"
     ]
   },
   {
-    "objectID": "lectures/gam-ebm.html",
-    "href": "lectures/gam-ebm.html",
-    "title": "Explainable Boosting Machines",
-    "section": "",
-    "text": "(view full screen)",
+    "objectID": "notebooks/pima-indians/index.html#shap-values-for-the-best-model",
+    "href": "notebooks/pima-indians/index.html#shap-values-for-the-best-model",
+    "title": "Predicting diabetes",
+    "section": "SHAP values for the best model",
+    "text": "SHAP values for the best model\nWe retrain the best-performing model (by ROC AUC) using scikit-learn directly, then use SHAP to explain its predictions.\nfrom sklearn.utils import all_estimators\nimport numpy as np\n\n# Identify the top model name from lazypredict results\nbest_model_name = models_df.sort_values(\"ROC AUC\", ascending=False).iloc[0][\"Model\"]\nmo.md(f\"**Best model by ROC AUC:** {best_model_name}\")\n\n    \n    \n    \n    \n\n# Map lazypredict display name back to an sklearn estimator class\nestimator_map = {\n    name: cls\n    for name, cls in all_estimators(type_filter=\"classifier\")\n}\n\n# lazypredict uses the class name as the index; look it up\nBestEstimator = estimator_map.get(best_model_name)\n\nif BestEstimator is None:\n    # Fallback to LogisticRegression if name not found\n    BestEstimator = LogisticRegression\n\nbest_clf = BestEstimator()\nbest_clf.fit(X_train, y_train)\n\n# Verify SHAP compatibility: some models (e.g. QuadraticDiscriminantAnalysis)\n# are not callable in the way shap.Explainer requires. Fall back to\n# LogisticRegression when the best model is not SHAP-compatible.\ntry:\n    _test_explainer = shap.Explainer(best_clf, X_train[:5])\n    del _test_explainer\nexcept Exception:\n    mo.md(\"_Note: best model is not SHAP-compatible; falling back to LogisticRegression for SHAP explanations._\")\n    best_clf = LogisticRegression(max_iter=1000)\n    best_clf.fit(X_train, y_train)\n\n    \n    \n    \n    \n\n# SHAP explanation\nexplainer = shap.Explainer(best_clf, X_train)\nshap_values = explainer(X_test)\n\n# Summary plot (beeswarm)\nshap.summary_plot(shap_values, X_test, show=False)\nimport matplotlib.pyplot as plt\nplt.tight_layout()\nmo.mpl.interactive(plt.gcf())",
     "crumbs": [
-      "Lectures",
-      "Explainable Boosting Machines"
+      "Notebooks",
+      "Predicting diabetes"
     ]
   },
   {
@@ -198,47 +198,47 @@
     ]
   },
   {
-    "objectID": "books/shalizi.html",
-    "href": "books/shalizi.html",
-    "title": "Advanced Data Analysis from an Elementary Point of View",
+    "objectID": "cases/wolves-in-germany/index.html",
+    "href": "cases/wolves-in-germany/index.html",
+    "title": "Predict precence of wolf pairs in Germany with XGBoost and SHAP",
     "section": "",
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Books",
-      "Advanced Data Analysis from an Elementary Point of View"
+      "Use cases & applications",
+      "Predict precence of wolf pairs in Germany with XGBoost and SHAP"
     ]
   },
   {
-    "objectID": "books/ethics.html",
-    "href": "books/ethics.html",
-    "title": "Ethics of Artificial Intelligence",
+    "objectID": "cases/rice-grain-classification/index.html",
+    "href": "cases/rice-grain-classification/index.html",
+    "title": "Classifying rice grains using deep learning",
     "section": "",
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Books",
-      "Ethics of Artificial Intelligence"
+      "Use cases & applications",
+      "Classifying rice grains using deep learning"
     ]
   },
   {
-    "objectID": "books/what-if.html",
-    "href": "books/what-if.html",
-    "title": "Causal Inference: What If",
+    "objectID": "cases/energiearmoede/index.html",
+    "href": "cases/energiearmoede/index.html",
+    "title": "Inzicht in energiearmoede",
     "section": "",
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Books",
-      "Causal Inference: What If"
+      "Use cases & applications",
+      "Inzicht in energiearmoede"
     ]
   },
   {
-    "objectID": "books/mml.html",
-    "href": "books/mml.html",
-    "title": "Mathematics For Machine Learning",
+    "objectID": "cases/verkeersveiligheidmodel/index.html",
+    "href": "cases/verkeersveiligheidmodel/index.html",
+    "title": "Verkeersveiligheidmodel",
     "section": "",
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Books",
-      "Mathematics For Machine Learning"
+      "Use cases & applications",
+      "Verkeersveiligheidmodel"
     ]
   },
   {
@@ -330,91 +330,200 @@
     ]
   },
   {
-    "objectID": "posts/hamilton-ibis/index.html",
-    "href": "posts/hamilton-ibis/index.html",
-    "title": "Portable dataflows with Ibis and Hamilton",
+    "objectID": "posts/precision-recall/index.html",
+    "href": "posts/precision-recall/index.html",
+    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
     "section": "",
-    "text": "This post showcases how Ibis and Hamilton enable dataflows that span execution over SQL and Python. Ibis is a portable dataframe library to write procedural data transformations in Python and be able to execute them directly on various SQL backends (DuckDB, Snowflake, Postgres, Flink, see full list). Hamilton provides a declarative way to define testable, modular, self-documenting dataflows, that encode lineage and metadata.\nLet’s introduce Ibis before exploring how it pairs with Hamilton.",
+    "text": "A receiver operating characteristic (ROC) curve displays how well a model can classify binary outcomes. An ROC curve is generated by plotting the false positive rate of a model against its true positive rate, for each possible cutoff value. Often, the area under the curve (AUC) is calculated and used as a metric showing how well a model can classify data points.\nIf you’re interest in learning more about ROC and AUC, I recommend this short Medium blog, which contains this neat graphic.\n\nDariya Sydykova, graduate student at the Wilke lab at the University of Texas at Austin, shared some great visual animations of how model accuracy and model cutoffs alter the ROC curve and the AUC metric. The quotes and animations are from the associated github repository.",
     "crumbs": [
       "Perspectives on data science",
-      "Portable dataflows with Ibis and Hamilton"
+      "The Precision-Recall Plot Is More Informative than the ROC Plot"
     ]
   },
   {
-    "objectID": "posts/hamilton-ibis/index.html#introduction",
-    "href": "posts/hamilton-ibis/index.html#introduction",
-    "title": "Portable dataflows with Ibis and Hamilton",
+    "objectID": "posts/precision-recall/index.html#roc-auc-precision-and-recall-visually-explained",
+    "href": "posts/precision-recall/index.html#roc-auc-precision-and-recall-visually-explained",
+    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
     "section": "",
-    "text": "This post showcases how Ibis and Hamilton enable dataflows that span execution over SQL and Python. Ibis is a portable dataframe library to write procedural data transformations in Python and be able to execute them directly on various SQL backends (DuckDB, Snowflake, Postgres, Flink, see full list). Hamilton provides a declarative way to define testable, modular, self-documenting dataflows, that encode lineage and metadata.\nLet’s introduce Ibis before exploring how it pairs with Hamilton.",
+    "text": "A receiver operating characteristic (ROC) curve displays how well a model can classify binary outcomes. An ROC curve is generated by plotting the false positive rate of a model against its true positive rate, for each possible cutoff value. Often, the area under the curve (AUC) is calculated and used as a metric showing how well a model can classify data points.\nIf you’re interest in learning more about ROC and AUC, I recommend this short Medium blog, which contains this neat graphic.\n\nDariya Sydykova, graduate student at the Wilke lab at the University of Texas at Austin, shared some great visual animations of how model accuracy and model cutoffs alter the ROC curve and the AUC metric. The quotes and animations are from the associated github repository.",
     "crumbs": [
       "Perspectives on data science",
-      "Portable dataflows with Ibis and Hamilton"
+      "The Precision-Recall Plot Is More Informative than the ROC Plot"
     ]
   },
   {
-    "objectID": "posts/hamilton-ibis/index.html#standalone-ibis",
-    "href": "posts/hamilton-ibis/index.html#standalone-ibis",
-    "title": "Portable dataflows with Ibis and Hamilton",
-    "section": "Standalone Ibis",
-    "text": "Standalone Ibis\nHere’s an Ibis code snippet to load data from a parquet file, compute features, select columns, and filter rows, illustrating typical feature engineering operations.\nReading the code, you’ll notice that:\n\nWe use “expression chaining”, meaning there’s a series of .method() attached one after another.\nThe variable ibis._ is a special character referring to the current expression e.g., ibis._.pet accesses the column “pet” of the current table.\nThe table method .mutate(col1=, col2=, ...) assigns new columns or overwrites existing ones.\n\n\nimport ibis\n\nurl = \"https://storage.googleapis.com/ibis-blog-data-public/hamilton-ibis/absenteeism.parquet\"\nfeature_set = (\n  ibis.read_parquet(url, table_name=\"absenteeism\")\n  .rename(\"snake_case\")\n  .mutate(  # allows us to define new columns\n    has_children=ibis.ifelse(ibis._.son &gt; 0, True, False),\n    has_pet=ibis.ifelse(ibis._.pet &gt; 0, True, False),\n    is_summer_brazil=ibis._.month_of_absence.isin([1, 2, 12]),\n  ).select(\n    \"id\", \"has_children\", \"has_pet\", \"is_summer_brazil\",\n    \"service_time\", \"seasons\", \"disciplinary_failure\",\n    \"absenteeism_time_in_hours\"\n  )\n)\n\n\nChallenge 1 – Maintain and test complex data transformations\nIbis has an SQL-like syntax and supports chaining operations, allowing for powerful queries in a few lines of code. Conversely, there’s a risk of sprawling complexity as expressions are appended, making them harder to test and debug. Preventing this issue requires a lot of upfront discipline and refactoring.\n\n\nChallenge 2 – Orchestrate Ibis code in production\nIbis alleviates a major pain point by enabling data transformations to work across backends. However, moving from dev to prod still requires some code changes such as changing backend connectors, swapping unsupported operators, adding some orchestration and logging execution, wanting to reuse prior code, etc. This is outside the scope of the Ibis project and is expected to be enabled by other means, which usually means bespoke constructs that turn into technical debt.",
+    "objectID": "posts/precision-recall/index.html#roc-auc",
+    "href": "posts/precision-recall/index.html#roc-auc",
+    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
+    "section": "ROC & AUC",
+    "text": "ROC & AUC\nThe plot on the left shows the distributions of predictors for the two outcomes, and the plot on the right shows the ROC curve for these distributions. The vertical line that travels left-to-right is the cutoff value. The red dot that travels along the ROC curve corresponds to the false positive rate and the true positive rate for the cutoff value given in the plot on the left.\nThe traveling cutoff demonstrates the trade-off between trying to classify one outcome correctly and trying to classify the other outcome correcly. When we try to increase the true positive rate, we also increase the false positive rate. When we try to decrease the false positive rate, we decrease the true positive rate.\n\nThe shape of an ROC curve changes when a model changes the way it classifies the two outcomes.\nThe animation [below] starts with a model that cannot tell one outcome from the other, and the two distributions completely overlap (essentially a random classifier). As the two distributions separate, the ROC curve approaches the left-top corner, and the AUC value of the curve increases. When the model can perfectly separate the two outcomes, the ROC curve forms a right angle and the AUC becomes 1.",
     "crumbs": [
       "Perspectives on data science",
-      "Portable dataflows with Ibis and Hamilton"
+      "The Precision-Recall Plot Is More Informative than the ROC Plot"
     ]
   },
   {
-    "objectID": "posts/hamilton-ibis/index.html#what-is-hamilton",
-    "href": "posts/hamilton-ibis/index.html#what-is-hamilton",
-    "title": "Portable dataflows with Ibis and Hamilton",
-    "section": "What is Hamilton?",
-    "text": "What is Hamilton?\nHamilton is a general-purpose framework to write dataflows using regular Python functions. At the core, each function defines a transformation and its parameters indicates its dependencies. Hamilton automatically connects individual functions into a directed acyclic graph (DAG) that can be executed, visualized, optimized, and reported on.\n\n\n\nThe ABC of Hamilton",
+    "objectID": "posts/precision-recall/index.html#precision-recall",
+    "href": "posts/precision-recall/index.html#precision-recall",
+    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
+    "section": "Precision-recall",
+    "text": "Precision-recall\nTwo other metrics that are often used to quantify model performance are precision and recall.\nPrecision (also called positive predictive value) is defined as the number of true positives divided by the total number of positive predictions. Hence, precision quantifies what percentage of the positive predictions were correct: How correct your model’s positive predictions were.\nRecall (also called sensitivity) is defined as the number of true positives divided by the total number of true postives and false negatives (i.e. all actual positives). Hence, recall quantifies what percentage of the actual positives you were able to identify: How sensitive your model was in identifying positives.\nDariya also made some visualizations of precision-recall curves: precision-recall curves also displays how well a model can classify binary outcomes. However, it does it differently from the way an ROC curve does. Precision-recall curve plots true positive rate (recall or sensitivity) against the positive predictive value (precision).\nIn the middle, here below, the ROC curve with AUC. On the right, the associated precision-recall curve. Similarly to the ROC curve, when the two outcomes separate, precision-recall curves will approach the top-right corner. Typically, a model that produces a precision-recall curve that is closer to the top-right corner is better than a model that produces a precision-recall curve that is skewed towards the bottom of the plot.",
     "crumbs": [
       "Perspectives on data science",
-      "Portable dataflows with Ibis and Hamilton"
+      "The Precision-Recall Plot Is More Informative than the ROC Plot"
     ]
   },
   {
-    "objectID": "posts/hamilton-ibis/index.html#how-hamilton-complements-ibis",
-    "href": "posts/hamilton-ibis/index.html#how-hamilton-complements-ibis",
-    "title": "Portable dataflows with Ibis and Hamilton",
-    "section": "How Hamilton complements Ibis",
-    "text": "How Hamilton complements Ibis\nHamilton was initially developed to structure pandas code for a large catalog of features, and has since been adopted by multiple organizations since, and expanded to cover any python object type (Polars, PySpark, ML Models, Numpy, you custom type, etc). Its syntax encourages users to chunk code into meaningful and reusable components, which facilitates documentation, unit testing, code reviews, and improves iteration speed, and the dev to production process. These benefits directly translate to organizing Ibis code.\n\nSolution 1 – Structure your Ibis code with Hamilton\nNow, we’ll refactor the above Ibis code to use Hamilton. Users have the flexibility to chunk code (i.e., what the contents of a function is), at the table or the column-level depending on the needed granularity. This modularity is particularly beneficial to Ibis because:\n\nWell-scoped functions with type annotations and docstring are easier to understand for new Ibis users and facilitate onboarding.\nUnit testing and data validation becomes easier with smaller expressions. These checks become more important when working across backends since the operation coverage varies and bugs may arise.\n\n\nTable-level dataflow\nTable-level operations might feel most familiar to SQL and Spark users. Also, Ibis + Hamilton is reminiscent of dbt for the Python ecosystem.\nWorking with tables is very efficient when your number of columns/features is limited, and you don’t need full column level lineage. As you want to reuse components, you can progressively breakdown “table-level code” in to “column-level code”.\nThe initial Ibis code is now 3 functions with type annotations and docstrings. We have a clear sense of the expected external outputs and we could implement schema checks between functions.\n\nfrom typing import Optional\nimport ibis\nimport ibis.expr.types as ir\n\ndef raw_table(raw_data_path: str) -&gt; ir.Table:\n    \"\"\"Load parquet from `raw_data_path` into a Table expression\n    and format column names to snakecase\n    \"\"\"\n    return (\n        ibis.read_parquet(raw_data_path, table_name=\"absenteism\")\n        .rename(\"snake_case\")\n    )\n\ndef feature_table(raw_table: ir.Table) -&gt; ir.Table:\n    \"\"\"Add to `raw_table` the feature columns `has_children`\n    `has_pet`, and `is_summer_brazil`\n    \"\"\"\n    return raw_table.mutate(\n        has_children=(ibis.ifelse(ibis._.son &gt; 0, True, False)),\n        has_pet=ibis.ifelse(ibis._.pet &gt; 0, True, False),\n        is_summer_brazil=ibis._.month_of_absence.isin([1, 2, 12]),\n    )\n\ndef feature_set(\n    feature_table: ir.Table,\n    feature_selection: list[str],\n    condition: Optional[ibis.common.deferred.Deferred] = None,\n) -&gt; ir.Table:\n    \"\"\"Select feature columns and filter rows\"\"\"\n    return feature_table[feature_selection].filter(condition)\n\n\n\n\nTable-level lineage with Hamilton\n\n\n\n\nColumn-level dataflow\nHamilton was initially built to expose and manage column-level operations, which is most common in dataframe libraries (pandas, Dask, polars).\nColumn-level code leads to fully-reusable feature definitions and a highly granular level of lineage. Notably, this allows one to trace sensitive data and evaluate downstream impacts of code changes. However, it is more verbose to get started with, but remember that code is read more often than written.\nNow, the raw_table is loaded and the columns son, pet, and month_of_absence are extracted to engineer new features. After transformations, features are joined with raw_table to create feature_table.\n\nimport ibis\nimport ibis.expr.types as ir\nfrom hamilton.function_modifiers import extract_columns\nfrom hamilton.plugins import ibis_extensions\n\n# extract specific columns from the table\n@extract_columns(\"son\", \"pet\", \"month_of_absence\")\ndef raw_table(raw_data_path: str) -&gt; ir.Table:\n    \"\"\"Load the parquet found at `raw_data_path` into a Table expression\n    and format columns to snakecase\n    \"\"\"\n    return (\n        ibis.read_parquet(sources=raw_data_path, table_name=\"absenteism\")\n        .rename(\"snake_case\")\n    )\n\n# accesses a single column from `raw_table`\ndef has_children(son: ir.Column) -&gt; ir.BooleanColumn:\n    \"\"\"True if someone has any children\"\"\"\n    return ibis.ifelse(son &gt; 0, True, False)\n\n# narrows the return type from `ir.Column` to `ir.BooleanColumn`\ndef has_pet(pet: ir.Column) -&gt; ir.BooleanColumn:\n    \"\"\"True if someone has any pets\"\"\"\n    return ibis.ifelse(pet &gt; 0, True, False).cast(bool)\n\n# typing and docstring provides business context to features\ndef is_summer_brazil(month_of_absence: ir.Column) -&gt; ir.BooleanColumn:\n    \"\"\"True if it is summer in Brazil during this month\n\n    People in the northern hemisphere are likely to take vacations\n    to warm places when it's cold locally\n    \"\"\"\n    return month_of_absence.isin([1, 2, 12])\n\ndef feature_table(\n    raw_table: ir.Table,\n    has_children: ir.BooleanColumn,\n    has_pet: ir.BooleanColumn,\n    is_summer_brazil: ir.BooleanColumn,\n) -&gt; ir.Table:\n    \"\"\"Join computed features to the `raw_data` table\"\"\"\n    return raw_table.mutate(\n        has_children=has_children,\n        has_pet=has_pet,\n        is_summer_brazil=is_summer_brazil,\n    )\n\ndef feature_set(\n    feature_table: ir.Table,\n    feature_selection: list[str],\n    condition: Optional[ibis.common.deferred.Deferred] = None,\n) -&gt; ir.Table:\n    \"\"\"Select feature columns and filter rows\"\"\"\n    return feature_table[feature_selection].filter(condition)\n\n\n\n\nColumn-level lineage with Hamilton\n\n\n\n\n\nSolution 2 – Orchestrate Ibis anywhere\nHamilton is an ideal way to orchestrate Ibis code because it has a very small dependency footprint and will run anywhere Python does (script, notebook, FastAPI, Streamlit, pyodide, etc.) In fact, the Hamilton library only has four dependencies. You don’t need “framework code” to get started, just plain Python functions. When moving to production, Hamilton has all the necessary features to complement Ibis such as swapping components, configurations, and lifecycle hooks for logging, alerting, and telemetry.\nA simple usage pattern of Hamilton + Ibis is to use the @config.when function modifier. In the following example, we have alternative implementations for the backend connection, which will be used for computing and storing results. When running your code, specify in your config backend=\"duckdb\" or backend=\"bigquery\" to swap between the two.\n\n# ibis_dataflow.py\nimport ibis\nimport ibis.expr.types as ir\nfrom hamilton.function_modifiers import config\n\n# ... entire dataflow definition\n\n@config.when(backend=\"duckdb\")\ndef backend_connection__duckdb(\n    connection_string: str\n) -&gt; ibis.backends.BaseBackend:\n    \"\"\"Connect to DuckDB backend\"\"\"\n    return ibis.duckdb.connect(connection_string)\n\n@config.when(backend=\"bigquery\")\ndef backend_connection__bigquery(\n    project_id: str,\n    dataset_id: str,\n) -&gt; ibis.backends.BaseBackend:\n    \"\"\"Connect to BigQuery backend\n    Install dependencies via `pip install ibis-framework[bigquery]`\n    \"\"\"\n    return ibis.bigquery.connect(\n        project_id=project_id,\n        dataset_id=dataset_id,\n    )\n\ndef insert_results(\n    backend_connection: ibis.backends.BaseBackend,\n    result_table: ir.Table,\n    table_name: str\n) -&gt; None:\n    \"\"\"Execute expression and insert results\"\"\"\n    backend_connection.insert(\n        table_name=table_name,\n        obj=result_table\n    )",
+    "objectID": "posts/precision-recall/index.html#class-imbalance",
+    "href": "posts/precision-recall/index.html#class-imbalance",
+    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
+    "section": "Class imbalance",
+    "text": "Class imbalance\nClass imbalance happens when the number of outputs in one class is different from the number of outputs in another class. For example, one of the distributions has 1000 observations and the other has 10. An ROC curve tends to be more robust to class imbalanace that a precision-recall curve.\nIn this animation [below], both distributions start with 1000 outcomes. The blue one is then reduced to 50. The precision-recall curve changes shape more drastically than the ROC curve, and the AUC value mostly stays the same. We also observe this behaviour when the other disribution is reduced to 50.\n\nHere’s the same, but now with the red distribution shrinking to just 50 samples.",
     "crumbs": [
       "Perspectives on data science",
-      "Portable dataflows with Ibis and Hamilton"
+      "The Precision-Recall Plot Is More Informative than the ROC Plot"
     ]
   },
   {
-    "objectID": "posts/hamilton-ibis/index.html#performance-boost",
-    "href": "posts/hamilton-ibis/index.html#performance-boost",
-    "title": "Portable dataflows with Ibis and Hamilton",
-    "section": "Performance boost",
-    "text": "Performance boost\nLeveraging DuckDB as the default backend, Hamilton users migrating to Ibis should immediately find performance improvements both for local dev and production. In addition, the portability of Ibis has the potential to greatly reduce development time.",
+    "objectID": "posts/precision-recall/index.html#further-reading",
+    "href": "posts/precision-recall/index.html#further-reading",
+    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
+    "section": "Further reading",
+    "text": "Further reading\n\nSaito & Rehmsmeier (2015), The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets",
     "crumbs": [
       "Perspectives on data science",
-      "Portable dataflows with Ibis and Hamilton"
+      "The Precision-Recall Plot Is More Informative than the ROC Plot"
     ]
   },
   {
-    "objectID": "posts/hamilton-ibis/index.html#atomic-data-transformation-documentation",
-    "href": "posts/hamilton-ibis/index.html#atomic-data-transformation-documentation",
-    "title": "Portable dataflows with Ibis and Hamilton",
-    "section": "Atomic data transformation documentation",
-    "text": "Atomic data transformation documentation\nHamilton can directly produce a dataflow visualization from code, helping with project documentation. Ibis pushes this one step further by providing a detailed view of the query plan and schemas. See this Ibis visualization for the column-level Hamilton dataflow defined above. It includes all renaming, type casting, and transformations steps (Please open the image in a new tab and zoom in 🔎).",
+    "objectID": "posts/daps/index.html",
+    "href": "posts/daps/index.html",
+    "title": "DAPS - Data-Analytic Problem Structure",
+    "section": "",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
       "Perspectives on data science",
-      "Portable dataflows with Ibis and Hamilton"
+      "DAPS - Data-Analytic Problem Structure"
     ]
   },
   {
-    "objectID": "posts/hamilton-ibis/index.html#working-across-rows-with-user-defined-functions-udfs",
-    "href": "posts/hamilton-ibis/index.html#working-across-rows-with-user-defined-functions-udfs",
-    "title": "Portable dataflows with Ibis and Hamilton",
-    "section": "Working across rows with user-defined functions (UDFs)",
-    "text": "Working across rows with user-defined functions (UDFs)\nHamilton and most backends are designed to work primarily on tables and columns, but sometimes you’d like to operate over a row (think of pd.DataFrame.apply()). However, pivoting tables is costly and manually iterating over rows to collect values and create a new column is quickly inconvenient. By using scalar user-defined functions (UDFs), Ibis makes it possible to execute arbitrary Python code on rows directly on the backend.\n\n\n\n\n\n\nNote\n\n\n\nUsing @ibis.udf.scalar.python creates a non-vectorized function that iterates row-by-row. See the docs to use backend-specific UDFs with @ibis.udf.scalar.builtin and create vectorized scalar UDFs.\n\n\nFor instance, you could embed rows of a text column using an LLM API using your existing data warehouse infrastructure.\n\nimport ibis\nimport ibis.expr.types as ir\n\ndef documents(path: str) -&gt; ir.Table:\n    \"\"\"load text documents from file\"\"\"\n    return ibis.read_parquet(paths=path, table_name=\"documents\")\n\n# function name starts with `_` to prevent being added as a node\n@ibis.udf.scalar.python\ndef _generate_summary(author: str, text: str, prompt_template: str) -&gt; str:\n    \"\"\"UDF Function to call the OpenAI API line by line\"\"\"\n    prompt = prompt_template.format(author=author, text=text)\n    client = openai.OpenAI(...)\n    try:\n        response = client.chat.completions.create(...)\n        return_value = response.choices[0].message.content\n    except Exception:\n        return_value = \"\"\n    return return_value\n\n\ndef prompt_template() -&gt; str:\n    return \"\"\"summarize the following text from {author} and add\n    contextual notes based on it biography and other written work\n\n    TEXT\n    {text}\n    \"\"\"\n\ndef summaries(documents: ir.Table, prompt_template: str) -&gt; ir.Table:\n    \"\"\"Compute the UDF against the family\"\"\"\n    return documents.mutate(\n        summary=_generated_summary(\n            _.author,\n            _.text,\n            prompt_template=prompt_template\n        )\n    )",
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html",
+    "href": "posts/altair/ames-housing-eda-with-altair.html",
+    "title": "Exploratory data analysis with Altair",
+    "section": "",
+    "text": "import altair as alt\nimport numpy as np \nimport pandas as pd\n\n\names_data = \"https://github.com/eaisi/discover-projects/blob/main/ames-housing/AmesHousing.csv?raw=true\"\ntrain = pd.read_csv(ames_data).rename(columns=lambda s: s.replace(\" \",\"\"))\n\ntrain\n\n\n\n\n\n\n\n\nOrder\nPID\nMSSubClass\nMSZoning\nLotFrontage\nLotArea\nStreet\nAlley\nLotShape\nLandContour\n...\nPoolArea\nPoolQC\nFence\nMiscFeature\nMiscVal\nMoSold\nYrSold\nSaleType\nSaleCondition\nSalePrice\n\n\n\n\n0\n1\n526301100\n20\nRL\n141.0\n31770\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n5\n2010\nWD\nNormal\n215000\n\n\n1\n2\n526350040\n20\nRH\n80.0\n11622\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nMnPrv\nNaN\n0\n6\n2010\nWD\nNormal\n105000\n\n\n2\n3\n526351010\n20\nRL\n81.0\n14267\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nNaN\nGar2\n12500\n6\n2010\nWD\nNormal\n172000\n\n\n3\n4\n526353030\n20\nRL\n93.0\n11160\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n4\n2010\nWD\nNormal\n244000\n\n\n4\n5\n527105010\n60\nRL\n74.0\n13830\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nMnPrv\nNaN\n0\n3\n2010\nWD\nNormal\n189900\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n2925\n2926\n923275080\n80\nRL\n37.0\n7937\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nGdPrv\nNaN\n0\n3\n2006\nWD\nNormal\n142500\n\n\n2926\n2927\n923276100\n20\nRL\nNaN\n8885\nPave\nNaN\nIR1\nLow\n...\n0\nNaN\nMnPrv\nNaN\n0\n6\n2006\nWD\nNormal\n131000\n\n\n2927\n2928\n923400125\n85\nRL\n62.0\n10441\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nMnPrv\nShed\n700\n7\n2006\nWD\nNormal\n132000\n\n\n2928\n2929\n924100070\n20\nRL\n77.0\n10010\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n4\n2006\nWD\nNormal\n170000\n\n\n2929\n2930\n924151050\n60\nRL\n74.0\n9627\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n11\n2006\nWD\nNormal\n188000\n\n\n\n\n2930 rows × 82 columns",
     "crumbs": [
       "Perspectives on data science",
-      "Portable dataflows with Ibis and Hamilton"
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#bar-chart-with-highlighted-bar",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#bar-chart-with-highlighted-bar",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Bar Chart with Highlighted Bar",
+    "text": "Bar Chart with Highlighted Bar\nBasic bar chart with a bars highlighted based on the percentage of missing values.\n\nmissing = train.isnull().sum()*100/train.isnull().sum().sum()\nmissing = missing[missing &gt; 0].reset_index()\nmissing.columns = ['Column', 'Count missing']\nmissing.head()\n\n\n\n\n\n\n\n\nColumn\nCount missing\n\n\n\n\n0\nLotFrontage\n3.111309\n\n\n1\nAlley\n17.347133\n\n\n2\nMasVnrType\n11.270557\n\n\n3\nMasVnrArea\n0.146041\n\n\n4\nBsmtQual\n0.507969\n\n\n\n\n\n\n\n\nalt.Chart(missing).mark_bar().encode(\n    x=alt.X('Column', sort='-y'),\n    y='Count missing',\n    color=alt.condition(\n        alt.datum['Count missing'] &gt;10,  # If count missing is &gt; 10%, returns True,\n        alt.value('orange'),             # which sets the bar orange.\n        alt.value('steelblue')           # And if it's not true it sets the bar steelblue.\n    ),\n    tooltip=['Count missing']\n).properties(\n    width=500,\n    height=300\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#boxplot",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#boxplot",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Boxplot",
+    "text": "Boxplot\nCreation of a basic boxplot using .mark_boxplot() method\n\nalt.Chart(train).mark_boxplot().encode(\n    x='OverallQual:O',\n    y='SalePrice:Q',\n    color='OverallQual:N'\n).properties(\n    width=500,\n    height=300\n)",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#heatmaps",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#heatmaps",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Heatmaps",
+    "text": "Heatmaps\nCreation of a basic heatmap using .mark_rect() method.\n\nalt.Chart(train).mark_rect().encode(\n    x='MSZoning',\n    y='ExterQual',\n    color='average(SalePrice)',\n    tooltip=['MSZoning', 'ExterQual', 'average(SalePrice)']\n).properties(\n    width=500,\n    height=300\n)",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#bindings-selections-conditions",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#bindings-selections-conditions",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Bindings, Selections & Conditions",
+    "text": "Bindings, Selections & Conditions\nHere you can select the KitchenQual feature from a dropdown menu and see how the graph changes color!\n\ninput_dropdown = alt.binding_select(options=list(train['KitchenQual'].unique()), name='Lot Shape')\nselection = alt.selection_point(fields=['KitchenQual'], bind=input_dropdown)\ncolor = alt.condition(selection,\n                      alt.Color('KitchenQual:N', legend=None),\n                      alt.value('lightgray'))\n\nalt.Chart(train).mark_point().encode(\n    x='GrLivArea',\n    y='SalePrice',\n    color=color,\n    tooltip=['GrLivArea', 'SalePrice']\n).properties(\n    width=500,\n    height=300\n).add_params(\n    selection\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#interactive-chart-with-cross-highlight",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#interactive-chart-with-cross-highlight",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Interactive Chart with Cross-Highlight",
+    "text": "Interactive Chart with Cross-Highlight\nIn this more advanced example, I use the ExterQual feature as a filter for a binned heatmap.\nClick on the bar chart bars to change the heatmap!\n\npts = alt.selection_point(encodings=['x'])\n\nrect = alt.Chart(train).mark_rect().encode(\n    x=alt.X('GrLivArea', bin=alt.Bin(maxbins=40)),\n    y=alt.Y('GarageArea', bin=alt.Bin(maxbins=40)),\n    color='average(SalePrice)'\n).properties(\n    width=500,\n    height=300\n).transform_filter(\n    pts\n)\n\nbar = alt.Chart(train).mark_bar().encode(\n    x='ExterQual:N',\n    y='count()',\n    color=alt.condition(pts, alt.ColorValue(\"steelblue\"), alt.ColorValue(\"grey\")),\n    tooltip=['ExterQual', 'count()']\n).properties(\n    width=550,\n    height=200\n).add_params(\n    pts\n)\n\n\nalt.vconcat(\n    rect,\n    bar\n).resolve_legend(\n    color=\"independent\",\n    size=\"independent\"\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#dot-dash-plot",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#dot-dash-plot",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Dot Dash Plot",
+    "text": "Dot Dash Plot\nA Dot Dash Plot is basically a scatter plot with both axis removed and replaced with barcode plots (aka strip plots), which allow you to see the distribution of values of each measure used in the scatter plot.\n\n# Configure the options common to all layers\nbrush = alt.selection_interval()\nbase = alt.Chart(train).add_params(brush)\n\n# Configure the points\npoints = base.mark_point().encode(\n    x=alt.X('GrLivArea', title=''),\n    y=alt.Y('SalePrice', title=''),\n    color=alt.condition(brush, 'KitchenQual', alt.value('grey'))\n)\n\n# Configure the ticks\ntick_axis = alt.Axis(labels=False, domain=False, ticks=False)\n\nx_ticks = base.mark_tick().encode(\n    alt.X('GrLivArea', axis=tick_axis),\n    alt.Y('KitchenQual', title='', axis=tick_axis),\n    color=alt.condition(brush, 'KitchenQual', alt.value('lightgrey'))\n)\n\ny_ticks = base.mark_tick().encode(\n    alt.X('KitchenQual', title='', axis=tick_axis),\n    alt.Y('SalePrice', axis=tick_axis),\n    color=alt.condition(brush, 'KitchenQual', alt.value('lightgrey'))\n)\n\n# Build the chart\n(\n    y_ticks | (points & x_ticks)\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#multifeature-scatter-plot",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#multifeature-scatter-plot",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Multifeature Scatter Plot",
+    "text": "Multifeature Scatter Plot\nLet’s create a scatter plot with multiple feature encodings.\nWith .interactive() you can zoom in. You can also click on legend to select specific KitchenQual values.\n\nselection = alt.selection_point(fields=['KitchenQual'], bind='legend')\n\nalt.Chart(train).mark_circle().encode(\n    alt.X('GrLivArea', scale=alt.Scale(zero=False)),\n    alt.Y('GarageArea', scale=alt.Scale(zero=False, padding=1)),\n    color='KitchenQual',\n    size=alt.Size('SalePrice', bin=alt.Bin(maxbins=10), title='SalePrice'),\n    opacity=alt.condition(selection, alt.value(1), alt.value(0.2)),\n    tooltip=['GrLivArea', 'SalePrice']\n).properties(\n    width=500,\n    height=500\n).add_params(\n    selection\n).configure_axis(\n    grid=False\n).interactive()",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#scatter-matrix",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#scatter-matrix",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Scatter Matrix",
+    "text": "Scatter Matrix\nScatter matrix are one of the most common graph you’ll see on Kaggle. It consists of several pair-wise scatter plots of variables presented in a matrix format, useful to visualize multiple relationships between a pair of variables.\nIn Altair this can be achieved using a RepeatChart, let’s see how!\n\nalt.Chart(train).mark_circle().encode(\n    alt.X(alt.repeat(\"column\"), type='quantitative'),\n    alt.Y(alt.repeat(\"row\"), type='quantitative'),\n    color='KitchenQual'\n).properties(\n    width=300,\n    height=300\n).repeat(\n    # Here we tell Altair we want to repeat out scatter plots for each row-column pair\n    row=['GrLivArea', 'GarageArea', 'TotalBsmtSF'],\n    column=['TotalBsmtSF', 'GarageArea', 'GrLivArea']\n).configure_axis(\n    grid=False\n)",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
+    ]
+  },
+  {
+    "objectID": "posts/altair/ames-housing-eda-with-altair.html#layered-histogram",
+    "href": "posts/altair/ames-housing-eda-with-altair.html#layered-histogram",
+    "title": "Exploratory data analysis with Altair",
+    "section": "Layered Histogram",
+    "text": "Layered Histogram\nUsing Altair, we can make overlapping histograms or layers histograms from data:\n\nalt.Chart(train).mark_bar(\n    opacity=0.5,\n    binSpacing=0\n).encode(\n    alt.X('SalePrice:Q', bin=alt.Bin(maxbins=50)),\n    alt.Y('count()', stack=None),\n    alt.Color('MSZoning:N')\n)",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair",
+      "Exploratory data analysis with Altair"
     ]
   },
   {
@@ -471,168 +580,6 @@
     "crumbs": [
       "Perspectives on data science",
       "Stop aggregating away the signal in your data"
-    ]
-  },
-  {
-    "objectID": "posts/daps/index.html",
-    "href": "posts/daps/index.html",
-    "title": "DAPS - Data-Analytic Problem Structure",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
-    "crumbs": [
-      "Perspectives on data science",
-      "DAPS - Data-Analytic Problem Structure"
-    ]
-  },
-  {
-    "objectID": "posts/index.html",
-    "href": "posts/index.html",
-    "title": "Perspectives on data science",
-    "section": "",
-    "text": "DAPS - Data-Analytic Problem Structure\n\n\n\nbusiness understanding\n\n\n\nModels for structuring big-data and data-analytics projects typically start with a definition of the project’s goals and the business value they are expected to create. The…\n\n\n\nJeroen de Mast, Joran Lokkerbol\n\n\nApr 12, 2024\n\n\n\n\n\n\n\n\n\n\n\nThe Design Philosophy of Great Tables\n\n\n\nvisualization\n\n\n\n\n\n\n\nRich Iannone and Michael Chow\n\n\nApr 4, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nPortable dataflows with Ibis and Hamilton\n\n\n\ncomposable data stack\n\ndata engineering\n\n\n\n\n\n\n\nThierry Jean\n\n\nApr 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nModern, hybrid, open analytics\n\n\n\ncomposable data stack\n\ndata engineering\n\n\n\n\n\n\n\nCody Peterson\n\n\nJan 25, 2024\n\n\n\n\n\n\n\n\n\n\n\nGetting into Python\n\n\nHow to get into Python, the most widely used programming language for data science.\n\n\n\nDaniel Kapitan\n\n\nDec 21, 2023\n\n\n\n\n\n\n\n\n\n\n\nData visualization with Vega-Altair\n\n\nI am a big fan of the Vega-Altair ecosystem for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to…\n\n\n\nDaniel Kapitan\n\n\nDec 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalytical problem solving\n\n\n\nmodeling\n\n\n\nI co-authored a peer-reviewed paper that compares the different modeling approaches for analytical problem solving.\n\n\n\nDaniel Kapitan, Jeroen de Mast, Stefan Steiner, Wim Nuijten\n\n\nMar 10, 2022\n\n\n\n\n\n\n\n\n\n\n\nStop aggregating away the signal in your data\n\n\n\nexploratory data analysis\n\nvisualization\n\n\n\nBy aggregating our data in an effort to simplify it, we lose the signal and the context we need to make sense of what we’re seeing. Originally published on &lt;a…\n\n\n\nZan Armstrong\n\n\nMar 3, 2022\n\n\n\n\n\n\n\n\n\n\n\nRIP correlation. Introducing the Predictive Power Score.\n\n\n\nexploratory data analysis\n\n\n\nWe define the Predictive Power Score (PPS), an alternative to the correlation that finds more patterns in your data. Originally published on &lt;a…\n\n\n\nFlorian Wetschoreck\n\n\nApr 23, 2020\n\n\n\n\n\n\n\n\n\n\n\nThe Precision-Recall Plot Is More Informative than the ROC Plot\n\n\n\nperformance metrics\n\n\n\nAn introduction to performance metrics for binary classification. Originally published on &lt;a…\n\n\n\nPaul van der Laken, Daniel Kapitan\n\n\nAug 16, 2019\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Perspectives on data science"
-    ]
-  },
-  {
-    "objectID": "posts/python/realpython.html",
-    "href": "posts/python/realpython.html",
-    "title": "Getting into Python with RealPython.com",
-    "section": "",
-    "text": "The table below lists the topics that you should have covered _as a bare minimum. You often have a choice to suit your prefered learning style: courses are videos, tutorials are text. Note that the tutorials are free of charge, while the videos are only accessible with a paid subscription.\n\n\n\nchapter\ntopic\ncourse\ntutorial\n\n\n\n\n2. Setting up Python\nInstalling Python 3\nlink\nlink\n\n\n\nPython in VS Code\nlink\nlink\n\n\n3. Your First Python Program\nCode Your First Python Program\nlink\n\n\n\n\nBasic Data Types in Python\nlink\nlink\n\n\n\nVariables in Python\nlink\nlink\n\n\n4. Strings and String Methods\nStrings and Character Data in Python\nlink\nlink\n\n\n\nReading Input and Writing Output in Python\nlink\nlink\n\n\n5. Numbers and Math\nOperators and Expressions in Python\nlink\nlink\n\n\n\nNumbers in Python\n\nlink\n\n\n6. Functions and Loops\n“for” loops (Definite Iteration)\nlink\nlink\n\n\n\n“while” loops (Indefinite Iteration)\nlink\nlink\n\n\n\nDefining and Calling Python Functions\nlink\nlink\n\n\n8. Conditional Logic and Control Flow\nConditional Statements in Python (if/elis/else)\nlink\nlink\n\n\n9. Tuples, Lists and Dictinairies\nLists and Tuples in Python\nlink\nlink\n\n\n\nDictionairies in Python\nlink\nlink\n\n\n11. Modules and Packages\nPython Modules and Packages: An Introduction\nlink\nlink\n\n\n12. File Input and Output\nReading and Writing Files in Python\nlink",
-    "crumbs": [
-      "Perspectives on data science",
-      "Getting into Python",
-      "Getting into Python with RealPython.com"
-    ]
-  },
-  {
-    "objectID": "posts/python/index.html",
-    "href": "posts/python/index.html",
-    "title": "Getting into Python",
-    "section": "",
-    "text": "Python has emerged over the last couple decades as a first-class tool for scientific computing tasks, including the analysis and visualization of large datasets. This may have come as a surprise to early proponents of the Python language: the language itself was not specifically designed with data analysis or scientific computing in mind. The usefulness of Python for data science stems primarily from the large and active ecosystem of third-party packages, particularly:\n\nNumPy for manipulation of homogeneous array-based data;\nPandas for manipulation of heterogeneous and labeled data, and the more recent high-performace dataprocessing libraries such as polars and ibis;\nSciPy for common scientific computing tasks, Matplotlib for publication-quality visualizations;\nIPython for interactive execution and sharing of code;\nScikit-Learn for machine learning.",
-    "crumbs": [
-      "Perspectives on data science",
-      "Getting into Python"
-    ]
-  },
-  {
-    "objectID": "posts/python/index.html#why-python-for-data-science",
-    "href": "posts/python/index.html#why-python-for-data-science",
-    "title": "Getting into Python",
-    "section": "",
-    "text": "Python has emerged over the last couple decades as a first-class tool for scientific computing tasks, including the analysis and visualization of large datasets. This may have come as a surprise to early proponents of the Python language: the language itself was not specifically designed with data analysis or scientific computing in mind. The usefulness of Python for data science stems primarily from the large and active ecosystem of third-party packages, particularly:\n\nNumPy for manipulation of homogeneous array-based data;\nPandas for manipulation of heterogeneous and labeled data, and the more recent high-performace dataprocessing libraries such as polars and ibis;\nSciPy for common scientific computing tasks, Matplotlib for publication-quality visualizations;\nIPython for interactive execution and sharing of code;\nScikit-Learn for machine learning.",
-    "crumbs": [
-      "Perspectives on data science",
-      "Getting into Python"
-    ]
-  },
-  {
-    "objectID": "posts/python/index.html#how-much-python-should-i-know",
-    "href": "posts/python/index.html#how-much-python-should-i-know",
-    "title": "Getting into Python",
-    "section": "How much Python should I know?",
-    "text": "How much Python should I know?\nAs with any other (programming) language, it takes years to master it fluently which is beyond the scope this anthology. Instead, our objective is to have a working knowledge of Python to be able to learn and apply machine learning. To make this explicit we take the following book and online resources as our point of reference.\n\nA Whirlwind Tour of Python (pages number from the pdf version):\n\nKnow how to install and use Python on your own computer (pages 1 to 13)\nKnow basic semantics of variables, objects and operators (pages 13 to 24)\nKnow built-in simple values and data structures (pages 24 to 37)\nKnow how to use control flow and functions (pages 37 to 45)\nKnow how to iterate and use list comprehensions (pages 52 to 61)\n\nPython for Data Analysis\n\nKnow how to manipulate data with pandas, with Python for Data Analysis, Third Edition as your reference guide\n\n\n\n\n\n\n\n\nNotePCEP™ – Certified Entry-Level Python Programmer\n\n\n\nThe learning path proposed here is similar to the PCEP™ – Certified Entry-Level Python Programmer certification. The PCEP™ certification is a good way to assess your current Python knowledge and to prepare for the Machine Learning Foundation course. The certification is offered by the Python Institute. You may opt to obtain this certificate.",
-    "crumbs": [
-      "Perspectives on data science",
-      "Getting into Python"
-    ]
-  },
-  {
-    "objectID": "posts/python/index.html#how-should-i-learn-python",
-    "href": "posts/python/index.html#how-should-i-learn-python",
-    "title": "Getting into Python",
-    "section": "How should I learn Python?",
-    "text": "How should I learn Python?\nRealPython.com is the recommended online learning environment for Python. We have collated a learning path for data science.",
-    "crumbs": [
-      "Perspectives on data science",
-      "Getting into Python"
-    ]
-  },
-  {
-    "objectID": "posts/python/index.html#which-python-environment-should-i-use",
-    "href": "posts/python/index.html#which-python-environment-should-i-use",
-    "title": "Getting into Python",
-    "section": "Which Python environment should I use?",
-    "text": "Which Python environment should I use?\nOptions how to start using Python are listed below.\n\nOnline notebook (easy)Visual Studio Code (intermediate)\n\n\nFor those new to Python, it is probably easiest to start with one of these online notebook environments:\n\nDeepnote: there is a generous free-tier. If you decide to upgrade, you can collaborate and share notebooks privately.\nGoogle Colab:\n\nActivate a Google account if you haven’t got one yet.\nWork your way through the Colab introduction notebook.\n\n\nOnce you have gained some traction, you can move on to install Python on your local machine.\n\n\nVisual Studio Code is the recommended data science workbench. To setup your local machine/laptop for data science and machine learning, do the following:\n\nFollow these two tutorials on RealPython.com:\n\nInstalling Python\nPython in VS Code\n\nFor more advanced use, including using VS Code in the cloud:\n\nRead the documentation on GitHub Codespaces\nRead the documentation on Azure Dev Containers\nUse these excellent Data Science Dev Containers by Olivier Benz",
-    "crumbs": [
-      "Perspectives on data science",
-      "Getting into Python"
-    ]
-  },
-  {
-    "objectID": "posts/python/index.html#guidelines-for-using-python-for-data-science",
-    "href": "posts/python/index.html#guidelines-for-using-python-for-data-science",
-    "title": "Getting into Python",
-    "section": "Guidelines for using Python for data science",
-    "text": "Guidelines for using Python for data science\nUsing Python for data science is inherently different than using it for, say, building a website. To provide you with some guidance to the many different ways c.q. styles of using Python, please consider the following:\n\nFocus on using existing data science libraries, instead of writing your own basic functions. If you find yourself spending a lot of time reading documentation, you are on the right track.\nTake a functional approach to programming instead of an object-oriented approach. The former is more fitting for data science, where it is common to structure your work in terms of pipelines and think about each processing step as a function. The latter is more suitable for application development.\n\nFor those wanting to further develop their Python skills for data science, the following books are recommended:\n\nPython for Data Analysis 3rd Edition by Wes McKinney, the creator of pandas.\nData Science With Python Core Skills on Real Python provides an extensive learning path.\nHands-On Machine Learning with Scikit-Learn, Keras and Tensorflow (2nd edition) by Aurélien Géron. You will need to purchase the book, but the notebooks with example code are freely available.\nEffective Python: 90 Specific Ways to Write Better Python (second edition).",
-    "crumbs": [
-      "Perspectives on data science",
-      "Getting into Python"
-    ]
-  },
-  {
-    "objectID": "posts/python/index.html#more-on-python",
-    "href": "posts/python/index.html#more-on-python",
-    "title": "Getting into Python",
-    "section": "More on Python",
-    "text": "More on Python\n\n\n\n\n\n\n\n\n\n\nGetting into Python with RealPython.com\n\n\nWe have compiled a learning path for those who are new to Python, using a selection of chapters from Real Python.\n\n\n\nDaniel Kapitan\n\n\nNov 11, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nEffective Python and idiomatic pandas\n\n\nGuidelines on how to continue to develop your skills to write effective Python and use pandas in an idiomatic way.\n\n\n\nDaniel Kapitan\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Whirlwind Tour of Python\n\n\nA brief but comprehensive tour of the Python language for those who have (sometimes extensive) backgrounds in computing in some language.\n\n\n\nJake VanderPlas\n\n\nAug 10, 2016\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Perspectives on data science",
-      "Getting into Python"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "An anthology of open access data science materials",
-    "section": "",
-    "text": "Machine learning is permeating many fields of work. As a new ‘system technology’1, its impact on organizations and society is expected to be of the same magnitude as that of the steam engine or electricity. As such, more and more professionals are seeking to acquire the necessary understanding and skills to apply machine learning in their day-to-day work. Hence more people without a background in either computer science or statistics - let alone both - have a need for high-quality, open access content to explore and learn data science by themselves.\nNow there is a lot of machine learning learning materials out there, so why this anthology? Based on my experience in teaching professional education course on data & AI, I am continouly challenged to:\n\ncurate content for different professional learning paths, combining various existing open access materials that can be readily shared and thus contribute to the democratization of know-how in this field of work;\nfinding a balance between too technical vs. too vague, handwaving or even downright wrong;\ntake a hands-on, problem-based approach. Rather than, say, explaining the principles that underlie regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularization for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and reason where and how to use regularization."
-  },
-  {
-    "objectID": "index.html#why-this-anthology",
-    "href": "index.html#why-this-anthology",
-    "title": "An anthology of open access data science materials",
-    "section": "",
-    "text": "Machine learning is permeating many fields of work. As a new ‘system technology’1, its impact on organizations and society is expected to be of the same magnitude as that of the steam engine or electricity. As such, more and more professionals are seeking to acquire the necessary understanding and skills to apply machine learning in their day-to-day work. Hence more people without a background in either computer science or statistics - let alone both - have a need for high-quality, open access content to explore and learn data science by themselves.\nNow there is a lot of machine learning learning materials out there, so why this anthology? Based on my experience in teaching professional education course on data & AI, I am continouly challenged to:\n\ncurate content for different professional learning paths, combining various existing open access materials that can be readily shared and thus contribute to the democratization of know-how in this field of work;\nfinding a balance between too technical vs. too vague, handwaving or even downright wrong;\ntake a hands-on, problem-based approach. Rather than, say, explaining the principles that underlie regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularization for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and reason where and how to use regularization."
-  },
-  {
-    "objectID": "index.html#what-is-the-best-online-course-to-get-into-data-science-ai",
-    "href": "index.html#what-is-the-best-online-course-to-get-into-data-science-ai",
-    "title": "An anthology of open access data science materials",
-    "section": "What is the best online course to get into data science & AI?",
-    "text": "What is the best online course to get into data science & AI?\nFor now, my recommendation is to start with one of the courses offered by Elements of AI.\n\nIntroduction to AIBuilding AI\n\n\n\nAn Introduction to AI is a free online course for everyone interested in learning what AI is, what is possible (and not possible) with AI, and how it affects our lives – with no complicated math or programming required.\n\n\n\nBuilding AI is a free online course where you’ll learn about the actual algorithms that make creating AI methods possible. Some basic Python programming skills are recommended to get the most out of the course."
-  },
-  {
-    "objectID": "index.html#how-is-this-anthology-set-up",
-    "href": "index.html#how-is-this-anthology-set-up",
-    "title": "An anthology of open access data science materials",
-    "section": "How is this anthology set up?",
-    "text": "How is this anthology set up?\n\nBooks\nA selection of what I think are the best textbooks is provided as a digital bookshelf. Many of the books included are open access, thanks to their respective authors! They should keep you busy for a while.\n\n\nLectures\nI am gradually rewriting my lectures as Revealjs presentations. More will be added over time.\n\n\nPerspectives\nVarious topics and perspectives on how data science is done. Clearly this is an opinionated and very personal selection. It includes a section on getting into Python, where I have curated a selection of books and online tutorials to get you going. Also, a selection of tutorials and blogpost is provided on creating visualizations with Altair. I am a big fan of the Vega-Altair ecosystem for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis.\n\n\nUse cases\nA selection of inspiring use cases across various industries, which I think are a demonstration of good practices.\n\n\nNotebooks\nNotebooks for those seeking hands-on examples and explainers."
-  },
-  {
-    "objectID": "index.html#report-an-issue",
-    "href": "index.html#report-an-issue",
-    "title": "An anthology of open access data science materials",
-    "section": "Report an issue",
-    "text": "Report an issue\nThis anthology was born out of a need to scratch my own itch, namely to have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful for those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue."
-  },
-  {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "An anthology of open access data science materials",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nSheikh et al. (2023), Mission AI: the New System Technology, https://doi.org/10.1007/978-3-031-21448-6↩︎"
-  },
-  {
-    "objectID": "books.html",
-    "href": "books.html",
-    "title": "Anthology of Data Science",
-    "section": "",
-    "text": "Open access booksNon-open access books\n\n\n\n\n\n\n\n\n\n\n\n\nAdvanced Data Analysis from an Elementary Point of View\n\n\nThis is a draft textbook on data analysis methods, intended for a one-semester course for advance undergraduate students who have already taken classes in probability…\n\n\n\nCosma Rohilla Shalizi\n\n\nFeb 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Introduction to Statistical Learning\n\n\nStatistical learning has become a critical toolkit for anyone who wishes to understand data. This book provides a broad and less technical treatment of key topics in…\n\n\n\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor\n\n\nJul 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nCausal Inference: What If\n\n\nA book that helps scientists—especially health and social scientists—generate and analyze data to make causal inferences that are explicit about both the causal question and…\n\n\n\nMiguel A. Hernán, James M. Robins\n\n\nJan 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nCritical Data Studies\n\n\nThis book provides a glossary for the field, consisting of 413 entries about key terms. Each entry sets out a definition, a descriptive overview, and further reading. The…\n\n\n\nRob Kitchin\n\n\nJan 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nEthics of Artificial Intelligence\n\n\nThis open access collection of AI ethics case studies is the first book to present real-life case studies combined with commentaries and strategies for overcoming ethical…\n\n\n\nBernd Carsten Stahl, Doris Schroeder, Rowena Rodrigues\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nFairness and Machine Learning\n\n\nMany take the leap of faith behind statistical decision making for granted to an extent that it’s become difficult to question. In this book, we take machine learning as a…\n\n\n\nSolon Barocas, Moritz Hardt,, Arvind Narayanan\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasting Principles & Practice the Pythonic Way\n\n\nThis textbook is provides a comprehensive introduction to forecasting methods and presents enough information about each method for readers to be able to use them sensibly.…\n\n\n\nRob J Hyndman, George Athanasopoulos, Azul Garza, Cristian Challu, Max Mergenthaler, Kin G. Olivares\n\n\nJun 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamentals of Data Visualization\n\n\nThe book is meant as a guide to making visualizations that accurately reflect the data, tell a story, and look professional.\n\n\n\nClaus O. Wilke\n\n\nAug 20, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nInterpretable Machine Learning\n\n\nThis book is about making machine learning models and their decisions interpretable. It will enable you to select and correctly apply the interpretation method that is most…\n\n\n\nChristoph Molnar\n\n\nMar 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Modern Statistics (2nd edition)\n\n\nThis books aims to offer three ideas, namely i) statistics is an applied field with a wide range of practical applications; ii) you don’t have to be a math guru to learn…\n\n\n\nMine Çetinkaya-Rundel, Johanna Hardin\n\n\nJan 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nMathematics For Machine Learning\n\n\nThis book aims to motivate people to learn mathematical concepts. The book is not intended to cover advanced machine learning techniques because there are already plenty of…\n\n\n\nMarc Peter Deisenroth, A. Aldo Faisal, Cheng Soon Ong\n\n\nJan 15, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython of Data Analysis, Third Edition\n\n\nThis book is concerned with the nuts and bolts of manipulating, processing, cleaning, and crunching data in Python.\n\n\n\nWes McKinney\n\n\nApr 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nR for Data Science, Second Edition\n\n\nThis book will teach you how to do data science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it and visualize.\n\n\n\nHadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemenund\n\n\nNov 30, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Turing Way\n\n\nAn open source, open collaboration, community-driven handbook to reproducible, ethical and collaborative data science.\n\n\n\nThe Turing Way Community\n\n\nJul 22, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding Deep Learning\n\n\nThis book explains the ideas that underlie deep learning, distinguishing it from volumes that cover coding and other practical aspects. More resources can be found on &lt;a…\n\n\n\nSimon Prince\n\n\nOct 23, 2023\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesigning Data-Intensive Applications\n\n\nData is at the center of many challenges in system design today. Difficult issues need to be figured out, such as scalability, consistency, reliability, efficiency, and…\n\n\n\nMartin Kleppmann\n\n\nMar 1, 2017\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-On Large Language Models\n\n\nAI has acquired startling new language capabilities in just the past few years. Driven by rapid advances in deep learning, language AI systems are able to write and…\n\n\n\nJay Alammar, Maarten Grootendorst\n\n\nSep 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition\n\n\nThrough a recent series of breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this…\n\n\n\nAurélien Géron\n\n\nOct 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython Polars: The Definitive Guide\n\n\nThis book is designed for anyone looking to leverage the power of Polars in Python to transform, analyze, and visualize data more efficiently and effectively. I completely…\n\n\n\nJeroen Janssens, Thijs Nieuwdorp\n\n\nFeb 1, 2025\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Books"
     ]
   },
   {
@@ -732,92 +679,15 @@
     ]
   },
   {
-    "objectID": "posts/python/whirlwind.html",
-    "href": "posts/python/whirlwind.html",
-    "title": "A Whirlwind Tour of Python",
+    "objectID": "posts/python/realpython.html",
+    "href": "posts/python/realpython.html",
+    "title": "Getting into Python with RealPython.com",
     "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "text": "The table below lists the topics that you should have covered _as a bare minimum. You often have a choice to suit your prefered learning style: courses are videos, tutorials are text. Note that the tutorials are free of charge, while the videos are only accessible with a paid subscription.\n\n\n\nchapter\ntopic\ncourse\ntutorial\n\n\n\n\n2. Setting up Python\nInstalling Python 3\nlink\nlink\n\n\n\nPython in VS Code\nlink\nlink\n\n\n3. Your First Python Program\nCode Your First Python Program\nlink\n\n\n\n\nBasic Data Types in Python\nlink\nlink\n\n\n\nVariables in Python\nlink\nlink\n\n\n4. Strings and String Methods\nStrings and Character Data in Python\nlink\nlink\n\n\n\nReading Input and Writing Output in Python\nlink\nlink\n\n\n5. Numbers and Math\nOperators and Expressions in Python\nlink\nlink\n\n\n\nNumbers in Python\n\nlink\n\n\n6. Functions and Loops\n“for” loops (Definite Iteration)\nlink\nlink\n\n\n\n“while” loops (Indefinite Iteration)\nlink\nlink\n\n\n\nDefining and Calling Python Functions\nlink\nlink\n\n\n8. Conditional Logic and Control Flow\nConditional Statements in Python (if/elis/else)\nlink\nlink\n\n\n9. Tuples, Lists and Dictinairies\nLists and Tuples in Python\nlink\nlink\n\n\n\nDictionairies in Python\nlink\nlink\n\n\n11. Modules and Packages\nPython Modules and Packages: An Introduction\nlink\nlink\n\n\n12. File Input and Output\nReading and Writing Files in Python\nlink",
     "crumbs": [
       "Perspectives on data science",
       "Getting into Python",
-      "A Whirlwind Tour of Python"
-    ]
-  },
-  {
-    "objectID": "posts/precision-recall/index.html",
-    "href": "posts/precision-recall/index.html",
-    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
-    "section": "",
-    "text": "A receiver operating characteristic (ROC) curve displays how well a model can classify binary outcomes. An ROC curve is generated by plotting the false positive rate of a model against its true positive rate, for each possible cutoff value. Often, the area under the curve (AUC) is calculated and used as a metric showing how well a model can classify data points.\nIf you’re interest in learning more about ROC and AUC, I recommend this short Medium blog, which contains this neat graphic.\n\nDariya Sydykova, graduate student at the Wilke lab at the University of Texas at Austin, shared some great visual animations of how model accuracy and model cutoffs alter the ROC curve and the AUC metric. The quotes and animations are from the associated github repository.",
-    "crumbs": [
-      "Perspectives on data science",
-      "The Precision-Recall Plot Is More Informative than the ROC Plot"
-    ]
-  },
-  {
-    "objectID": "posts/precision-recall/index.html#roc-auc-precision-and-recall-visually-explained",
-    "href": "posts/precision-recall/index.html#roc-auc-precision-and-recall-visually-explained",
-    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
-    "section": "",
-    "text": "A receiver operating characteristic (ROC) curve displays how well a model can classify binary outcomes. An ROC curve is generated by plotting the false positive rate of a model against its true positive rate, for each possible cutoff value. Often, the area under the curve (AUC) is calculated and used as a metric showing how well a model can classify data points.\nIf you’re interest in learning more about ROC and AUC, I recommend this short Medium blog, which contains this neat graphic.\n\nDariya Sydykova, graduate student at the Wilke lab at the University of Texas at Austin, shared some great visual animations of how model accuracy and model cutoffs alter the ROC curve and the AUC metric. The quotes and animations are from the associated github repository.",
-    "crumbs": [
-      "Perspectives on data science",
-      "The Precision-Recall Plot Is More Informative than the ROC Plot"
-    ]
-  },
-  {
-    "objectID": "posts/precision-recall/index.html#roc-auc",
-    "href": "posts/precision-recall/index.html#roc-auc",
-    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
-    "section": "ROC & AUC",
-    "text": "ROC & AUC\nThe plot on the left shows the distributions of predictors for the two outcomes, and the plot on the right shows the ROC curve for these distributions. The vertical line that travels left-to-right is the cutoff value. The red dot that travels along the ROC curve corresponds to the false positive rate and the true positive rate for the cutoff value given in the plot on the left.\nThe traveling cutoff demonstrates the trade-off between trying to classify one outcome correctly and trying to classify the other outcome correcly. When we try to increase the true positive rate, we also increase the false positive rate. When we try to decrease the false positive rate, we decrease the true positive rate.\n\nThe shape of an ROC curve changes when a model changes the way it classifies the two outcomes.\nThe animation [below] starts with a model that cannot tell one outcome from the other, and the two distributions completely overlap (essentially a random classifier). As the two distributions separate, the ROC curve approaches the left-top corner, and the AUC value of the curve increases. When the model can perfectly separate the two outcomes, the ROC curve forms a right angle and the AUC becomes 1.",
-    "crumbs": [
-      "Perspectives on data science",
-      "The Precision-Recall Plot Is More Informative than the ROC Plot"
-    ]
-  },
-  {
-    "objectID": "posts/precision-recall/index.html#precision-recall",
-    "href": "posts/precision-recall/index.html#precision-recall",
-    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
-    "section": "Precision-recall",
-    "text": "Precision-recall\nTwo other metrics that are often used to quantify model performance are precision and recall.\nPrecision (also called positive predictive value) is defined as the number of true positives divided by the total number of positive predictions. Hence, precision quantifies what percentage of the positive predictions were correct: How correct your model’s positive predictions were.\nRecall (also called sensitivity) is defined as the number of true positives divided by the total number of true postives and false negatives (i.e. all actual positives). Hence, recall quantifies what percentage of the actual positives you were able to identify: How sensitive your model was in identifying positives.\nDariya also made some visualizations of precision-recall curves: precision-recall curves also displays how well a model can classify binary outcomes. However, it does it differently from the way an ROC curve does. Precision-recall curve plots true positive rate (recall or sensitivity) against the positive predictive value (precision).\nIn the middle, here below, the ROC curve with AUC. On the right, the associated precision-recall curve. Similarly to the ROC curve, when the two outcomes separate, precision-recall curves will approach the top-right corner. Typically, a model that produces a precision-recall curve that is closer to the top-right corner is better than a model that produces a precision-recall curve that is skewed towards the bottom of the plot.",
-    "crumbs": [
-      "Perspectives on data science",
-      "The Precision-Recall Plot Is More Informative than the ROC Plot"
-    ]
-  },
-  {
-    "objectID": "posts/precision-recall/index.html#class-imbalance",
-    "href": "posts/precision-recall/index.html#class-imbalance",
-    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
-    "section": "Class imbalance",
-    "text": "Class imbalance\nClass imbalance happens when the number of outputs in one class is different from the number of outputs in another class. For example, one of the distributions has 1000 observations and the other has 10. An ROC curve tends to be more robust to class imbalanace that a precision-recall curve.\nIn this animation [below], both distributions start with 1000 outcomes. The blue one is then reduced to 50. The precision-recall curve changes shape more drastically than the ROC curve, and the AUC value mostly stays the same. We also observe this behaviour when the other disribution is reduced to 50.\n\nHere’s the same, but now with the red distribution shrinking to just 50 samples.",
-    "crumbs": [
-      "Perspectives on data science",
-      "The Precision-Recall Plot Is More Informative than the ROC Plot"
-    ]
-  },
-  {
-    "objectID": "posts/precision-recall/index.html#further-reading",
-    "href": "posts/precision-recall/index.html#further-reading",
-    "title": "The Precision-Recall Plot Is More Informative than the ROC Plot",
-    "section": "Further reading",
-    "text": "Further reading\n\nSaito & Rehmsmeier (2015), The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets",
-    "crumbs": [
-      "Perspectives on data science",
-      "The Precision-Recall Plot Is More Informative than the ROC Plot"
-    ]
-  },
-  {
-    "objectID": "posts/analytical-problem-solving/index.html",
-    "href": "posts/analytical-problem-solving/index.html",
-    "title": "Analytical problem solving",
-    "section": "",
-    "text": "To explore different modeling approaches, have a look at OR tools for deductive models and DoWhy for causal models.\n\n\n  Download PDF File\n   \n    Unable to display PDF file. Download instead.",
-    "crumbs": [
-      "Perspectives on data science",
-      "Analytical problem solving"
+      "Getting into Python with RealPython.com"
     ]
   },
   {
@@ -964,145 +834,343 @@
     ]
   },
   {
-    "objectID": "posts/altair/index.html",
-    "href": "posts/altair/index.html",
-    "title": "Data visualization with Vega-Altair",
+    "objectID": "books/shalizi.html",
+    "href": "books/shalizi.html",
+    "title": "Advanced Data Analysis from an Elementary Point of View",
     "section": "",
-    "text": "Implementing best practices for data visualization as an Altair theme.\n\n\n\nDaniel Kapitan\n\n\nJan 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis notebook collects explorations of Altair’s most interesting features. Originally published on &lt;a…\n\n\n\nJacopo Repossi\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\nNo matching items",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair"
+      "Books",
+      "Advanced Data Analysis from an Elementary Point of View"
     ]
   },
   {
-    "objectID": "posts/altair/index.html#section",
-    "href": "posts/altair/index.html#section",
-    "title": "Data visualization with Vega-Altair",
+    "objectID": "books/what-if.html",
+    "href": "books/what-if.html",
+    "title": "Causal Inference: What If",
     "section": "",
-    "text": "Implementing best practices for data visualization as an Altair theme.\n\n\n\nDaniel Kapitan\n\n\nJan 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis notebook collects explorations of Altair’s most interesting features. Originally published on &lt;a…\n\n\n\nJacopo Repossi\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\nNo matching items",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair"
+      "Books",
+      "Causal Inference: What If"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html",
-    "href": "posts/altair/ames-housing-eda-with-altair.html",
-    "title": "Exploratory data analysis with Altair",
+    "objectID": "books/cds.html",
+    "href": "books/cds.html",
+    "title": "Critical Data Studies",
     "section": "",
-    "text": "import altair as alt\nimport numpy as np \nimport pandas as pd\n\n\names_data = \"https://github.com/eaisi/discover-projects/blob/main/ames-housing/AmesHousing.csv?raw=true\"\ntrain = pd.read_csv(ames_data).rename(columns=lambda s: s.replace(\" \",\"\"))\n\ntrain\n\n\n\n\n\n\n\n\nOrder\nPID\nMSSubClass\nMSZoning\nLotFrontage\nLotArea\nStreet\nAlley\nLotShape\nLandContour\n...\nPoolArea\nPoolQC\nFence\nMiscFeature\nMiscVal\nMoSold\nYrSold\nSaleType\nSaleCondition\nSalePrice\n\n\n\n\n0\n1\n526301100\n20\nRL\n141.0\n31770\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n5\n2010\nWD\nNormal\n215000\n\n\n1\n2\n526350040\n20\nRH\n80.0\n11622\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nMnPrv\nNaN\n0\n6\n2010\nWD\nNormal\n105000\n\n\n2\n3\n526351010\n20\nRL\n81.0\n14267\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nNaN\nGar2\n12500\n6\n2010\nWD\nNormal\n172000\n\n\n3\n4\n526353030\n20\nRL\n93.0\n11160\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n4\n2010\nWD\nNormal\n244000\n\n\n4\n5\n527105010\n60\nRL\n74.0\n13830\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nMnPrv\nNaN\n0\n3\n2010\nWD\nNormal\n189900\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n2925\n2926\n923275080\n80\nRL\n37.0\n7937\nPave\nNaN\nIR1\nLvl\n...\n0\nNaN\nGdPrv\nNaN\n0\n3\n2006\nWD\nNormal\n142500\n\n\n2926\n2927\n923276100\n20\nRL\nNaN\n8885\nPave\nNaN\nIR1\nLow\n...\n0\nNaN\nMnPrv\nNaN\n0\n6\n2006\nWD\nNormal\n131000\n\n\n2927\n2928\n923400125\n85\nRL\n62.0\n10441\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nMnPrv\nShed\n700\n7\n2006\nWD\nNormal\n132000\n\n\n2928\n2929\n924100070\n20\nRL\n77.0\n10010\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n4\n2006\nWD\nNormal\n170000\n\n\n2929\n2930\n924151050\n60\nRL\n74.0\n9627\nPave\nNaN\nReg\nLvl\n...\n0\nNaN\nNaN\nNaN\n0\n11\n2006\nWD\nNormal\n188000\n\n\n\n\n2930 rows × 82 columns",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Books",
+      "Critical Data Studies"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#bar-chart-with-highlighted-bar",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#bar-chart-with-highlighted-bar",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Bar Chart with Highlighted Bar",
-    "text": "Bar Chart with Highlighted Bar\nBasic bar chart with a bars highlighted based on the percentage of missing values.\n\nmissing = train.isnull().sum()*100/train.isnull().sum().sum()\nmissing = missing[missing &gt; 0].reset_index()\nmissing.columns = ['Column', 'Count missing']\nmissing.head()\n\n\n\n\n\n\n\n\nColumn\nCount missing\n\n\n\n\n0\nLotFrontage\n3.111309\n\n\n1\nAlley\n17.347133\n\n\n2\nMasVnrType\n11.270557\n\n\n3\nMasVnrArea\n0.146041\n\n\n4\nBsmtQual\n0.507969\n\n\n\n\n\n\n\n\nalt.Chart(missing).mark_bar().encode(\n    x=alt.X('Column', sort='-y'),\n    y='Count missing',\n    color=alt.condition(\n        alt.datum['Count missing'] &gt;10,  # If count missing is &gt; 10%, returns True,\n        alt.value('orange'),             # which sets the bar orange.\n        alt.value('steelblue')           # And if it's not true it sets the bar steelblue.\n    ),\n    tooltip=['Count missing']\n).properties(\n    width=500,\n    height=300\n).configure_axis(\n    grid=False\n)",
+    "objectID": "books/udl.html",
+    "href": "books/udl.html",
+    "title": "Understanding Deep Learning",
+    "section": "",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Books",
+      "Understanding Deep Learning"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#boxplot",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#boxplot",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Boxplot",
-    "text": "Boxplot\nCreation of a basic boxplot using .mark_boxplot() method\n\nalt.Chart(train).mark_boxplot().encode(\n    x='OverallQual:O',\n    y='SalePrice:Q',\n    color='OverallQual:N'\n).properties(\n    width=500,\n    height=300\n)",
+    "objectID": "books/islp.html",
+    "href": "books/islp.html",
+    "title": "An Introduction to Statistical Learning",
+    "section": "",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Books",
+      "An Introduction to Statistical Learning"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#heatmaps",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#heatmaps",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Heatmaps",
-    "text": "Heatmaps\nCreation of a basic heatmap using .mark_rect() method.\n\nalt.Chart(train).mark_rect().encode(\n    x='MSZoning',\n    y='ExterQual',\n    color='average(SalePrice)',\n    tooltip=['MSZoning', 'ExterQual', 'average(SalePrice)']\n).properties(\n    width=500,\n    height=300\n)",
+    "objectID": "books/ethics.html",
+    "href": "books/ethics.html",
+    "title": "Ethics of Artificial Intelligence",
+    "section": "",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Books",
+      "Ethics of Artificial Intelligence"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#bindings-selections-conditions",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#bindings-selections-conditions",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Bindings, Selections & Conditions",
-    "text": "Bindings, Selections & Conditions\nHere you can select the KitchenQual feature from a dropdown menu and see how the graph changes color!\n\ninput_dropdown = alt.binding_select(options=list(train['KitchenQual'].unique()), name='Lot Shape')\nselection = alt.selection_point(fields=['KitchenQual'], bind=input_dropdown)\ncolor = alt.condition(selection,\n                      alt.Color('KitchenQual:N', legend=None),\n                      alt.value('lightgray'))\n\nalt.Chart(train).mark_point().encode(\n    x='GrLivArea',\n    y='SalePrice',\n    color=color,\n    tooltip=['GrLivArea', 'SalePrice']\n).properties(\n    width=500,\n    height=300\n).add_params(\n    selection\n).configure_axis(\n    grid=False\n)",
+    "objectID": "lectures/composable-data-stack.html",
+    "href": "lectures/composable-data-stack.html",
+    "title": "Composable data platforms",
+    "section": "",
+    "text": "(view full screen)",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Lectures",
+      "Composable data platforms"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#interactive-chart-with-cross-highlight",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#interactive-chart-with-cross-highlight",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Interactive Chart with Cross-Highlight",
-    "text": "Interactive Chart with Cross-Highlight\nIn this more advanced example, I use the ExterQual feature as a filter for a binned heatmap.\nClick on the bar chart bars to change the heatmap!\n\npts = alt.selection_point(encodings=['x'])\n\nrect = alt.Chart(train).mark_rect().encode(\n    x=alt.X('GrLivArea', bin=alt.Bin(maxbins=40)),\n    y=alt.Y('GarageArea', bin=alt.Bin(maxbins=40)),\n    color='average(SalePrice)'\n).properties(\n    width=500,\n    height=300\n).transform_filter(\n    pts\n)\n\nbar = alt.Chart(train).mark_bar().encode(\n    x='ExterQual:N',\n    y='count()',\n    color=alt.condition(pts, alt.ColorValue(\"steelblue\"), alt.ColorValue(\"grey\")),\n    tooltip=['ExterQual', 'count()']\n).properties(\n    width=550,\n    height=200\n).add_params(\n    pts\n)\n\n\nalt.vconcat(\n    rect,\n    bar\n).resolve_legend(\n    color=\"independent\",\n    size=\"independent\"\n).configure_axis(\n    grid=False\n)",
+    "objectID": "lectures/gam-ebm.html",
+    "href": "lectures/gam-ebm.html",
+    "title": "Explainable Boosting Machines",
+    "section": "",
+    "text": "(view full screen)",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Lectures",
+      "Explainable Boosting Machines"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#dot-dash-plot",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#dot-dash-plot",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Dot Dash Plot",
-    "text": "Dot Dash Plot\nA Dot Dash Plot is basically a scatter plot with both axis removed and replaced with barcode plots (aka strip plots), which allow you to see the distribution of values of each measure used in the scatter plot.\n\n# Configure the options common to all layers\nbrush = alt.selection_interval()\nbase = alt.Chart(train).add_params(brush)\n\n# Configure the points\npoints = base.mark_point().encode(\n    x=alt.X('GrLivArea', title=''),\n    y=alt.Y('SalePrice', title=''),\n    color=alt.condition(brush, 'KitchenQual', alt.value('grey'))\n)\n\n# Configure the ticks\ntick_axis = alt.Axis(labels=False, domain=False, ticks=False)\n\nx_ticks = base.mark_tick().encode(\n    alt.X('GrLivArea', axis=tick_axis),\n    alt.Y('KitchenQual', title='', axis=tick_axis),\n    color=alt.condition(brush, 'KitchenQual', alt.value('lightgrey'))\n)\n\ny_ticks = base.mark_tick().encode(\n    alt.X('KitchenQual', title='', axis=tick_axis),\n    alt.Y('SalePrice', axis=tick_axis),\n    color=alt.condition(brush, 'KitchenQual', alt.value('lightgrey'))\n)\n\n# Build the chart\n(\n    y_ticks | (points & x_ticks)\n).configure_axis(\n    grid=False\n)",
+    "objectID": "lectures/engineering-part-2.html",
+    "href": "lectures/engineering-part-2.html",
+    "title": "Engineering data science & AI platforms",
+    "section": "",
+    "text": "(view full screen)",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Lectures",
+      "Engineering data science & AI platforms"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#multifeature-scatter-plot",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#multifeature-scatter-plot",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Multifeature Scatter Plot",
-    "text": "Multifeature Scatter Plot\nLet’s create a scatter plot with multiple feature encodings.\nWith .interactive() you can zoom in. You can also click on legend to select specific KitchenQual values.\n\nselection = alt.selection_point(fields=['KitchenQual'], bind='legend')\n\nalt.Chart(train).mark_circle().encode(\n    alt.X('GrLivArea', scale=alt.Scale(zero=False)),\n    alt.Y('GarageArea', scale=alt.Scale(zero=False, padding=1)),\n    color='KitchenQual',\n    size=alt.Size('SalePrice', bin=alt.Bin(maxbins=10), title='SalePrice'),\n    opacity=alt.condition(selection, alt.value(1), alt.value(0.2)),\n    tooltip=['GrLivArea', 'SalePrice']\n).properties(\n    width=500,\n    height=500\n).add_params(\n    selection\n).configure_axis(\n    grid=False\n).interactive()",
+    "objectID": "lectures/generative-ai.html",
+    "href": "lectures/generative-ai.html",
+    "title": "Generative AI",
+    "section": "",
+    "text": "(view full screen)",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Lectures",
+      "Generative AI"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#scatter-matrix",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#scatter-matrix",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Scatter Matrix",
-    "text": "Scatter Matrix\nScatter matrix are one of the most common graph you’ll see on Kaggle. It consists of several pair-wise scatter plots of variables presented in a matrix format, useful to visualize multiple relationships between a pair of variables.\nIn Altair this can be achieved using a RepeatChart, let’s see how!\n\nalt.Chart(train).mark_circle().encode(\n    alt.X(alt.repeat(\"column\"), type='quantitative'),\n    alt.Y(alt.repeat(\"row\"), type='quantitative'),\n    color='KitchenQual'\n).properties(\n    width=300,\n    height=300\n).repeat(\n    # Here we tell Altair we want to repeat out scatter plots for each row-column pair\n    row=['GrLivArea', 'GarageArea', 'TotalBsmtSF'],\n    column=['TotalBsmtSF', 'GarageArea', 'GrLivArea']\n).configure_axis(\n    grid=False\n)",
+    "objectID": "lectures.html",
+    "href": "lectures.html",
+    "title": "Anthology of Data Science",
+    "section": "",
+    "text": "Composable data platforms\n\n\nSlides from a 3-hour guest lecture given at Strathmore University.\n\n\n\nDaniel Kapitan\n\n\nJul 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nEngineering data science & AI platforms\n\n\nSlides for a full-day lecture\n\n\n\nDaniel Kapitan\n\n\nApr 17, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nExplainable Boosting Machines\n\n\nSlides from a 1-hour workshop, after which you will be convinced that EBMs are your standard go-to algorithm for tabular data.\n\n\n\nDaniel Kapitan\n\n\nSep 9, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nGenerative AI\n\n\nIntroduction to generative AI and agentic systems in a 4-hour lecture\n\n\n\nDaniel Kapitan\n\n\nDec 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nPhysics-informed machine learning\n\n\nIntroduction to physics-informed machine learning in a 1-hour lecture.\n\n\n\nDaniel Kapitan\n\n\nAug 23, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nReal World Data Science\n\n\nSlidedeck for a 2-day masterclass. While it is probably difficult to follow without the voice-over, the many references included in the slides are useful for a bird’s eye…\n\n\n\nDaniel Kapitan\n\n\nSep 26, 2025\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Lectures"
     ]
   },
   {
-    "objectID": "posts/altair/ames-housing-eda-with-altair.html#layered-histogram",
-    "href": "posts/altair/ames-housing-eda-with-altair.html#layered-histogram",
-    "title": "Exploratory data analysis with Altair",
-    "section": "Layered Histogram",
-    "text": "Layered Histogram\nUsing Altair, we can make overlapping histograms or layers histograms from data:\n\nalt.Chart(train).mark_bar(\n    opacity=0.5,\n    binSpacing=0\n).encode(\n    alt.X('SalePrice:Q', bin=alt.Bin(maxbins=50)),\n    alt.Y('count()', stack=None),\n    alt.Color('MSZoning:N')\n)",
+    "objectID": "books/mml.html",
+    "href": "books/mml.html",
+    "title": "Mathematics For Machine Learning",
+    "section": "",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Books",
+      "Mathematics For Machine Learning"
+    ]
+  },
+  {
+    "objectID": "books.html",
+    "href": "books.html",
+    "title": "Anthology of Data Science",
+    "section": "",
+    "text": "Open access booksNon-open access books\n\n\n\n\n\n\n\n\n\n\n\n\nAdvanced Data Analysis from an Elementary Point of View\n\n\nThis is a draft textbook on data analysis methods, intended for a one-semester course for advance undergraduate students who have already taken classes in probability…\n\n\n\nCosma Rohilla Shalizi\n\n\nFeb 8, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nAn Introduction to Statistical Learning\n\n\nStatistical learning has become a critical toolkit for anyone who wishes to understand data. This book provides a broad and less technical treatment of key topics in…\n\n\n\nGareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, Jonathan Taylor\n\n\nJul 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nCausal Inference: What If\n\n\nA book that helps scientists—especially health and social scientists—generate and analyze data to make causal inferences that are explicit about both the causal question and…\n\n\n\nMiguel A. Hernán, James M. Robins\n\n\nJan 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nCritical Data Studies\n\n\nThis book provides a glossary for the field, consisting of 413 entries about key terms. Each entry sets out a definition, a descriptive overview, and further reading. The…\n\n\n\nRob Kitchin\n\n\nJan 6, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nEthics of Artificial Intelligence\n\n\nThis open access collection of AI ethics case studies is the first book to present real-life case studies combined with commentaries and strategies for overcoming ethical…\n\n\n\nBernd Carsten Stahl, Doris Schroeder, Rowena Rodrigues\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nFairness and Machine Learning\n\n\nMany take the leap of faith behind statistical decision making for granted to an extent that it’s become difficult to question. In this book, we take machine learning as a…\n\n\n\nSolon Barocas, Moritz Hardt,, Arvind Narayanan\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nForecasting Principles & Practice the Pythonic Way\n\n\nThis textbook is provides a comprehensive introduction to forecasting methods and presents enough information about each method for readers to be able to use them sensibly.…\n\n\n\nRob J Hyndman, George Athanasopoulos, Azul Garza, Cristian Challu, Max Mergenthaler, Kin G. Olivares\n\n\nJun 18, 2025\n\n\n\n\n\n\n\n\n\n\n\n\n\nFundamentals of Data Visualization\n\n\nThe book is meant as a guide to making visualizations that accurately reflect the data, tell a story, and look professional.\n\n\n\nClaus O. Wilke\n\n\nAug 20, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\nInterpretable Machine Learning\n\n\nThis book is about making machine learning models and their decisions interpretable. It will enable you to select and correctly apply the interpretation method that is most…\n\n\n\nChristoph Molnar\n\n\nMar 4, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to Modern Statistics (2nd edition)\n\n\nThis books aims to offer three ideas, namely i) statistics is an applied field with a wide range of practical applications; ii) you don’t have to be a math guru to learn…\n\n\n\nMine Çetinkaya-Rundel, Johanna Hardin\n\n\nJan 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nMathematics For Machine Learning\n\n\nThis book aims to motivate people to learn mathematical concepts. The book is not intended to cover advanced machine learning techniques because there are already plenty of…\n\n\n\nMarc Peter Deisenroth, A. Aldo Faisal, Cheng Soon Ong\n\n\nJan 15, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython of Data Analysis, Third Edition\n\n\nThis book is concerned with the nuts and bolts of manipulating, processing, cleaning, and crunching data in Python.\n\n\n\nWes McKinney\n\n\nApr 12, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nR for Data Science, Second Edition\n\n\nThis book will teach you how to do data science with R: You’ll learn how to get your data into R, get it into the most useful structure, transform it and visualize.\n\n\n\nHadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemenund\n\n\nNov 30, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe Turing Way\n\n\nAn open source, open collaboration, community-driven handbook to reproducible, ethical and collaborative data science.\n\n\n\nThe Turing Way Community\n\n\nJul 22, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding Deep Learning\n\n\nThis book explains the ideas that underlie deep learning, distinguishing it from volumes that cover coding and other practical aspects. More resources can be found on &lt;a…\n\n\n\nSimon Prince\n\n\nOct 23, 2023\n\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\n\n\n\n\n\nDesigning Data-Intensive Applications\n\n\nData is at the center of many challenges in system design today. Difficult issues need to be figured out, such as scalability, consistency, reliability, efficiency, and…\n\n\n\nMartin Kleppmann\n\n\nMar 1, 2017\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-On Large Language Models\n\n\nAI has acquired startling new language capabilities in just the past few years. Driven by rapid advances in deep learning, language AI systems are able to write and…\n\n\n\nJay Alammar, Maarten Grootendorst\n\n\nSep 1, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nHands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition\n\n\nThrough a recent series of breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this…\n\n\n\nAurélien Géron\n\n\nOct 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nPython Polars: The Definitive Guide\n\n\nThis book is designed for anyone looking to leverage the power of Polars in Python to transform, analyze, and visualize data more efficiently and effectively. I completely…\n\n\n\nJeroen Janssens, Thijs Nieuwdorp\n\n\nFeb 1, 2025\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Books"
+    ]
+  },
+  {
+    "objectID": "posts/hamilton-ibis/index.html",
+    "href": "posts/hamilton-ibis/index.html",
+    "title": "Portable dataflows with Ibis and Hamilton",
+    "section": "",
+    "text": "This post showcases how Ibis and Hamilton enable dataflows that span execution over SQL and Python. Ibis is a portable dataframe library to write procedural data transformations in Python and be able to execute them directly on various SQL backends (DuckDB, Snowflake, Postgres, Flink, see full list). Hamilton provides a declarative way to define testable, modular, self-documenting dataflows, that encode lineage and metadata.\nLet’s introduce Ibis before exploring how it pairs with Hamilton.",
     "crumbs": [
       "Perspectives on data science",
-      "Data visualization with Vega-Altair",
-      "Exploratory data analysis with Altair"
+      "Portable dataflows with Ibis and Hamilton"
+    ]
+  },
+  {
+    "objectID": "posts/hamilton-ibis/index.html#introduction",
+    "href": "posts/hamilton-ibis/index.html#introduction",
+    "title": "Portable dataflows with Ibis and Hamilton",
+    "section": "",
+    "text": "This post showcases how Ibis and Hamilton enable dataflows that span execution over SQL and Python. Ibis is a portable dataframe library to write procedural data transformations in Python and be able to execute them directly on various SQL backends (DuckDB, Snowflake, Postgres, Flink, see full list). Hamilton provides a declarative way to define testable, modular, self-documenting dataflows, that encode lineage and metadata.\nLet’s introduce Ibis before exploring how it pairs with Hamilton.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Portable dataflows with Ibis and Hamilton"
+    ]
+  },
+  {
+    "objectID": "posts/hamilton-ibis/index.html#standalone-ibis",
+    "href": "posts/hamilton-ibis/index.html#standalone-ibis",
+    "title": "Portable dataflows with Ibis and Hamilton",
+    "section": "Standalone Ibis",
+    "text": "Standalone Ibis\nHere’s an Ibis code snippet to load data from a parquet file, compute features, select columns, and filter rows, illustrating typical feature engineering operations.\nReading the code, you’ll notice that:\n\nWe use “expression chaining”, meaning there’s a series of .method() attached one after another.\nThe variable ibis._ is a special character referring to the current expression e.g., ibis._.pet accesses the column “pet” of the current table.\nThe table method .mutate(col1=, col2=, ...) assigns new columns or overwrites existing ones.\n\n\nimport ibis\n\nurl = \"https://storage.googleapis.com/ibis-blog-data-public/hamilton-ibis/absenteeism.parquet\"\nfeature_set = (\n  ibis.read_parquet(url, table_name=\"absenteeism\")\n  .rename(\"snake_case\")\n  .mutate(  # allows us to define new columns\n    has_children=ibis.ifelse(ibis._.son &gt; 0, True, False),\n    has_pet=ibis.ifelse(ibis._.pet &gt; 0, True, False),\n    is_summer_brazil=ibis._.month_of_absence.isin([1, 2, 12]),\n  ).select(\n    \"id\", \"has_children\", \"has_pet\", \"is_summer_brazil\",\n    \"service_time\", \"seasons\", \"disciplinary_failure\",\n    \"absenteeism_time_in_hours\"\n  )\n)\n\n\nChallenge 1 – Maintain and test complex data transformations\nIbis has an SQL-like syntax and supports chaining operations, allowing for powerful queries in a few lines of code. Conversely, there’s a risk of sprawling complexity as expressions are appended, making them harder to test and debug. Preventing this issue requires a lot of upfront discipline and refactoring.\n\n\nChallenge 2 – Orchestrate Ibis code in production\nIbis alleviates a major pain point by enabling data transformations to work across backends. However, moving from dev to prod still requires some code changes such as changing backend connectors, swapping unsupported operators, adding some orchestration and logging execution, wanting to reuse prior code, etc. This is outside the scope of the Ibis project and is expected to be enabled by other means, which usually means bespoke constructs that turn into technical debt.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Portable dataflows with Ibis and Hamilton"
+    ]
+  },
+  {
+    "objectID": "posts/hamilton-ibis/index.html#what-is-hamilton",
+    "href": "posts/hamilton-ibis/index.html#what-is-hamilton",
+    "title": "Portable dataflows with Ibis and Hamilton",
+    "section": "What is Hamilton?",
+    "text": "What is Hamilton?\nHamilton is a general-purpose framework to write dataflows using regular Python functions. At the core, each function defines a transformation and its parameters indicates its dependencies. Hamilton automatically connects individual functions into a directed acyclic graph (DAG) that can be executed, visualized, optimized, and reported on.\n\n\n\nThe ABC of Hamilton",
+    "crumbs": [
+      "Perspectives on data science",
+      "Portable dataflows with Ibis and Hamilton"
+    ]
+  },
+  {
+    "objectID": "posts/hamilton-ibis/index.html#how-hamilton-complements-ibis",
+    "href": "posts/hamilton-ibis/index.html#how-hamilton-complements-ibis",
+    "title": "Portable dataflows with Ibis and Hamilton",
+    "section": "How Hamilton complements Ibis",
+    "text": "How Hamilton complements Ibis\nHamilton was initially developed to structure pandas code for a large catalog of features, and has since been adopted by multiple organizations since, and expanded to cover any python object type (Polars, PySpark, ML Models, Numpy, you custom type, etc). Its syntax encourages users to chunk code into meaningful and reusable components, which facilitates documentation, unit testing, code reviews, and improves iteration speed, and the dev to production process. These benefits directly translate to organizing Ibis code.\n\nSolution 1 – Structure your Ibis code with Hamilton\nNow, we’ll refactor the above Ibis code to use Hamilton. Users have the flexibility to chunk code (i.e., what the contents of a function is), at the table or the column-level depending on the needed granularity. This modularity is particularly beneficial to Ibis because:\n\nWell-scoped functions with type annotations and docstring are easier to understand for new Ibis users and facilitate onboarding.\nUnit testing and data validation becomes easier with smaller expressions. These checks become more important when working across backends since the operation coverage varies and bugs may arise.\n\n\nTable-level dataflow\nTable-level operations might feel most familiar to SQL and Spark users. Also, Ibis + Hamilton is reminiscent of dbt for the Python ecosystem.\nWorking with tables is very efficient when your number of columns/features is limited, and you don’t need full column level lineage. As you want to reuse components, you can progressively breakdown “table-level code” in to “column-level code”.\nThe initial Ibis code is now 3 functions with type annotations and docstrings. We have a clear sense of the expected external outputs and we could implement schema checks between functions.\n\nfrom typing import Optional\nimport ibis\nimport ibis.expr.types as ir\n\ndef raw_table(raw_data_path: str) -&gt; ir.Table:\n    \"\"\"Load parquet from `raw_data_path` into a Table expression\n    and format column names to snakecase\n    \"\"\"\n    return (\n        ibis.read_parquet(raw_data_path, table_name=\"absenteism\")\n        .rename(\"snake_case\")\n    )\n\ndef feature_table(raw_table: ir.Table) -&gt; ir.Table:\n    \"\"\"Add to `raw_table` the feature columns `has_children`\n    `has_pet`, and `is_summer_brazil`\n    \"\"\"\n    return raw_table.mutate(\n        has_children=(ibis.ifelse(ibis._.son &gt; 0, True, False)),\n        has_pet=ibis.ifelse(ibis._.pet &gt; 0, True, False),\n        is_summer_brazil=ibis._.month_of_absence.isin([1, 2, 12]),\n    )\n\ndef feature_set(\n    feature_table: ir.Table,\n    feature_selection: list[str],\n    condition: Optional[ibis.common.deferred.Deferred] = None,\n) -&gt; ir.Table:\n    \"\"\"Select feature columns and filter rows\"\"\"\n    return feature_table[feature_selection].filter(condition)\n\n\n\n\nTable-level lineage with Hamilton\n\n\n\n\nColumn-level dataflow\nHamilton was initially built to expose and manage column-level operations, which is most common in dataframe libraries (pandas, Dask, polars).\nColumn-level code leads to fully-reusable feature definitions and a highly granular level of lineage. Notably, this allows one to trace sensitive data and evaluate downstream impacts of code changes. However, it is more verbose to get started with, but remember that code is read more often than written.\nNow, the raw_table is loaded and the columns son, pet, and month_of_absence are extracted to engineer new features. After transformations, features are joined with raw_table to create feature_table.\n\nimport ibis\nimport ibis.expr.types as ir\nfrom hamilton.function_modifiers import extract_columns\nfrom hamilton.plugins import ibis_extensions\n\n# extract specific columns from the table\n@extract_columns(\"son\", \"pet\", \"month_of_absence\")\ndef raw_table(raw_data_path: str) -&gt; ir.Table:\n    \"\"\"Load the parquet found at `raw_data_path` into a Table expression\n    and format columns to snakecase\n    \"\"\"\n    return (\n        ibis.read_parquet(sources=raw_data_path, table_name=\"absenteism\")\n        .rename(\"snake_case\")\n    )\n\n# accesses a single column from `raw_table`\ndef has_children(son: ir.Column) -&gt; ir.BooleanColumn:\n    \"\"\"True if someone has any children\"\"\"\n    return ibis.ifelse(son &gt; 0, True, False)\n\n# narrows the return type from `ir.Column` to `ir.BooleanColumn`\ndef has_pet(pet: ir.Column) -&gt; ir.BooleanColumn:\n    \"\"\"True if someone has any pets\"\"\"\n    return ibis.ifelse(pet &gt; 0, True, False).cast(bool)\n\n# typing and docstring provides business context to features\ndef is_summer_brazil(month_of_absence: ir.Column) -&gt; ir.BooleanColumn:\n    \"\"\"True if it is summer in Brazil during this month\n\n    People in the northern hemisphere are likely to take vacations\n    to warm places when it's cold locally\n    \"\"\"\n    return month_of_absence.isin([1, 2, 12])\n\ndef feature_table(\n    raw_table: ir.Table,\n    has_children: ir.BooleanColumn,\n    has_pet: ir.BooleanColumn,\n    is_summer_brazil: ir.BooleanColumn,\n) -&gt; ir.Table:\n    \"\"\"Join computed features to the `raw_data` table\"\"\"\n    return raw_table.mutate(\n        has_children=has_children,\n        has_pet=has_pet,\n        is_summer_brazil=is_summer_brazil,\n    )\n\ndef feature_set(\n    feature_table: ir.Table,\n    feature_selection: list[str],\n    condition: Optional[ibis.common.deferred.Deferred] = None,\n) -&gt; ir.Table:\n    \"\"\"Select feature columns and filter rows\"\"\"\n    return feature_table[feature_selection].filter(condition)\n\n\n\n\nColumn-level lineage with Hamilton\n\n\n\n\n\nSolution 2 – Orchestrate Ibis anywhere\nHamilton is an ideal way to orchestrate Ibis code because it has a very small dependency footprint and will run anywhere Python does (script, notebook, FastAPI, Streamlit, pyodide, etc.) In fact, the Hamilton library only has four dependencies. You don’t need “framework code” to get started, just plain Python functions. When moving to production, Hamilton has all the necessary features to complement Ibis such as swapping components, configurations, and lifecycle hooks for logging, alerting, and telemetry.\nA simple usage pattern of Hamilton + Ibis is to use the @config.when function modifier. In the following example, we have alternative implementations for the backend connection, which will be used for computing and storing results. When running your code, specify in your config backend=\"duckdb\" or backend=\"bigquery\" to swap between the two.\n\n# ibis_dataflow.py\nimport ibis\nimport ibis.expr.types as ir\nfrom hamilton.function_modifiers import config\n\n# ... entire dataflow definition\n\n@config.when(backend=\"duckdb\")\ndef backend_connection__duckdb(\n    connection_string: str\n) -&gt; ibis.backends.BaseBackend:\n    \"\"\"Connect to DuckDB backend\"\"\"\n    return ibis.duckdb.connect(connection_string)\n\n@config.when(backend=\"bigquery\")\ndef backend_connection__bigquery(\n    project_id: str,\n    dataset_id: str,\n) -&gt; ibis.backends.BaseBackend:\n    \"\"\"Connect to BigQuery backend\n    Install dependencies via `pip install ibis-framework[bigquery]`\n    \"\"\"\n    return ibis.bigquery.connect(\n        project_id=project_id,\n        dataset_id=dataset_id,\n    )\n\ndef insert_results(\n    backend_connection: ibis.backends.BaseBackend,\n    result_table: ir.Table,\n    table_name: str\n) -&gt; None:\n    \"\"\"Execute expression and insert results\"\"\"\n    backend_connection.insert(\n        table_name=table_name,\n        obj=result_table\n    )",
+    "crumbs": [
+      "Perspectives on data science",
+      "Portable dataflows with Ibis and Hamilton"
+    ]
+  },
+  {
+    "objectID": "posts/hamilton-ibis/index.html#performance-boost",
+    "href": "posts/hamilton-ibis/index.html#performance-boost",
+    "title": "Portable dataflows with Ibis and Hamilton",
+    "section": "Performance boost",
+    "text": "Performance boost\nLeveraging DuckDB as the default backend, Hamilton users migrating to Ibis should immediately find performance improvements both for local dev and production. In addition, the portability of Ibis has the potential to greatly reduce development time.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Portable dataflows with Ibis and Hamilton"
+    ]
+  },
+  {
+    "objectID": "posts/hamilton-ibis/index.html#atomic-data-transformation-documentation",
+    "href": "posts/hamilton-ibis/index.html#atomic-data-transformation-documentation",
+    "title": "Portable dataflows with Ibis and Hamilton",
+    "section": "Atomic data transformation documentation",
+    "text": "Atomic data transformation documentation\nHamilton can directly produce a dataflow visualization from code, helping with project documentation. Ibis pushes this one step further by providing a detailed view of the query plan and schemas. See this Ibis visualization for the column-level Hamilton dataflow defined above. It includes all renaming, type casting, and transformations steps (Please open the image in a new tab and zoom in 🔎).",
+    "crumbs": [
+      "Perspectives on data science",
+      "Portable dataflows with Ibis and Hamilton"
+    ]
+  },
+  {
+    "objectID": "posts/hamilton-ibis/index.html#working-across-rows-with-user-defined-functions-udfs",
+    "href": "posts/hamilton-ibis/index.html#working-across-rows-with-user-defined-functions-udfs",
+    "title": "Portable dataflows with Ibis and Hamilton",
+    "section": "Working across rows with user-defined functions (UDFs)",
+    "text": "Working across rows with user-defined functions (UDFs)\nHamilton and most backends are designed to work primarily on tables and columns, but sometimes you’d like to operate over a row (think of pd.DataFrame.apply()). However, pivoting tables is costly and manually iterating over rows to collect values and create a new column is quickly inconvenient. By using scalar user-defined functions (UDFs), Ibis makes it possible to execute arbitrary Python code on rows directly on the backend.\n\n\n\n\n\n\nNote\n\n\n\nUsing @ibis.udf.scalar.python creates a non-vectorized function that iterates row-by-row. See the docs to use backend-specific UDFs with @ibis.udf.scalar.builtin and create vectorized scalar UDFs.\n\n\nFor instance, you could embed rows of a text column using an LLM API using your existing data warehouse infrastructure.\n\nimport ibis\nimport ibis.expr.types as ir\n\ndef documents(path: str) -&gt; ir.Table:\n    \"\"\"load text documents from file\"\"\"\n    return ibis.read_parquet(paths=path, table_name=\"documents\")\n\n# function name starts with `_` to prevent being added as a node\n@ibis.udf.scalar.python\ndef _generate_summary(author: str, text: str, prompt_template: str) -&gt; str:\n    \"\"\"UDF Function to call the OpenAI API line by line\"\"\"\n    prompt = prompt_template.format(author=author, text=text)\n    client = openai.OpenAI(...)\n    try:\n        response = client.chat.completions.create(...)\n        return_value = response.choices[0].message.content\n    except Exception:\n        return_value = \"\"\n    return return_value\n\n\ndef prompt_template() -&gt; str:\n    return \"\"\"summarize the following text from {author} and add\n    contextual notes based on it biography and other written work\n\n    TEXT\n    {text}\n    \"\"\"\n\ndef summaries(documents: ir.Table, prompt_template: str) -&gt; ir.Table:\n    \"\"\"Compute the UDF against the family\"\"\"\n    return documents.mutate(\n        summary=_generated_summary(\n            _.author,\n            _.text,\n            prompt_template=prompt_template\n        )\n    )",
+    "crumbs": [
+      "Perspectives on data science",
+      "Portable dataflows with Ibis and Hamilton"
+    ]
+  },
+  {
+    "objectID": "posts/python/whirlwind.html",
+    "href": "posts/python/whirlwind.html",
+    "title": "A Whirlwind Tour of Python",
+    "section": "",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Getting into Python",
+      "A Whirlwind Tour of Python"
+    ]
+  },
+  {
+    "objectID": "posts/python/index.html",
+    "href": "posts/python/index.html",
+    "title": "Getting into Python",
+    "section": "",
+    "text": "Python has emerged over the last couple decades as a first-class tool for scientific computing tasks, including the analysis and visualization of large datasets. This may have come as a surprise to early proponents of the Python language: the language itself was not specifically designed with data analysis or scientific computing in mind. The usefulness of Python for data science stems primarily from the large and active ecosystem of third-party packages, particularly:\n\nNumPy for manipulation of homogeneous array-based data;\nPandas for manipulation of heterogeneous and labeled data, and the more recent high-performace dataprocessing libraries such as polars and ibis;\nSciPy for common scientific computing tasks, Matplotlib for publication-quality visualizations;\nIPython for interactive execution and sharing of code;\nScikit-Learn for machine learning.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Getting into Python"
+    ]
+  },
+  {
+    "objectID": "posts/python/index.html#why-python-for-data-science",
+    "href": "posts/python/index.html#why-python-for-data-science",
+    "title": "Getting into Python",
+    "section": "",
+    "text": "Python has emerged over the last couple decades as a first-class tool for scientific computing tasks, including the analysis and visualization of large datasets. This may have come as a surprise to early proponents of the Python language: the language itself was not specifically designed with data analysis or scientific computing in mind. The usefulness of Python for data science stems primarily from the large and active ecosystem of third-party packages, particularly:\n\nNumPy for manipulation of homogeneous array-based data;\nPandas for manipulation of heterogeneous and labeled data, and the more recent high-performace dataprocessing libraries such as polars and ibis;\nSciPy for common scientific computing tasks, Matplotlib for publication-quality visualizations;\nIPython for interactive execution and sharing of code;\nScikit-Learn for machine learning.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Getting into Python"
+    ]
+  },
+  {
+    "objectID": "posts/python/index.html#how-much-python-should-i-know",
+    "href": "posts/python/index.html#how-much-python-should-i-know",
+    "title": "Getting into Python",
+    "section": "How much Python should I know?",
+    "text": "How much Python should I know?\nAs with any other (programming) language, it takes years to master it fluently which is beyond the scope this anthology. Instead, our objective is to have a working knowledge of Python to be able to learn and apply machine learning. To make this explicit we take the following book and online resources as our point of reference.\n\nA Whirlwind Tour of Python (pages number from the pdf version):\n\nKnow how to install and use Python on your own computer (pages 1 to 13)\nKnow basic semantics of variables, objects and operators (pages 13 to 24)\nKnow built-in simple values and data structures (pages 24 to 37)\nKnow how to use control flow and functions (pages 37 to 45)\nKnow how to iterate and use list comprehensions (pages 52 to 61)\n\nPython for Data Analysis\n\nKnow how to manipulate data with pandas, with Python for Data Analysis, Third Edition as your reference guide\n\n\n\n\n\n\n\n\nNotePCEP™ – Certified Entry-Level Python Programmer\n\n\n\nThe learning path proposed here is similar to the PCEP™ – Certified Entry-Level Python Programmer certification. The PCEP™ certification is a good way to assess your current Python knowledge and to prepare for the Machine Learning Foundation course. The certification is offered by the Python Institute. You may opt to obtain this certificate.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Getting into Python"
+    ]
+  },
+  {
+    "objectID": "posts/python/index.html#how-should-i-learn-python",
+    "href": "posts/python/index.html#how-should-i-learn-python",
+    "title": "Getting into Python",
+    "section": "How should I learn Python?",
+    "text": "How should I learn Python?\nRealPython.com is the recommended online learning environment for Python. We have collated a learning path for data science.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Getting into Python"
+    ]
+  },
+  {
+    "objectID": "posts/python/index.html#which-python-environment-should-i-use",
+    "href": "posts/python/index.html#which-python-environment-should-i-use",
+    "title": "Getting into Python",
+    "section": "Which Python environment should I use?",
+    "text": "Which Python environment should I use?\nOptions how to start using Python are listed below.\n\nOnline notebook (easy)Visual Studio Code (intermediate)\n\n\nFor those new to Python, it is probably easiest to start with one of these online notebook environments:\n\nDeepnote: there is a generous free-tier. If you decide to upgrade, you can collaborate and share notebooks privately.\nGoogle Colab:\n\nActivate a Google account if you haven’t got one yet.\nWork your way through the Colab introduction notebook.\n\n\nOnce you have gained some traction, you can move on to install Python on your local machine.\n\n\nVisual Studio Code is the recommended data science workbench. To setup your local machine/laptop for data science and machine learning, do the following:\n\nFollow these two tutorials on RealPython.com:\n\nInstalling Python\nPython in VS Code\n\nFor more advanced use, including using VS Code in the cloud:\n\nRead the documentation on GitHub Codespaces\nRead the documentation on Azure Dev Containers\nUse these excellent Data Science Dev Containers by Olivier Benz",
+    "crumbs": [
+      "Perspectives on data science",
+      "Getting into Python"
+    ]
+  },
+  {
+    "objectID": "posts/python/index.html#guidelines-for-using-python-for-data-science",
+    "href": "posts/python/index.html#guidelines-for-using-python-for-data-science",
+    "title": "Getting into Python",
+    "section": "Guidelines for using Python for data science",
+    "text": "Guidelines for using Python for data science\nUsing Python for data science is inherently different than using it for, say, building a website. To provide you with some guidance to the many different ways c.q. styles of using Python, please consider the following:\n\nFocus on using existing data science libraries, instead of writing your own basic functions. If you find yourself spending a lot of time reading documentation, you are on the right track.\nTake a functional approach to programming instead of an object-oriented approach. The former is more fitting for data science, where it is common to structure your work in terms of pipelines and think about each processing step as a function. The latter is more suitable for application development.\n\nFor those wanting to further develop their Python skills for data science, the following books are recommended:\n\nPython for Data Analysis 3rd Edition by Wes McKinney, the creator of pandas.\nData Science With Python Core Skills on Real Python provides an extensive learning path.\nHands-On Machine Learning with Scikit-Learn, Keras and Tensorflow (2nd edition) by Aurélien Géron. You will need to purchase the book, but the notebooks with example code are freely available.\nEffective Python: 90 Specific Ways to Write Better Python (second edition).",
+    "crumbs": [
+      "Perspectives on data science",
+      "Getting into Python"
+    ]
+  },
+  {
+    "objectID": "posts/python/index.html#more-on-python",
+    "href": "posts/python/index.html#more-on-python",
+    "title": "Getting into Python",
+    "section": "More on Python",
+    "text": "More on Python\n\n\n\n\n\n\n\n\n\n\nGetting into Python with RealPython.com\n\n\nWe have compiled a learning path for those who are new to Python, using a selection of chapters from Real Python.\n\n\n\nDaniel Kapitan\n\n\nNov 11, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nEffective Python and idiomatic pandas\n\n\nGuidelines on how to continue to develop your skills to write effective Python and use pandas in an idiomatic way.\n\n\n\nDaniel Kapitan\n\n\nSep 18, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Whirlwind Tour of Python\n\n\nA brief but comprehensive tour of the Python language for those who have (sometimes extensive) backgrounds in computing in some language.\n\n\n\nJake VanderPlas\n\n\nAug 10, 2016\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Perspectives on data science",
+      "Getting into Python"
+    ]
+  },
+  {
+    "objectID": "posts/design-philosophy/index.html",
+    "href": "posts/design-philosophy/index.html",
+    "title": "The Design Philosophy of Great Tables",
+    "section": "",
+    "text": "We’ve spent a lot of time thinking about tables. Tables—like plots—are crucial as a last step toward presenting information. There is surprising sophistication and nuance in designing effective tables. Over the past 5,000 years, they’ve evolved from simple grids to highly structured displays of data. Although we argue that the mid-1900s served as a high point, the popularization and wider accessibility of computing seemingly brought us back to the simple, ancient times.\nOkay, it’s not all that bad but the workers of data are today confronted with an all-too-familiar dilemma: copy your data into a tool like Excel to make the table, or, display an otherwise unpolished table. Through the exploration of the qualities that make tables shine, the backstory of tables as a display of data, and the issues faced today, it’s clear how we can solve the great table dilemma with Great Tables.\nTables made with computers (left to right): (1) a DataFrame printed at the console, (2) an Excel table, and (3) a Great Tables table.",
+    "crumbs": [
+      "Perspectives on data science",
+      "The Design Philosophy of Great Tables"
+    ]
+  },
+  {
+    "objectID": "posts/design-philosophy/index.html#footnotes",
+    "href": "posts/design-philosophy/index.html#footnotes",
+    "title": "The Design Philosophy of Great Tables",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nTaylor, B. (2021). Lunar timekeeping in Upper Paleolithic Cave Art. PRAEHISTORIA New Series, 3(13), 215–232.↩︎\nDuke, D. W. (2002). Hipparchus’ Coordinate System. Archive for History of Exact Sciences, 56(5), 427-433.↩︎\nhttps://en.wikipedia.org/wiki/Geography_(Ptolemy)↩︎\nPalet, J. M. and Orengo, H. A., The Roman Centuriated Landscape: Conception, Genesis, and Development as Inferred from the Ager Tarraconensis Case. American Journal of Archaeology, 115(3), 383-402.↩︎\nMarchese, F. T., Exploring the Origins of Tables for Information Visualization. Proceedings of the 2011 15th International Conference on Information Visualisation, 13-15 July 2011, doi:10.1109/IV.2011.36.↩︎\nM. W. Green, The construction and implementation of the cuneiform writing system, Visible Writing, 15, 1981, 345-72.↩︎\nRobson, E., “Tables and tabular formatting in Sumer, Babylonia, and Assyria, 2500-50 BCE” in M. Campbell-Kelly, M. Croarken, R.G. Flood, and E. Robson (eds.), The History of Mathematical Tables from Sumer to Spreadsheets. Oxford: Oxford University Press, 2003, 18–47.↩︎\nhttps://site.xavier.edu/polt/typewriters/varityper.html↩︎\nManual of Tabular Presentation: An Outline of Theory and Practice in the Presentation of Statistical Data in Tables for Publication. United States. Bureau of the Census. U.S. Government Printing Office, 1949. Resource available at: https://www2.census.gov/library/publications/1949/general/tabular-presentation.pdf.↩︎",
+    "crumbs": [
+      "Perspectives on data science",
+      "The Design Philosophy of Great Tables"
     ]
   },
   {
@@ -1166,78 +1234,131 @@
     ]
   },
   {
-    "objectID": "posts/design-philosophy/index.html",
-    "href": "posts/design-philosophy/index.html",
-    "title": "The Design Philosophy of Great Tables",
+    "objectID": "posts/altair/index.html",
+    "href": "posts/altair/index.html",
+    "title": "Data visualization with Vega-Altair",
     "section": "",
-    "text": "We’ve spent a lot of time thinking about tables. Tables—like plots—are crucial as a last step toward presenting information. There is surprising sophistication and nuance in designing effective tables. Over the past 5,000 years, they’ve evolved from simple grids to highly structured displays of data. Although we argue that the mid-1900s served as a high point, the popularization and wider accessibility of computing seemingly brought us back to the simple, ancient times.\nOkay, it’s not all that bad but the workers of data are today confronted with an all-too-familiar dilemma: copy your data into a tool like Excel to make the table, or, display an otherwise unpolished table. Through the exploration of the qualities that make tables shine, the backstory of tables as a display of data, and the issues faced today, it’s clear how we can solve the great table dilemma with Great Tables.\nTables made with computers (left to right): (1) a DataFrame printed at the console, (2) an Excel table, and (3) a Great Tables table.",
+    "text": "Implementing best practices for data visualization as an Altair theme.\n\n\n\nDaniel Kapitan\n\n\nJan 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis notebook collects explorations of Altair’s most interesting features. Originally published on &lt;a…\n\n\n\nJacopo Repossi\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Perspectives on data science",
-      "The Design Philosophy of Great Tables"
+      "Data visualization with Vega-Altair"
     ]
   },
   {
-    "objectID": "posts/design-philosophy/index.html#footnotes",
-    "href": "posts/design-philosophy/index.html#footnotes",
-    "title": "The Design Philosophy of Great Tables",
+    "objectID": "posts/altair/index.html#section",
+    "href": "posts/altair/index.html#section",
+    "title": "Data visualization with Vega-Altair",
+    "section": "",
+    "text": "Implementing best practices for data visualization as an Altair theme.\n\n\n\nDaniel Kapitan\n\n\nJan 21, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis notebook collects explorations of Altair’s most interesting features. Originally published on &lt;a…\n\n\n\nJacopo Repossi\n\n\nJan 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA data visualization curriculum of interactive notebooks, using Vega-Lite and Altair.\n\n\n\nJeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft\n\n\nMar 25, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing statistical mix effects and Simpson’s paradox with Altair\n\n\n\nDaniel Kapitan\n\n\nJan 29, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUnderstanding your data is critical in creating visualizations. This video outlines Altair’s data types and explains how they can influence the visualization process.\n\n\n\nEitan Lees\n\n\nAug 23, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video outlines the visualization grammar Altair is built on. Understanding the ways in which the elements of the visualization grammar interact is important when using…\n\n\n\nEitan Lees\n\n\nAug 13, 2020\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis video describes the Python package Altair and the software stack it is built on.\n\n\n\nEitan Lees\n\n\nAug 4, 2020\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Perspectives on data science",
+      "Data visualization with Vega-Altair"
+    ]
+  },
+  {
+    "objectID": "posts/index.html",
+    "href": "posts/index.html",
+    "title": "Perspectives on data science",
+    "section": "",
+    "text": "DAPS - Data-Analytic Problem Structure\n\n\n\nbusiness understanding\n\n\n\nModels for structuring big-data and data-analytics projects typically start with a definition of the project’s goals and the business value they are expected to create. The…\n\n\n\nJeroen de Mast, Joran Lokkerbol\n\n\nApr 12, 2024\n\n\n\n\n\n\n\n\n\n\n\nThe Design Philosophy of Great Tables\n\n\n\nvisualization\n\n\n\n\n\n\n\nRich Iannone and Michael Chow\n\n\nApr 4, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nPortable dataflows with Ibis and Hamilton\n\n\n\ncomposable data stack\n\ndata engineering\n\n\n\n\n\n\n\nThierry Jean\n\n\nApr 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nModern, hybrid, open analytics\n\n\n\ncomposable data stack\n\ndata engineering\n\n\n\n\n\n\n\nCody Peterson\n\n\nJan 25, 2024\n\n\n\n\n\n\n\n\n\n\n\nGetting into Python\n\n\nHow to get into Python, the most widely used programming language for data science.\n\n\n\nDaniel Kapitan\n\n\nDec 21, 2023\n\n\n\n\n\n\n\n\n\n\n\nData visualization with Vega-Altair\n\n\nI am a big fan of the Vega-Altair ecosystem for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to…\n\n\n\nDaniel Kapitan\n\n\nDec 21, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnalytical problem solving\n\n\n\nmodeling\n\n\n\nI co-authored a peer-reviewed paper that compares the different modeling approaches for analytical problem solving.\n\n\n\nDaniel Kapitan, Jeroen de Mast, Stefan Steiner, Wim Nuijten\n\n\nMar 10, 2022\n\n\n\n\n\n\n\n\n\n\n\nStop aggregating away the signal in your data\n\n\n\nexploratory data analysis\n\nvisualization\n\n\n\nBy aggregating our data in an effort to simplify it, we lose the signal and the context we need to make sense of what we’re seeing. Originally published on &lt;a…\n\n\n\nZan Armstrong\n\n\nMar 3, 2022\n\n\n\n\n\n\n\n\n\n\n\nRIP correlation. Introducing the Predictive Power Score.\n\n\n\nexploratory data analysis\n\n\n\nWe define the Predictive Power Score (PPS), an alternative to the correlation that finds more patterns in your data. Originally published on &lt;a…\n\n\n\nFlorian Wetschoreck\n\n\nApr 23, 2020\n\n\n\n\n\n\n\n\n\n\n\nThe Precision-Recall Plot Is More Informative than the ROC Plot\n\n\n\nperformance metrics\n\n\n\nAn introduction to performance metrics for binary classification. Originally published on &lt;a…\n\n\n\nPaul van der Laken, Daniel Kapitan\n\n\nAug 16, 2019\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Perspectives on data science"
+    ]
+  },
+  {
+    "objectID": "posts/analytical-problem-solving/index.html",
+    "href": "posts/analytical-problem-solving/index.html",
+    "title": "Analytical problem solving",
+    "section": "",
+    "text": "To explore different modeling approaches, have a look at OR tools for deductive models and DoWhy for causal models.\n\n\n  Download PDF File\n   \n    Unable to display PDF file. Download instead.",
+    "crumbs": [
+      "Perspectives on data science",
+      "Analytical problem solving"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "An anthology of open access data science materials",
+    "section": "",
+    "text": "Machine learning is permeating many fields of work. As a new ‘system technology’1, its impact on organizations and society is expected to be of the same magnitude as that of the steam engine or electricity. As such, more and more professionals are seeking to acquire the necessary understanding and skills to apply machine learning in their day-to-day work. Hence more people without a background in either computer science or statistics - let alone both - have a need for high-quality, open access content to explore and learn data science by themselves.\nNow there is a lot of machine learning learning materials out there, so why this anthology? Based on my experience in teaching professional education course on data & AI, I am continouly challenged to:\n\ncurate content for different professional learning paths, combining various existing open access materials that can be readily shared and thus contribute to the democratization of know-how in this field of work;\nfinding a balance between too technical vs. too vague, handwaving or even downright wrong;\ntake a hands-on, problem-based approach. Rather than, say, explaining the principles that underlie regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularization for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and reason where and how to use regularization."
+  },
+  {
+    "objectID": "index.html#why-this-anthology",
+    "href": "index.html#why-this-anthology",
+    "title": "An anthology of open access data science materials",
+    "section": "",
+    "text": "Machine learning is permeating many fields of work. As a new ‘system technology’1, its impact on organizations and society is expected to be of the same magnitude as that of the steam engine or electricity. As such, more and more professionals are seeking to acquire the necessary understanding and skills to apply machine learning in their day-to-day work. Hence more people without a background in either computer science or statistics - let alone both - have a need for high-quality, open access content to explore and learn data science by themselves.\nNow there is a lot of machine learning learning materials out there, so why this anthology? Based on my experience in teaching professional education course on data & AI, I am continouly challenged to:\n\ncurate content for different professional learning paths, combining various existing open access materials that can be readily shared and thus contribute to the democratization of know-how in this field of work;\nfinding a balance between too technical vs. too vague, handwaving or even downright wrong;\ntake a hands-on, problem-based approach. Rather than, say, explaining the principles that underlie regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularization for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and reason where and how to use regularization."
+  },
+  {
+    "objectID": "index.html#what-is-the-best-online-course-to-get-into-data-science-ai",
+    "href": "index.html#what-is-the-best-online-course-to-get-into-data-science-ai",
+    "title": "An anthology of open access data science materials",
+    "section": "What is the best online course to get into data science & AI?",
+    "text": "What is the best online course to get into data science & AI?\nFor now, my recommendation is to start with one of the courses offered by Elements of AI.\n\nIntroduction to AIBuilding AI\n\n\n\nAn Introduction to AI is a free online course for everyone interested in learning what AI is, what is possible (and not possible) with AI, and how it affects our lives – with no complicated math or programming required.\n\n\n\nBuilding AI is a free online course where you’ll learn about the actual algorithms that make creating AI methods possible. Some basic Python programming skills are recommended to get the most out of the course."
+  },
+  {
+    "objectID": "index.html#how-is-this-anthology-set-up",
+    "href": "index.html#how-is-this-anthology-set-up",
+    "title": "An anthology of open access data science materials",
+    "section": "How is this anthology set up?",
+    "text": "How is this anthology set up?\n\nBooks\nA selection of what I think are the best textbooks is provided as a digital bookshelf. Many of the books included are open access, thanks to their respective authors! They should keep you busy for a while.\n\n\nLectures\nI am gradually rewriting my lectures as Revealjs presentations. More will be added over time.\n\n\nPerspectives\nVarious topics and perspectives on how data science is done. Clearly this is an opinionated and very personal selection. It includes a section on getting into Python, where I have curated a selection of books and online tutorials to get you going. Also, a selection of tutorials and blogpost is provided on creating visualizations with Altair. I am a big fan of the Vega-Altair ecosystem for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis.\n\n\nUse cases\nA selection of inspiring use cases across various industries, which I think are a demonstration of good practices.\n\n\nNotebooks\nNotebooks for those seeking hands-on examples and explainers."
+  },
+  {
+    "objectID": "index.html#report-an-issue",
+    "href": "index.html#report-an-issue",
+    "title": "An anthology of open access data science materials",
+    "section": "Report an issue",
+    "text": "Report an issue\nThis anthology was born out of a need to scratch my own itch, namely to have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful for those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue."
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "An anthology of open access data science materials",
     "section": "Footnotes",
-    "text": "Footnotes\n\n\nTaylor, B. (2021). Lunar timekeeping in Upper Paleolithic Cave Art. PRAEHISTORIA New Series, 3(13), 215–232.↩︎\nDuke, D. W. (2002). Hipparchus’ Coordinate System. Archive for History of Exact Sciences, 56(5), 427-433.↩︎\nhttps://en.wikipedia.org/wiki/Geography_(Ptolemy)↩︎\nPalet, J. M. and Orengo, H. A., The Roman Centuriated Landscape: Conception, Genesis, and Development as Inferred from the Ager Tarraconensis Case. American Journal of Archaeology, 115(3), 383-402.↩︎\nMarchese, F. T., Exploring the Origins of Tables for Information Visualization. Proceedings of the 2011 15th International Conference on Information Visualisation, 13-15 July 2011, doi:10.1109/IV.2011.36.↩︎\nM. W. Green, The construction and implementation of the cuneiform writing system, Visible Writing, 15, 1981, 345-72.↩︎\nRobson, E., “Tables and tabular formatting in Sumer, Babylonia, and Assyria, 2500-50 BCE” in M. Campbell-Kelly, M. Croarken, R.G. Flood, and E. Robson (eds.), The History of Mathematical Tables from Sumer to Spreadsheets. Oxford: Oxford University Press, 2003, 18–47.↩︎\nhttps://site.xavier.edu/polt/typewriters/varityper.html↩︎\nManual of Tabular Presentation: An Outline of Theory and Practice in the Presentation of Statistical Data in Tables for Publication. United States. Bureau of the Census. U.S. Government Printing Office, 1949. Resource available at: https://www2.census.gov/library/publications/1949/general/tabular-presentation.pdf.↩︎",
-    "crumbs": [
-      "Perspectives on data science",
-      "The Design Philosophy of Great Tables"
-    ]
+    "text": "Footnotes\n\n\nSheikh et al. (2023), Mission AI: the New System Technology, https://doi.org/10.1007/978-3-031-21448-6↩︎"
   },
   {
-    "objectID": "lectures.html",
-    "href": "lectures.html",
-    "title": "Anthology of Data Science",
-    "section": "",
-    "text": "Composable data platforms\n\n\nSlides from a 3-hour guest lecture given at Strathmore University.\n\n\n\nDaniel Kapitan\n\n\nJul 2, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nExplainable Boosting Machines\n\n\nSlides from a 1-hour workshop, after which you will be convinced that EBMs are your standard go-to algorithm for tabular data.\n\n\n\nDaniel Kapitan\n\n\nSep 9, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nGenerative AI\n\n\nIntroduction to generative AI and agentic systems in a 4-hour lecture\n\n\n\nDaniel Kapitan\n\n\nDec 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nPhysics-informed machine learning\n\n\nIntroduction to physics-informed machine learning in a 1-hour lecture.\n\n\n\nDaniel Kapitan\n\n\nAug 23, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nReal World Data Science\n\n\nSlidedeck for a 2-day masterclass. While it is probably difficult to follow without the voice-over, the many references included in the slides are useful for a bird’s eye…\n\n\n\nDaniel Kapitan\n\n\nSep 26, 2025\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Lectures"
-    ]
-  },
-  {
-    "objectID": "books/udl.html",
-    "href": "books/udl.html",
-    "title": "Understanding Deep Learning",
+    "objectID": "cases/landscape-biomedical-research/index.html",
+    "href": "cases/landscape-biomedical-research/index.html",
+    "title": "The landscape of biomedical research",
     "section": "",
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Books",
-      "Understanding Deep Learning"
+      "Use cases & applications",
+      "The landscape of biomedical research"
     ]
   },
   {
-    "objectID": "books/islp.html",
-    "href": "books/islp.html",
-    "title": "An Introduction to Statistical Learning",
+    "objectID": "cases/microclimate-vision/index.html",
+    "href": "cases/microclimate-vision/index.html",
+    "title": "Multimodal prediction of climatic parameters using street-level and satellite imagery",
     "section": "",
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Books",
-      "An Introduction to Statistical Learning"
+      "Use cases & applications",
+      "Multimodal prediction of climatic parameters using street-level and satellite imagery"
     ]
   },
   {
-    "objectID": "books/cds.html",
-    "href": "books/cds.html",
-    "title": "Critical Data Studies",
+    "objectID": "cases/enterobase/index.html",
+    "href": "cases/enterobase/index.html",
+    "title": "EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations",
     "section": "",
     "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
     "crumbs": [
-      "Books",
-      "Critical Data Studies"
+      "Use cases & applications",
+      "EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations"
     ]
   },
   {
-    "objectID": "notebooks/index.html",
-    "href": "notebooks/index.html",
-    "title": "Notebooks and explainers with code",
+    "objectID": "cases/index.html",
+    "href": "cases/index.html",
+    "title": "Selected use cases & applications",
     "section": "",
-    "text": "Demonstration of overfitting and underfitting\n\n\nThis notebook illustrates why we require a train/test split (or cross-validation) to balance overfitting vs. underfitting.\n\n\n\n\n\n\nMay 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeconfounding explained\n\n\nA demonstration howcorrelations ‘magically’ disappear if confounders are added to your model.\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\nNo matching items",
+    "text": "Multimodal prediction of climatic parameters using street-level and satellite imagery\n\n\n\nDeep Learning\n\n\n\nHigh-resolution microclimate data is essential for capturing spatio-temporal heterogeneity of urban climate and heat health management. However, previous studies have relied…\n\n\n\nKunihiko Fujiwara et al.\n\n\nAug 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe landscape of biomedical research\n\n\n\nNLP\n\nBERT\n\nLLM\n\n\n\nOver 1.5 million scientific articles on biomedicine and life sciences are now published and collected in the PubMed database every year. This vast scale makes it challenging…\n\n\n\nRita González-Márquez et al.\n\n\nJun 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredict precence of wolf pairs in Germany with XGBoost and SHAP\n\n\n\nExplainable AI\n\n\n\nWolves have returned to Germany since 2000. Numbers have grown to 209 territorial pairs in 2021. XGBoost machine learning, combined with SHAP analysis is applied to predict…\n\n\n\nJeanine Schoonemann et al.\n\n\nFeb 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassifying rice grains using deep learning\n\n\n\nDeep Learning\n\n\n\nRice, one of the world’s most significant agricultural products, is crucial for human nutrition, economies, and various industrial sectors. Classifying rice varieties, an…\n\n\n\nFarshad Farahnakian et al.\n\n\nNov 28, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nInzicht in energiearmoede\n\n\n\nNederlands\n\n\n\nIn januari 2022 zijn energieprijzen met 86% gestegen ten opzichte van het jaar daarvoor. Met de oorlog in Oekraïne en de inflatie zijn de prijzen alleen nog maar hoger…\n\n\n\nAnouk Fredriksz\n\n\nFeb 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nEnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations\n\n\n\nClustering\n\n\n\nThe Linnean system of species designation was applied in the the late 19th century to bacteria. Initially, bacteria have been been classified based on their disease…\n\n\n\nMark Achtman et al.\n\n\nAug 22, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nVerkeersveiligheidmodel\n\n\n\nNederlands\n\n\n\nIn het Verkeersveiligheidsmodel koppelen we data over historische ongevallen aan gegevens over de weg, over het verkeer en over de omgeving binnen de invloedsfeer van de…\n\n\n\nArjan Knol\n\n\nAug 1, 2019\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Notebooks"
+      "Use cases & applications"
     ]
   },
   {
@@ -1296,123 +1417,13 @@
     ]
   },
   {
-    "objectID": "notebooks/pima-indians/index.html#objectives",
-    "href": "notebooks/pima-indians/index.html#objectives",
-    "title": "Predicting diabetes",
-    "section": "Objectives",
-    "text": "Objectives\n\nExample end-to-end supervised learning workflow with Pima Indians dataset\nFocus on conceptual understanding of machine learning\nDemonstrate use of Predictive Power Score (PPS)\nDemonstrate capabilities of AutoML model comparison with lazypredict\nDemonstrate SHAP values for the best model",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#attribution",
-    "href": "notebooks/pima-indians/index.html#attribution",
-    "title": "Predicting diabetes",
-    "section": "Attribution",
-    "text": "Attribution\n\nDataset\n\nPima Indians paper (original paper)\nKaggle datacard (link)\n\n\n\nPython libraries\n\nAltair (docs)\nydata-profiling (docs)\nPredictive Power Score (PPS, GitHub, blog)\nlazypredict: runs all sklearn estimators and ranks them (GitHub)\nSHAP: explain individual model predictions (docs)\n\nimport marimo as mo\n\n    \n    \n    \n    \n\nimport altair as alt\nimport pandas as pd\nimport ppscore as pps\nimport shap\nimport warnings\nfrom lazypredict.Supervised import LazyClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom ydata_profiling import ProfileReport\n\nwarnings.filterwarnings(\"ignore\")\n\n# Altair theme: clean axes\ndef y_axis():\n    return {\n        \"config\": {\n            \"axisX\": {\"grid\": False},\n            \"axisY\": {\n                \"domain\": False,\n                \"gridDash\": [2, 4],\n                \"tickSize\": 0,\n                \"titleAlign\": \"right\",\n                \"titleAngle\": 0,\n                \"titleX\": -5,\n                \"titleY\": -10,\n            },\n            \"view\": {\n                \"stroke\": \"transparent\",\n                \"continuousHeight\": 300,\n                \"continuousWidth\": 400,\n            },\n        }\n    }\n\nalt.themes.register(\"y_axis\", y_axis)\nalt.themes.enable(\"y_axis\")\n\n    \n    ThemeRegistry.enable('y_axis')",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#read-and-explore-the-data",
-    "href": "notebooks/pima-indians/index.html#read-and-explore-the-data",
-    "title": "Predicting diabetes",
-    "section": "Read and explore the data",
-    "text": "Read and explore the data\ndf = pd.read_csv(\"diabetes.csv\").astype({\"Outcome\": bool})\ntrain, test = train_test_split(df, test_size=0.3, random_state=42)\nprofile = ProfileReport(train, minimal=True, title=\"Pima Indians Profiling Report\")\nprofile.to_file(\"pima-indians-profiling-report-minimal.html\")\n\n    \n    \n    \n    \n\nmo.Html(\n    '&lt;iframe width=\"100%\" height=\"800px\" src=\"pima-indians-profiling-report-minimal.html\"&gt;&lt;/iframe&gt;'\n)",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#predictive-power-score",
-    "href": "notebooks/pima-indians/index.html#predictive-power-score",
-    "title": "Predicting diabetes",
-    "section": "Predictive Power Score",
-    "text": "Predictive Power Score\nThe Predictive Power Score is an asymmetric, data-type-agnostic score that can detect linear or non-linear relationships between two variables. It is a useful alternative to the correlation matrix for exploratory data analysis.\n# PPS of each feature predicting Outcome\npps_predictors = (\n    pps.predictors(train, \"Outcome\")\n    .sort_values(\"ppscore\", ascending=False)\n)\n\npps_bar = (\n    alt.Chart(pps_predictors)\n    .mark_bar()\n    .encode(\n        x=alt.X(\"ppscore:Q\", title=\"PPS\", scale=alt.Scale(domain=[0, 1])),\n        y=alt.Y(\"x:N\", sort=\"-x\", title=\"Feature\"),\n        tooltip=[\"x\", alt.Tooltip(\"ppscore:Q\", format=\".3f\")],\n    )\n    .properties(title=\"Predictive Power Score — predicting Outcome\")\n)\npps_bar\n\n    \n    \n    \n    \n\n# Full PPS matrix heatmap\npps_matrix = pps.matrix(train)\n\npps_heatmap = (\n    alt.Chart(pps_matrix)\n    .mark_rect()\n    .encode(\n        x=alt.X(\"x:N\", title=\"Feature (predictor)\"),\n        y=alt.Y(\"y:N\", title=\"Feature (target)\"),\n        color=alt.Color(\n            \"ppscore:Q\",\n            scale=alt.Scale(scheme=\"blues\", domain=[0, 1]),\n            title=\"PPS\",\n        ),\n        tooltip=[\"x\", \"y\", alt.Tooltip(\"ppscore:Q\", format=\".3f\")],\n    )\n    .properties(title=\"PPS Matrix\", width=400, height=400)\n)\npps_heatmap",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#automl-model-comparison-with-lazypredict",
-    "href": "notebooks/pima-indians/index.html#automl-model-comparison-with-lazypredict",
-    "title": "Predicting diabetes",
-    "section": "AutoML model comparison with lazypredict",
-    "text": "AutoML model comparison with lazypredict\nLazyClassifier runs all scikit-learn classifiers and ranks them. This gives a rapid overview of which algorithm families work best without manual tuning.\nfeature_cols = [c for c in df.columns if c != \"Outcome\"]\nX = df[feature_cols]\ny = df[\"Outcome\"].astype(int)\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.3, random_state=42\n)\n\nclf = LazyClassifier(verbose=0, ignore_warnings=True, custom_metric=None)\nmodels, predictions = clf.fit(X_train, X_test, y_train, y_test)\nmodels_df = models.reset_index().rename(columns={\"index\": \"Model\"})\nmodels_df\n\n    \n    \n    \n    \n\n# Bar chart ranked by ROC AUC\nroc_chart = (\n    alt.Chart(models_df)\n    .mark_bar()\n    .encode(\n        x=alt.X(\"ROC AUC:Q\", scale=alt.Scale(domain=[0, 1]), title=\"ROC AUC\"),\n        y=alt.Y(\"Model:N\", sort=\"-x\", title=None),\n        color=alt.Color(\n            \"ROC AUC:Q\",\n            scale=alt.Scale(scheme=\"blues\", domain=[0.5, 1]),\n            legend=None,\n        ),\n        tooltip=[\"Model\", alt.Tooltip(\"ROC AUC:Q\", format=\".3f\"),\n                 alt.Tooltip(\"Accuracy:Q\", format=\".3f\"),\n                 alt.Tooltip(\"F1 Score:Q\", format=\".3f\")],\n    )\n    .properties(title=\"Model comparison — ROC AUC (test set)\", height=500)\n)\nroc_chart",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes"
-    ]
-  },
-  {
-    "objectID": "notebooks/pima-indians/index.html#shap-values-for-the-best-model",
-    "href": "notebooks/pima-indians/index.html#shap-values-for-the-best-model",
-    "title": "Predicting diabetes",
-    "section": "SHAP values for the best model",
-    "text": "SHAP values for the best model\nWe retrain the best-performing model (by ROC AUC) using scikit-learn directly, then use SHAP to explain its predictions.\nfrom sklearn.utils import all_estimators\nimport numpy as np\n\n# Identify the top model name from lazypredict results\nbest_model_name = models_df.sort_values(\"ROC AUC\", ascending=False).iloc[0][\"Model\"]\nmo.md(f\"**Best model by ROC AUC:** {best_model_name}\")\n\n    \n    \n    \n    \n\n# Map lazypredict display name back to an sklearn estimator class\nestimator_map = {\n    name: cls\n    for name, cls in all_estimators(type_filter=\"classifier\")\n}\n\n# lazypredict uses the class name as the index; look it up\nBestEstimator = estimator_map.get(best_model_name)\n\nif BestEstimator is None:\n    # Fallback to LogisticRegression if name not found\n    BestEstimator = LogisticRegression\n\nbest_clf = BestEstimator()\nbest_clf.fit(X_train, y_train)\n\n# Verify SHAP compatibility: some models (e.g. QuadraticDiscriminantAnalysis)\n# are not callable in the way shap.Explainer requires. Fall back to\n# LogisticRegression when the best model is not SHAP-compatible.\ntry:\n    _test_explainer = shap.Explainer(best_clf, X_train[:5])\n    del _test_explainer\nexcept Exception:\n    mo.md(\"_Note: best model is not SHAP-compatible; falling back to LogisticRegression for SHAP explanations._\")\n    best_clf = LogisticRegression(max_iter=1000)\n    best_clf.fit(X_train, y_train)\n\n    \n    \n    \n    \n\n# SHAP explanation\nexplainer = shap.Explainer(best_clf, X_train)\nshap_values = explainer(X_test)\n\n# Summary plot (beeswarm)\nshap.summary_plot(shap_values, X_test, show=False)\nimport matplotlib.pyplot as plt\nplt.tight_layout()\nmo.mpl.interactive(plt.gcf())",
-    "crumbs": [
-      "Notebooks",
-      "Predicting diabetes"
-    ]
-  },
-  {
-    "objectID": "lectures/generative-ai.html",
-    "href": "lectures/generative-ai.html",
-    "title": "Generative AI",
+    "objectID": "notebooks/index.html",
+    "href": "notebooks/index.html",
+    "title": "Notebooks and explainers with code",
     "section": "",
-    "text": "(view full screen)",
+    "text": "Demonstration of overfitting and underfitting\n\n\nThis notebook illustrates why we require a train/test split (or cross-validation) to balance overfitting vs. underfitting.\n\n\n\n\n\n\nMay 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nDeconfounding explained\n\n\nA demonstration howcorrelations ‘magically’ disappear if confounders are added to your model.\n\n\n\n\n\n\nSep 18, 2022\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Lectures",
-      "Generative AI"
-    ]
-  },
-  {
-    "objectID": "cases/index.html",
-    "href": "cases/index.html",
-    "title": "Selected use cases & applications",
-    "section": "",
-    "text": "Multimodal prediction of climatic parameters using street-level and satellite imagery\n\n\n\nDeep Learning\n\n\n\nHigh-resolution microclimate data is essential for capturing spatio-temporal heterogeneity of urban climate and heat health management. However, previous studies have relied…\n\n\n\nKunihiko Fujiwara et al.\n\n\nAug 20, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe landscape of biomedical research\n\n\n\nNLP\n\nBERT\n\nLLM\n\n\n\nOver 1.5 million scientific articles on biomedicine and life sciences are now published and collected in the PubMed database every year. This vast scale makes it challenging…\n\n\n\nRita González-Márquez et al.\n\n\nJun 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nPredict precence of wolf pairs in Germany with XGBoost and SHAP\n\n\n\nExplainable AI\n\n\n\nWolves have returned to Germany since 2000. Numbers have grown to 209 territorial pairs in 2021. XGBoost machine learning, combined with SHAP analysis is applied to predict…\n\n\n\nJeanine Schoonemann et al.\n\n\nFeb 19, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\nClassifying rice grains using deep learning\n\n\n\nDeep Learning\n\n\n\nRice, one of the world’s most significant agricultural products, is crucial for human nutrition, economies, and various industrial sectors. Classifying rice varieties, an…\n\n\n\nFarshad Farahnakian et al.\n\n\nNov 28, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nInzicht in energiearmoede\n\n\n\nNederlands\n\n\n\nIn januari 2022 zijn energieprijzen met 86% gestegen ten opzichte van het jaar daarvoor. Met de oorlog in Oekraïne en de inflatie zijn de prijzen alleen nog maar hoger…\n\n\n\nAnouk Fredriksz\n\n\nFeb 1, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\nEnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations\n\n\n\nClustering\n\n\n\nThe Linnean system of species designation was applied in the the late 19th century to bacteria. Initially, bacteria have been been classified based on their disease…\n\n\n\nMark Achtman et al.\n\n\nAug 22, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\nVerkeersveiligheidmodel\n\n\n\nNederlands\n\n\n\nIn het Verkeersveiligheidsmodel koppelen we data over historische ongevallen aan gegevens over de weg, over het verkeer en over de omgeving binnen de invloedsfeer van de…\n\n\n\nArjan Knol\n\n\nAug 1, 2019\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Use cases & applications"
-    ]
-  },
-  {
-    "objectID": "cases/microclimate-vision/index.html",
-    "href": "cases/microclimate-vision/index.html",
-    "title": "Multimodal prediction of climatic parameters using street-level and satellite imagery",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
-    "crumbs": [
-      "Use cases & applications",
-      "Multimodal prediction of climatic parameters using street-level and satellite imagery"
-    ]
-  },
-  {
-    "objectID": "cases/enterobase/index.html",
-    "href": "cases/enterobase/index.html",
-    "title": "EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
-    "crumbs": [
-      "Use cases & applications",
-      "EnteroBase - hierarchical clustering of 100 000s of bacterial genomes into species/subspecies and populations"
-    ]
-  },
-  {
-    "objectID": "cases/energiearmoede/index.html",
-    "href": "cases/energiearmoede/index.html",
-    "title": "Inzicht in energiearmoede",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead.",
-    "crumbs": [
-      "Use cases & applications",
-      "Inzicht in energiearmoede"
+      "Notebooks"
     ]
   }
 ]
