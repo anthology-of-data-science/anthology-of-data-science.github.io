@@ -1,0 +1,16 @@
+---
+title: Causal Inference and Machine Learning
+description: |
+    We wrote this book to fill a real gap: a single, coherent guide that connects econometrics, causal methods grounded in the counterfactual framework, and modern machine learning in the settings you work in. Many resources are either too technical or assume a background that beginners don’t yet have. We take a rigorous but approachable path: early chapters slow down for the essentials—estimation vs. prediction, the bias–variance trade-off, overfitting, tuning, and validation—then build toward the most up-to-date prediction and causal estimation methods you’ll use in practice.
+image: images/causal.png
+author:
+    - Mutlu Yuksel
+    - Yigit Aydede
+date: 2026-01-01
+page-layout: full
+toc: false
+---
+
+```{=html}
+<iframe width="100%" height="800" src="https://www.causalmlbook.com/" title="Causal Inference and Machine Learning"></iframe>
+```
