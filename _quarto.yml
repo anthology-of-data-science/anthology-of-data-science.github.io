@@ -16,7 +16,7 @@ website:
     type: textbox
   sidebar:
     title: false
-    logo: /logo-anthology-of-data-science.png    
+    logo: /logo-anthology-of-data-science.png
     tools:
       - icon: linkedin
         href: https://www.linkedin.com/in/dkapitan/
@@ -46,7 +46,7 @@ website:
     left: |
       <br>
       © 2023 by Daniel Kapitan<br>
-      This website was created with [![](/quarto.png){fig-alt="Quarto" width=65px}](https://quarto.org)<br>
+      This website was created with **[quarto](https://quarto.org)**<br>
       [![](/cc-by-nc-eu.png){fig-alt="CC BY-NC 4.0"}](http://creativecommons.org/licenses/by-nc/4.0/?ref=chooser-v1)<br>
 
 lightbox: true
@@ -61,5 +61,4 @@ format:
       - text: |
           <script data-goatcounter="https://anthology.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 execute:
-  freeze: auto  # re-render only when source changes
-
+  freeze: auto # re-render only when source changes

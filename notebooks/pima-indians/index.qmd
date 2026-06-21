@@ -7,6 +7,7 @@ engine: marimo
 external-env: true
 format:
   html: default
+draft: true
 ---
 
 ![](women-Pima-shinny-game-field-hockey.jpg)
@@ -28,7 +29,6 @@ format:
 ### Python libraries
 - Altair ([docs](https://altair-viz.github.io/))
 - ydata-profiling ([docs](https://docs.profiling.ydata.ai/))
-- Predictive Power Score (PPS, [GitHub](https://github.com/8080labs/ppscore/), [blog](https://towardsdatascience.com/rip-correlation-introducing-the-predictive-power-score-3d90808b9598))
 - lazypredict: runs all sklearn estimators and ranks them ([GitHub](https://github.com/shankarpandala/lazypredict))
 - SHAP: explain individual model predictions ([docs](https://shap.readthedocs.io/))
 
@@ -41,7 +41,6 @@ import marimo as mo
 #| echo: true
 import altair as alt
 import pandas as pd
-import ppscore as pps
 import shap
 import warnings
 from lazypredict.Supervised import LazyClassifier
@@ -92,54 +91,6 @@ profile.to_file("pima-indians-profiling-report-minimal.html")
 mo.Html(
     '<iframe width="100%" height="800px" src="pima-indians-profiling-report-minimal.html"></iframe>'
 )
-```
-
-## Predictive Power Score
-
-The [Predictive Power Score](https://github.com/8080labs/ppscore) is an asymmetric, data-type-agnostic score that can detect linear or non-linear relationships between two variables. It is a useful alternative to the correlation matrix for exploratory data analysis.
-
-```python {.marimo}
-#| echo: true
-# PPS of each feature predicting Outcome
-pps_predictors = (
-    pps.predictors(train, "Outcome")
-    .sort_values("ppscore", ascending=False)
-)
-
-pps_bar = (
-    alt.Chart(pps_predictors)
-    .mark_bar()
-    .encode(
-        x=alt.X("ppscore:Q", title="PPS", scale=alt.Scale(domain=[0, 1])),
-        y=alt.Y("x:N", sort="-x", title="Feature"),
-        tooltip=["x", alt.Tooltip("ppscore:Q", format=".3f")],
-    )
-    .properties(title="Predictive Power Score — predicting Outcome")
-)
-pps_bar
-```
-
-```python {.marimo}
-#| echo: true
-# Full PPS matrix heatmap
-pps_matrix = pps.matrix(train)
-
-pps_heatmap = (
-    alt.Chart(pps_matrix)
-    .mark_rect()
-    .encode(
-        x=alt.X("x:N", title="Feature (predictor)"),
-        y=alt.Y("y:N", title="Feature (target)"),
-        color=alt.Color(
-            "ppscore:Q",
-            scale=alt.Scale(scheme="blues", domain=[0, 1]),
-            title="PPS",
-        ),
-        tooltip=["x", "y", alt.Tooltip("ppscore:Q", format=".3f")],
-    )
-    .properties(title="PPS Matrix", width=400, height=400)
-)
-pps_heatmap
 ```
 
 ## AutoML model comparison with lazypredict

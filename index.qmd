@@ -52,7 +52,7 @@ I am gradually rewriting my lectures as [Revealjs presentations](lectures.qmd). 
 
 ### Perspectives
 
-Various topics and perspectives on how data science is done. Clearly this is an opinionated and very [personal selection](posts/index.qmd). It includes a section on [getting into Python](posts/python/index.qmd), where I have curated a selection of books and online tutorials to get you going. Also, a selection of tutorials and blogpost is provided on creating [visualizations with Altair](posts/altair/index.qmd). I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis. 
+Various topics and perspectives on how data science is done. Clearly this is an opinionated and very [personal selection](posts/index.qmd). It includes a section on [getting into Python](posts/python/index.qmd), where I have curated a selection of books and online tutorials to get you going. Also, a selection of tutorials and blogpost is provided on creating [visualizations with Altair](posts/altair/index.qmd). I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis.
 
 
 ### Use cases
@@ -65,7 +65,7 @@ Notebooks for those seeking [hands-on examples and explainers](notebooks/index.q
 
 ## Report an issue
 
-This anthology was born out of a need to scratch my own itch, namely to have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful for those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by reporting an issue.
+This anthology was born out of a need to scratch my own itch, namely to have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful for those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by [reporting an issue](https://github.com/anthology-of-data-science/anthology-of-data-science.github.io/issues/new).
 
 #
 ```{=html}
