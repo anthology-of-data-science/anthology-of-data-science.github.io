@@ -1,0 +1,71 @@
+# An anthology of open access data science materials
+
+Preface as to why I started this anthology, how I set it up and for what purpose.
+
+Author
+
+[Daniel Kapitan](https://www.linkedin.com/in/dkapitan)
+
+Published
+
+November 1, 2023
+
+## Why this anthology
+
+Machine learning is permeating many fields of work. As a new ‘system technology’[^1], its impact on organizations and society is expected to be of the same magnitude as that of the steam engine or electricity. As such, more and more professionals are seeking to acquire the necessary understanding and skills to apply machine learning in their day-to-day work. Hence more people *without* a background in either computer science or statistics - let alone both - have a need for high-quality, open access content to explore and learn data science by themselves.
+
+Now there is a lot of machine learning learning materials out there, so why this anthology? Based on my experience in teaching professional education course on data & AI, I am continously challenged to:
+
+- curate content for different professional learning paths, combining various existing open access materials that can be readily shared and thus contribute to the democratization of know-how in this field of work;
+- finding a balance between too technical vs. too vague, handwaving or even downright wrong;
+- take a hands-on, problem-based approach. Rather than, say, explaining the principles that underlie regularization, we choose to demonstrate these principles using the simplest algorithms. With a little math, everyone should be able to understand how LASSO performs regularization for regression models. With this intuitive understanding, you can move on to more complex algorithms and applications, and reason where and how to use regularization.
+
+## What is the best online course to get into data science & AI?
+
+For now, my recommendation is to start with one of the courses offered by [Elements of AI](https://www.elementsofai.com/).
+
+## Introduction to AI
+
+[![](elements-of-ai-1.png)](elements-of-ai-1.png)
+
+[An Introduction to AI](https://course.elementsofai.com/) is a free online course for everyone interested in learning what AI is, what is possible (and not possible) with AI, and how it affects our lives – with no complicated math or programming required.
+
+## Building AI
+
+[![](elements-of-ai-2.png)](elements-of-ai-2.png)
+
+[Building AI](https://buildingai.elementsofai.com/) is a free online course where you’ll learn about the actual algorithms that make creating AI methods possible. Some basic Python programming skills are recommended to get the most out of the course.
+
+## How is this anthology set up?
+
+### Books
+
+A selection of what I think are the [best textbooks](books.llms.md) is provided as a digital bookshelf. Many of the books included are open access, thanks to their respective authors! They should keep you busy for a while.
+
+### Lectures
+
+I am gradually rewriting my lectures as [Revealjs presentations](lectures.llms.md). More will be added over time.
+
+### Perspectives
+
+Various topics and perspectives on how data science is done. Clearly this is an opinionated and very [personal selection](posts/index.llms.md). It includes a section on [getting into Python](posts/python/index.llms.md), where I have curated a selection of books and online tutorials to get you going. Also, a selection of tutorials and blogpost is provided on creating [visualizations with Altair](posts/altair/index.llms.md). I am a big fan of the [Vega-Altair ecosystem](https://altair-viz.github.io/) for data visualization, because it not only helps me in creating appealing, interactive visualizations, but it also helps me to reason about the data when I am doing exploratory data analysis.
+
+### Use cases
+
+A selection of inspiring [use cases](cases/index.llms.md) across various industries, which I think are a demonstration of good practices.
+
+### Notebooks
+
+Notebooks for those seeking [hands-on examples and explainers](notebooks/index.llms.md).
+
+## Report an issue
+
+This anthology was born out of a need to scratch my own itch, namely to have a central repository where I can continously collate interesting resources and keep the content up-to-date as the best practices evolve. I hope it is also helpful for those seeking a stepping stone into the wonderful field of data science. Feel free to drop me a note with suggestions or feedback by [reporting an issue](https://github.com/anthology-of-data-science/anthology-of-data-science.github.io/issues/new).
+
+# 
+
+[Follow me on LinkedIn](https://www.linkedin.com/comm/mynetwork/discovery-see-all?usecase=PEOPLE_FOLLOWS&followMember=dkapitan)
+
+## Footnotes
+
+[^1]: Sheikh et al. (2023), *Mission AI: the New System Technology*, <https://doi.org/10.1007/978-3-031-21448-6>

@@ -1,0 +1,15 @@
+# Critical Data Studies
+
+This book provides a glossary for the field, consisting of 413 entries about key terms. Each entry sets out a definition, a descriptive overview, and further reading. The text is designed to be a pedagogic resource that enables students and researchers to look up terms that might be used in the classroom or in publications but in a way shorn of a detailed explanation of their meaning, and to act as a guide for discovering ideas, concepts, and methods that might be of value in their studies and analysis. Taken from [https://datastories.maynoothuniversity.ie](https://datastories.maynoothuniversity.ie/?p=602).
+
+Author
+
+Rob Kitchin
+
+Published
+
+January 6, 2025
+
+[Download PDF File](../resources/kitchin2025cds.pdf)
+
+Unable to display PDF file. [Download](../resources/kitchin2025cds.pdf) instead.

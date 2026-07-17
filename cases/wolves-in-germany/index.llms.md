@@ -1,0 +1,17 @@
+# Predict precence of wolf pairs in Germany with XGBoost and SHAP
+
+Explainable AI
+
+Wolves have returned to Germany since 2000. Numbers have grown to 209 territorial pairs in 2021. XGBoost machine learning, combined with SHAP analysis is applied to predict German wolf pair presence in 2022 for 10 × 10 km grid cells. The model predicted well, with 0.91 as the AUC. SHAP analysis ranked the variables: distance to the closest neighboring wolf pair was the main driver for a grid cell to become occupied by a wolf pair. The clustering tendency of related wolves seems to be an important explanatory factor here. Second was the percentage of wooded area. The next eight variables related to wolf presence in the preceding year, except at fifth, eighth and tenth position in the total order: human density (square root) in the grid, percentage arable land and road density respectively. The SHAP analysis also provided crucial added value in identifying a variable that had threshold values where its contribution to the prediction changed from positive to negative or vice versa. For instance, low density of people increased the probability of wolf pair presence, whereas a high density decreased this probability. The combination of techniques is new in wolf management and conservation, allowing for the focusing of educational and financial resources. The original article can be read online [here](https://rdcu.be/dDTmY).
+
+Author
+
+Jeanine Schoonemann et al.
+
+Published
+
+February 19, 2024
+
+[Download PDF File](../../resources/schoonemann2024applying.pdf)
+
+Unable to display PDF file. [Download](../../resources/schoonemann2024applying.pdf) instead.
