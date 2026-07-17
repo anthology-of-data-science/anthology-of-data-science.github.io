@@ -7,6 +7,7 @@ website:
   site-url: https://anthology-of-data.science
   repo-url: https://github.com/anthology-of-data-science/anthology-of-data-science.github.io
   favicon: favicon.png
+  llms-txt: true
   repo-actions: [issue]
   google-analytics: "G-9JMR365RPQ"
   open-graph: true
