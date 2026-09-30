@@ -23,19 +23,30 @@ listing:
         author:
           - Jay Alammar
           - Maarten Grootendorst
-      - path: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/
-        image: /books/images/designing-data-intensive-applications.jpg
-        title: "Designing Data-Intensive Applications"
+      - path: https://www.oreilly.com/library/view/an-illustrated-guide/9798341662681/
+        image: /books/images/ai-agents.jpg
+        title: "An Illustrated Guide to AI Agents"
+        description: |
+          Artificial intelligence is entering a new phase. AI agents can now reason, plan, and act with increasing independence. From accelerating scientific breakthroughs to supporting creative work, these systems are quickly reshaping industries and everyday life. This book provides the conceptual foundation and practical insights you need to understand—and effectively work with—this emerging technology.
+        date: "2026-09-01"
+        author:
+          - Jay Alammar
+          - Maarten Grootendorst
+      - path: https://www.oreilly.com/library/view/designing-data-intensive-applications/9781098119058/
+        image: /books/images/ddia-2nd.jpg
+        title: "Designing Data-Intensive Applications, 2nd Edition"
         description: |
           Data is at the center of many challenges in system design today. Difficult issues need to be figured out, such as scalability, consistency, reliability, efficiency, and maintainability. In addition, we have an overwhelming variety of tools, including relational databases, NoSQL datastores, stream or batch processors, and message brokers. What are the right choices for your application? How do you make sense of all these buzzwords? In this practical and comprehensive guide, author Martin Kleppmann helps you navigate this diverse landscape by examining the pros and cons of various technologies for processing and storing data. Software keeps changing, but the fundamental principles remain the same. With this book, software engineers and architects will learn how to apply those ideas in practice, and how to make full use of data in modern applications.
-        date: "2017-03-01"
-        author: Martin Kleppmann
-      - path: https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/
-        image: /books/images/handson-ml3.jpg
-        title: "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition"
+        date: "2026-02-01"
+        author:
+          - Martin Kleppmann
+          - Chris Riccomini
+      - path: https://www.oreilly.com/library/view/hands-on-machine-learning/9798341607972/
+        image: /books/images/geron-2025.jpg
+        title: "Hands-On Machine Learning with Scikit-Learn and Pytorch"
         description: |
-          Through a recent series of breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this technology can use simple, efficient tools to implement programs capable of learning from data. This bestselling book uses concrete examples, minimal theory, and production-ready Python frameworks (Scikit-Learn, Keras, and TensorFlow) to help you gain an intuitive understanding of the concepts and tools for building intelligent systems. With this updated third edition, author Aurélien Géron explores a range of techniques, starting with simple linear regression and progressing to deep neural networks. Numerous code examples and exercises throughout the book help you apply what you've learned. Programming experience is all you need to get started.
-        date: "2022-10-01"
+          The potential of machine learning today is extraordinary, yet many aspiring developers and tech professionals find themselves daunted by its complexity. Whether you're looking to enhance your skill set and apply machine learning to real-world projects or are simply curious about how AI systems function, this book is your jumping-off place. With an approachable yet deeply informative style, author Aurélien Géron delivers the ultimate introductory guide to machine learning and deep learning. Drawing on the Hugging Face ecosystem, with a focus on clear explanations and real-world examples, the book takes you through cutting-edge tools like Scikit-Learn and PyTorch—from basic regression techniques to advanced neural networks.
+        date: "2025-10-01"
         author: Aurélien Géron
       - path: https://polarsguide.com/
         image: /books/images/polarsguide.jpg
