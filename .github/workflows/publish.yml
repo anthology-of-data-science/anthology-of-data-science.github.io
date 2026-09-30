@@ -28,8 +28,11 @@ jobs:
         with:
           version: 1.9.32
       - run: curl -fsSL https://d2lang.com/install.sh | sh -s --
-      - run: quarto add --no-prompt data-intuitive/quarto-d2
-      - run: quarto add --no-prompt marimo-team/quarto-marimo
+      # Pin extension versions so CI matches the committed _extensions/ and
+      # the marimo version locked in uv.lock (v0.5.0 of quarto-marimo requires
+      # a newer marimo than the pinned 0.20.4).
+      - run: quarto add --no-prompt data-intuitive/quarto-d2@1.1.0
+      - run: quarto add --no-prompt marimo-team/quarto-marimo@v0.4.5
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:

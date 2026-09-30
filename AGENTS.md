@@ -16,7 +16,7 @@ Published from the `main` branch via GitHub Actions to the `gh-pages` branch.
 ```
 _quarto.yml                    # Site-wide Quarto configuration
 _extensions/
-  marimo-team/marimo/          # quarto-marimo engine extension (v0.4.4, requires Quarto >=1.9.20)
+  marimo-team/marimo/          # quarto-marimo engine extension (v0.4.5, requires Quarto >=1.9.20)
   data-intuitive/quarto-d2/   # D2 diagram extension
 _freeze/                       # Quarto freeze cache (auto-generated, committed)
 _site/                         # Build output (gitignored)
@@ -104,9 +104,16 @@ Always commit `uv.lock` after any dependency change.
 
 **Extensions** are committed in `_extensions/` and also installed in CI via:
 ```yaml
-- run: quarto add --no-prompt data-intuitive/quarto-d2
-- run: quarto add --no-prompt marimo-team/quarto-marimo
+- run: quarto add --no-prompt data-intuitive/quarto-d2@1.1.0
+- run: quarto add --no-prompt marimo-team/quarto-marimo@v0.4.5
 ```
+
+> **Pin the extension versions.** The `marimo-team/quarto-marimo` extension must
+> stay in sync with the `marimo` Python package pinned in `uv.lock`
+> (extension v0.4.5 ↔ marimo 0.20.4). An unpinned `quarto add` pulls the latest
+> release, which broke CI when v0.5.0 shipped (`MarimoIslandGenerator._from_ir`
+> does not exist in marimo 0.20.4). When upgrading the extension, also bump the
+> locked `marimo` version and re-render the notebooks.
 
 **Freeze:** `execute: freeze: auto` in `_quarto.yml` means cells only re-execute when source changes. The `_freeze/` directory is committed to avoid re-running expensive cells in CI.
 
