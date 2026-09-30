@@ -22,7 +22,7 @@ All stakeholders from any level of experience or domain expertise are encouraged
 
 In the [Foreword Section](/foreword/foreword) of this book, we provide meta-level information about *The Turing Way*, including guidance on how to use and navigate this project, how to cite the book and opportunities to get involved.
 
-![The Turing Way project is illustrated as a road or path with shops for different data science skills. People can go in and out with their shopping cart and pick and choose what they need.](/build/theturingway-pathway-f6a62f2f9e626d611c6ab0dda6bc9316.svg)
+![The Turing Way project is illustrated as a road or path with shops for different data science skills. People can go in and out with their shopping cart and pick and choose what they need.](/build/theturingway-pathway-ad04c90e89ffd539c1125186a60e4ef0.svg)
 
 [Figure 1:](#welcome-image "Link to this figure")*The Turing Way* project illustration by Scriberia. Zenodo. [The Turing Way Community & Scriberia (2024)](https://doi.org/10.5281/ZENODO.3332807)
 

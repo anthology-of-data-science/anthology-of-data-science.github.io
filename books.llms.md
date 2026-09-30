@@ -162,15 +162,25 @@ Oct 23, 2023
 
 ## Non-open access books
 
-![](./books/images/designing-data-intensive-applications.jpg)
+![](./books/images/ai-agents.jpg)
 
-##### Designing Data-Intensive Applications
+##### An Illustrated Guide to AI Agents
+
+Artificial intelligence is entering a new phase. AI agents can now reason, plan, and act with increasing independence. From accelerating scientific breakthroughs to…
+
+Jay Alammar, Maarten Grootendorst
+
+Sep 1, 2026
+
+![](./books/images/ddia-2nd.jpg)
+
+##### Designing Data-Intensive Applications, 2nd Edition
 
 Data is at the center of many challenges in system design today. Difficult issues need to be figured out, such as scalability, consistency, reliability, efficiency, and…
 
-Martin Kleppmann
+Martin Kleppmann, Chris Riccomini
 
-Mar 1, 2017
+Feb 1, 2026
 
 ![](./books/images/handson-llm.jpg)
 
@@ -182,15 +192,15 @@ Jay Alammar, Maarten Grootendorst
 
 Sep 1, 2024
 
-![](./books/images/handson-ml3.jpg)
+![](./books/images/geron-2025.jpg)
 
-##### Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition
+##### Hands-On Machine Learning with Scikit-Learn and Pytorch
 
-Through a recent series of breakthroughs, deep learning has boosted the entire field of machine learning. Now, even programmers who know close to nothing about this…
+The potential of machine learning today is extraordinary, yet many aspiring developers and tech professionals find themselves daunted by its complexity. Whether you’re…
 
 Aurélien Géron
 
-Oct 1, 2022
+Oct 1, 2025
 
 ![](./books/images/polarsguide.jpg)
 

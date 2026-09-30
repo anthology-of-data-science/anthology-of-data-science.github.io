@@ -30,7 +30,7 @@ Amazon, New York, USA
 
 Modified
 
-17 July 2026
+28 September 2026
 
 ## Preface
 
@@ -97,6 +97,6 @@ To cite the online version of this book, please use the following:
 
 > Hyndman, R.J., Athanasopoulos, G., Garza, A., Challu, C., Mergenthaler, M., & Olivares, K.G. (2026). Forecasting: Principles and Practice, the Pythonic Way. OTexts: Melbourne, Australia. Available at: OTexts.com/fpppy. Accessed on .
 
-The online version of this book was last updated on 17 July 2026.
+The online version of this book was last updated on 28 September 2026.
 
 A [print edition of this book is also available](print-version.llms.md).
